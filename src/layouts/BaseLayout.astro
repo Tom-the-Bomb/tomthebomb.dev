@@ -1,0 +1,19 @@
+---
+import MainHead from '../components/MainHead.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+<html lang="en">
+    <head>
+        <MainHead/>
+    </head>
+    <body class="h-dvh flex flex-col bg-gradient-to-tr from-violet-500 to-orange-300">
+        <header class="flex-none">
+            <Nav/>
+        </header>
+        <main class="grow flex justify-center items-center">
+            <slot/>
+        </main>
+        <Footer/>
+    </body>
+</html>

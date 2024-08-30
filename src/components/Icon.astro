@@ -1,0 +1,21 @@
+---
+import { Icon as AstroIcon } from 'astro-icon/components';
+
+interface Props {
+    target: string,
+    img: string,
+    size?: string | undefined
+}
+
+const {
+    target,
+    img,
+    size = "3em",
+} = Astro.props;
+---
+<a href={target} target="_blank">
+    <AstroIcon
+        name={img} size={size}
+        class="text-rose-200 hover:text-white hover:scale-110 transition-all duration-300"
+    />
+</a>

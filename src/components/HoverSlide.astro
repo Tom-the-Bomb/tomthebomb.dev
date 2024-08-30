@@ -1,0 +1,40 @@
+---
+interface Props {
+    text: string,
+    target: string
+}
+
+const { text, target } = Astro.props;
+---
+<div class="slide-text-hover">
+    <span class="text-wrapper"><a href={target}>{text}</a></span>
+    <a href={target}>{text}</a>
+</div>
+
+<style>
+    .slide-text-hover {
+        position: relative;
+        display: inline-block;
+    }
+
+    .slide-text-hover:hover .text-wrapper {
+        width: 100%;
+    }
+
+    .text-wrapper {
+        position: absolute;
+        display: inline-block;
+        overflow: hidden;
+        width: 0;
+        display: inline-block;
+        white-space: pre;
+        color: #fff;
+        transition: width 500ms;
+        border-bottom: 1px solid;
+        padding-bottom: 0.15em;
+    }
+
+    .text-wrapper a {
+        color: inherit;
+    }
+</style>

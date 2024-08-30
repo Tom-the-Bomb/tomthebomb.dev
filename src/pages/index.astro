@@ -1,16 +1,29 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HoverSlide from "../components/HoverSlide.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+	<div class="flex flex-row grow flex-wrap justify-center gap-20">
+		<div class="flex flex-col items-center gap-10">
+			<div class="flex flex-col gap-3">
+				<h2 class="w-fit text-4xl text-yellow-100">
+					Hello I am
+				</h2>
+				<h1 class="w-fit text-7xl font-mono font-extrabold typewriter drop-shadow-xl">
+					Tom the Bomb
+				</h1>
+			</div>
+            <hr class="self-start w-1/2">
+			<ul class="fancy-list flex flex-col self-start text-xl text-rose-200">
+				<li><HoverSlide text="About" target="/about"/></li>
+				<li><HoverSlide text="Projects" target="/projects"/></li>
+				<li><HoverSlide text="Photography" target="/photography"/></li>
+				<li><HoverSlide text="Aquaria" target="/aquaria"/></li>
+			</ul>
+		</div>
+		<div class="flex justify-content-start">
+			<img class="drop-shadow-2xl spin-img w-[10em] h-[10em]" src="blobcomfy.png"/>
+		</div>
+	</div>
+</BaseLayout>
