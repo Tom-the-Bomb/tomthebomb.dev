@@ -1,5 +1,12 @@
 ---
----
-<nav>
+import Icon from './Icon.astro';
+import NavLink from './NavLink.astro';
 
+---
+<nav class="p-3 pl-5 flex flex-row flex-wrap gap-4 items-center">
+    <Icon size="2em" img="home" href="/" target="_self" styles="text-slate-200"/>
+    <NavLink idx={1} page="About"/>
+    <NavLink idx={2} page="Projects"/>
+    <NavLink idx={3} page="Photography"/>
+    <NavLink idx={4} page="Aquaria"/>
 </nav>

@@ -2,20 +2,24 @@
 import { Icon as AstroIcon } from 'astro-icon/components';
 
 interface Props {
-    target: string,
+    href: string,
     img: string,
-    size?: string | undefined
+    target?: string | undefined,
+    size?: string | undefined,
+    styles?: string | undefined,
 }
 
 const {
-    target,
+    href,
     img,
+    target = "_blank",
     size = "3em",
+    styles = "",
 } = Astro.props;
 ---
-<a href={target} target="_blank">
+<a href={href} target={target}>
     <AstroIcon
         name={img} size={size}
-        class="text-rose-200 hover:text-white hover:scale-110 transition-all duration-300"
+        class={`${styles} text-rose-200 hover:text-white hover:scale-110 transition-all duration-300`}
     />
 </a>

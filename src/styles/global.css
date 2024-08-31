@@ -70,3 +70,38 @@ a.effect-underline:hover:after {
     from { border-right-color: rgba(255, 255, 255, 0.75); }
     to { border-right-color: transparent; }
 }
+
+.text-shine {
+    color: transparent;
+
+	background: #8b5cf6
+        -webkit-gradient(
+            linear,
+            left top,
+            right top,
+            from(#8b5cf6),
+            to(#8b5cf6),
+            color-stop(0.5, white)
+        )
+        0 0 no-repeat;
+
+    background-size: 150px;
+    -webkit-background-size: 150px;
+    background-clip: text;
+	-webkit-background-clip: text;
+
+    animation: text-shine 4s linear infinite forwards;
+}
+
+@keyframes text-shine {
+	from {
+		background-position: -30%;
+	}
+	to {
+		background-position: 30%;
+	}
+}
+
+.small-icon-shadow {
+    filter: drop-shadow(1px 1px 1px #3e3e3e);
+}

@@ -1,6 +1,43 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import AboutSection from "../components/AboutSection.astro";
+import Icon from "../components/Icon.astro";
+
+const age = new Date().getFullYear() - new Date(2007, 1, 1).getFullYear();
 ---
 <BaseLayout>
-    About
+    <div class="flex flex-col gap-10 w-1/2 mt-40 mb-32">
+        <div class="flex flex-col gap-3">
+            <h1 class="text-6xl font-extrabold">About Me</h1>
+            <hr class="w-1/2"/>
+            <h2 class="text-shine text-3xl font-bold">Tom the Bomb</h2>
+            <div class="flex flex-row flex-wrap gap-3">
+                <Icon size="2em" img="canada" href="#" styles="small-icon-shadow" target="_self"/>
+                <Icon size="2em" img="china" href="#" styles="small-icon-shadow" target="_self"/>
+            </div>
+        </div>
+        <p class="text-xl">
+            Hi, I am a {age} year old student who is interested in software development, photography and aquatic pets.
+            This website aims to showcase elements from all of these areas.
+        </p>
+        <AboutSection title="Development Tools" icon="stack">
+            My goto languages are <span class="text-sky-500">Python</span>
+            and <span class="text-rose-800">Rust</span> for more intensive and complex applications.
+            I also use <span class="text-yellow-300">JS</span>
+            & <span class="text-sky-400">TS</span> for frontend development alongside
+            <span class="text-orange-300">HTML</span> &
+            <span class="text-blue-500">CSS</span> or frameworks like
+            <span class="text-sky-200">React.js</span>,
+            <span class="text-purple-700">Astro.js</span>,
+            <span class="text-sky-500">Tailwind CSS</span>, and
+            <span class="text-violet-600">Bootstrap 5</span>.
+            Sometimes I also integrate my <span class="text-rose-800">Rust</span> programs into the web with
+            <span class="text-blue-500">WebAssembly</span>.
+            I also use <span class="text-orange-600">Java</span> for applications in school such as robotics.
+            For data management, I use <span class="text-green-300">MongoDB</span> and <span class="text-blue-600">SQLite</span>.
+        </AboutSection>
+        <AboutSection title="Photography" icon="camera">
+            1
+        </AboutSection>
+    </div>
 </BaseLayout>

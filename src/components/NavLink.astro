@@ -1,0 +1,15 @@
+---
+interface Props {
+    idx: number
+    page: string,
+}
+
+const { idx, page } = Astro.props;
+---
+<a
+    class={`border-b-2 border-b-${true ? 'red' : 'sky'}-200
+    text-rose-100 hover:text-white hover:border-b-white`}
+    href={`/${page.toLowerCase()}`}
+>
+    <div class="hover:-translate-y-1 transition-transform duration-[250ms]">{page}</div>
+</a>
