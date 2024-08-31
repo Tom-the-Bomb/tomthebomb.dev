@@ -8,16 +8,16 @@ const age = new Date().getFullYear() - new Date(2007, 1, 1).getFullYear();
 <BaseLayout>
     <div class="flex flex-col gap-10 w-1/2 mt-40 mb-32">
         <div class="flex flex-col gap-3">
-            <h1 class="text-6xl font-extrabold">About Me</h1>
+            <h1 class="text-6xl font-extrabold drop-shadow-lg">About Me</h1>
             <hr class="w-1/2"/>
-            <h2 class="text-shine text-3xl font-bold">Tom the Bomb</h2>
+            <h2 class="text-shine text-3xl font-bold drop-shadow-lg">Tom the Bomb</h2>
             <div class="flex flex-row flex-wrap gap-3">
                 <Icon size="2em" img="canada" href="#" styles="small-icon-shadow" target="_self"/>
                 <Icon size="2em" img="china" href="#" styles="small-icon-shadow" target="_self"/>
             </div>
         </div>
         <p class="text-xl">
-            Hi, I am a {age} year old student who is interested in software development, photography and aquatic pets.
+            Hi, I am a {age} year old student who is interested in software development, mathematics, photography and aquatic life.
             This website aims to showcase elements from all of these areas.
         </p>
         <AboutSection title="Development Tools" icon="stack">
@@ -35,6 +35,15 @@ const age = new Date().getFullYear() - new Date(2007, 1, 1).getFullYear();
             <span class="text-blue-500">WebAssembly</span>.
             I also use <span class="text-orange-600">Java</span> for applications in school such as robotics.
             For data management, I use <span class="text-green-300">MongoDB</span> and <span class="text-blue-600">SQLite</span>.
+            <br/>
+            <br/>
+            <div class="flex flex-row flex-wrap items-center gap-3 font-sans text-lg opacity-75">
+                <Icon size="1.5em" img="lightbulb" href="#" target="_self"/>
+                <p>
+                    This website was made with <span class="text-purple-700">Astro.js</span> with
+                    <span class="text-sky-400">TS</span> and <span class="text-sky-500">Tailwind CSS</span>
+                </p>
+            </div>
         </AboutSection>
         <AboutSection title="Photography" icon="camera">
             1
