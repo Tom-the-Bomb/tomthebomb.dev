@@ -8,6 +8,7 @@ interface Props {
 const {
 	text = 'Tom the Bomb 2024'
 } = Astro.props;
+
 ---
 <footer class="relative p-8 text-xl text-center flex-none">
     <div class="p-5 gap-3 flex flex-row flex-wrap justify-center">
@@ -37,7 +38,7 @@ const {
         left: 0;
 
         width: 100%;
-        height: 200vh;
+        height: 200dvh;
 
         overflow: hidden;
         z-index: -1000;
@@ -142,7 +143,7 @@ const {
             border-radius: 10%;
         }
         to {
-            transform: translateY(-200vh) rotate(720deg);
+            transform: translateY(-200dvh) rotate(720deg);
             opacity: 0;
             border-radius: 50%;
         }
