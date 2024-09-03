@@ -1,12 +1,25 @@
 ---
 import Icon from './Icon.astro';
-import NavLink from './NavLink.astro';
 
+interface Props {
+    pages: string[],
+}
+
+const { pages } = Astro.props;
 ---
 <nav class="p-3 pl-5 flex flex-row flex-wrap gap-4 items-center">
     <Icon size="2em" img="home" href="/" target="_self" styles="text-slate-200"/>
-    <NavLink idx={1} page="About"/>
-    <NavLink idx={2} page="Projects"/>
-    <NavLink idx={3} page="Photography"/>
-    <NavLink idx={4} page="Aquaria"/>
+    {
+        pages.map((page) => (
+            <a
+                class="border-b-2 border-b-red-200
+                text-rose-100 hover:text-white hover:border-b-white"
+                href={`/${page.toLowerCase()}`}
+            >
+                <div class="hover:-translate-y-1 transition-transform duration-[250ms]">
+                    {page}
+                </div>
+            </a>
+        ))
+    }
 </nav>

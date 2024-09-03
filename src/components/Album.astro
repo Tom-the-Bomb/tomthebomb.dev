@@ -1,0 +1,25 @@
+---
+import HoverSlide from './HoverSlide.astro';
+
+interface Props {
+    name: string,
+    thumbnail: string,
+}
+
+const { name, thumbnail } = Astro.props;
+
+function albumClicked() {
+
+}
+---
+<div>
+    <div onclick="albumClicked()" class="hover:scale-105 transition-all duration-500 relative text-center shadow-xl rounded-[4px] border-r-4 border-l-4">
+        <img class="w-60 opacity-[70%]" src={thumbnail} alt={name}/>
+        <div class="abs-center text-2xl drop-shadow-lg">
+            <HoverSlide text={name} href="javascript:void(0);"/>
+        </div>
+    </div>
+    <div>
+        <slot/>
+    </div>
+</div>

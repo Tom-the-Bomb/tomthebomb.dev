@@ -1,14 +1,14 @@
 ---
 interface Props {
     text: string,
-    target: string
+    href: string
 }
 
-const { text, target } = Astro.props;
+const { text, href } = Astro.props;
 ---
 <div class="slide-text-hover">
-    <span class="text-wrapper"><a href={target}>{text}</a></span>
-    <a href={target}>{text}</a>
+    <span class="text-wrapper"><a href={href}>{text}</a></span>
+    <a href={href}>{text}</a>
 </div>
 
 <style>

@@ -11,6 +11,10 @@
         @apply text-white font-mono
     }
 
+    .abs-center {
+        @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+    }
+
     .fancy-list > li {
         @apply border-b-slate-200 border-b-2 mb-2 pb-2
     }
