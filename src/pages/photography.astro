@@ -17,21 +17,24 @@ const albums = await getCollection("albums");
         {
             albums.map((album) => (
                 <div
-                    class="hover:scale-105 transition-all duration-500
+                    class="fade-bottom hover:scale-105
+                    backdrop-brightness-[0.7] hover:backdrop-brightness-[1.2]
+                    transition-all duration-500
                     relative text-center shadow-xl
-                    rounded-[4px] border-r-4 border-l-4 fade-bottom"
+                    rounded-[4px] border-r-4 border-l-4"
                 >
                     <Image
                         src={album.data.cover}
                         alt={album.data.title}
-                        class="w-60 opacity-75"
+                        class="w-72 opacity-75"
+                        format="avif"
+                        quality="mid"
                     />
-                    <div class="abs-center text-2xl drop-shadow-lg">
+                    <div class="text-rose-100 abs-center text-3xl drop-shadow-lg">
                         <HoverSlide
                             text={album.data.title}
                             href={`/photography/${album.id}`}
                         />
-                        <p class="text-xs font-sans opacity-75">{album.data.description}</p>
                     </div>
                 </div>
             ))
