@@ -1,0 +1,55 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { AlbumT } from "../../content/config";
+import { getAlbumImages } from "../../utils";
+
+export async function getStaticPaths() {
+    const albums: AlbumT[] = await getCollection("albums");
+
+    return Object.values(albums).map((album) => (
+        {
+            params: {
+                id: album.id,
+            },
+            props: {
+                album,
+            },
+        }
+    ));
+}
+
+const { album } = Astro.props;
+const images = await getAlbumImages(album.id);
+---
+
+<BaseLayout>
+    <div>
+        <h1 class="text-5xl font-bold">
+            {album.data.title}
+        </h1>
+        <p class="text-xl my-4">
+            {album.data.description}
+        </p>
+        <div class="mx-auto container my-8 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5 text-center">
+            {
+                images.map((image) => (
+                    <Image
+                        src={image}
+                        alt="test"
+                        class={`rounded-md mb-4 shadow-lg hover:scale-[102%]
+                            border border-transparent hover:border-gray-100
+                            transition-all duration-300 ease-in-out`
+                        }
+                        format="avif"
+                        quality={50}
+                        loading="lazy"
+                        data-album-image
+                    />
+                ))
+            }
+        </div>
+    </div>
+</BaseLayout>

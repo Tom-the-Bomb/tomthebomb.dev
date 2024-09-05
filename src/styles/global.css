@@ -110,3 +110,15 @@ a.effect-underline:hover:after {
 .small-icon-shadow {
     filter: drop-shadow(1px 1px 1px #3e3e3e);
 }
+
+.fade-bottom {
+    mask-image:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,1) 0% 80%,
+            rgba(0,0,0,0)
+        );
+    mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    mask-position: left top, left bottom;
+}

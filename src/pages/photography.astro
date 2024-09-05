@@ -1,20 +1,40 @@
 ---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Album from "../components/Album.astro";
+import Quote from "../components/Quote.astro";
+import HoverSlide from "../components/HoverSlide.astro";
+
+const albums = await getCollection("albums");
 ---
 <BaseLayout>
     <div class="flex flex-col gap-16 items-center">
-        <div class="flex flex-col gap-3 font-serif text-xl w-1/3 drop-shadow-lg hover:scale-105 transition-all duration-1000">
-            <blockquote>
-                <p class="italic">
-                    &OpenCurlyDoubleQuote;The world moves fast, changing everything around us with each new day.
-                    Photography is a gift that can keep us in a moment forever, blissfully eternal.&CloseCurlyDoubleQuote;
-                </p>
-            </blockquote>
-            <cite class="opacity-75">—Ali Novake</cite>
-        </div>
-        <Album thumbnail="/photos/animals/20240806_044300000_iOS.jpg" name="Animals">
-
-        </Album>
+        <Quote author="Ali Novake">
+            The world moves fast, changing everything around us with each new day.
+            Photography is a gift that can keep us in a moment forever, blissfully eternal.
+        </Quote>
+        {
+            albums.map((album) => (
+                <div
+                    class="hover:scale-105 transition-all duration-500
+                    relative text-center shadow-xl
+                    rounded-[4px] border-r-4 border-l-4 fade-bottom"
+                >
+                    <Image
+                        src={album.data.cover}
+                        alt={album.data.title}
+                        class="w-60 opacity-75"
+                    />
+                    <div class="abs-center text-2xl drop-shadow-lg">
+                        <HoverSlide
+                            text={album.data.title}
+                            href={`/photography/${album.id}`}
+                        />
+                        <p class="text-xs font-sans opacity-75">{album.data.description}</p>
+                    </div>
+                </div>
+            ))
+        }
     </div>
 </BaseLayout>

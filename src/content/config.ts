@@ -1,6 +1,6 @@
 import { defineCollection, z } from "astro:content";
 
-const albums = defineCollection({
+export const albums = defineCollection({
     type: "data",
     schema: ({ image }) =>
         z.object({
@@ -9,6 +9,16 @@ const albums = defineCollection({
             cover: image(),
         }),
 });
+
+export interface AlbumT {
+    id: string,
+    collection: string,
+    data: {
+        title: string,
+        description: string,
+        cover: any,
+    }
+}
 
 export const collections = {
     albums,
