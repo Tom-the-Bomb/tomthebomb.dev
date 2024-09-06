@@ -3,11 +3,10 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { AlbumT } from "../../content/config";
 import { getAlbumImages } from "../../utils";
 
 export async function getStaticPaths() {
-    const albums: AlbumT[] = await getCollection("albums");
+    const albums = await getCollection("albums");
 
     return Object.values(albums).map((album) => (
         {

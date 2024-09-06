@@ -10,16 +10,6 @@ export const albums = defineCollection({
         }),
 });
 
-export interface AlbumT {
-    id: string,
-    collection: string,
-    data: {
-        title: string,
-        description: string,
-        cover: any,
-    }
-}
-
 export const collections = {
     albums,
 };
