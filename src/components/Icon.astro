@@ -2,8 +2,8 @@
 import { Icon as AstroIcon } from 'astro-icon/components';
 
 interface Props {
-    href: string,
     img: string,
+    href?: string | undefined,
     target?: string | undefined,
     color?: string | undefined,
     size?: string | undefined,
@@ -11,8 +11,8 @@ interface Props {
 }
 
 const {
-    href,
     img,
+    href = "javascript:void(0)",
     target = "_blank",
     color = "text-rose-200",
     size = "3em",
