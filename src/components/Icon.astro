@@ -5,6 +5,7 @@ interface Props {
     href: string,
     img: string,
     target?: string | undefined,
+    color?: string | undefined,
     size?: string | undefined,
     styles?: string | undefined,
 }
@@ -13,6 +14,7 @@ const {
     href,
     img,
     target = "_blank",
+    color = "text-rose-200",
     size = "3em",
     styles = "",
 } = Astro.props;
@@ -20,6 +22,6 @@ const {
 <a href={href} target={target}>
     <AstroIcon
         name={img} size={size}
-        class={`${styles} text-rose-200 hover:text-white hover:scale-110 transition-all duration-300`}
+        class={`${styles} ${color} hover:text-white hover:scale-110 transition-all duration-300`}
     />
 </a>

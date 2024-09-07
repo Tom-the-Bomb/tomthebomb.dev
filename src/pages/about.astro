@@ -3,14 +3,32 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import AboutSection from "../components/AboutSection.astro";
 import Icon from "../components/Icon.astro";
 
-import Swiper from 'swiper';
+const age = new Date().getFullYear()
+    - new Date(2007, 1, 1).getFullYear();
 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-
-const age = new Date().getFullYear() - new Date(2007, 1, 1).getFullYear();
+const stack = [
+    [
+        "python",
+        "rust",
+        "java",
+        "javascript",
+        "typescript",
+        "html",
+        "css",
+    ], [
+        "astro",
+        "react",
+        "tailwind",
+        "bootstrap",
+        "mongo",
+        "sqlite",
+    ], [
+        "flask",
+        "numpy",
+        "sympy",
+        "matplotlib",
+    ],
+];
 ---
 <BaseLayout>
     <div class="flex flex-col gap-10 w-1/2 mt-40 mb-32">
@@ -27,44 +45,65 @@ const age = new Date().getFullYear() - new Date(2007, 1, 1).getFullYear();
             Hi, I am a {age} year old student who is interested in software development, mathematics, photography and aquatic life.
             This website aims to showcase elements from all of these areas.
         </p>
-        <div class="swiper">
-            <div class="swiper-wrapper">
-                <AboutSection title="Development Tools" icon="stack">
-                    My goto languages are <span class="text-sky-500">Python</span>
-                    and <span class="text-rose-800">Rust</span> for more intensive and complex applications.
-                    I also use <span class="text-yellow-300">JS</span>
-                    & <span class="text-sky-400">TS</span> for frontend development alongside
-                    <span class="text-orange-300">HTML</span> &
-                    <span class="text-blue-500">CSS</span> or frameworks like
-                    <span class="text-sky-200">React.js</span>,
-                    <span class="text-purple-700">Astro.js</span>,
-                    <span class="text-sky-500">Tailwind CSS</span>, and
-                    <span class="text-violet-600">Bootstrap 5</span>.
-                    Sometimes I also integrate my <span class="text-rose-800">Rust</span> programs into the web with
-                    <span class="text-blue-500">WebAssembly</span>.
-                    I also use <span class="text-orange-600">Java</span> for applications in school such as robotics.
-                    For data management, I use <span class="text-green-300">MongoDB</span> and <span class="text-blue-600">SQLite</span>.
-                    <br/>
-                    <br/>
-                    <div class="flex flex-row flex-wrap items-center gap-3 font-sans text-lg opacity-75">
-                        <Icon size="1.5em" img="lightbulb" href="#" target="_self"/>
-                        <p>
-                            This website was made with <span class="text-purple-700">Astro.js</span> with
-                            <span class="text-sky-400">TS</span> and <span class="text-sky-500">Tailwind CSS</span>
-                        </p>
+        <AboutSection title="Development Tools" icon="stack">
+            <div class="swiper-body">
+                <div class="swiper">
+                    <div class="swiper-wrapper pb-8">
+                        <div class="swiper-slide text-lg">
+                            My goto languages are <span class="text-sky-500">Python</span>
+                            and <span class="text-rose-800">Rust</span> for more intensive and complex applications.
+                            I also use <span class="text-yellow-300">JS</span>
+                            & <span class="text-sky-400">TS</span> for frontend development alongside
+                            <span class="text-orange-300">HTML</span> &
+                            <span class="text-blue-500">CSS</span> or frameworks like
+                            <span class="text-sky-200">React.js</span>,
+                            <span class="text-purple-700">Astro.js</span>,
+                            <span class="text-sky-500">Tailwind CSS</span>, and
+                            <span class="text-violet-600">Bootstrap 5</span>.
+                            Sometimes I also integrate my <span class="text-rose-800">Rust</span> programs into the web with
+                            <span class="text-blue-500">WebAssembly</span>.
+                            I also use <span class="text-orange-600">Java</span> for applications in school such as robotics.
+                            For data management, I use <span class="text-green-300">MongoDB</span> and <span class="text-blue-600">SQLite</span>.
+                            <br/>
+                            <br/>
+                            <div class="flex flex-row flex-wrap items-center gap-3 font-sans text-lg opacity-75">
+                                <Icon size="1.5em" img="lightbulb" href="#" target="_self"/>
+                                <p>
+                                    This website was made with <span class="text-purple-700">Astro.js</span> with
+                                    <span class="text-sky-400">TS</span> and <span class="text-sky-500">Tailwind CSS</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="py-4 flex flex-col flex-wrap gap-5 justify-center items-center">
+                                {
+                                    stack.map((row) => (
+                                        <div class="flex flex-row flex-wrap gap-5">
+                                            {
+                                                row.map((tool) => (
+                                                    <Icon
+                                                        styles="drop-shadow-lg"
+                                                        color=""
+                                                        size="3.5em"
+                                                        img={`stack/${tool}`}
+                                                        href="#"
+                                                    />
+                                                ))
+                                            }
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        </div>
                     </div>
-                </AboutSection>
-                <div class="swiper-slide">
-                    Test
+                    <div class="swiper-pagination"></div>
                 </div>
             </div>
-        </div>
+        </AboutSection>
         <AboutSection title="Photography" icon="camera">
 
         </AboutSection>
     </div>
 </BaseLayout>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
-<script is:inline src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-<script is:inline>new Swiper('.swiper', {speed: 400, spaceBetween: 100})</script>
+<script src="../libs/BasicSlider.ts"></script>
