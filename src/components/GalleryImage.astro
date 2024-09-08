@@ -68,12 +68,14 @@ const alt = `An image from the album: [${album}]`
                         xmp: {pick: ['Lens']},
                     },
                 );
+                const lens = output.Lens != null ? ` + ${output.Lens}` : '';
+                const expTime = output.ExposureTime < 1 ? `1/${1 / output.ExposureTime}` : output.ExposureTime;
 
                 console.log(output.Lens)
                 container.querySelector('p.caption')!.innerHTML =
-                    `Taken with ${output.Make} ${output.Model}${output.Lens != null ? ` + ${output.Lens}` : ''} |
+                    `Taken with ${output.Make} ${output.Model}${lens} |
                     ${output.ExifImageWidth}&times;${output.ExifImageHeight}px at ${output.FocalLength} mm,
-                    1/${1 / output.ExposureTime} s, ISO ${output.ISO}, ƒ${output.FNumber}`;
+                    ${expTime} s, ISO ${output.ISO}, ƒ${output.FNumber}`;
 
                 container.querySelector('.close-btn')
                     ?.addEventListener('click', (event) => {
