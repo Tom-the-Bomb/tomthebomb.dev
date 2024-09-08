@@ -28,20 +28,20 @@ const alt = `An image from the album: [${album}]`
     />
     <div
         class="modal hidden fixed z-50 left-0 top-0 w-screen h-screen
-        bg-black bg-opacity-75 backdrop-blur-md
-        flex-col gap-5 justify-center items-center"
+        bg-black bg-opacity-75 backdrop-blur-md"
     >
         <Icon
             img="close"
             target="_self"
-            styles="close-btn"
+            size="4em"
+            styles="close-btn absolute right-0 m-4 mr-5 text-slate-100"
         />
         <Image
             src={image}
             alt={alt}
-            class="max-h-[90%] w-auto"
+            class="abs-center max-h-full w-auto p-5 pb-12"
         />
-        <p class="caption font-sm font-sans text-rose-100"></p>
+        <p class="caption font-sm font-sans text-rose-100 absolute bottom-0 pb-3 text-center w-full text-wrap"></p>
     </div>
 </div>
 
@@ -52,23 +52,26 @@ const alt = `An image from the album: [${album}]`
         ?.forEach((container) => {
             container.addEventListener('click', async () => {
                 container.querySelector<HTMLElement>('div.modal')!
-                    .style.display = 'flex';
+                    .style.display = 'block';
 
                 const image = container.querySelector<HTMLImageElement>('img')
                     ?.getAttribute('data-image-src')!;
                 const output = await exifr.parse(
                     image,
                     {
-                        'xmp': true,
-                        'pick': [
-                            'Make', 'Model', 'Lens', 'ExifImageWidth', 'ExifImageHeight',
-                            'FocalLength', 'ExposureTime', 'ISO', 'FNumber'
-                        ],
-                    }
+                        exif: {
+                            pick: [
+                                'Make', 'Model', 'ExifImageWidth', 'ExifImageHeight',
+                                'FocalLength', 'ExposureTime', 'ISO', 'FNumber',
+                            ],
+                        },
+                        xmp: {pick: ['Lens']},
+                    },
                 );
 
+                console.log(output.Lens)
                 container.querySelector('p.caption')!.innerHTML =
-                    `Taken with ${output.Make} ${output.Model} ${output.Lens ? `+ ${output.Lens}` : ''} |
+                    `Taken with ${output.Make} ${output.Model}${output.Lens != null ? ` + ${output.Lens}` : ''} |
                     ${output.ExifImageWidth}&times;${output.ExifImageHeight}px at ${output.FocalLength} mm,
                     1/${1 / output.ExposureTime} s, ISO ${output.ISO}, ƒ${output.FNumber}`;
 
