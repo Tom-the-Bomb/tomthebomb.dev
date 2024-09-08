@@ -1,0 +1,84 @@
+---
+import { Image } from "astro:assets";
+
+import Icon from "./Icon.astro";
+
+interface Props {
+    image: ImageMetadata,
+    album: string,
+}
+
+const { image, album } = Astro.props;
+const alt = `An image from the album: [${album}]`
+---
+<div class="gallery-image">
+    <Image
+        src={image}
+        alt={alt}
+        class={
+            `rounded-md mb-4 shadow-lg hover:scale-[102%] opacity-90
+            border border-transparent hover:border-slate-100
+            transition-all duration-300 ease-in-out`
+        }
+        quality={50}
+        loading="lazy"
+        decoding="async"
+        data-image-src={image.src}
+        data-album-image
+    />
+    <div
+        class="modal hidden fixed z-50 left-0 top-0 w-screen h-screen
+        bg-black bg-opacity-75 backdrop-blur-md
+        flex-col gap-5 justify-center items-center"
+    >
+        <Icon
+            img="close"
+            target="_self"
+            styles="close-btn"
+        />
+        <Image
+            src={image}
+            alt={alt}
+            class="max-h-[90%] w-auto"
+        />
+        <p class="caption font-sm font-sans text-rose-100"></p>
+    </div>
+</div>
+
+<script>
+    import exifr from 'exifr';
+
+    document.querySelectorAll('.gallery-image')
+        ?.forEach((container) => {
+            container.addEventListener('click', async () => {
+                container.querySelector<HTMLElement>('div.modal')!
+                    .style.display = 'flex';
+
+                const image = container.querySelector<HTMLImageElement>('img')
+                    ?.getAttribute('data-image-src')!;
+                const output = await exifr.parse(
+                    image,
+                    {
+                        'xmp': true,
+                        'pick': [
+                            'Make', 'Model', 'Lens', 'ExifImageWidth', 'ExifImageHeight',
+                            'FocalLength', 'ExposureTime', 'ISO', 'FNumber'
+                        ],
+                    }
+                );
+
+                container.querySelector('p.caption')!.innerHTML =
+                    `Taken with ${output.Make} ${output.Model} ${output.Lens ? `+ ${output.Lens}` : ''} |
+                    ${output.ExifImageWidth}&times;${output.ExifImageHeight}px at ${output.FocalLength} mm,
+                    1/${1 / output.ExposureTime} s, ISO ${output.ISO}, ƒ${output.FNumber}`;
+
+                container.querySelector('.close-btn')
+                    ?.addEventListener('click', (event) => {
+                        const modal = container.querySelector<HTMLElement>('div.modal');
+                        modal!.style.display = 'none';
+
+                        event.stopPropagation();
+                    });
+            });
+    });
+</script>
