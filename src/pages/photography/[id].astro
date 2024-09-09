@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import GalleryImage from "../../components/GalleryImage.astro";
-import { getAlbumImages } from "../../utils";
+import { getAlbumImages, startAt } from "../../utils";
 
 export async function getStaticPaths() {
     const albums = await getCollection("albums");
@@ -33,8 +33,12 @@ const images = await getAlbumImages(album.id);
         </p>
         <div class="mx-auto container my-8 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5">
             {
-                images.map((image) => (
-                    <GalleryImage image={image} album={album.data.title}/>
+                images.map((image, i) => (
+                    <GalleryImage
+                        image={image}
+                        images={startAt(images, i)}
+                        album={album.data.title}
+                    />
                 ))
             }
         </div>
