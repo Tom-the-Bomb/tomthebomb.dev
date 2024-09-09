@@ -21,6 +21,7 @@ const alt = `An image from the album: [${album}]`
             border border-transparent hover:border-slate-100
             transition-all duration-300 ease-in-out`
         }
+        format="avif"
         quality={50}
         loading="lazy"
         decoding="async"
@@ -46,6 +47,9 @@ const alt = `An image from the album: [${album}]`
                                     src={slide}
                                     alt={alt}
                                     class="abs-center max-h-full w-auto p-5 pb-12"
+                                    format="avif"
+                                    loading="lazy"
+                                    decoding="async"
                                     data-slider-image={slide.src}
                                 />
                                 <p class="caption font-sm font-sans text-rose-100 absolute bottom-0 pb-3 text-center w-full text-wrap"></p>

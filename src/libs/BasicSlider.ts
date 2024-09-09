@@ -5,7 +5,7 @@ import { Keyboard, Mousewheel, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-document.addEventListener( 'DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     new Swiper('.swiper', {
         modules: [Keyboard, Mousewheel, Pagination],
         loop: true,

@@ -29,14 +29,15 @@ export async function formatImageEXIF(image: HTMLImageElement, src: string) {
         {
             exif: {
                 pick: [
-                    'Make', 'Model',
+                    'Make', 'Model', 'LensMake', 'LensModel',
                     'FocalLength', 'ExposureTime', 'ISO', 'FNumber',
                 ],
             },
             xmp: {pick: ['Lens']},
         },
     );
-    const lens = output.Lens != null ? ` + ${output.Lens}` : '';
+    let lens = output.Lens ? ` + ${output.Lens}` : '';
+    lens = !lens && output.LensModel ? ` + ${output.LensMake} ${output.LensModel}` : lens;
     const expTime = output.ExposureTime < 1 ? `1/${1 / output.ExposureTime}` : output.ExposureTime;
 
     return (
