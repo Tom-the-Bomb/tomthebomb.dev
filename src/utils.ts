@@ -23,13 +23,13 @@ export async function getAlbumImages(albumId: string) {
     return resolvedImages;
 }
 
-export async function formatImageEXIF(image: string) {
+export async function formatImageEXIF(image: HTMLImageElement, src: string) {
     const output = await exifr.parse(
-        image,
+        src,
         {
             exif: {
                 pick: [
-                    'Make', 'Model', 'ExifImageWidth', 'ExifImageHeight',
+                    'Make', 'Model',
                     'FocalLength', 'ExposureTime', 'ISO', 'FNumber',
                 ],
             },
@@ -41,7 +41,7 @@ export async function formatImageEXIF(image: string) {
 
     return (
         `Taken with ${output.Make} ${output.Model}${lens} |
-        ${output.ExifImageWidth}&times;${output.ExifImageHeight}px at ${output.FocalLength} mm,
+        ${image.naturalWidth}&times;${image.naturalHeight}px at ${output.FocalLength} mm,
         ${expTime} s, ISO ${output.ISO}, ƒ${output.FNumber}`
     );
 }

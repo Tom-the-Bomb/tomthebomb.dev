@@ -65,9 +65,11 @@ const alt = `An image from the album: [${album}]`
 
     document.querySelectorAll('div.swiper-slide')
         ?.forEach(async (slide) => {
+            const image = slide.querySelector<HTMLImageElement>('img')!;
+
             slide.querySelector('p.caption')!.innerHTML = await formatImageEXIF(
-                slide.querySelector<HTMLImageElement>('img')
-                    ?.getAttribute('data-slider-image')!
+                image,
+                image.getAttribute('data-slider-image')!,
             );
         });
 
