@@ -36,7 +36,7 @@ export async function formatImageEXIF(image: HTMLImageElement, src: string) {
 
     return (
         `Taken with ${output.Make} ${output.Model}${lens} |
-        ${image.naturalWidth}&times;${image.naturalHeight}px at ${output.FocalLength} mm,
+        ${image.width}&times;${image.height}px at ${output.FocalLength} mm,
         ${expTime} s, ISO ${output.ISO}, ƒ${output.FNumber}`
     );
 }

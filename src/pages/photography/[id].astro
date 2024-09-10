@@ -58,7 +58,7 @@ const alt = `An image from the album: [${title}]`;
     </div>
     <div
         id="modal"
-        class="hidden fixed z-50 left-0 top-0 w-screen h-screen
+        class="hidden fixed z-50 left-0 top-0 w-screen h-dvh
         bg-black bg-opacity-75 backdrop-blur-md"
     >
         <Icon
@@ -76,19 +76,19 @@ const alt = `An image from the album: [${title}]`;
                                 <Image
                                     src={slide}
                                     alt={alt}
-                                    class="abs-center max-h-full w-auto p-5 pb-12"
+                                    class="abs-center max-h-full max-w-[90%] w-auto p-5 pb-12"
                                     format="avif"
                                     loading="lazy"
                                     decoding="async"
                                     data-swiper-slide={slide.src}
                                 />
-                                <p class="caption font-sm font-sans text-rose-100 absolute bottom-0 pb-3 text-center w-full text-wrap"></p>
+                                <p class="caption font-sm font-sans text-rose-100 absolute bottom-0 p-3 text-center w-full text-wrap"></p>
                             </div>
                         ))
                     }
                 </div>
-                <div class="swiper-button-prev ml-10"></div>
-                <div class="swiper-button-next mr-10"></div>
+                <div class="md:swiper-button-visible swiper-button-hidden swiper-button-prev ml-10"></div>
+                <div class="md:swiper-button-visible swiper-button-hidden swiper-button-next mr-10"></div>
             </div>
         </div>
     </div>
@@ -108,7 +108,6 @@ const alt = `An image from the album: [${title}]`;
     document.addEventListener('DOMContentLoaded', () => {
         swiper = new Swiper('.swiper', {
             modules: [Keyboard, Navigation, EffectCoverflow],
-            direction: 'horizontal',
             effect: 'coverflow',
             grabCursor: true,
             centeredSlides: true,
@@ -118,10 +117,16 @@ const alt = `An image from the album: [${title}]`;
             keyboard: {
                 enabled: true,
             },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
+            direction: 'vertical',
+            breakpoints: {
+                768: {
+                    direction: 'horizontal',
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                }
+            }
         });
     });
 

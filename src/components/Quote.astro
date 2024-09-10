@@ -1,11 +1,15 @@
 ---
 interface Props {
     author: string,
+    styles?: string | undefined,
 }
 
-const { author } = Astro.props;
+const {
+    author,
+    styles = ""
+} = Astro.props;
 ---
-<div class="flex flex-col gap-3 font-serif text-xl w-1/3 drop-shadow-lg hover:scale-105 transition-all duration-1000">
+<div class={`flex flex-col gap-3 font-serif text-xl drop-shadow-lg hover:scale-105 transition-all duration-1000 ${styles}`}>
     <blockquote>
         <p class="italic">
             &OpenCurlyDoubleQuote;

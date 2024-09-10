@@ -11,6 +11,10 @@
         @apply text-white font-mono
     }
 
+    .swiper-button-visible {
+        @apply !opacity-100 !cursor-pointer !pointer-events-auto
+    }
+
     .abs-center {
         @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
     }
@@ -100,10 +104,10 @@ a.effect-underline:hover:after {
 
 @keyframes text-shine {
 	from {
-		background-position: -30%;
+		background-position: -6em;
 	}
 	to {
-		background-position: 30%;
+		background-position: 6.5em;
 	}
 }
 
