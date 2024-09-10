@@ -1,11 +1,5 @@
 import exifr from 'exifr';
 
-export function startAt(images: ImageMetadata[], idx: number) {
-    let cycled = images.slice(idx);
-    cycled.push(...images.slice(0, idx));
-    return cycled;
-}
-
 export async function getAlbumImages(albumId: string) {
     let images = import.meta.glob<{ default: ImageMetadata }>(
         "/src/content/albums/**/*.{jpeg,jpg}"
