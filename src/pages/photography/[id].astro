@@ -127,16 +127,15 @@ const alt = `An image from the album: [${title}]`;
 
     const modal = document.getElementById('modal')!;
 
-    window.onload = () => {
-        modal.querySelectorAll('div.swiper-slide')
+    modal.querySelectorAll('div.swiper-slide')
         ?.forEach(async (slide) => {
             const img = slide.querySelector('img')!;
+
             slide.querySelector('p.caption')!.innerHTML = await formatImageEXIF(
                 img,
                 img.getAttribute('data-swiper-slide')!,
             );
         });
-    }
 
     modal.querySelector('.close-btn')
         ?.addEventListener('click', (event) => {
