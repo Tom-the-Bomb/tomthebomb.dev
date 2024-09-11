@@ -35,7 +35,7 @@ const alt = `An image from the album: [${title}]`;
         <p class="px-6 lg:px-8 text-md opacity-75 font-sans">
             {album.data.description}
         </p>
-        <div class="px-2 sm:px-0 container my-8 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5">
+        <div class="px-2 sm:px-0 mx-auto container my-8 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5">
             {
                 images.map((image) => (
                     <Image
@@ -58,7 +58,7 @@ const alt = `An image from the album: [${title}]`;
     </div>
     <div
         id="modal"
-        class="hidden fixed z-50 left-0 top-0 w-dvh h-dvh
+        class="hidden fixed z-50 left-0 top-0 w-dvw h-dvh
         bg-black bg-opacity-75 backdrop-blur-md"
     >
         <Icon
@@ -87,8 +87,6 @@ const alt = `An image from the album: [${title}]`;
                         ))
                     }
                 </div>
-                <div class="md:swiper-button-visible swiper-button-hidden swiper-button-prev ml-10"></div>
-                <div class="md:swiper-button-visible swiper-button-hidden swiper-button-next mr-10"></div>
             </div>
         </div>
     </div>
@@ -99,7 +97,6 @@ const alt = `An image from the album: [${title}]`;
     import { Keyboard, EffectCoverflow } from 'swiper/modules';
 
     import 'swiper/css';
-    import 'swiper/css/navigation';
 
     import { formatImageEXIF } from "../../utils";
 
