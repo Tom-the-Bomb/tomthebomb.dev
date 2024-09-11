@@ -2,11 +2,13 @@
 import Icon from './Icon.astro';
 
 interface Props {
-	text?: string | undefined
+    href?: string | undefined,
+	text?: string | undefined,
 }
 
 const {
-	text = 'Tom the Bomb 2024'
+    href = 'https://github.com/Tom-the-Bomb/tomthebomb.dev',
+	text = 'Tom the Bomb 2024',
 } = Astro.props;
 
 ---
@@ -16,7 +18,7 @@ const {
         <Icon img="discord" href="https://discord.com/users/522524473447153695"/>
         <Icon img="leetcode" href="https://leetcode.com/u/Tom-the-Bomb/"/>
     </div>
-    <a class="relative inline-block effect-underline">{text}<a/>
+    <a href={href} class="relative inline-block effect-underline">{text}<a/>
     <div class="squares">
         <li></li>
         <li></li>

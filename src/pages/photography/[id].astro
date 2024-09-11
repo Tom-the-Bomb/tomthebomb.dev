@@ -32,12 +32,12 @@ const alt = `An image from the album: [${title}]`;
         <h1 class="text-4xl font-extrabold drop-shadow-lg">
             {title}
         </h1>
-        <p class="text-md opacity-75 font-sans">
+        <p class="px-6 lg:px-8 text-md opacity-75 font-sans">
             {album.data.description}
         </p>
-        <div class="mx-auto container my-8 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5">
+        <div class="px-2 sm:px-0 container my-8 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5">
             {
-                images.map((image, idx) => (
+                images.map((image) => (
                     <Image
                         src={image}
                         alt={alt}
@@ -58,7 +58,7 @@ const alt = `An image from the album: [${title}]`;
     </div>
     <div
         id="modal"
-        class="hidden fixed z-50 left-0 top-0 w-screen h-dvh
+        class="hidden fixed z-50 left-0 top-0 w-dvh h-dvh
         bg-black bg-opacity-75 backdrop-blur-md"
     >
         <Icon
@@ -96,7 +96,7 @@ const alt = `An image from the album: [${title}]`;
 
 <script>
     import Swiper from 'swiper';
-    import { Keyboard, Navigation, EffectCoverflow } from 'swiper/modules';
+    import { Keyboard, EffectCoverflow } from 'swiper/modules';
 
     import 'swiper/css';
     import 'swiper/css/navigation';
@@ -107,7 +107,7 @@ const alt = `An image from the album: [${title}]`;
 
     document.addEventListener('DOMContentLoaded', () => {
         swiper = new Swiper('.swiper', {
-            modules: [Keyboard, Navigation, EffectCoverflow],
+            modules: [Keyboard, EffectCoverflow],
             effect: 'coverflow',
             grabCursor: true,
             centeredSlides: true,
@@ -121,10 +121,6 @@ const alt = `An image from the album: [${title}]`;
             breakpoints: {
                 768: {
                     direction: 'horizontal',
-                    navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                    },
                 }
             }
         });
