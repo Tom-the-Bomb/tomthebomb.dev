@@ -7,7 +7,7 @@ import HoverSlide from "../components/HoverSlide.astro";
 ---
 
 <BaseLayout>
-	<div class="flex flex-row grow flex-wrap justify-center gap-20">
+	<div class="flex flex-row flex-wrap justify-center grow gap-20">
 		<div class="flex flex-col items-center gap-10">
 			<div class="flex flex-col gap-3">
 				<h2 class="w-fit lg:text-4xl md:text-3xl text-2xl text-yellow-100 drop-shadow-lg">
@@ -30,6 +30,9 @@ import HoverSlide from "../components/HoverSlide.astro";
 				src={blobComfy}
 				alt="Blob Comfy"
 				class="drop-shadow-2xl spin-img w-[10em] h-[10em]"
+				format="avif"
+				loading="lazy"
+				decoding="async"
 			/>
 		</div>
 	</div>

@@ -65,7 +65,7 @@ const alt = `An image from the album: [${title}]`;
             img="close"
             target="_self"
             size="4em"
-            styles="close-btn absolute right-0 z-50 m-4 mr-5 text-slate-100"
+            styles="close-btn absolute z-50 top-4 right-4 text-slate-100"
         />
         <div class="swiper-body w-full h-full overflow-x-hidden">
             <div class="swiper w-full h-full">
@@ -73,16 +73,20 @@ const alt = `An image from the album: [${title}]`;
                     {
                         images.map((slide) => (
                             <div class="swiper-slide">
-                                <Image
-                                    src={slide}
-                                    alt={alt}
-                                    class="abs-center max-h-full max-w-[90%] w-auto p-5 pb-12"
-                                    format="avif"
-                                    loading="lazy"
-                                    decoding="async"
-                                    data-swiper-slide={slide.src}
-                                />
-                                <p class="caption font-sm font-sans text-rose-100 absolute bottom-0 p-3 text-center w-full text-wrap"></p>
+                                <div class="w-full h-full p-5 flex flex-col gap-3 justify-center items-center">
+                                    <div class="flex justify-center items-center grow min-h-0">
+                                        <Image
+                                            src={slide}
+                                            alt={alt}
+                                            class="block max-h-full w-auto"
+                                            format="avif"
+                                            loading="lazy"
+                                            decoding="async"
+                                            data-swiper-slide={slide.src}
+                                        />
+                                    </div>
+                                    <p class="caption text-center font-sm font-sans text-rose-200 text-wrap"></p>
+                                </div>
                             </div>
                         ))
                     }
@@ -118,8 +122,8 @@ const alt = `An image from the album: [${title}]`;
             breakpoints: {
                 768: {
                     direction: 'horizontal',
-                }
-            }
+                },
+            },
         });
     });
 
@@ -127,7 +131,7 @@ const alt = `An image from the album: [${title}]`;
 
     modal.querySelectorAll('div.swiper-slide')
         ?.forEach(async (slide) => {
-            const img = slide.querySelector('img')!;
+            const img = slide.querySelector<HTMLImageElement>('[data-swiper-slide]')!;
 
             slide.querySelector('p.caption')!.innerHTML = await formatImageEXIF(
                 img,
@@ -144,7 +148,6 @@ const alt = `An image from the album: [${title}]`;
     document.querySelectorAll('[data-album-image]')
         ?.forEach((image, idx) => {
             image.addEventListener('click', () => {
-                swiper.slideReset();
                 swiper.slideTo(idx);
                 modal.style.display = 'block';
             });
