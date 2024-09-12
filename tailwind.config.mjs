@@ -6,7 +6,6 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				'SC': ['Arsenal SC', ...defaultTheme.fontFamily.sans],
 				'sans': ['Titillium Web', ...defaultTheme.fontFamily.sans],
 				'mono': ['Jetbrains Mono', ...defaultTheme.fontFamily.mono],
 			}

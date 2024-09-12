@@ -17,8 +17,16 @@ const { text, href } = Astro.props;
         display: inline-block;
     }
 
-    .slide-text-hover:hover .text-wrapper {
-        width: 100%;
+    @media (hover: hover) {
+        .slide-text-hover:hover .text-wrapper {
+            width: 100%;
+        }
+    }
+
+    @media (hover: none) {
+        .slide-text-hover:hover {
+            color: white;
+        }
     }
 
     .text-wrapper {
@@ -28,7 +36,7 @@ const { text, href } = Astro.props;
         width: 0;
         display: inline-block;
         white-space: pre;
-        color: #fff;
+        color: white;
         transition: width 500ms;
         border-bottom: 1px solid;
         padding-bottom: 0.15em;

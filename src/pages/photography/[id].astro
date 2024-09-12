@@ -4,6 +4,7 @@ import { getCollection } from "astro:content";
 
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Icon from "../../components/Icon.astro";
+import HoverSlide from "../../components/HoverSlide.astro";
 import { getAlbumImages } from "../../utils";
 
 export async function getStaticPaths() {
@@ -54,6 +55,9 @@ const alt = `An image from the album: [${title}]`;
                     />
                 ))
             }
+        </div>
+        <div class="text-rose-200">
+            <HoverSlide text="View More Albums →" href=".."/>
         </div>
     </div>
     <div
