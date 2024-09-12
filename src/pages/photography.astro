@@ -6,7 +6,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Quote from "../components/Quote.astro";
 import HoverSlide from "../components/HoverSlide.astro";
 
-const albums = await getCollection("albums");
+export const albums = await getCollection("albums");
 ---
 <BaseLayout>
     <div class="flex flex-col gap-16 items-center">
