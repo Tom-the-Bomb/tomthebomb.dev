@@ -6,6 +6,7 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
+				'zh': ['Long Cang', ...defaultTheme.fontFamily.serif],
 				'sans': ['Titillium Web', ...defaultTheme.fontFamily.sans],
 				'mono': ['Jetbrains Mono', ...defaultTheme.fontFamily.mono],
 			}
