@@ -69,6 +69,12 @@ a.effect-underline:hover:after {
             500ms steps(12) infinite normal;
 }
 
+@media (pointer: fine) {
+    .typewriter {
+        @apply drop-shadow-xl;
+    }
+}
+
 @keyframes typewriter {
     0% { width: 0; }
     50% { width: 100%; }
