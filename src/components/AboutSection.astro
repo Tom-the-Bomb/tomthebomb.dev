@@ -14,7 +14,5 @@ const { title, icon } = Astro.props;
         <Icon size="1em" img={icon} target="_self" styles=""/>
     </h2>
     <hr class="w-1/2"/>
-    <p class="text-xl text-slate-100">
-        <slot/>
-    </p>
+    <p class="text-lg drop-shadow-md"><slot/></p>
 </div>

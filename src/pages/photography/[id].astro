@@ -47,7 +47,7 @@ const alt = `An image from the album: [${title}]`;
                             transition-all duration-300 ease-in-out`
                         }
                         format="jpeg"
-                        quality={50}
+                        quality="max"
                         loading="lazy"
                         decoding="async"
                         data-album-image
@@ -56,7 +56,7 @@ const alt = `An image from the album: [${title}]`;
             }
         </div>
         <div class="text-rose-200">
-            <HoverSlide text="View More Albums →" href="../photography"/>
+            <HoverSlide text="View More Albums →" href="."/>
         </div>
     </div>
     <div
@@ -85,6 +85,7 @@ const alt = `An image from the album: [${title}]`;
                                             format="jpeg"
                                             loading="lazy"
                                             decoding="async"
+                                            quality="max"
                                             data-swiper-slide={slide.src}
                                         />
                                     </div>
@@ -107,10 +108,8 @@ const alt = `An image from the album: [${title}]`;
 
     import { formatImageEXIF } from "../../utils";
 
-    var swiper: Swiper;
-
-    document.addEventListener('DOMContentLoaded', () => {
-        swiper = new Swiper('.swiper', {
+    document.addEventListener('astro:page-load', () => {
+        const swiper = new Swiper('.swiper', {
             modules: [Keyboard, EffectCoverflow],
             effect: 'coverflow',
             grabCursor: true,
@@ -128,31 +127,31 @@ const alt = `An image from the album: [${title}]`;
                 },
             },
         });
-    });
 
-    const modal = document.getElementById('modal')!;
+        const modal = document.getElementById('modal')!;
 
-    modal.querySelectorAll('div.swiper-slide')
-        ?.forEach(async (slide) => {
-            const img = slide.querySelector<HTMLImageElement>('[data-swiper-slide]')!;
+        modal.querySelectorAll('div.swiper-slide')
+            ?.forEach(async (slide) => {
+                const img = slide.querySelector<HTMLImageElement>('[data-swiper-slide]')!;
 
-            slide.querySelector('p.caption')!.innerHTML = await formatImageEXIF(
-                img,
-                img.getAttribute('data-swiper-slide')!,
-            );
-        });
-
-    modal.querySelector('.close-btn')
-        ?.addEventListener('click', (event) => {
-            modal.style.display = 'none';
-            event.stopPropagation();
-        });
-
-    document.querySelectorAll('[data-album-image]')
-        ?.forEach((image, idx) => {
-            image.addEventListener('click', () => {
-                swiper.slideTo(idx);
-                modal.style.display = 'block';
+                slide.querySelector('p.caption')!.innerHTML = await formatImageEXIF(
+                    img,
+                    img.getAttribute('data-swiper-slide')!,
+                );
             });
-        });
+
+        modal.querySelector('.close-btn')
+            ?.addEventListener('click', (event) => {
+                modal.style.display = 'none';
+                event.stopPropagation();
+            });
+
+        document.querySelectorAll('[data-album-image]')
+            ?.forEach((image, idx) => {
+                image.addEventListener('click', () => {
+                    swiper.slideToLoop(idx, 0);
+                    modal.style.display = 'block';
+                });
+            });
+    });
 </script>

@@ -41,7 +41,7 @@ const stack = [
                 <Icon size="2em" img="china" styles="small-icon-shadow" target="_self"/>
             </div>
         </div>
-        <p class="text-xl">
+        <p class="text-xl drop-shadow-lg">
             Hi, I am a {age} year old student who is interested in software development, mathematics, photography and aquatic life.
             This website aims to showcase elements from all of these areas.
         </p>
@@ -49,28 +49,28 @@ const stack = [
             <div class="swiper-body">
                 <div class="swiper">
                     <div class="swiper-wrapper pb-8">
-                        <div class="swiper-slide text-lg">
-                            My goto languages are <span class="text-sky-500">Python</span>
+                        <div class="swiper-slide text-lg drop-shadow-md">
+                            My goto languages are <span class="text-cyan-800">Python</span>
                             and <span class="text-rose-800">Rust</span> for more intensive and complex applications.
                             I also use <span class="text-yellow-300">JS</span>
-                            & <span class="text-sky-400">TS</span> for frontend development alongside
+                            & <span class="text-sky-600">TS</span> for frontend development alongside
                             <span class="text-orange-300">HTML</span> &
-                            <span class="text-blue-500">CSS</span> or frameworks like
+                            <span class="text-blue-600">CSS</span> or frameworks like
                             <span class="text-sky-200">React.js</span>,
-                            <span class="text-purple-700">Astro.js</span>,
-                            <span class="text-sky-500">Tailwind CSS</span>, and
+                            <span class="text-cyan-900">Astro.js</span>,
+                            <span class="text-sky-800">Tailwind CSS</span>, and
                             <span class="text-violet-600">Bootstrap 5</span>.
                             Sometimes I also integrate my <span class="text-rose-800">Rust</span> programs into the web with
-                            <span class="text-blue-500">WebAssembly</span>.
-                            I also use <span class="text-orange-600">Java</span> for applications in school such as robotics.
+                            <span class="text-blue-600">WebAssembly</span>.
+                            I also use <span class="text-orange-300">Java</span> for applications in school such as robotics.
                             For data management, I use <span class="text-green-300">MongoDB</span> and <span class="text-blue-600">SQLite</span>.
                             <br/>
                             <br/>
                             <div class="flex flex-row flex-wrap items-center gap-3 font-sans text-lg opacity-75">
                                 <Icon size="1.5em" img="lightbulb" target="_self"/>
                                 <p>
-                                    This website was made with <span class="text-purple-700">Astro.js</span> with
-                                    <span class="text-sky-400">TS</span> and <span class="text-sky-500">Tailwind CSS</span>
+                                    This website was made with <span class="text-cyan-900">Astro.js</span> with
+                                    <span class="text-sky-600">TS</span> and <span class="text-sky-800">Tailwind CSS</span>
                                 </p>
                             </div>
                         </div>
@@ -99,9 +99,33 @@ const stack = [
                     <div class="swiper-pagination"></div>
                 </div>
             </div>
+            <p class="py-5 lg:w-1/2 text-slate-300">
+                You can view some of my projects over on the
+                <a class="underline underline-offset-2 hover:text-white" href="./projects">Projects</a> page and my
+                <a class="underline underline-offset-2 hover:text-white" href="https://github.com/Tom-the-Bomb" target="_blank" >GitHub</a>
+            </p>
         </AboutSection>
         <AboutSection title="Photography" icon="camera">
-
+            For me, <b>Photography</b> is an swift and easy way to capture my favorite moments in time.
+            With just a swift snap of the shutter, a high quality frozen snapshot of the moment has just been saved forever.
+            <br><br>
+            I currently use either the <span class="text-slate-700">NIKON D3500</span> or an
+            <span class="text-slate-700">iPhone 13</span>. Sometimes I will use a
+            <span class="text-slate-700">Canon Rebel EOS</span> and in the past there are some old photos taken on an
+            <span class="text-slate-700">iPhone X</span>.
+            <br><br>
+            I enjoy taking photos of <span class="text-yellow-200">architecture</span>,
+            <span class="text-yellow-200">landscapes & cityscapes</span>,
+            <span class="text-yellow-200">nature & wildlife</span>
+            (such as my own aquaria and plants) and <span class="text-yellow-200">macro</span> photography.
+            Most of my photos stem from travels as that is where there is the most to see!
+            <p class="py-5 lg:w-1/2 text-slate-300">
+                A selection of my photos can be found over on the
+                <a class="underline underline-offset-2 hover:text-white" href="./photography">Photography</a> page.
+            </p>
+        </AboutSection>
+        <AboutSection title="Aquaria" icon="fish">
+            I have kept various fish, plants, invertebrates of all sorts- salt and fresh for 5+ years now.
         </AboutSection>
     </div>
 </BaseLayout>
