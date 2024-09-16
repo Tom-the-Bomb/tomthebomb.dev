@@ -32,7 +32,7 @@ export async function formatImageEXIF(image: HTMLImageElement, src: string) {
     );
     let lens = output.Lens ? ` + ${output.Lens}` : '';
     lens = !lens && output.LensModel ? ` + ${output.LensMake} ${output.LensModel}` : lens;
-    const expTime = output.ExposureTime < 1 ? `1/${1 / output.ExposureTime}` : output.ExposureTime;
+    const expTime = output.ExposureTime < 1 ? `1/${Math.round(1 / output.ExposureTime)}` : output.ExposureTime;
 
     return (
         `Taken with ${output.Make} ${output.Model}${lens} |

@@ -35,7 +35,7 @@ const alt = `An image from the album: [${title}]`;
         <p class="px-6 lg:px-8 text-md opacity-75 font-sans">
             {album.data.description}
         </p>
-        <div class="px-2 sm:px-0 mx-auto container my-8 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5">
+        <div class="px-2 sm:px-0 mx-auto container my-8 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-4">
             {
                 images.map((image) => (
                     <Image
@@ -46,7 +46,7 @@ const alt = `An image from the album: [${title}]`;
                             border border-transparent hover:border-slate-100
                             transition-all duration-300 ease-in-out`
                         }
-                        format="jpeg"
+                        format="jpg"
                         quality="max"
                         loading="lazy"
                         decoding="async"
@@ -82,7 +82,7 @@ const alt = `An image from the album: [${title}]`;
                                             src={slide}
                                             alt={alt}
                                             class="block max-h-full w-auto"
-                                            format="jpeg"
+                                            format="jpg"
                                             loading="lazy"
                                             decoding="async"
                                             quality="max"
@@ -112,14 +112,12 @@ const alt = `An image from the album: [${title}]`;
         const swiper = new Swiper('.swiper', {
             modules: [Keyboard, EffectCoverflow],
             effect: 'coverflow',
+            loop: true,
             grabCursor: true,
             centeredSlides: true,
-            loop: true,
+            keyboard: true,
             slidesPerView: 1,
             spaceBetween: 75,
-            keyboard: {
-                enabled: true,
-            },
             direction: 'vertical',
             breakpoints: {
                 768: {
