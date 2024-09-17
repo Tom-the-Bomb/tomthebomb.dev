@@ -28,7 +28,7 @@ const title = album.data.title;
 const alt = `An image from the album: [${title}]`;
 ---
 <BaseLayout>
-    <div class="flex flex-col flex-wrap gap-3 text-center">
+    <div class="flex flex-col flex-wrap gap-3 text-center mt-0 lg:mt-20">
         <h1 class="text-4xl font-extrabold drop-shadow-lg">
             {title}
         </h1>
@@ -42,7 +42,7 @@ const alt = `An image from the album: [${title}]`;
                         src={image}
                         alt={alt}
                         class={
-                            `rounded-md mb-4 shadow-lg hover:scale-[102%] opacity-90
+                            `rounded-md mb-4 shadow-xl hover:scale-[102%] opacity-90
                             border border-transparent hover:border-slate-100
                             transition-all duration-300 ease-in-out`
                         }
@@ -55,7 +55,7 @@ const alt = `An image from the album: [${title}]`;
                 ))
             }
         </div>
-        <div class="text-rose-200">
+        <div class="text-slate-200 drop-shadow-md font-semibold mt-0 lg:mt-10">
             <HoverSlide text="View More Albums →" href="."/>
         </div>
     </div>

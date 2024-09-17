@@ -1,5 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+import { getAlbumImages } from "../utils";
+
+const images = await getAlbumImages("aquaria");
 ---
 <BaseLayout>
     aquaria
