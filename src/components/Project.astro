@@ -1,0 +1,43 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+    name: string,
+    github: string,
+    href?: string | undefined,
+    hrefTitle?: string | undefined,
+}
+
+const {
+    name, github,
+    href, hrefTitle,
+} = Astro.props;
+---
+<div class="flex flex-col gap-5 p-5 rounded-lg shadow-xl border-t-[1px]">
+    <h1 class="border-b-2 pb-1 w-fit font-4xl font-bold">{name}</h1>
+    <div>
+        <slot/>
+    </div>
+    <div class="flex flex-row gap-3 font-extrabold text-sky-200">
+        <a href={github} target="_blank">[Github]</a>
+        {
+            href ? <a class="flex flex-row gap-1 items-center" href={href} target="_blank">
+                [<Icon name="link" href={href} size="1em" class="text-sky-200"/> {hrefTitle}]
+            </a> : null
+        }
+    </div>
+</div>
+
+<style>
+    h1 {
+        transition: transform 0.5s linear;
+    }
+
+    h1:hover {
+        transform: scale(105%);
+    }
+
+    a:hover, a:hover svg {
+        color: white;
+    }
+</style>

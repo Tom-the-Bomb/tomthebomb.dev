@@ -1,6 +1,26 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+import Project from "../components/Project.astro";
 ---
 <BaseLayout>
-    Projects
+    <div class="container flex flex-col gap-5">
+        <Project
+            name="Sketch a Fourier"
+            github="https://github.com/Tom-the-Bomb/fourier-drawer"
+            href="https://fourier.tomthebomb.dev"
+            hrefTitle="Website"
+        >
+            A basic website built using p5.js and typescript that uses a discrete fourier transform to
+            render your sketches and SVGs using a sum of rotating vectors, each with its own frequency.
+        </Project>
+        <Project
+            name="Discord Games"
+            github="https://github.com/Tom-the-Bomb/discord-games"
+        >
+            A collection of common and simple games such as 2048, battleship, chess, tictactoe, connect-4
+            and many others compiled into a libary that can be integrated within discord.py discord bots with ease,
+            adding several fun game functionalities to your discord bot
+        </Project>
+    </div>
 </BaseLayout>
