@@ -6,7 +6,12 @@ from PIL import Image
 from PIL.ExifTags import IFD
 from pillow_heif import register_heif_opener
 
-def convert_heif(directory: str, *, quality: int = 100) -> None:
+def process(
+    directory: str,
+    *,
+    sm_width: int = 750,
+    quality: int = 100
+) -> None:
     register_heif_opener()
 
     for file in Path(directory).glob('**/*.heic'):
@@ -35,5 +40,15 @@ def convert_heif(directory: str, *, quality: int = 100) -> None:
                 )
                 print(f'Successfully removed GPS metadata from [{file}]')
 
+            if not (file_sm := file.with_stem(file.stem + '_small')).is_file():
+                img.thumbnail((sm_width, sm_width), Image.Resampling.LANCZOS)
+                img.save(
+                    file_sm,
+                    format='JPEG',
+                    quality=quality,
+                    exif=exif,
+                )
+                print(f'Successfully created a small [{sm_width}px] sized thumbail for [{file}]')
+
 if __name__ == '__main__':
-    convert_heif('./src/content/albums/')
+    process('./src/content/albums/')

@@ -1,20 +1,37 @@
 import exifr from 'exifr';
 
 export async function getAlbumImages(albumId: string) {
-    let images = import.meta.glob<{ default: ImageMetadata }>(
-        "/src/content/albums/**/*.{jpeg,jpg}"
+    let small = import.meta.glob<{ default: ImageMetadata }>(
+        "/src/content/albums/**/*[_small].{jpeg,jpg}"
+    );
+    let original = import.meta.glob<{ default: ImageMetadata }>(
+        "/src/content/albums/**/*[!_small].{jpeg,jpg}"
     );
 
-    images = Object.fromEntries(
-        Object.entries(images).filter(([key]) => key.includes(albumId))
+    small = Object.fromEntries(
+        Object.entries(small).filter(([key]) => key.includes(albumId))
+    );
+    original = Object.fromEntries(
+        Object.entries(original).filter(([key]) => key.includes(albumId))
     );
 
-    const resolvedImages = await Promise.all(
-        Object.values(images).map((image) => image().then((mod) => mod.default))
+    const resolvedSmall = await Promise.all(
+        Object.values(small).map((image) => image().then((mod) => mod.default))
     );
+    const resolvedOriginal = await Promise.all(
+        Object.values(original).map((image) => image().then((mod) => mod.default))
+    );
+    const zipped = resolvedSmall.map((smallI, i) => [smallI, resolvedOriginal[i]]);
+    zipped.sort(() => Math.random() - 0.5);
 
-    resolvedImages.sort(() => Math.random() - 0.5);
-    return resolvedImages;
+    const smalls = [];
+    const originals = [];
+
+    for (const [smallI, originalI] of zipped) {
+        smalls.push(smallI);
+        originals.push(originalI);
+    }
+    return [smalls, originals];
 }
 
 export async function formatImageEXIF(image: HTMLImageElement, src: string) {

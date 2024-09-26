@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 }
 
 const { album } = Astro.props;
-const images = await getAlbumImages(album.id);
+const [smallImages, originalImages] = await getAlbumImages(album.id);
 
 const title = album.data.title;
 const alt = `An image from the album: [${title}]`;
@@ -37,7 +37,7 @@ const alt = `An image from the album: [${title}]`;
         </p>
         <div class="px-2 sm:px-0 mx-auto container my-8 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-4">
             {
-                images.map((image) => (
+                smallImages.map((image) => (
                     <Image
                         src={image}
                         alt={alt}
@@ -74,7 +74,7 @@ const alt = `An image from the album: [${title}]`;
             <div class="swiper w-full h-full">
                 <div id="swiper-container" class="swiper-wrapper">
                     {
-                        images.map((slide) => (
+                        originalImages.map((slide) => (
                             <div class="swiper-slide">
                                 <div class="w-full h-full p-5 flex flex-col gap-3 justify-center items-center">
                                     <div class="flex justify-center items-center grow min-h-0">
