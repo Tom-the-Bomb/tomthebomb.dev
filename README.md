@@ -13,7 +13,8 @@ Made with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.co
 - **Image Pre-processing**
     - Converts iOS `HEIC/HEIF` images to `JPEG` using `process_images.py`
     - Strips all GPS/location EXIF data from all images
-    - Install dependencies with:
+    - Generates a smaller version of the image for faster initial page loads by the filename of `{filename}_small.jpg` (if it does not already exist)
+    Install dependencies with:
 
         ```powershell
         py -m pip install -r requirements/dev.txt

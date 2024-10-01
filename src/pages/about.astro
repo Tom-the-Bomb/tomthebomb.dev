@@ -31,7 +31,7 @@ const stack = [
 ];
 ---
 <BaseLayout>
-    <div class="flex flex-col gap-10 mt-10 lg:mt-40 mb-32 w-4/5 lg:w-1/2">
+    <div id="about-page" class="flex flex-col gap-10 mt-10 lg:mt-40 mb-32 w-4/5 lg:w-1/2">
         <div class="flex flex-col gap-3">
             <h1 class="text-6xl font-extrabold drop-shadow-lg hover:-translate-y-2 transition-all duration-500">About Me</h1>
             <hr class="w-1/2"/>
@@ -47,7 +47,7 @@ const stack = [
         </p>
         <AboutSection title="Development Tools" icon="stack">
             <div class="swiper-body">
-                <div class="swiper">
+                <div class="swiper about-swiper">
                     <div class="swiper-wrapper pb-8">
                         <div class="swiper-slide text-lg drop-shadow-md">
                             My goto languages are <span class="text-cyan-800">Python</span>
@@ -149,7 +149,11 @@ const stack = [
     import 'swiper/css/pagination';
 
     document.addEventListener('astro:page-load', () => {
-        new Swiper('.swiper', {
+        if (document.getElementById('about-page') == null) {
+            return;
+        }
+
+        new Swiper('.about-swiper', {
             modules: [Keyboard, Mousewheel, Pagination],
             loop: true,
             keyboard: true,

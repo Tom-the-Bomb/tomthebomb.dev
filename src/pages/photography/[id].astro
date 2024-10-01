@@ -28,7 +28,7 @@ const title = album.data.title;
 const alt = `An image from the album: [${title}]`;
 ---
 <BaseLayout>
-    <div class="flex flex-col flex-wrap gap-3 text-center mt-0 lg:mt-20 justify-center items-center">
+    <div id="album-page" class="flex flex-col flex-wrap gap-3 text-center mt-0 lg:mt-20 justify-center items-center">
         <h1 class="text-4xl font-extrabold drop-shadow-lg">
             {title}
         </h1>
@@ -71,7 +71,7 @@ const alt = `An image from the album: [${title}]`;
             styles="close-btn absolute z-50 top-4 right-4 text-slate-100"
         />
         <div class="swiper-body w-full h-full overflow-x-hidden">
-            <div class="swiper w-full h-full">
+            <div class="swiper gallery-swiper w-full h-full">
                 <div id="swiper-container" class="swiper-wrapper">
                     {
                         originalImages.map((slide) => (
@@ -109,7 +109,11 @@ const alt = `An image from the album: [${title}]`;
     import { formatImageEXIF } from "../../utils";
 
     document.addEventListener('astro:page-load', () => {
-        const swiper = new Swiper('.swiper', {
+        if (document.getElementById('album-page') == null) {
+            return;
+        }
+
+        const swiper = new Swiper('.gallery-swiper', {
             modules: [Keyboard, EffectCoverflow],
             effect: 'coverflow',
             loop: true,
