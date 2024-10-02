@@ -40,7 +40,7 @@ def process(
                 )
                 print(f'Successfully removed GPS metadata from [{file}]')
 
-            if not (file_sm := file.with_stem(file.stem + '_small')).is_file():
+            if not file.stem.endswith('_small') and not (file_sm := file.with_stem(file.stem + '_small')).is_file():
                 img.thumbnail((sm_width, sm_width), Image.Resampling.LANCZOS)
                 img.save(
                     file_sm,

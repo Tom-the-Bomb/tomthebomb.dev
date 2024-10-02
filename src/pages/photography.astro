@@ -36,7 +36,7 @@ export const albums = await getCollection("albums");
                         loading="lazy"
                         decoding="async"
                     />
-                    <div class="text-rose-100 abs-center text-3xl drop-shadow-lg">
+                    <div class="text-rose-100 abs-center text-3xl drop-shadow-lg whitespace-nowrap">
                         <HoverSlide
                             text={album.data.title}
                             href={`/photography/${album.id}`}
