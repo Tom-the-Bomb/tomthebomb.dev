@@ -2,22 +2,25 @@
 import Icon from './Icon.astro';
 import { Icon as AstroIcon } from 'astro-icon/components';
 
+interface Href {
+    href: string,
+    hrefTitle: string,
+}
 interface Props {
     name: string,
     github: string,
-    href?: string | undefined,
-    hrefTitle?: string | undefined,
+    hrefs?: Href[] | undefined,
     logo?: string | undefined,
     imgStyles?: string | undefined,
 }
 
 const {
     name, github,
-    href, hrefTitle,
+    hrefs = [],
     logo, imgStyles = "",
 } = Astro.props;
 ---
-<div class="flex flex-row gap-5 p-5 rounded-lg shadow-xl border-t-[1px] justify-between">
+<div class="flex flex-row gap-20 p-5 rounded-lg shadow-xl border-t-[1px] justify-between">
     <div class="flex flex-col gap-5">
         <h1 class="border-b-2 pb-1 w-fit font-4xl font-bold">{name}</h1>
         <div>
@@ -25,12 +28,14 @@ const {
         </div>
         <div class="flex flex-row gap-3 font-extrabold text-sky-200">
             <a class="icon-link" href={github} target="_blank">
-                [<AstroIcon name="github" href={href} size="1em" class="text-sky-200"/> GitHub]
+                [<AstroIcon name="github" href={github} size="1em" class="text-sky-200"/> GitHub]
             </a>
             {
-                href && <a class="icon-link" href={href} target="_blank">
-                    [<AstroIcon name="link" href={href} size="1em" class="text-sky-200"/> {hrefTitle}]
-                </a>
+                hrefs.map((link) =>
+                    <a class="icon-link" href={link.href} target="_blank">
+                        [<AstroIcon name="link" href={link.href} size="1em" class="text-sky-200"/> {link.hrefTitle}]
+                    </a>
+                )
             }
         </div>
     </div>

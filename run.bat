@@ -1,3 +1,3 @@
 @ECHO off
 
-npm run dev
+npm run dev < nul
