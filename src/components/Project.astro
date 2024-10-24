@@ -1,29 +1,47 @@
 ---
-import { Icon } from 'astro-icon/components';
+import Icon from './Icon.astro';
+import { Icon as AstroIcon } from 'astro-icon/components';
 
 interface Props {
     name: string,
     github: string,
     href?: string | undefined,
     hrefTitle?: string | undefined,
+    logo?: string | undefined,
+    imgStyles?: string | undefined,
 }
 
 const {
     name, github,
     href, hrefTitle,
+    logo, imgStyles = "",
 } = Astro.props;
 ---
-<div class="flex flex-col gap-5 p-5 rounded-lg shadow-xl border-t-[1px]">
-    <h1 class="border-b-2 pb-1 w-fit font-4xl font-bold">{name}</h1>
-    <div>
-        <slot/>
+<div class="flex flex-row gap-5 p-5 rounded-lg shadow-xl border-t-[1px] justify-between">
+    <div class="flex flex-col gap-5">
+        <h1 class="border-b-2 pb-1 w-fit font-4xl font-bold">{name}</h1>
+        <div>
+            <slot/>
+        </div>
+        <div class="flex flex-row gap-3 font-extrabold text-sky-200">
+            <a class="icon-link" href={github} target="_blank">
+                [<AstroIcon name="github" href={href} size="1em" class="text-sky-200"/> GitHub]
+            </a>
+            {
+                href && <a class="icon-link" href={href} target="_blank">
+                    [<AstroIcon name="link" href={href} size="1em" class="text-sky-200"/> {hrefTitle}]
+                </a>
+            }
+        </div>
     </div>
-    <div class="flex flex-row gap-3 font-extrabold text-sky-200">
-        <a href={github} target="_blank">[Github]</a>
+    <div class="flex justify-center items-center">
         {
-            href ? <a class="flex flex-row gap-1 items-center" href={href} target="_blank">
-                [<Icon name="link" href={href} size="1em" class="text-sky-200"/> {hrefTitle}]
-            </a> : null
+            logo && <Icon
+                href={github}
+                img={'projects/' + logo}
+                size="5em"
+                styles={`drop-shadow-md opacity-90 ${imgStyles}`}
+            />
         }
     </div>
 </div>
@@ -39,5 +57,9 @@ const {
 
     a:hover, a:hover svg {
         color: white;
+    }
+
+    .icon-link {
+        @apply flex flex-row gap-1 items-center;
     }
 </style>

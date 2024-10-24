@@ -11,7 +11,17 @@ import Footer from '../components/Footer.astro';
     </head>
     <body class="h-dvh flex flex-col bg-gradient-to-tr from-violet-500 to-orange-300 bg-gray-800 bg-fixed">
         <header class="flex-none">
-            <Nav pages={["About", "Projects", "Photography", "Aquaria"]}/>
+            <Nav
+                pages={[
+                    {name: "About"},
+                    {name: "Projects"},
+                    {name: "Photography"},
+                    {
+                        name: "Aquaria",
+                        url: "./photography/aquaria"
+                    },
+                ]}
+            />
         </header>
         <main class="grow flex justify-center items-center">
             <slot/>

@@ -4,23 +4,133 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Project from "../components/Project.astro";
 ---
 <BaseLayout>
-    <div class="container flex flex-col gap-5">
-        <Project
-            name="Sketch a Fourier"
-            github="https://github.com/Tom-the-Bomb/fourier-drawer"
-            href="https://fourier.tomthebomb.dev"
-            hrefTitle="Website"
-        >
-            A basic website built using p5.js and typescript that uses a discrete fourier transform to
-            render your sketches and SVGs using a sum of rotating vectors, each with its own frequency.
-        </Project>
-        <Project
-            name="Discord Games"
-            github="https://github.com/Tom-the-Bomb/discord-games"
-        >
-            A collection of common and simple games such as 2048, battleship, chess, tictactoe, connect-4
-            and many others compiled into a libary that can be integrated within discord.py discord bots with ease,
-            adding several fun game functionalities to your discord bot
-        </Project>
+    <div class="container flex flex-col gap-10 mt-20 w-full lg:w-2/3 justify-center items-center">
+        <h1 class="text-6xl font-extrabold drop-shadow-md">Projects</h1>
+        <div class="container flex flex-col gap-5 w-full">
+            <Project
+                name="Sketch a Fourier"
+                github="https://github.com/Tom-the-Bomb/fourier-drawer"
+                href="https://fourier.tomthebomb.dev"
+                hrefTitle="Website"
+                logo="fourier-drawer"
+            >
+                A basic website built using <span class="text-pink-700">p5*js</span> & <span class="text-sky-600">TypeScript</span>
+                that utilises a
+                <a href="https://en.wikipedia.org/wiki/Discrete_Fourier_transform">discrete fourier transform</a>
+                to render the user's sketches or uploaded SVGs by using a sum of rotating vectors, each at its own frequency.
+            </Project>
+            <Project
+                name="Matrixflow"
+                github="https://github.com/Tom-the-Bomb/matrixflow"
+                href="https://matrixflow.readthedocs.io/"
+                hrefTitle="Documentation"
+                logo="fourier-drawer"
+            >
+                A library containing implementations for <u>linear-algebra</u> operations
+                such as mathematical <u>matrices</u> & <u>vectors</u>.
+            </Project>
+            <Project
+                name="Discord Games"
+                github="https://github.com/Tom-the-Bomb/discord-games"
+            >
+                A collection of well-known games such as
+                <u>2048</u>, <u>battleship</u>, <u>chess</u>, <u>tictactoe</u>, <u>connect-4</u>,
+                and many more all compiled into a libary that can be easily integrated within
+                <a href="https://discordpy.readthedocs.io/en/stable/">discord.py</a>
+                discord bots with ease, adding fun game functionalities to your discord bot
+            </Project>
+            <Project
+                name="Brainfuck-web & Brainfuck-rs"
+                github="https://github.com/Tom-the-Bomb/brainfuck-web"
+                href="https://brainfuck.tomthebomb.dev"
+                hrefTitle="Website"
+                logo="brainfuck-web"
+            >
+                An online compiler for <a href="https://en.wikipedia.org/wiki/Brainfuck">brainfuck</a>,
+                built using <span class="text-blue-600">WASM</span> bindings powered my <u>brainfuck-rs</u> rust library.
+                <br><br>
+                The brainfuck.rs crate provides a seamless interface to interpret raw brainfuck code in user programs.
+            </Project>
+            <Project
+                name="Bomb paste"
+                github="https://github.com/Tom-the-Bomb/bomb-paste"
+                href="https://paste.tomthebomb.dev"
+                hrefTitle="Website"
+                logo="bomb-paste"
+                imgStyles="rounded-b-2xl"
+            >
+                An online pastebin service, useful for sharing long pieces of text/code over the internet. Powered by axum
+                in rust and MongoDB.
+            </Project>
+            <Project
+                name="Ferrous Imagic Editor"
+                github="https://github.com/Tom-the-Bomb/imaging-app"
+                href="https://image.tomthebomb.dev"
+                hrefTitle="Website"
+                logo="ferrous-imagic-editor"
+            >
+                An basic web application that applies various cool effects onto user uploaded images.
+            </Project>
+            <Project
+                name="Math Solver"
+                github="https://github.com/Tom-the-Bomb/math-solver"
+                href="https://math.tomthebomb.dev"
+                hrefTitle="Website"
+                logo="math-solver"
+            >
+                An online algebraic mathematical equation solver, with robust support for all kinds of operations.
+                Powered by SymPy in python and my own Lexer/Parser/AST generator.
+            </Project>
+            <Project
+                name="Pascal's Triangle"
+                github="https://github.com/Tom-the-Bomb/pascals-triangle"
+                href="https://pascals.tomthebomb.dev"
+                hrefTitle="Website"
+                logo="pascals-triangle"
+            >
+                A basic webpage showcasing a dynamic and interactive
+                <a href="https://en.wikipedia.org/wiki/Pascal%27s_triangle">Pascal's Triangle</a>, its patterns, and use-cases
+            </Project>
+            <Project
+                name="Doc Search"
+                github="https://github.com/Tom-the-Bomb/doc-search"
+                href="https://pypi.org/project/doc-search/"
+                hrefTitle="PyPI"
+            >
+                A basic library that provides structured search and parsing functionalities for sphinx based documentation
+                and C/C++ documentation.
+            </Project>
+            <Project
+                name="Async TIO"
+                github="https://github.com/Tom-the-Bomb/async-tio"
+                href="https://pypi.org/project/async-tio/"
+                hrefTitle="PyPI"
+            >
+                A basic library that provides safe, sandboxed code execution through the online code execution engine
+                <a href="https://tio.run">tio.run</a>.
+            </Project>
+            <Project
+                name="Akinator.py & Akinator.rs"
+                github="https://github.com/Tom-the-Bomb/akinator.py"
+            >
+                A wrapper around the unofficial <a href="https://en.akinator.com/">akinator</a> API, providing users a seemless
+                programming interface to simulate an akinator game wherever they want.
+
+                <ul>
+                    <li><u>Akinator.rs</u> is made in <span>rust</span></li>
+                    <li><u>Akinator.py</u> is a python binding for <u>akinator.rs</u> made with PyO3
+                </ul>
+            </Project>
+        </div>
     </div>
 </BaseLayout>
+
+<style>
+    a {
+        @apply underline text-sky-100;
+    }
+
+    a:hover {
+        @apply text-white;
+    }
+</style>

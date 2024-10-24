@@ -1,8 +1,13 @@
 ---
 import Icon from './Icon.astro';
 
+interface NavItem {
+    name: string,
+    url?: string | undefined,
+}
+
 interface Props {
-    pages: string[],
+    pages: NavItem[],
 }
 
 const { pages } = Astro.props;
@@ -14,10 +19,10 @@ const { pages } = Astro.props;
             <a
                 class="border-b-2 border-b-red-200
                 text-rose-100 hover:text-white hover:border-b-white"
-                href={`/${page.toLowerCase()}`}
+                href={`/${page.url ? page.url : page.name.toLowerCase()}`}
             >
                 <div class="hover:-translate-y-1 transition-transform duration-[250ms]">
-                    {page}
+                    {page.name}
                 </div>
             </a>
         ))
