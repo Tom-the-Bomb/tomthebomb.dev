@@ -17,6 +17,6 @@ Made with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.co
 
     Install script dependencies by running:
 
-        ```powershell
-        py -m pip install -r requirements/dev.txt
-        ```
+    ```powershell
+    py -m pip install -r requirements/dev.txt
+    ```
