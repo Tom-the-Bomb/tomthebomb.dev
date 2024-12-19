@@ -20,10 +20,10 @@ const {
     logo, imgStyles = "",
 } = Astro.props;
 ---
-<div class="flex flex-row gap-20 p-5 rounded-lg shadow-xl border-t-[1px] justify-between">
-    <div class="flex flex-col gap-5">
+<div class="flex flex-row flex-wrap gap-20 p-5 rounded-lg shadow-xl border-t-[1px] justify-between bg-black bg-opacity-[9%] mx-5">
+    <div class="flex flex-col flex-1 gap-5 max-w-full">
         <h1 class="border-b-2 pb-1 w-fit font-4xl font-bold">{name}</h1>
-        <div>
+        <div class="text-wrap">
             <slot/>
         </div>
         <div class="flex flex-row gap-3 font-extrabold text-sky-200">
@@ -41,12 +41,14 @@ const {
     </div>
     <div class="flex justify-center items-center">
         {
-            logo && <Icon
-                href={github}
-                img={'projects/' + logo}
-                size="5em"
-                styles={`drop-shadow-md opacity-90 ${imgStyles}`}
-            />
+            logo && <div class="p-4 bg-black bg-opacity-10 rounded-lg">
+                <Icon
+                    href={github}
+                    img={'projects/' + logo}
+                    size="5em"
+                    styles={`drop-shadow-md opacity-90 ${imgStyles}`}
+                />
+            </div>
         }
     </div>
 </div>
