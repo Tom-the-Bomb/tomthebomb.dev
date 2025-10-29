@@ -2,132 +2,127 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import AboutSection from "../components/AboutSection.astro";
 import Icon from "../components/Icon.astro";
+import Tech from "../components/Tech.astro";
+import AboutSubSection from "../components/AboutSubSection.astro";
 
 const age = new Date().getFullYear()
     - new Date(2007, 1, 1).getFullYear();
 
-const stack = [
-    [
-        "python",
-        "rust",
-        "java",
-        "javascript",
-        "typescript",
-        "html",
-        "css",
-    ], [
-        "astro",
-        "react",
-        "tailwind",
-        "bootstrap",
-        "mongo",
-        "sqlite",
-    ], [
-        "flask",
-        "numpy",
-        "sympy",
-        "matplotlib",
-    ],
-];
 ---
 <BaseLayout>
     <div id="about-page" class="flex flex-col gap-10 mt-10 lg:mt-40 mb-32 w-4/5 lg:w-1/2">
         <div class="flex flex-col gap-3">
             <h1 class="text-6xl font-extrabold drop-shadow-lg hover:-translate-y-2 transition-all duration-500">About Me</h1>
             <hr class="w-1/2"/>
-            <h2 class="text-shine text-3xl font-bold drop-shadow-lg">Tom the Bomb</h2>
-            <div class="flex flex-row flex-wrap gap-3">
-                <Icon size="2em" img="canada" styles="small-icon-shadow" target="_self"/>
-                <Icon size="2em" img="china" styles="small-icon-shadow" target="_self"/>
+            <h2 class="text-yellow-100 text-3xl font-bold drop-shadow-lg">Tommy Shen</h2>
+            <div class="flex flex-wrap gap-3 glass w-fit rounded-full p-2">
+                <Icon size="2em" img="canada" target="_self"/>
+                <Icon size="2em" img="china" target="_self"/>
             </div>
         </div>
         <p class="text-xl drop-shadow-lg">
-            Hi, I am a {age} year old student who is interested in software development, mathematics, photography and aquatic life.
-            This website aims to showcase elements from all of these areas.
+            Hi there! I'm a computer engineering student at the <b>University of Waterloo</b> who is passionate about software development, photography,
+            image processing, mathematics, and improving my coding skills through leetcoding and building impactful applications that revolve around my interests.
         </p>
         <AboutSection title="Development Tools" icon="stack">
-            <div class="swiper-body">
-                <div class="swiper about-swiper">
-                    <div class="swiper-wrapper pb-8">
-                        <div class="swiper-slide text-lg drop-shadow-md">
-                            My goto languages are <span class="text-cyan-800">Python</span>
-                            and <span class="text-rose-800">Rust</span> for more intensive and complex applications.
-                            I also use <span class="text-yellow-300">JS</span>
-                            & <span class="text-sky-600">TS</span> for frontend development alongside
-                            <span class="text-orange-300">HTML</span> &
-                            <span class="text-blue-600">CSS</span> or frameworks like
-                            <span class="text-sky-200">React.js</span>,
-                            <span class="text-cyan-900">Astro.js</span>,
-                            <span class="text-sky-800">Tailwind CSS</span>, and
-                            <span class="text-violet-600">Bootstrap 5</span>.
-                            Sometimes I also integrate my <span class="text-rose-800">Rust</span> programs into the web with
-                            <span class="text-blue-600">WebAssembly</span>.
-                            I also use <span class="text-orange-300">Java</span> for applications in school such as robotics.
-                            For data management, I use <span class="text-green-300">MongoDB</span> and <span class="text-blue-600">SQLite</span>.
-                            <br/>
-                            <br/>
-                            <div class="flex flex-row flex-wrap items-center gap-3 font-sans text-lg opacity-75">
-                                <Icon size="1.5em" img="lightbulb" target="_self"/>
-                                <p>
-                                    This website was made with <span class="text-cyan-900">Astro.js</span> with
-                                    <span class="text-sky-600">TS</span> and <span class="text-sky-800">Tailwind CSS</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="py-4 flex flex-col flex-wrap gap-5 justify-center items-center">
-                                {
-                                    stack.map((row) => (
-                                        <div class="flex flex-row flex-wrap gap-5">
-                                            {
-                                                row.map((tool) => (
-                                                    <Icon
-                                                        styles="drop-shadow-lg"
-                                                        color=""
-                                                        size="3.5em"
-                                                        img={`stack/${tool}`}
-                                                        target="_self"
-                                                    />
-                                                ))
-                                            }
-                                        </div>
-                                    ))
-                                }
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-pagination"></div>
+            <div class="flex flex-col gap-8 text-lg">
+                <AboutSubSection title="Languages">
+                    My go-to languages are <Tech name="python" styles="text-indigo-100">Python</Tech>
+                    and <Tech name="rust" styles="text-red-100">Rust</Tech>. I use Rust for larger,
+                    more performance critical, and low-level applications. I also use <Tech name="java" styles="text-orange-200">Java</Tech> and
+                    <Tech name="cpp" styles="text-purple-100"></Tech> for academic applications and robotics.
+                </AboutSubSection>
+                <AboutSubSection title="Web Development">
+                    I also use <Tech name="javascript" styles="text-yellow-200"></Tech> & <Tech name="typescript" styles="text-sky-200"></Tech> for frontend development alongside
+                    <Tech name="html" styles="text-orange-200">HTML</Tech> & <Tech name="css" styles="text-purple-100">CSS</Tech> for simple sites.
+                    For more complex applications, I use frameworks like
+                    <Tech name="react" styles="text-sky-100">React.js</Tech> and,
+                    <Tech name="astro" styles="text-amber-100">Astro.js</Tech> for static sites.
+                    For styling I use <Tech name="tailwind" styles="text-sky-200">Tailwind CSS</Tech> and
+                    <Tech name="bootstrap" styles="text-violet-200">Bootstrap</Tech>.
+                    Sometimes I also integrate my <Tech name="rust" styles="text-red-100">Rust</Tech> programs into the web with
+                    <Tech name="webassembly" styles="text-sky-100">WebAssembly</Tech>.
+                    <br><br>
+                    For the backend, I use <Tech name="flask" styles="text-cyan-100">Flask</Tech>, or its asynchronous counterpart,
+                    <span class="text-cyan-100">Quart</span>, for lightweight APIs and web applications. For more complex applications,
+                    I use <Tech name="rust" styles="text-red-100">Rust</Tech>'s <span class="text-red-100">Axum</span> web framework.
+                </AboutSubSection>
+                <AboutSubSection title="Data Management">
+                    For data management, I use <Tech name="mongo" styles="text-green-200">Mongo DB</Tech>
+                    and <Tech name="sqlite" styles="text-indigo-100">SQLite</Tech> for relational data storage.
+                </AboutSubSection>
+                <AboutSubSection title="Libraries">
+                    My experience with image processing has gained me familiarity with various libraries
+                    in <Tech name="python" styles="text-indigo-100">Python</Tech>, including
+                    <Tech name="opencv" styles="text-blue-100">OpenCV</Tech>,
+                    <span class="text-yellow-100">Pillow</span>, and
+                    <Tech name="numpy" styles="text-purple-100">NumPy</Tech>.
+                    Similarly, my passion for mathematics has led me to explore libraries like
+                    <Tech name="sympy" styles="text-green-200">SymPy</Tech> and
+                    <Tech name="matplotlib" styles="text-orange-200">Matplotlib</Tech>.
+                </AboutSubSection>
+                <div class="flex items-center gap-3 font-sans text-base opacity-75">
+                    <Icon size="1.5em" img="lightbulb" target="_self"/>
+                    <p>
+                        This website was made with <span class="text-amber-100">Astro.js</span> with
+                        <span class="text-sky-200">TS</span> and <span class="text-sky-200">Tailwind CSS</span>
+                    </p>
                 </div>
             </div>
-            <p class="py-5 lg:w-1/2 text-slate-300">
+            <p class="py-5 lg:w-1/2 text-slate-300 text-base">
                 You can view some of my projects over on the
                 <a class="underline underline-offset-2 hover:text-white" href="./projects">Projects</a> page and my
                 <a class="underline underline-offset-2 hover:text-white" href="https://github.com/Tom-the-Bomb" target="_blank" >GitHub</a>
             </p>
         </AboutSection>
         <AboutSection title="Photography" icon="camera">
-            For me, <b>Photography</b> is an swift and easy way to capture my favorite moments in time.
-            With just a swift snap of the shutter, a high quality frozen snapshot of the moment has just been saved forever.
-            <br><br>
-            I currently use either the <span class="text-slate-700">NIKON D3500</span> or an
-            <span class="text-slate-700">iPhone 13</span>. Sometimes I will use a
-            <span class="text-slate-700">Canon Rebel EOS</span> and in the past there are some old photos taken on an
-            <span class="text-slate-700">iPhone X</span>.
-            <br><br>
-            I enjoy taking photos of <span class="text-yellow-200">architecture</span>,
-            <span class="text-yellow-200">landscapes & cityscapes</span>,
-            <span class="text-yellow-200">nature & wildlife</span>
-            (such as my own aquaria and plants) and <span class="text-yellow-200">macro</span> photography.
-            Most of my photos stem from travels as that is where there is the most to see!
-            <p class="py-5 lg:w-1/2 text-slate-300">
+            <div class="flex flex-col gap-8">
+                <p>
+                    <b>Photography</b> is a way of freezing moments in time, preserving the beauty I come across, through visual storytelling.
+                    It allows me to see the world from different perspectives and appreciate the beauty in everyday life.
+                </p>
+                <AboutSubSection title="Gear">
+                    <div class="grid grid-cols-2 text-xl gap-3">
+                        <div class="w-fit border-b-[1px] border-white">
+                            <span class="font-nexa-black-italic">Nikon </span>D5300
+                            <span class="text-sm italic font-extralight text-slate-200">2024-</span>
+                        </div>
+                        <div class="w-fit border-b-[1px] border-white">
+                            <span class="font-nexa-black-italic">Nikon </span>Z5II
+                            <span class="text-sm italic font-extralight text-slate-200">2025-</span>
+                        </div>
+                        <div class="text-base">18-140mm f/3.5-5.6</div>
+                        <div class="text-base">70-300mm f/4.5-5.6</div>
+                        <div class="text-base">24-200mm f/4-6.3</div>
+                    </div>
+                    <p class="pt-5 lg:w-1/2 text-slate-300 text-base">
+                        In the past I have also have shot on Canon R50, Canon Rebel T7s in school, and my iPhones (13 and 15 Pro).
+                    </p>
+                </AboutSubSection>
+                <AboutSubSection title="Genres">
+                    My favorite genres are
+                    <span class="text-yellow-100">architecture</span>,
+                    <span class="text-yellow-100">street</span>,
+                    <span class="text-yellow-100">landscapes & cityscapes</span>,
+                    <span class="text-yellow-100">nature & wildlife</span>
+                    (such as my own aquaria and plants), and
+                    <span class="text-yellow-100">macro</span> photography.
+                    Most of my photos stem from my travels and exploration of urban and natural spaces.
+                    I try to focus on capturing through unique angles and interesting compositions
+                    as opposed to the most obvious and famous angles.
+                </AboutSubSection>
+            </div>
+            <p class="py-5 lg:w-1/2 text-slate-300 text-base">
                 A selection of my photos can be found over on the
-                <a class="underline underline-offset-2 hover:text-white" href="./photography">Photography</a> page.
+                <a class="underline underline-offset-2 hover:text-white" href="./photography">Photography</a> page
+                and my <a href="https://www.instagram.com/tom_the_bomb_111/" target="_blank">
+                    <Tech name="instagram" styles="underline underline-offset-2 text-slate-300 hover:text-white">Instagram</Tech></a>.
             </p>
         </AboutSection>
         <AboutSection title="Aquaria" icon="fish">
             For over five years, I’ve gained experience maintaining a variety of aquatic life, including
             <span class="text-blue-200">fish</span>, <span class="text-green-200">plants</span>,
-            <span class="text-orange-200">invertebrates</span>
+            <span class="text-yellow-100">invertebrates</span>
             and <span class="text-red-200">corals</span>—both in saltwater and freshwater setups—across multiple aquariums and an outdoor pond.
             <br><br>
             Their uniqueness as pets, along with their natural beauty and calmness they bring forth, has always deeply appealed to me.
@@ -140,28 +135,3 @@ const stack = [
         </AboutSection>
     </div>
 </BaseLayout>
-
-<script>
-    import Swiper from 'swiper';
-    import { Keyboard, Mousewheel, Pagination } from 'swiper/modules';
-
-    import 'swiper/css';
-    import 'swiper/css/pagination';
-
-    document.addEventListener('astro:page-load', () => {
-        if (document.getElementById('about-page') == null) {
-            return;
-        }
-
-        new Swiper('.about-swiper', {
-            modules: [Keyboard, Mousewheel, Pagination],
-            loop: true,
-            keyboard: true,
-            mousewheel: true,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-        });
-    });
-</script>

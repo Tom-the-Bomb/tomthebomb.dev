@@ -28,16 +28,16 @@ import Footer from '../components/Footer.astro';
         </main>
         <Footer/>
         <div class="squares">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li class="glass"></li>
+            <li class="glass"></li>
+            <li class="glass"></li>
+            <li class="glass"></li>
+            <li class="glass"></li>
+            <li class="glass"></li>
+            <li class="glass"></li>
+            <li class="glass"></li>
+            <li class="glass"></li>
+            <li class="glass"></li>
         </div>
     </body>
 </html>
@@ -47,10 +47,8 @@ import Footer from '../components/Footer.astro';
         position: fixed;
         bottom: 0;
         left: 0;
-
         width: 100%;
         height: 100dvh;
-
         overflow: hidden;
         z-index: -1000;
     }
@@ -61,10 +59,20 @@ import Footer from '../components/Footer.astro';
         list-style: none;
         width: 20px;
         height: 20px;
-        background: rgba(255, 255, 255, 0.2);
         animation: squares infinite linear;
         bottom: -150px;
         border-radius: 10%;
+    }
+
+    .squares .glass {
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+    }
+
+    .squares .glass::after {
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        filter: blur(1px) brightness(115%);
     }
 
     .squares li:nth-child(1) {

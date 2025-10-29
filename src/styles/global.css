@@ -20,13 +20,15 @@
     }
 }
 
-@keyframes spin-img {
-    from { transform: rotateY(0deg) }
-    to { transform: rotateY(360deg) }
-}
+@font-face {
+    font-family: 'Nexa Black Italic';
+    src:
+        url('./fonts/NexaBlackItalic.ttf') format('truetype'),
+        url('./fonts/NexaBlackItalic.otf') format('opentype');
 
-.spin-img:hover {
-    animation: spin-img 3s ease-in-out infinite;
+    font-style: italic;
+    font-weight: bold;
+    font-display: swap;
 }
 
 .effect-underline {
@@ -143,4 +145,45 @@ a.effect-underline:hover:after {
     mask-size: 100% 100%;
     mask-repeat: no-repeat;
     mask-position: left top, left bottom;
+}
+
+.glass {
+    position: relative;
+    background: rgba(255, 255, 255, 0.15);
+    -webkit-backdrop-filter: blur(2px) saturate(180%);
+    backdrop-filter: blur(2px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: inset 0 4px 20px rgba(255, 255, 255, 0.3);
+    transition: transform 0.55s ease-in-out;
+}
+
+.glass > img {
+    transition: inherit;
+}
+
+.glass:hover {
+    transform: scale(1.1);
+}
+
+.glass:hover > img {
+    transform: scale(1.04);
+}
+
+.glass::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: inherit;
+    -webkit-backdrop-filter: blur(1px);
+    backdrop-filter: blur(1px);
+    box-shadow:
+        inset -10px -8px 0px -11px rgba(255, 255, 255, 1),
+        inset 0px -9px 0px -8px rgba(255, 255, 255, 1);
+    opacity: 0.6;
+    z-index: -1;
+    filter: blur(1px) drop-shadow(10px 4px 6px black) brightness(115%);
 }

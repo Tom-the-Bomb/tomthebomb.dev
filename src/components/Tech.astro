@@ -1,0 +1,14 @@
+---
+import { Icon as AstroIcon } from 'astro-icon/components';
+
+interface Props {
+    name: string;
+    styles?: string;
+}
+
+const { name, styles } = Astro.props;
+---
+<span class={`inline-flex items-center align-middle leading-none gap-1 ${styles}`}>
+    <AstroIcon name={`stack/${name}`} class={`inline-block ${styles}`} />
+    <slot/>
+</span>

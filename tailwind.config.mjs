@@ -9,6 +9,7 @@ export default {
 				'zh': ['Long Cang', ...defaultTheme.fontFamily.serif],
 				'sans': ['Titillium Web', ...defaultTheme.fontFamily.sans],
 				'mono': ['Jetbrains Mono', ...defaultTheme.fontFamily.mono],
+				'nexa-black-italic': ['Nexa Black Italic', ...defaultTheme.fontFamily.sans],
 			}
 		},
 	},

@@ -20,20 +20,20 @@ const {
     logo, imgStyles = "",
 } = Astro.props;
 ---
-<div class="flex flex-row flex-wrap gap-20 p-5 rounded-lg shadow-xl border-t-[1px] justify-between bg-black bg-opacity-[9%] mx-5">
+<div class="hover:translate-y-1 duration-300 ease-in glass glass-extras flex flex-wrap gap-20 p-5 rounded-lg justify-between mx-5">
     <div class="flex flex-col flex-1 gap-5 max-w-full">
         <h1 class="border-b-2 pb-1 w-fit font-4xl font-bold">{name}</h1>
         <div class="text-wrap">
             <slot/>
         </div>
-        <div class="flex flex-row gap-3 font-extrabold text-sky-200">
+        <div class="flex gap-3 font-extrabold text-yellow-100">
             <a class="icon-link" href={github} target="_blank">
-                [<AstroIcon name="github" href={github} size="1em" class="text-sky-200"/> GitHub]
+                [<AstroIcon name="github" href={github} size="1em" class="text-yellow-100"/> GitHub]
             </a>
             {
                 hrefs.map((link) =>
                     <a class="icon-link" href={link.href} target="_blank">
-                        [<AstroIcon name="link" href={link.href} size="1em" class="text-sky-200"/> {link.hrefTitle}]
+                        [<AstroIcon name="link" href={link.href} size="1em" class="text-yellow-100"/> {link.hrefTitle}]
                     </a>
                 )
             }
@@ -67,6 +67,6 @@ const {
     }
 
     .icon-link {
-        @apply flex flex-row gap-1 items-center;
+        @apply flex gap-1 items-center;
     }
 </style>

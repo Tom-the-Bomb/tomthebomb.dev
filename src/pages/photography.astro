@@ -17,7 +17,7 @@ export const albums = await getCollection("albums");
         <h1 class="text-6xl font-extrabold drop-shadow-md border-b-2">
             Albums
         </h1>
-        <div class="flex flex-row flex-wrap gap-5 justify-center items-center mx-10">
+        <div class="flex flex-wrap gap-5 justify-center items-center mx-10">
             {
                 albums.map((album) => {
                     const href = `/photography/${album.id}`;
