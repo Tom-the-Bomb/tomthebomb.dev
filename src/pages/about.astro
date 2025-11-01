@@ -10,7 +10,7 @@ const age = new Date().getFullYear()
 
 ---
 <BaseLayout>
-    <div id="about-page" class="flex flex-col gap-10 mt-10 lg:mt-40 mb-32 w-4/5 lg:w-1/2">
+    <div id="about-page" class="flex flex-col gap-12 mt-10 lg:mt-40 mb-32 w-4/5 lg:w-1/2">
         <div class="flex flex-col gap-3">
             <h1 class="text-6xl font-extrabold drop-shadow-lg hover:-translate-y-2 transition-all duration-500">About Me</h1>
             <hr class="w-1/2"/>
@@ -21,7 +21,7 @@ const age = new Date().getFullYear()
             </div>
         </div>
         <p class="text-xl drop-shadow-lg">
-            Hi there! I'm a computer engineering student at the <b>University of Waterloo</b> who is passionate about software development, photography,
+            Hi there! I'm a {age} year old computer engineering student at the <b>University of Waterloo</b> who is passionate about software development, photography,
             image processing, mathematics, and improving my coding skills through leetcoding and building impactful applications that revolve around my interests.
         </p>
         <AboutSection title="Development Tools" icon="stack">
@@ -92,8 +92,8 @@ const age = new Date().getFullYear()
                             <span class="text-sm italic font-extralight text-slate-200">2025-</span>
                         </div>
                         <div class="text-base">18-140mm f/3.5-5.6</div>
-                        <div class="text-base">70-300mm f/4.5-5.6</div>
                         <div class="text-base">24-200mm f/4-6.3</div>
+                        <div class="text-base">70-300mm f/4.5-5.6</div>
                     </div>
                     <p class="pt-5 lg:w-1/2 text-slate-300 text-base">
                         In the past I have also have shot on Canon R50, Canon Rebel T7s in school, and my iPhones (13 and 15 Pro).
@@ -109,7 +109,7 @@ const age = new Date().getFullYear()
                     <span class="text-yellow-100">macro</span> photography.
                     Most of my photos stem from my travels and exploration of urban and natural spaces.
                     I try to focus on capturing through unique angles and interesting compositions
-                    as opposed to the most obvious and famous angles.
+                    as opposed to the most conventional angles.
                 </AboutSubSection>
             </div>
             <p class="py-5 lg:w-1/2 text-slate-300 text-base">
@@ -121,14 +121,14 @@ const age = new Date().getFullYear()
         </AboutSection>
         <AboutSection title="Aquaria" icon="fish">
             For over five years, I’ve gained experience maintaining a variety of aquatic life, including
-            <span class="text-blue-200">fish</span>, <span class="text-green-200">plants</span>,
+            <span class="text-blue-100">fish</span>, <span class="text-green-100">plants</span>,
             <span class="text-yellow-100">invertebrates</span>
-            and <span class="text-red-200">corals</span>—both in saltwater and freshwater setups—across multiple aquariums and an outdoor pond.
+            and <span class="text-red-100">corals</span>&mdash;both in saltwater and freshwater setups—across multiple aquariums and an outdoor pond.
             <br><br>
             Their uniqueness as pets, along with their natural beauty and calmness they bring forth, has always deeply appealed to me.
             While they may not be as interactive as dogs or cats, having nearly self-sustaining ecosystems in your home,
-            complete with a range of creatures of all sizes, from microscopic to large, just resonates with me differently.
-            <p class="py-5 lg:w-2/3 text-slate-300">
+            complete with a range of creatures of all sizes, from microscopic to large, resonates with me differently.
+            <p class="py-5 lg:w-2/3 text-slate-300 text-base">
                 Pictures and more information about what I have kept can be found over on the
                 <a class="underline underline-offset-2 hover:text-white" href="./photography/aquaria">Aquaria</a> page.
             </p>

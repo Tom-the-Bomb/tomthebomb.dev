@@ -6,7 +6,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Quote from "../components/Quote.astro";
 import HoverSlide from "../components/HoverSlide.astro";
 
-export const albums = await getCollection("albums");
+export const albums = await getCollection("albums1");
 ---
 <BaseLayout>
     <div id="photography-page" class="my-0 lg:my-32 flex flex-col gap-16 items-center">
@@ -17,30 +17,31 @@ export const albums = await getCollection("albums");
         <h1 class="text-6xl font-extrabold drop-shadow-md border-b-2">
             Albums
         </h1>
-        <div class="flex flex-wrap gap-5 justify-center items-center mx-10">
+        <div class="flex flex-wrap gap-4 justify-center items-center mx-10">
             {
                 albums.map((album) => {
                     const href = `/photography/${album.id}`;
 
                     return (
+                        <div class="shadow-[10px_-15px_25px_-5px_rgba(0,0,0,0.2)]">
                         <div
-                            class="fade-bottom hover:scale-105
+                            class="fade-bottom
                             backdrop-brightness-[0.3] hover:backdrop-brightness-100
                             transition-all duration-500
                             relative text-center shadow-xl
-                            rounded-[4px] border-r-4 border-l-4 w-80 h-96"
+                            w-80 h-96"
                         >
                             <Image
                                 src={album.data.cover}
                                 alt={album.data.title}
-                                class="opacity-60 min-w-full min-h-full object-cover"
+                                class="opacity-60 min-w-full min-h-full object-cover ced"
                                 format="jpg"
                                 quality="max"
                                 loading="lazy"
                                 decoding="async"
                                 data-photo-album={href}
                             />
-                            <div class="text-rose-100 abs-center text-3xl drop-shadow-lg whitespace-nowrap">
+                            <div class="p-2 abs-center text-3xl whitespace-nowrap">
                                 <HoverSlide
                                     text={album.data.title}
                                     href={href}
@@ -49,7 +50,7 @@ export const albums = await getCollection("albums");
                                     {album.data.short_description}
                                 </p>
                             </div>
-                        </div>
+                        </div></div>
                     );
                 })
             }

@@ -2,9 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Long+Cang&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer components {
     body {
@@ -87,38 +85,6 @@ a.effect-underline:hover:after {
 @keyframes blinking-text-cursor {
     from { border-right-color: rgba(255, 255, 255, 0.75); }
     to { border-right-color: transparent; }
-}
-
-.text-shine {
-    color: transparent;
-
-	background: #8b5cf6
-        -webkit-gradient(
-            linear,
-            left top,
-            right top,
-            from(#8b5cf6),
-            to(#8b5cf6),
-            color-stop(0.5, white)
-        )
-        0 0 no-repeat;
-
-    -webkit-background-size: 150px;
-    -webkit-background-clip: text;
-
-    background-size: 150px;
-    background-clip: text;
-
-    animation: text-shine 4s linear infinite forwards;
-}
-
-@keyframes text-shine {
-	from {
-		background-position: -6em;
-	}
-	to {
-		background-position: 6.5em;
-	}
 }
 
 .small-icon-shadow {
