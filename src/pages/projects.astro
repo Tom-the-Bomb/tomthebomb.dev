@@ -2,6 +2,8 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 import Project from "../components/Project.astro";
+import Tech from "../components/Tech.astro";
+import Icon from "../components/Icon.astro";
 ---
 <BaseLayout>
     <div class="container flex flex-col gap-10 mt-20 w-full lg:w-2/3 justify-center items-center">
@@ -15,10 +17,11 @@ import Project from "../components/Project.astro";
                 ]}
                 logo="fourier-drawer"
             >
-                A basic website built using <span class="text-pink-700">p5*js</span> & <span class="text-sky-600">TypeScript</span>
+                A basic website built using <span class="text-p5">p5*js</span> and
+                <Tech name="vite" styles="text-vite">Vite</Tech> with <Tech name="typescript" styles="text-typescript"></Tech>
                 that utilises a
-                <a href="https://en.wikipedia.org/wiki/Discrete_Fourier_transform">discrete fourier transform</a>
-                to render the user's sketches or uploaded SVGs by using a sum of rotating vectors, each at its own frequency.
+                <a href="https://en.wikipedia.org/wiki/Discrete_Fourier_transform">Discrete Fourier Transform</a>
+                to render real-time user drawings and uploaded SVGs by animating a sum of vectors, each rotating at its own frequency.
             </Project>
             <Project
                 name="Matrixflow"
@@ -28,36 +31,27 @@ import Project from "../components/Project.astro";
                 ]}
                 logo="matrixflow"
             >
-                A library containing implementations for <span class="text-yellow-100">linear-algebra</span> operations
-                such as mathematical <span class="text-yellow-100">matrices</span> & <span class="text-yellow-100">vectors</span>.
-            </Project>
-            <Project
-                name="Discord Games"
-                github="https://github.com/Tom-the-Bomb/discord-games"
-                logo="discord-games"
-            >
-                A collection of well-known games such as
-                <span class="text-yellow-100">2048</span>, <span class="text-yellow-100">battleship</span>, <span class="text-yellow-100">chess</span>, <span class="text-yellow-100">tictactoe</span>, <span class="text-yellow-100">connect-4</span>,
-                and many more all compiled into a libary that can be easily integrated within
-                <a href="https://discordpy.readthedocs.io/en/stable/">discord.py</a>
-                discord bots with ease, adding fun game functionalities to your discord bot
+                A basic <span class="text-sky-100">linear algebra</span> library built in <Tech name="python" styles="text-python">Python</Tech>
+                that provides high-performance, easy to use mathematical matrix & vector operations such as common transformations, systems, row reductions, and more.
             </Project>
             <Project
                 name="Brainfuck-web & Brainfuck-rs"
                 github="https://github.com/Tom-the-Bomb/brainfuck-web"
                 hrefs={[
                     {href: "https://brainfuck.tomthebomb.dev", hrefTitle: "Website"},
-                    {href: "https://crates.io/crates/brainfuck-exe", hrefTitle: "crates.io"},
+                    {href: "https://crates.io/crates/brainfuck-exe", hrefTitle: "Crates.io"},
                 ]}
                 logo="brainfuck-web"
             >
-                An online compiler for <a href="https://en.wikipedia.org/wiki/Brainfuck">brainfuck</a>,
-                built using <span class="text-blue-600">Web Assembly</span> bindings powered my <span class="text-yellow-100">brainfuck-rs</span> rust library.
+                <span class="text-sky-100">Brainfuck-web</span> is an online executor for <a href="https://en.wikipedia.org/wiki/Brainfuck">brainfuck</a> (esoteric language),
+                built using <Tech name="webassembly" styles="text-webassembly">WebAssembly</Tech> bindings for the <span class="text-sky-100">brainfuck-rs</span> crate.
                 <br><br>
-                The brainfuck.rs crate provides a seamless interface to interpret raw brainfuck code in user programs.
+                <span class="text-sky-100">Brainfuck-rs</span> is the <Tech name="rust" styles="text-rust">Rust</Tech> crate
+                that provides an easy-to-use API for a fast and efficient brainfuck interpreter,
+                supporting various customization options, and can be installed as a CLI tool.
             </Project>
             <Project
-                name="Bomb paste"
+                name="Bomb Paste"
                 github="https://github.com/Tom-the-Bomb/bomb-paste"
                 hrefs={[
                     {href: "https://paste.tomthebomb.dev", hrefTitle: "Website"}
@@ -65,8 +59,9 @@ import Project from "../components/Project.astro";
                 logo="bomb-paste"
                 imgStyles="rounded-b-2xl"
             >
-                An online pastebin service, useful for sharing long pieces of text/code over the internet. Powered by axum
-                in rust and MongoDB.
+                An online <span class="text-sky-100">pastebin</span> service with a public REST API, allows for fast and simple text and code sharing anywhere on the internet.
+                Powered by <span class="text-axum">Axum</span> & <Tech name="mongo" styles="text-mongo">MongoDB</Tech> in
+                <Tech name="rust" styles="text-rust">Rust</Tech>.
             </Project>
             <Project
                 name="Ferrous Imagic Editor"
@@ -76,7 +71,32 @@ import Project from "../components/Project.astro";
                 ]}
                 logo="ferrous-imagic-editor"
             >
-                An basic web application that applies various cool effects onto user uploaded images.
+                A blazingly fast web application that applies various cool effects onto user uploaded images.
+                Powered by <Tech name="rust" styles="text-rust">Rust</Tech> & <span class="text-axum">Axum</span>
+            </Project>
+            <Project
+                name="Discord Games"
+                github="https://github.com/Tom-the-Bomb/discord-games"
+                logo="discord-games"
+            >
+                A collection of popular games such as
+                <span class="text-sky-100">2048</span>, <span class="text-sky-100">battleship</span>, <span class="text-sky-100">chess</span>, <span class="text-sky-100">tictactoe</span>, <span class="text-sky-100">connect-4</span>,
+                and many more all compiled into a libary that can be easily and seamlessly integrated within
+                <Tech name="discord" styles="text-discordpy">discord.py</Tech>
+                discord bots with ease, adding fun game functionalities to your discord bot.
+            </Project>
+            <Project
+                name="Bomb Bot"
+                github="https://github.com/Tom-the-Bomb/BombBot"
+                hrefs={[
+                    {href: "https://discord.com/oauth2/authorize?client_id=819345387524456468", hrefTitle: "Invite"}
+                ]}
+                logo="bombbot"
+            >
+                A multifunctional <span class="text-sky-100">discord bot</span> built using
+                <Tech name="discord" styles="text-discordpy">discord.py</Tech> that provides various
+                unique utility functions mainly consisting of image manipulation, but also includes mathematical graphing, code execution (using <span class="text-sky-100">async-tio</span>),
+                and fun games (using <span class="text-sky-100">discord-games</span>), and more.
             </Project>
             <Project
                 name="Math Solver"
@@ -86,8 +106,8 @@ import Project from "../components/Project.astro";
                 ]}
                 logo="math-solver"
             >
-                An online algebraic mathematical equation solver, with robust support for all kinds of operations.
-                Powered by SymPy in python and my own Lexer/Parser/AST generator.
+                An online application that solves, evaluates, analyzes, and graphs symbolic mathematical equations and expressions.
+                Powered by my own Lexer/Parser/AST in combination with <Tech name="sympy" styles="text-sympy">SymPy</Tech> in <Tech name="python" styles="text-python">Python</Tech>.
             </Project>
             <Project
                 name="Pascal's Triangle"
@@ -98,7 +118,8 @@ import Project from "../components/Project.astro";
                 logo="pascals-triangle"
             >
                 A basic webpage showcasing a dynamic and interactive
-                <a href="https://en.wikipedia.org/wiki/Pascal%27s_triangle">Pascal's Triangle</a>, its patterns, and use-cases
+                <a href="https://en.wikipedia.org/wiki/Pascal%27s_triangle">Pascal's Triangle</a>, its patterns, and use-cases.
+                Powered by <Tech name="react" styles="text-react">React</Tech> & <Tech name="bootstrap" styles="text-bootstrap">Bootstrap</Tech>.
             </Project>
             <Project
                 name="Doc Search"
@@ -108,8 +129,8 @@ import Project from "../components/Project.astro";
                 ]}
                 logo="doc-search"
             >
-                A basic library that provides structured search and parsing functionalities for sphinx based documentation
-                and C/C++ documentation.
+                A basic <Tech name="python" styles="text-python">Python</Tech> library that provides structured search and parsing functionalities for
+                <Tech name="sphinx" styles="text-sphinx">sphinx</Tech>-based and <span class="text-cpp">C/C++</span> documentation.
             </Project>
             <Project
                 name="Async TIO"
@@ -117,31 +138,57 @@ import Project from "../components/Project.astro";
                 hrefs={[
                     {href: "https://pypi.org/project/async-tio/", hrefTitle: "PyPI"}
                 ]}
+                logo="tio"
             >
-                A basic library that provides safe, sandboxed code execution through the online code execution engine
-                <a href="https://tio.run">tio.run</a>.
+                An asynchronous <Tech name="python" styles="text-python">Python</Tech> library that provides safe, sandboxed code execution through
+                accessing the online code execution engine
+                <a href="https://tio.run">tio.run</a>'s non-public API.
+            </Project>
+            <Project
+                name="F-Stop"
+                github="https://github.com/f-stop-lang/f-stop-rply"
+                hrefs={[
+                    {href: "https://pypi.org/project/f-stop", hrefTitle: "PyPI"}
+                ]}
+                logo="fstop"
+            >
+                A self-designed <span class="text-sky-100">scripting language</span> designed to help users accelerate their image processing workflows.
+                Fully interpreted, with a runtime system powered by a lexer/parser/AST, powered by imaging tools in
+                <Tech name="python" styles="text-python">Python</Tech>.
             </Project>
             <Project
                 name="Akinator.py & Akinator.rs"
                 github="https://github.com/Tom-the-Bomb/akinator.py"
                 hrefs={[
                     {href: "https://pypi.org/project/akinator.py/", hrefTitle: "PyPI"},
-                    {href: "https://crates.io/crates/akinator-rs", hrefTitle: "crates.io"}
+                    {href: "https://crates.io/crates/akinator-rs", hrefTitle: "Crates.io"}
                 ]}
+                logo="akinator"
             >
-                A wrapper around the unofficial <a href="https://en.akinator.com/">akinator</a> API, providing users a seemless
-                programming interface to simulate an akinator game wherever they want.
+                A wrapper around the non-public <a href="https://en.akinator.com/">akinator</a> API, providing users a seemless
+                gameloop-like API to simulate an akinator game in their own applications.
                 <br><br>
                 <ul>
-                    <li><span class="text-yellow-100">Akinator.rs</span> is made in <span>rust</span></li>
-                    <li><span class="text-yellow-100">Akinator.py</span> is a python binding for <span class="text-yellow-100">akinator.rs</span> made with PyO3
+                    <li><span class="text-sky-100">Akinator.rs</span> is the original library, written <Tech name="rust" styles="text-rust">Rust</Tech></li>
+                    <li><span class="text-sky-100">Akinator.py</span> is a <Tech name="python" styles="text-python">Python</Tech> binding for <span class="text-sky-100">akinator.rs</span> powered by PyO3
                 </ul>
+            </Project>
+            <Project
+                name="Bomb CDN"
+                github="https://github.com/Tom-the-Bomb/bomb-cdn"
+            >
+                A basic file system based CDN service allowing for persistent storage of files,
+                allowing access to them anywhere on the internet.
+                Built as a complete REST API built powered by
+                <Tech name="rust" styles="text-rust">Rust</Tech> & <span class="text-axum">Axum</span>.
             </Project>
         </div>
     </div>
 </BaseLayout>
 
-<style>
+<style scoped>
+    @reference '../styles/global.css';
+
     a {
         @apply underline text-sky-100;
     }

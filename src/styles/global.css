@@ -1,8 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Long+Cang&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
 @import "tailwindcss";
+
+@theme {
+    --font-soft: 'Quicksand', sans-serif;
+    --font-zh: 'Long Cang', serif;
+    --font-sans: 'Titillium Web', sans-serif;
+    --font-mono: 'Jetbrains Mono', monospace;
+    --font-nexa-black-italic: 'Nexa Black Italic', sans-serif;
+
+    --color-python: var(--color-indigo-100);
+    --color-rust: var(--color-red-100);
+    --color-java: var(--color-orange-200);
+    --color-cpp: var(--color-purple-100);
+    --color-javascript: var(--color-yellow-200);
+    --color-typescript: var(--color-sky-200);
+    --color-html: var(--color-orange-200);
+    --color-css: var(--color-purple-100);
+    --color-react: var(--color-sky-100);
+    --color-astro: var(--color-amber-100);
+    --color-tailwind: var(--color-sky-200);
+    --color-bootstrap: var(--color-violet-200);
+    --color-webassembly: var(--color-sky-100);
+    --color-flask: var(--color-cyan-100);
+    --color-quart: var(--color-cyan-100);
+    --color-axum: var(--color-red-100);
+    --color-mongo: var(--color-green-200);
+    --color-sqlite: var(--color-indigo-100);
+    --color-opencv: var(--color-blue-100);
+    --color-pillow: var(--color-pink-100);
+    --color-numpy: var(--color-purple-100);
+    --color-sympy: var(--color-green-200);
+    --color-matplotlib: var(--color-orange-200);
+    --color-p5: var(--color-red-100);
+    --color-vite: var(--color-yellow-100);
+    --color-instagram: var(--color-yellow-100);
+    --color-discordpy: var(--color-indigo-100);
+    --color-sphinx: var(--color-blue-100);
+}
 
 @layer components {
     body {
@@ -34,7 +72,7 @@
     display: inline-block;
 }
 
-a.effect-underline:after {
+.effect-underline:after {
     content: '';
     position: absolute;
     left: 0;
@@ -50,7 +88,7 @@ a.effect-underline:after {
     transform: scale(0,1);
 }
 
-a.effect-underline:hover:after {
+.effect-underline:hover:after {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1);
@@ -120,19 +158,6 @@ a.effect-underline:hover:after {
     backdrop-filter: blur(2px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.8);
     box-shadow: inset 0 4px 20px rgba(255, 255, 255, 0.3);
-    transition: transform 0.55s ease-in-out;
-}
-
-.glass > img {
-    transition: inherit;
-}
-
-.glass:hover {
-    transform: scale(1.1);
-}
-
-.glass:hover > img {
-    transform: scale(1.04);
 }
 
 .glass::after {
@@ -152,4 +177,20 @@ a.effect-underline:hover:after {
     opacity: 0.6;
     z-index: -1;
     filter: blur(1px) drop-shadow(10px 4px 6px black) brightness(115%);
+}
+
+.glass-extras {
+    transition: transform 0.55s ease-in-out;
+}
+
+.glass-extras > img {
+    transition: inherit;
+}
+
+.glass-extras:hover {
+    transform: scale(1.1);
+}
+
+.glass-extras:hover > img {
+    transform: scale(1.04);
 }

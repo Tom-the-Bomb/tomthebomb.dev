@@ -15,7 +15,7 @@ const age = new Date().getFullYear()
             <h1 class="text-6xl font-extrabold drop-shadow-lg hover:-translate-y-2 transition-all duration-500">About Me</h1>
             <hr class="w-1/2"/>
             <h2 class="text-yellow-100 text-3xl font-bold drop-shadow-lg">Tommy Shen</h2>
-            <div class="flex flex-wrap gap-3 glass w-fit rounded-full p-2">
+            <div class="glass glass-extras flex flex-wrap gap-3 w-fit rounded-full p-2">
                 <Icon size="2em" img="canada" target="_self"/>
                 <Icon size="2em" img="china" target="_self"/>
             </div>
@@ -27,39 +27,39 @@ const age = new Date().getFullYear()
         <AboutSection title="Development Tools" icon="stack">
             <div class="flex flex-col gap-8 text-lg">
                 <AboutSubSection title="Languages">
-                    My go-to languages are <Tech name="python" styles="text-indigo-100">Python</Tech>
-                    and <Tech name="rust" styles="text-red-100">Rust</Tech>. I use Rust for larger,
-                    more performance critical, and low-level applications. I also use <Tech name="java" styles="text-orange-200">Java</Tech> and
-                    <Tech name="cpp" styles="text-purple-100"></Tech> for academic applications and robotics.
+                    My go-to languages are <Tech name="python" styles="text-python">Python</Tech>
+                    and <Tech name="rust" styles="text-rust">Rust</Tech>. I use Rust for larger,
+                    more performance critical, and low-level applications. I also use <Tech name="java" styles="text-java">Java</Tech> and
+                    <Tech name="cpp" styles="text-cpp"></Tech> for academic applications and robotics.
                 </AboutSubSection>
                 <AboutSubSection title="Web Development">
-                    I also use <Tech name="javascript" styles="text-yellow-200"></Tech> & <Tech name="typescript" styles="text-sky-200"></Tech> for frontend development alongside
-                    <Tech name="html" styles="text-orange-200">HTML</Tech> & <Tech name="css" styles="text-purple-100">CSS</Tech> for simple sites.
+                    I also use <Tech name="javascript" styles="text-javascript"></Tech> & <Tech name="typescript" styles="text-typescript"></Tech> for frontend development alongside
+                    <Tech name="html" styles="text-html">HTML</Tech> & <Tech name="css" styles="text-css">CSS</Tech> for simple sites.
                     For more complex applications, I use frameworks like
-                    <Tech name="react" styles="text-sky-100">React.js</Tech> and,
-                    <Tech name="astro" styles="text-amber-100">Astro.js</Tech> for static sites.
-                    For styling I use <Tech name="tailwind" styles="text-sky-200">Tailwind CSS</Tech> and
-                    <Tech name="bootstrap" styles="text-violet-200">Bootstrap</Tech>.
-                    Sometimes I also integrate my <Tech name="rust" styles="text-red-100">Rust</Tech> programs into the web with
-                    <Tech name="webassembly" styles="text-sky-100">WebAssembly</Tech>.
+                    <Tech name="react" styles="text-react">React.js</Tech> and
+                    <Tech name="astro" styles="text-astro">Astro.js</Tech> for static sites.
+                    For styling I use <Tech name="tailwind" styles="text-tailwind">Tailwind CSS</Tech> and
+                    <Tech name="bootstrap" styles="text-bootstrap">Bootstrap</Tech>.
+                    I sometimes also integrate my <Tech name="rust" styles="text-rust">Rust</Tech> programs into the web with
+                    <Tech name="webassembly" styles="text-webassembly">WebAssembly</Tech>.
                     <br><br>
-                    For the backend, I use <Tech name="flask" styles="text-cyan-100">Flask</Tech>, or its asynchronous counterpart,
-                    <span class="text-cyan-100">Quart</span>, for lightweight APIs and web applications. For more complex applications,
-                    I use <Tech name="rust" styles="text-red-100">Rust</Tech>'s <span class="text-red-100">Axum</span> web framework.
+                    For the backend, I use <Tech name="flask" styles="text-flask">Flask</Tech>, or its asynchronous counterpart,
+                    <span class="text-quart">Quart</span>, for lightweight APIs and web applications. For more complex applications,
+                    I use <Tech name="rust" styles="text-rust">Rust</Tech>'s <span class="text-axum">Axum</span> web framework.
                 </AboutSubSection>
                 <AboutSubSection title="Data Management">
-                    For data management, I use <Tech name="mongo" styles="text-green-200">Mongo DB</Tech>
-                    and <Tech name="sqlite" styles="text-indigo-100">SQLite</Tech> for relational data storage.
+                    For data management, I use <Tech name="mongo" styles="text-mongo">Mongo DB</Tech>
+                    and <Tech name="sqlite" styles="text-sqlite">SQLite</Tech> for relational data storage.
                 </AboutSubSection>
                 <AboutSubSection title="Libraries">
                     My experience with image processing has gained me familiarity with various libraries
-                    in <Tech name="python" styles="text-indigo-100">Python</Tech>, including
-                    <Tech name="opencv" styles="text-blue-100">OpenCV</Tech>,
-                    <span class="text-yellow-100">Pillow</span>, and
-                    <Tech name="numpy" styles="text-purple-100">NumPy</Tech>.
+                    in <Tech name="python" styles="text-python">Python</Tech>, including
+                    <Tech name="opencv" styles="text-opencv">OpenCV</Tech>,
+                    <span class="text-pillow">Pillow</span>, and
+                    <Tech name="numpy" styles="text-numpy">NumPy</Tech>.
                     Similarly, my passion for mathematics has led me to explore libraries like
-                    <Tech name="sympy" styles="text-green-200">SymPy</Tech> and
-                    <Tech name="matplotlib" styles="text-orange-200">Matplotlib</Tech>.
+                    <Tech name="sympy" styles="text-sympy">SymPy</Tech> and
+                    <Tech name="matplotlib" styles="text-matplotlib">Matplotlib</Tech>.
                 </AboutSubSection>
                 <div class="flex items-center gap-3 font-sans text-base opacity-75">
                     <Icon size="1.5em" img="lightbulb" target="_self"/>
@@ -96,7 +96,7 @@ const age = new Date().getFullYear()
                         <div class="text-base">70-300mm f/4.5-5.6</div>
                     </div>
                     <p class="pt-5 lg:w-1/2 text-slate-300 text-base">
-                        In the past I have also have shot on Canon R50, Canon Rebel T7s in school, and my iPhones (13 and 15 Pro).
+                        In the past I have also have shot on Canon R50s and Canon Rebel T7s in school, and my iPhones (13 and 15 Pro).
                     </p>
                 </AboutSubSection>
                 <AboutSubSection title="Genres">
@@ -116,7 +116,7 @@ const age = new Date().getFullYear()
                 A selection of my photos can be found over on the
                 <a class="underline underline-offset-2 hover:text-white" href="./photography">Photography</a> page
                 and my <a href="https://www.instagram.com/tom_the_bomb_111/" target="_blank">
-                    <Tech name="instagram" styles="underline underline-offset-2 text-slate-300 hover:text-white">Instagram</Tech></a>.
+                    <Tech name="instagram" styles="underline underline-offset-2 text-slate-300 hover:text-white hover:[&>svg]:text-white">Instagram</Tech></a>.
             </p>
         </AboutSection>
         <AboutSection title="Aquaria" icon="fish">

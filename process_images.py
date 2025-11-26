@@ -51,4 +51,4 @@ def process(
                 print(f'Successfully created a small [{sm_width}px] sized thumbail for [{file}]')
 
 if __name__ == '__main__':
-    process('./src/content/albums1/')
+    process('./src/content/albums/')

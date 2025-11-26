@@ -1,26 +1,23 @@
 import exifr from 'exifr';
 
-export async function getAlbumImages(albumId: string) {
+export async function getAlbumImages(albumId: string): Promise<ImageMetadata[]> {
     let photos = import.meta.glob<{ default: ImageMetadata }>(
-        "/src/content/albums1/**/*.{jpeg,jpg}"
+        "/src/content/albums/**/*.{jpeg,jpg}"
     );
-
 
     const original = Object.fromEntries(
         Object.entries(photos).filter(([key]) => key.includes(albumId) && !key.includes('_small'))
     );
-
 
     const resolvedOriginal = await Promise.all(
         Object.values(original).map((image) => image().then((mod) => mod.default))
     );
 
     resolvedOriginal.sort(() => Math.random() - 0.5);
-
     return resolvedOriginal;
 }
 
-export async function formatImageEXIF(image: HTMLImageElement, src: string) {
+export async function formatImageEXIF(image: HTMLImageElement, src: string): Promise<string> {
     const output = await exifr.parse(
         src,
         {

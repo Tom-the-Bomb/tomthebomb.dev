@@ -1,33 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20">
-	<g fill="none">
-		<path fill="url(#fluentColorGameChat200)" d="M8 1a6 6 0 0 0-5.27 8.872l-.71 2.49a.5.5 0 0 0 .638.612l2.338-.779A6 6 0 1 0 8 1" />
-		<path fill="url(#fluentColorGameChat204)" d="M8 1a6 6 0 0 0-5.27 8.872l-.71 2.49a.5.5 0 0 0 .638.612l2.338-.779A6 6 0 1 0 8 1" />
-		<path fill="url(#fluentColorGameChat201)" d="M6.5 5.5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1z" />
-		<path fill="url(#fluentColorGameChat202)" d="M6 8a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2A.5.5 0 0 1 6 8" />
-		<path fill="url(#fluentColorGameChat203)" fill-rule="evenodd" d="M13.925 10.212a1.5 1.5 0 0 1 1.026-.192l.773.133a2 2 0 0 1 1.467 1.114l1.2 2.527c.56 1.19.687 2.186.568 3.002a3.5 3.5 0 0 1-.82 1.803a1.15 1.15 0 0 1-1.01.397a1.4 1.4 0 0 1-.902-.494l-.818-.97A1.5 1.5 0 0 0 14.263 17h-3.526a1.5 1.5 0 0 0-1.146.533l-.818.969c-.23.272-.553.457-.902.494a1.15 1.15 0 0 1-1.01-.396a3.5 3.5 0 0 1-.82-1.805c-.12-.815.008-1.811.569-3v-.002l1.199-2.526a2 2 0 0 1 1.467-1.114l.773-.133a1.5 1.5 0 0 1 1.026.192l.125.075c.233.14.5.213.77.213h1.06a1.5 1.5 0 0 0 .77-.213z" clip-rule="evenodd" />
-		<path fill="#3e3e3e" d="M13.25 13.25a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0" />
-		<defs>
-			<linearGradient id="fluentColorGameChat200" x1="2.429" x2="12.905" y1="3.25" y2="21.111" gradientUnits="userSpaceOnUse">
-				<stop stop-color="#0fafff" />
-				<stop offset="1" stop-color="#cc23d1" />
-			</linearGradient>
-			<linearGradient id="fluentColorGameChat201" x1="6.35" x2="6.728" y1="5.553" y2="8.801" gradientUnits="userSpaceOnUse">
-				<stop stop-color="#fdfdfd" />
-				<stop offset="1" stop-color="#cceaff" />
-			</linearGradient>
-			<linearGradient id="fluentColorGameChat202" x1="6.35" x2="6.728" y1="5.553" y2="8.801" gradientUnits="userSpaceOnUse">
-				<stop stop-color="#fdfdfd" />
-				<stop offset="1" stop-color="#cceaff" />
-			</linearGradient>
-			<linearGradient id="fluentColorGameChat203" x1="8.125" x2="12.431" y1="11.375" y2="19.552" gradientUnits="userSpaceOnUse">
-				<stop stop-color="#b5bbce" />
-				<stop offset=".384" stop-color="#a0a7be" />
-				<stop offset="1" stop-color="#728192" />
-			</linearGradient>
-			<radialGradient id="fluentColorGameChat204" cx="0" cy="0" r="1" gradientTransform="matrix(-4.53123 -4.34377 4.34378 -4.53123 10.031 14.344)" gradientUnits="userSpaceOnUse">
-				<stop offset=".181" stop-color="#1b44b1" />
-				<stop offset=".927" stop-color="#1b44b1" stop-opacity="0" />
-			</radialGradient>
-		</defs>
-	</g>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+	<path fill="#5865F2" d="M7 4h2v2h6V4h2V2h2v4h-2v2h2v2h4v6h-2v-4h-1v6h-3v2h2v2h-4v-4H9v4H5v-2h2v-2H4v-6H3v4H1v-6h4V8h2V6H5V2h2zm2 7v3h2v-3zm4 0v3h2v-3z" />
 </svg>
