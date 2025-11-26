@@ -9,7 +9,7 @@ from pillow_heif import register_heif_opener
 def process(
     directory: str,
     *,
-    sm_width: int = 650,
+    sm_width: int = 600,
     quality: int = 100
 ) -> None:
     register_heif_opener()
@@ -51,4 +51,4 @@ def process(
                 print(f'Successfully created a small [{sm_width}px] sized thumbail for [{file}]')
 
 if __name__ == '__main__':
-    process('./src/content/albums/', quality=85)
+    process('./src/content/albums/', quality=80)
