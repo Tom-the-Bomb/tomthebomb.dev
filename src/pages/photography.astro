@@ -35,8 +35,8 @@ export const albums = await getCollection("albums");
                                     transition-all duration-300
                                     object-cover object-center min-w-full min-h-full`
                                 }
-                                format="jpg"
-                                loading="lazy"
+                                quality={80}
+                                loading="eager"
                                 decoding="async"
                                 data-photo-album={href}
                             />

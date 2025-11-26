@@ -52,6 +52,8 @@ const alt = `An image from the album: [${title}]`;
                             `shadow-md mb-4 hover:scale-[102%] opacity-90
                             border-8 border-white transition-all duration-300 ease-in-out`
                         }
+                        quality={80}
+                        loading="eager"
                         decoding="async"
                         data-album-image
                     />
@@ -86,6 +88,7 @@ const alt = `An image from the album: [${title}]`;
                                             alt={alt}
                                             class="block max-h-full w-auto"
                                             decoding="async"
+                                            loading="eager"
                                             data-swiper-slide={slide.src}
                                         />
                                     </div>
