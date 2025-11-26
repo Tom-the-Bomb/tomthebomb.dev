@@ -9,7 +9,7 @@ from pillow_heif import register_heif_opener
 def process(
     directory: str,
     *,
-    sm_width: int = 750,
+    sm_width: int = 650,
     quality: int = 100
 ) -> None:
     register_heif_opener()
@@ -19,7 +19,7 @@ def process(
             img.save(
                 file.with_suffix('.jpg'),
                 format='JPEG',
-                quality=quality,
+                quality=100,
                 exif=img.info['exif'],
             )
         print(f'Converted [{file}] from HEIC to JPEG successfully.')
@@ -35,7 +35,7 @@ def process(
                 img.save(
                     file,
                     format='JPEG',
-                    quality=quality,
+                    quality=100,
                     exif=exif,
                 )
                 print(f'Successfully removed GPS metadata from [{file}]')
@@ -51,4 +51,4 @@ def process(
                 print(f'Successfully created a small [{sm_width}px] sized thumbail for [{file}]')
 
 if __name__ == '__main__':
-    process('./src/content/albums/')
+    process('./src/content/albums/', quality=85)
