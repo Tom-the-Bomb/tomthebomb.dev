@@ -52,9 +52,11 @@ const alt = `An image from the album: [${title}]`;
                             `shadow-md mb-4 hover:scale-[102%] opacity-90
                             border-8 border-white transition-all duration-300 ease-in-out`
                         }
-                        loading="eager"
+                        loading="lazy"
                         decoding="async"
                         data-album-image
+                        width={image.width}
+                        height={image.height}
                     />
                 ))
             }
