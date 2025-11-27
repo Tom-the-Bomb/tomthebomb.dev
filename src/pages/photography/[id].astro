@@ -65,7 +65,7 @@ const alt = `An image from the album: [${title}]`;
             <HoverSlide text="View More Albums →" href="/photography"/>
         </div>
     </div>
-    <div
+    <!-- <div
         id="modal"
         class="hidden fixed z-50 left-0 top-0 w-dvw h-dvh
         bg-black bg-opacity-75 backdrop-blur-md"
@@ -101,63 +101,63 @@ const alt = `An image from the album: [${title}]`;
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </BaseLayout>
 
 <script>
-    import Swiper from 'swiper';
-    import { Keyboard, EffectCoverflow } from 'swiper/modules';
+    // import Swiper from 'swiper';
+    // import { Keyboard, EffectCoverflow } from 'swiper/modules';
 
-    import 'swiper/css';
+    // import 'swiper/css';
 
-    import { formatImageEXIF } from "../../utils";
+    // import { formatImageEXIF } from "../../utils";
 
-    document.addEventListener('astro:page-load', () => {
-        if (document.getElementById('album-page') == null) {
-            return;
-        }
+    // document.addEventListener('astro:page-load', () => {
+    //     if (document.getElementById('album-page') == null) {
+    //         return;
+    //     }
 
-        const swiper = new Swiper('.gallery-swiper', {
-            modules: [Keyboard, EffectCoverflow],
-            effect: 'coverflow',
-            loop: true,
-            grabCursor: true,
-            centeredSlides: true,
-            keyboard: true,
-            slidesPerView: 1,
-            spaceBetween: 75,
-            direction: 'vertical',
-            breakpoints: {
-                768: {
-                    direction: 'horizontal',
-                },
-            },
-        });
+    //     const swiper = new Swiper('.gallery-swiper', {
+    //         modules: [Keyboard, EffectCoverflow],
+    //         effect: 'coverflow',
+    //         loop: true,
+    //         grabCursor: true,
+    //         centeredSlides: true,
+    //         keyboard: true,
+    //         slidesPerView: 1,
+    //         spaceBetween: 75,
+    //         direction: 'vertical',
+    //         breakpoints: {
+    //             768: {
+    //                 direction: 'horizontal',
+    //             },
+    //         },
+    //     });
 
-        const modal = document.getElementById('modal')!;
+    //     const modal = document.getElementById('modal')!;
 
-        modal.querySelectorAll('div.swiper-slide')
-            ?.forEach(async (slide) => {
-                const img = slide.querySelector<HTMLImageElement>('[data-swiper-slide]')!;
+    //     modal.querySelectorAll('div.swiper-slide')
+    //         ?.forEach(async (slide) => {
+    //             const img = slide.querySelector<HTMLImageElement>('[data-swiper-slide]')!;
 
-                slide.querySelector('p.caption')!.innerHTML = await formatImageEXIF(
-                    img,
-                    img.getAttribute('data-swiper-slide')!,
-                );
-            });
+    //             slide.querySelector('p.caption')!.innerHTML = await formatImageEXIF(
+    //                 img,
+    //                 img.getAttribute('data-swiper-slide')!,
+    //             );
+    //         });
 
-        modal.querySelector('.close-btn')
-            ?.addEventListener('click', (event) => {
-                modal.style.display = 'none';
-                event.stopPropagation();
-            });
+    //     modal.querySelector('.close-btn')
+    //         ?.addEventListener('click', (event) => {
+    //             modal.style.display = 'none';
+    //             event.stopPropagation();
+    //         });
 
-        document.querySelectorAll('[data-album-image]')
-            ?.forEach((image, idx) => {
-                image.addEventListener('click', () => {
-                    swiper.slideToLoop(idx, 0);
-                    modal.style.display = 'block';
-                });
-            });
-    });
+    //     document.querySelectorAll('[data-album-image]')
+    //         ?.forEach((image, idx) => {
+    //             image.addEventListener('click', () => {
+    //                 swiper.slideToLoop(idx, 0);
+    //                 modal.style.display = 'block';
+    //             });
+    //         });
+    // });
 </script>
