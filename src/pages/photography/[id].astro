@@ -91,6 +91,7 @@ const alt = `An image from the album: [${title}]`;
                                         />
                                     </div>
                                     <p class="caption text-center font-sm font-sans text-slate-100 text-wrap"></p>
+                                    <div class="swiper-lazy-preloader"></div>
                                 </div>
                                 <div class="swiper-lazy-preloader"></div>
                             </div>
@@ -130,6 +131,8 @@ const alt = `An image from the album: [${title}]`;
                     direction: 'horizontal',
                 },
             },
+            lazyPreloaderClass: 'swiper-lazy-preloader',
+            lazyPreloadPrevNext: 2,
         });
 
         const modal = document.getElementById('modal');
