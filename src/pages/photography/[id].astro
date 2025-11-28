@@ -82,7 +82,6 @@ const alt = `An image from the album: [${title}]`;
                             <div class="swiper-slide">
                                 <div class="w-full h-full p-5 flex flex-col gap-3 justify-center items-center">
                                     <div class="flex justify-center items-center grow min-h-0">
-                                        <!-- defer loading by using data-src and no src attribute -->
                                         <img
                                             data-src={slide.src}
                                             alt={alt}
@@ -93,6 +92,7 @@ const alt = `An image from the album: [${title}]`;
                                     </div>
                                     <p class="caption text-center font-sm font-sans text-slate-100 text-wrap"></p>
                                 </div>
+                                <div class="swiper-lazy-preloader"></div>
                             </div>
                         ))
                     }
@@ -134,29 +134,6 @@ const alt = `An image from the album: [${title}]`;
 
         const modal = document.getElementById('modal');
 
-        // lazily populate captions after images are loaded
-        function attachCaptionHandlers() {
-            modal?.querySelectorAll('div.swiper-slide')
-                ?.forEach((slide) => {
-                    const img = slide.querySelector<HTMLImageElement>('img[data-src]');
-                    const captionEl = slide.querySelector('p.caption');
-                    if (!img || !captionEl) return;
-
-                    // If image is already loaded, generate caption immediately
-                    if (img.complete && img.naturalWidth !== 0) {
-                        (async () => {
-                            captionEl.innerHTML = await formatImageEXIF(img, img.getAttribute('data-src')!);
-                        })();
-                        return;
-                    }
-
-                    // Otherwise wait for load and then generate caption
-                    img.addEventListener('load', async () => {
-                        captionEl.innerHTML = await formatImageEXIF(img, img.getAttribute('data-src')!);
-                    }, { once: true });
-                });
-        }
-
         modal?.querySelector('.close-btn')
             ?.addEventListener('click', (event) => {
                 modal.style.display = 'none';
@@ -166,7 +143,6 @@ const alt = `An image from the album: [${title}]`;
         document.querySelectorAll('[data-album-image]')
             ?.forEach((image, idx) => {
                 image.addEventListener('click', () => {
-                    // only set src attributes when modal is opened to avoid network activity during initial render
                     modal?.querySelectorAll('img[data-src]')
                         ?.forEach((img) => {
                             if (!img.getAttribute('src')) {
@@ -174,8 +150,28 @@ const alt = `An image from the album: [${title}]`;
                             }
                         });
 
-                    // ensure captions are hooked up after giving the browser a moment to start loading images
-                    attachCaptionHandlers();
+                    modal?.querySelectorAll('div.swiper-slide')
+                        ?.forEach((slide) => {
+                            const img = slide.querySelector<HTMLImageElement>('img[data-src]');
+                            const captionEl = slide.querySelector('p.caption');
+
+                            if (!img || !captionEl) return;
+
+                            if (img.complete && img.naturalWidth !== 0) {
+                                formatImageEXIF(img, img.getAttribute('data-src')!)
+                                    .then((caption) => {
+                                        captionEl.innerHTML = caption;
+                                    });
+                                return;
+                            }
+
+                            img.addEventListener('load', () => {
+                                formatImageEXIF(img, img.getAttribute('data-src')!)
+                                    .then((caption) => {
+                                        captionEl.innerHTML = caption;
+                                    });
+                            }, { once: true });
+                        });
 
                     swiper.slideToLoop(idx, 0);
                     modal!.style.display = 'block';
