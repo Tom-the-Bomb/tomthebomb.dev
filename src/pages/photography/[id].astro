@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 }
 
 const { album } = Astro.props;
-const [smalls, images] = await getAlbumImages(album.id);
+const [_, images] = await getAlbumImages(album.id);
 
 const title = album.data.title;
 const alt = `An image from the album: [${title}]`;
@@ -44,14 +44,17 @@ const alt = `An image from the album: [${title}]`;
         </p>
         <div class="px-2 sm:px-0 mx-auto container my-8 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-4">
             {
-                smalls.map((image) => (
+                images.map((image) => (
                     <Image
                         src={image}
                         alt={alt}
+                        widths={[320, 640, 1024]}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                         class={
                             `shadow-md mb-4 hover:scale-[102%] opacity-90
                             border-8 border-white transition-all duration-300 ease-in-out`
                         }
+                        layout="constrained"
                         loading="lazy"
                         decoding="async"
                         data-album-image
@@ -63,7 +66,7 @@ const alt = `An image from the album: [${title}]`;
             <HoverSlide text="View More Albums →" href="/photography"/>
         </div>
     </div>
-    <div
+    <!-- <div
         id="modal"
         class="hidden fixed z-50 left-0 top-0 w-dvw h-dvh
         bg-black bg-opacity-75 backdrop-blur-md"
@@ -100,85 +103,85 @@ const alt = `An image from the album: [${title}]`;
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </BaseLayout>
 
 <script>
-    import Swiper from 'swiper';
-    import { Keyboard, EffectCoverflow } from 'swiper/modules';
+    // import Swiper from 'swiper';
+    // import { Keyboard, EffectCoverflow } from 'swiper/modules';
 
-    import 'swiper/css';
+    // import 'swiper/css';
 
-    import { formatImageEXIF } from "../../utils";
+    // import { formatImageEXIF } from "../../utils";
 
-    document.addEventListener('astro:page-load', () => {
-        if (document.getElementById('album-page') == null) {
-            return;
-        }
+    // document.addEventListener('astro:page-load', () => {
+    //     if (document.getElementById('album-page') == null) {
+    //         return;
+    //     }
 
-        const swiper = new Swiper('.gallery-swiper', {
-            modules: [Keyboard, EffectCoverflow],
-            effect: 'coverflow',
-            loop: true,
-            grabCursor: true,
-            centeredSlides: true,
-            keyboard: true,
-            slidesPerView: 1,
-            spaceBetween: 75,
-            direction: 'vertical',
-            breakpoints: {
-                768: {
-                    direction: 'horizontal',
-                },
-            },
-            lazyPreloaderClass: 'swiper-lazy-preloader',
-            lazyPreloadPrevNext: 2,
-        });
+    //     const swiper = new Swiper('.gallery-swiper', {
+    //         modules: [Keyboard, EffectCoverflow],
+    //         effect: 'coverflow',
+    //         loop: true,
+    //         grabCursor: true,
+    //         centeredSlides: true,
+    //         keyboard: true,
+    //         slidesPerView: 1,
+    //         spaceBetween: 75,
+    //         direction: 'vertical',
+    //         breakpoints: {
+    //             768: {
+    //                 direction: 'horizontal',
+    //             },
+    //         },
+    //         lazyPreloaderClass: 'swiper-lazy-preloader',
+    //         lazyPreloadPrevNext: 2,
+    //     });
 
-        const modal = document.getElementById('modal');
+    //     const modal = document.getElementById('modal');
 
-        modal?.querySelector('.close-btn')
-            ?.addEventListener('click', (event) => {
-                modal.style.display = 'none';
-                event.stopPropagation();
-            });
+    //     modal?.querySelector('.close-btn')
+    //         ?.addEventListener('click', (event) => {
+    //             modal.style.display = 'none';
+    //             event.stopPropagation();
+    //         });
 
-        document.querySelectorAll('[data-album-image]')
-            ?.forEach((image, idx) => {
-                image.addEventListener('click', () => {
-                    modal?.querySelectorAll('img[data-src]')
-                        ?.forEach((img) => {
-                            if (!img.getAttribute('src')) {
-                                img.setAttribute('src', img.getAttribute('data-src')!);
-                            }
-                        });
+    //     document.querySelectorAll('[data-album-image]')
+    //         ?.forEach((image, idx) => {
+    //             image.addEventListener('click', () => {
+    //                 modal?.querySelectorAll('img[data-src]')
+    //                     ?.forEach((img) => {
+    //                         if (!img.getAttribute('src')) {
+    //                             img.setAttribute('src', img.getAttribute('data-src')!);
+    //                         }
+    //                     });
 
-                    modal?.querySelectorAll('div.swiper-slide')
-                        ?.forEach((slide) => {
-                            const img = slide.querySelector<HTMLImageElement>('img[data-src]');
-                            const captionEl = slide.querySelector('p.caption');
+    //                 modal?.querySelectorAll('div.swiper-slide')
+    //                     ?.forEach((slide) => {
+    //                         const img = slide.querySelector<HTMLImageElement>('img[data-src]');
+    //                         const captionEl = slide.querySelector('p.caption');
 
-                            if (!img || !captionEl) return;
+    //                         if (!img || !captionEl) return;
 
-                            if (img.complete && img.naturalWidth !== 0) {
-                                formatImageEXIF(img, img.getAttribute('data-src')!)
-                                    .then((caption) => {
-                                        captionEl.innerHTML = caption;
-                                    });
-                                return;
-                            }
+    //                         if (img.complete && img.naturalWidth !== 0) {
+    //                             formatImageEXIF(img, img.getAttribute('data-src')!)
+    //                                 .then((caption) => {
+    //                                     captionEl.innerHTML = caption;
+    //                                 });
+    //                             return;
+    //                         }
 
-                            img.addEventListener('load', () => {
-                                formatImageEXIF(img, img.getAttribute('data-src')!)
-                                    .then((caption) => {
-                                        captionEl.innerHTML = caption;
-                                    });
-                            }, { once: true });
-                        });
+    //                         img.addEventListener('load', () => {
+    //                             formatImageEXIF(img, img.getAttribute('data-src')!)
+    //                                 .then((caption) => {
+    //                                     captionEl.innerHTML = caption;
+    //                                 });
+    //                         }, { once: true });
+    //                     });
 
-                    swiper.slideToLoop(idx, 0);
-                    modal!.style.display = 'block';
-                });
-            });
-    });
+    //                 swiper.slideToLoop(idx, 0);
+    //                 modal!.style.display = 'block';
+    //             });
+    //         });
+    // });
 </script>
