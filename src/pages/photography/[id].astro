@@ -55,8 +55,6 @@ const alt = `An image from the album: [${title}]`;
                         loading="lazy"
                         decoding="async"
                         data-album-image
-                        width={image.width}
-                        height={image.height}
                     />
                 ))
             }
@@ -65,7 +63,7 @@ const alt = `An image from the album: [${title}]`;
             <HoverSlide text="View More Albums →" href="/photography"/>
         </div>
     </div>
-    <!-- <div
+    <div
         id="modal"
         class="hidden fixed z-50 left-0 top-0 w-dvw h-dvh
         bg-black bg-opacity-75 backdrop-blur-md"
@@ -84,13 +82,13 @@ const alt = `An image from the album: [${title}]`;
                             <div class="swiper-slide">
                                 <div class="w-full h-full p-5 flex flex-col gap-3 justify-center items-center">
                                     <div class="flex justify-center items-center grow min-h-0">
-                                        <Image
-                                            src={slide}
+                                        <!-- defer loading by using data-src and no src attribute -->
+                                        <img
+                                            data-src={slide.src}
                                             alt={alt}
                                             class="block max-h-full w-auto"
                                             decoding="async"
                                             loading="lazy"
-                                            data-swiper-slide={slide.src}
                                         />
                                     </div>
                                     <p class="caption text-center font-sm font-sans text-slate-100 text-wrap"></p>
@@ -101,63 +99,87 @@ const alt = `An image from the album: [${title}]`;
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 </BaseLayout>
 
 <script>
-    // import Swiper from 'swiper';
-    // import { Keyboard, EffectCoverflow } from 'swiper/modules';
+    import Swiper from 'swiper';
+    import { Keyboard, EffectCoverflow } from 'swiper/modules';
 
-    // import 'swiper/css';
+    import 'swiper/css';
 
-    // import { formatImageEXIF } from "../../utils";
+    import { formatImageEXIF } from "../../utils";
 
-    // document.addEventListener('astro:page-load', () => {
-    //     if (document.getElementById('album-page') == null) {
-    //         return;
-    //     }
+    document.addEventListener('astro:page-load', () => {
+        if (document.getElementById('album-page') == null) {
+            return;
+        }
 
-    //     const swiper = new Swiper('.gallery-swiper', {
-    //         modules: [Keyboard, EffectCoverflow],
-    //         effect: 'coverflow',
-    //         loop: true,
-    //         grabCursor: true,
-    //         centeredSlides: true,
-    //         keyboard: true,
-    //         slidesPerView: 1,
-    //         spaceBetween: 75,
-    //         direction: 'vertical',
-    //         breakpoints: {
-    //             768: {
-    //                 direction: 'horizontal',
-    //             },
-    //         },
-    //     });
+        const swiper = new Swiper('.gallery-swiper', {
+            modules: [Keyboard, EffectCoverflow],
+            effect: 'coverflow',
+            loop: true,
+            grabCursor: true,
+            centeredSlides: true,
+            keyboard: true,
+            slidesPerView: 1,
+            spaceBetween: 75,
+            direction: 'vertical',
+            breakpoints: {
+                768: {
+                    direction: 'horizontal',
+                },
+            },
+        });
 
-    //     const modal = document.getElementById('modal')!;
+        const modal = document.getElementById('modal');
 
-    //     modal.querySelectorAll('div.swiper-slide')
-    //         ?.forEach(async (slide) => {
-    //             const img = slide.querySelector<HTMLImageElement>('[data-swiper-slide]')!;
+        // lazily populate captions after images are loaded
+        function attachCaptionHandlers() {
+            modal?.querySelectorAll('div.swiper-slide')
+                ?.forEach((slide) => {
+                    const img = slide.querySelector<HTMLImageElement>('img[data-src]');
+                    const captionEl = slide.querySelector('p.caption');
+                    if (!img || !captionEl) return;
 
-    //             slide.querySelector('p.caption')!.innerHTML = await formatImageEXIF(
-    //                 img,
-    //                 img.getAttribute('data-swiper-slide')!,
-    //             );
-    //         });
+                    // If image is already loaded, generate caption immediately
+                    if (img.complete && img.naturalWidth !== 0) {
+                        (async () => {
+                            captionEl.innerHTML = await formatImageEXIF(img, img.getAttribute('data-src')!);
+                        })();
+                        return;
+                    }
 
-    //     modal.querySelector('.close-btn')
-    //         ?.addEventListener('click', (event) => {
-    //             modal.style.display = 'none';
-    //             event.stopPropagation();
-    //         });
+                    // Otherwise wait for load and then generate caption
+                    img.addEventListener('load', async () => {
+                        captionEl.innerHTML = await formatImageEXIF(img, img.getAttribute('data-src')!);
+                    }, { once: true });
+                });
+        }
 
-    //     document.querySelectorAll('[data-album-image]')
-    //         ?.forEach((image, idx) => {
-    //             image.addEventListener('click', () => {
-    //                 swiper.slideToLoop(idx, 0);
-    //                 modal.style.display = 'block';
-    //             });
-    //         });
-    // });
+        modal?.querySelector('.close-btn')
+            ?.addEventListener('click', (event) => {
+                modal.style.display = 'none';
+                event.stopPropagation();
+            });
+
+        document.querySelectorAll('[data-album-image]')
+            ?.forEach((image, idx) => {
+                image.addEventListener('click', () => {
+                    // only set src attributes when modal is opened to avoid network activity during initial render
+                    modal?.querySelectorAll('img[data-src]')
+                        ?.forEach((img) => {
+                            if (!img.getAttribute('src')) {
+                                img.setAttribute('src', img.getAttribute('data-src')!);
+                            }
+                        });
+
+                    // ensure captions are hooked up after giving the browser a moment to start loading images
+                    attachCaptionHandlers();
+
+                    swiper.slideToLoop(idx, 0);
+                    modal!.style.display = 'block';
+                });
+            });
+    });
 </script>
