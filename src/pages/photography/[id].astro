@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 }
 
 const { album } = Astro.props;
-const [_, images] = await getAlbumImages(album.id);
+const images = await getAlbumImages(album.id);
 
 const title = album.data.title;
 const alt = `An image from the album: [${title}]`;
@@ -48,8 +48,8 @@ const alt = `An image from the album: [${title}]`;
                     <Image
                         src={image}
                         alt={alt}
-                        widths={[320, 640, 1024]}
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        widths={[600]}
+                        quality={80}
                         class={
                             `shadow-md mb-4 hover:scale-[102%] opacity-90
                             border-8 border-white transition-all duration-300 ease-in-out`
@@ -66,122 +66,111 @@ const alt = `An image from the album: [${title}]`;
             <HoverSlide text="View More Albums →" href="/photography"/>
         </div>
     </div>
-    <!-- <div
-        id="modal"
-        class="hidden fixed z-50 left-0 top-0 w-dvw h-dvh
-        bg-black bg-opacity-75 backdrop-blur-md"
-    >
-        <Icon
-            img="close"
-            target="_self"
-            size="4em"
-            styles="close-btn absolute z-50 top-4 right-4 text-slate-100"
-        />
-        <div class="swiper-body w-full h-full overflow-x-hidden">
-            <div class="swiper gallery-swiper w-full h-full">
-                <div id="swiper-container" class="swiper-wrapper">
-                    {
-                        images.map((slide) => (
-                            <div class="swiper-slide">
-                                <div class="w-full h-full p-5 flex flex-col gap-3 justify-center items-center">
-                                    <div class="flex justify-center items-center grow min-h-0">
-                                        <img
-                                            data-src={slide.src}
-                                            alt={alt}
-                                            class="block max-h-full w-auto"
-                                            decoding="async"
-                                            loading="lazy"
-                                        />
+    <template id="modal-template">
+        <div
+            id="modal"
+            class="fixed z-50 left-0 top-0 w-dvw h-dvh
+            bg-black bg-opacity-75 backdrop-blur-md"
+        >
+            <Icon
+                img="close"
+                target="_self"
+                size="4em"
+                styles="close-btn absolute z-50 top-4 right-4 text-slate-100"
+            />
+            <div class="swiper-body w-full h-full overflow-x-hidden">
+                <div class="swiper gallery-swiper w-full h-full">
+                    <div id="swiper-container" class="swiper-wrapper">
+                        {
+                            images.map((slide) => (
+                                <div class="swiper-slide">
+                                    <div class="w-full h-full p-5 flex flex-col gap-3 justify-center items-center">
+                                        <div class="flex justify-center items-center grow min-h-0">
+                                            <Image
+                                                src={slide}
+                                                alt={alt}
+                                                widths={[1920]}
+                                                class="block max-h-full w-auto"
+                                                loading="lazy"
+                                                decoding="async"
+                                                data-swiper-slide={slide.src}
+                                            />
+                                        </div>
+                                        <p class="caption text-center font-sm font-sans text-slate-100 text-wrap"></p>
+                                        <div class="swiper-lazy-preloader"></div>
                                     </div>
-                                    <p class="caption text-center font-sm font-sans text-slate-100 text-wrap"></p>
                                     <div class="swiper-lazy-preloader"></div>
                                 </div>
-                                <div class="swiper-lazy-preloader"></div>
-                            </div>
-                        ))
-                    }
+                            ))
+                        }
+                    </div>
                 </div>
             </div>
         </div>
-    </div> -->
+    </template>
+    <div id="modal-container"></div>
 </BaseLayout>
 
 <script>
-    // import Swiper from 'swiper';
-    // import { Keyboard, EffectCoverflow } from 'swiper/modules';
+    import Swiper from 'swiper';
+    import { Keyboard, EffectCoverflow } from 'swiper/modules';
 
-    // import 'swiper/css';
+    import 'swiper/css';
 
-    // import { formatImageEXIF } from "../../utils";
+    import { formatImageEXIF } from "../../utils";
 
-    // document.addEventListener('astro:page-load', () => {
-    //     if (document.getElementById('album-page') == null) {
-    //         return;
-    //     }
+    document.addEventListener('astro:page-load', () => {
+        if (document.getElementById('album-page') == null) {
+            return;
+        }
 
-    //     const swiper = new Swiper('.gallery-swiper', {
-    //         modules: [Keyboard, EffectCoverflow],
-    //         effect: 'coverflow',
-    //         loop: true,
-    //         grabCursor: true,
-    //         centeredSlides: true,
-    //         keyboard: true,
-    //         slidesPerView: 1,
-    //         spaceBetween: 75,
-    //         direction: 'vertical',
-    //         breakpoints: {
-    //             768: {
-    //                 direction: 'horizontal',
-    //             },
-    //         },
-    //         lazyPreloaderClass: 'swiper-lazy-preloader',
-    //         lazyPreloadPrevNext: 2,
-    //     });
+        const modalTemplate = document.getElementById('modal-template')! as HTMLTemplateElement;
+        const modalContainer = document.getElementById('modal-container')!;
 
-    //     const modal = document.getElementById('modal');
+        document.querySelectorAll('[data-album-image]')
+            ?.forEach((image, idx) => {
+                image.addEventListener('click', () => {
+                    const modalNode = modalTemplate.content.cloneNode(true);
+                    modalContainer.appendChild(modalNode);
 
-    //     modal?.querySelector('.close-btn')
-    //         ?.addEventListener('click', (event) => {
-    //             modal.style.display = 'none';
-    //             event.stopPropagation();
-    //         });
+                    const swiper = new Swiper('.gallery-swiper', {
+                        modules: [Keyboard, EffectCoverflow],
+                        effect: 'coverflow',
+                        loop: true,
+                        grabCursor: true,
+                        centeredSlides: true,
+                        keyboard: true,
+                        slidesPerView: 1,
+                        spaceBetween: 75,
+                        direction: 'vertical',
+                        breakpoints: {
+                            768: {
+                                direction: 'horizontal',
+                            },
+                        },
+                        lazyPreloaderClass: 'swiper-lazy-preloader',
+                        lazyPreloadPrevNext: 2,
+                    });
+                    swiper.slideToLoop(idx, 0);
 
-    //     document.querySelectorAll('[data-album-image]')
-    //         ?.forEach((image, idx) => {
-    //             image.addEventListener('click', () => {
-    //                 modal?.querySelectorAll('img[data-src]')
-    //                     ?.forEach((img) => {
-    //                         if (!img.getAttribute('src')) {
-    //                             img.setAttribute('src', img.getAttribute('data-src')!);
-    //                         }
-    //                     });
+                    const modalEl = document.getElementById('modal')!;
 
-    //                 modal?.querySelectorAll('div.swiper-slide')
-    //                     ?.forEach((slide) => {
-    //                         const img = slide.querySelector<HTMLImageElement>('img[data-src]');
-    //                         const captionEl = slide.querySelector('p.caption');
+                    modalEl.querySelectorAll('div.swiper-slide')
+                        ?.forEach(async (slide) => {
+                            const img = slide.querySelector<HTMLImageElement>('[data-swiper-slide]')!;
 
-    //                         if (!img || !captionEl) return;
+                            slide.querySelector('p.caption')!.innerHTML = await formatImageEXIF(
+                                img,
+                                img.getAttribute('data-swiper-slide')!,
+                            );
+                        });
 
-    //                         if (img.complete && img.naturalWidth !== 0) {
-    //                             formatImageEXIF(img, img.getAttribute('data-src')!)
-    //                                 .then((caption) => {
-    //                                     captionEl.innerHTML = caption;
-    //                                 });
-    //                             return;
-    //                         }
-
-    //                         img.addEventListener('load', () => {
-    //                             formatImageEXIF(img, img.getAttribute('data-src')!)
-    //                                 .then((caption) => {
-    //                                     captionEl.innerHTML = caption;
-    //                                 });
-    //                         }, { once: true });
-    //                     });
-
-    //                 swiper.slideToLoop(idx, 0);
-    //                 modal!.style.display = 'block';
-    //             });
-    //         });
-    // });
+                    modalEl.querySelector('.close-btn')
+                        ?.addEventListener('click', (event) => {
+                            modalContainer.innerHTML = '';
+                            event.stopPropagation();
+                        });
+                });
+            });
+    });
 </script>
