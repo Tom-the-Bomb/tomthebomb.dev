@@ -105,8 +105,8 @@ const alt = `An image from the album: [${title}]`;
                     alt={alt}
                     widths={[
                         image.width > image.height
-                            ? 1600
-                            : (image.width / image.height) * 1600,
+                            ? 1500
+                            : Math.round((image.width / image.height) * 1500),
                     ]}
                     quality={90}
                     format="webp"
