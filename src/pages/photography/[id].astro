@@ -66,117 +66,83 @@ const alt = `An image from the album: [${title}]`;
             <HoverSlide text="View More Albums →" href="/photography"/>
         </div>
     </div>
-    <template id="modal-template">
-        <div
-            id="modal"
-            class="fixed z-50 left-0 top-0 w-dvw h-dvh
-            bg-black bg-opacity-75 backdrop-blur-md"
-        >
-            <Icon
-                img="close"
-                target="_self"
-                size="4em"
-                styles="close-btn absolute z-50 top-4 right-4 text-slate-100"
-            />
-            <div class="swiper-body w-full h-full overflow-x-hidden">
-                <div class="swiper gallery-swiper w-full h-full">
-                    <div id="swiper-container" class="swiper-wrapper">
-                        {
-                            images.map((slide) => (
-                                <div class="swiper-slide">
-                                    <div class="w-full h-full p-5 flex flex-col gap-3 justify-center items-center">
-                                        <div class="flex justify-center items-center grow min-h-0">
-                                            <Image
-                                                src={slide}
-                                                alt={alt}
-                                                widths={[1920]}
-                                                class="block max-h-full w-auto"
-                                                loading="lazy"
-                                                decoding="async"
-                                                data-swiper-slide={slide.src}
-                                            />
-                                        </div>
-                                        <p class="caption text-center font-sm font-sans text-slate-100 text-wrap"></p>
-                                        <div class="swiper-lazy-preloader"></div>
-                                    </div>
-                                    <div class="swiper-lazy-preloader"></div>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </div>
+    <div
+        id="modal"
+        class="hidden fixed z-50 left-0 top-0 w-dvw h-dvh
+        bg-black/75 backdrop-blur-md"
+    >
+        <Icon
+            img="close"
+            target="_self"
+            size="4em"
+            styles="close-btn absolute z-50 top-4 right-4 text-slate-100"
+        />
+        <div class="w-full h-full overflow-x-hidden">
+            <div class="w-full h-full p-5 flex flex-col gap-3 justify-center items-center">
+                <div id="modal-container"class="flex justify-center items-center grow min-h-0"></div>
+                <p id="modal-caption" class="caption text-center font-sm font-sans text-slate-100 text-wrap"></p>
             </div>
         </div>
-    </template>
-    <div id="modal-container"></div>
+    </div>
+    {
+        images.map((slide, idx) => (
+            <template id={`slide-${idx}`}>
+                <Image
+                    src={slide}
+                    alt={alt}
+                    widths={[1920]}
+                    class="block max-h-full w-auto"
+                    loading="lazy"
+                    decoding="async"
+                    data-full-image={slide.src}
+                />
+            </template>
+        ))
+    }
 </BaseLayout>
 
 <script>
-    import Swiper from 'swiper';
-    import { Keyboard, EffectCoverflow } from 'swiper/modules';
-
-    import 'swiper/css';
-
     import { formatImageEXIF } from "../../utils";
 
     document.addEventListener('astro:page-load', () => {
-        if (document.getElementById('album-page') == null) {
+        if (!document.getElementById('album-page')) {
             return;
         }
 
-        const modalTemplate = document.getElementById('modal-template')! as HTMLTemplateElement;
+        const modal = document.getElementById('modal')!;
         const modalContainer = document.getElementById('modal-container')!;
+        const caption = document.getElementById('modal-caption')!;
+
+        document.querySelector('.close-btn')
+            ?.addEventListener('click', (event) => {
+                modalContainer.innerHTML = '';
+                modal.style.display = 'none';
+                event.stopPropagation();
+            });
 
         document.querySelectorAll('[data-album-image]')
             ?.forEach((image, idx) => {
-                image.addEventListener('click', () => {
+                image.addEventListener('click', async () => {
+                    console.log(`Opening modal for image index: ${idx}`);
+                    modal.style.display = 'block';
+                    const modalTemplate = document.getElementById(`slide-${idx}`)! as HTMLTemplateElement;
                     const modalNode = modalTemplate.content.cloneNode(true);
                     modalContainer.appendChild(modalNode);
 
-                    const swiper = new Swiper('.gallery-swiper', {
-                        modules: [Keyboard, EffectCoverflow],
-                        effect: 'coverflow',
-                        loop: true,
-                        grabCursor: true,
-                        centeredSlides: true,
-                        keyboard: true,
-                        slidesPerView: 1,
-                        spaceBetween: 75,
-                        direction: 'vertical',
-                        breakpoints: {
-                            768: {
-                                direction: 'horizontal',
-                            },
-                        },
-                        lazyPreloaderClass: 'swiper-lazy-preloader',
-                        lazyPreloadPrevNext: 2,
-                    });
-                    swiper.slideToLoop(idx, 0);
+                    const img = modalContainer.querySelector<HTMLImageElement>('[data-full-image]')!;
 
-                    const modalEl = document.getElementById('modal')!;
-
-                    modalEl.querySelectorAll('div.swiper-slide')
-                        ?.forEach(async (slide) => {
-                            const img = slide.querySelector<HTMLImageElement>('[data-swiper-slide]')!;
-
-                            if (!(img.complete && img.naturalWidth && img.naturalHeight)) {
-                                await new Promise<void>((resolve) => {
-                                    img.addEventListener('load', () => resolve(), { once: true });
-                                    img.addEventListener('error', () => resolve(), { once: true });
-                                });
-                            }
-
-                            slide.querySelector('p.caption')!.innerHTML = await formatImageEXIF(
-                                img,
-                                img.getAttribute('data-swiper-slide')!,
-                            );
+                    if (!(img.complete && img.naturalWidth && img.naturalHeight)) {
+                        await new Promise<void>((resolve) => {
+                            img.addEventListener('load', () => resolve(), { once: true });
+                            img.addEventListener('error', () => resolve(), { once: true });
                         });
+                    }
 
-                    modalEl.querySelector('.close-btn')
-                        ?.addEventListener('click', (event) => {
-                            modalContainer.innerHTML = '';
-                            event.stopPropagation();
-                        });
+                    caption.innerHTML = await formatImageEXIF(
+                        img,
+                        img.getAttribute('data-full-image')!,
+                    );
+
                 });
             });
     });
