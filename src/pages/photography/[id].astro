@@ -80,11 +80,11 @@ const alt = `An image from the album: [${title}]`;
         />
         <div class="swiper-body w-full h-full overflow-x-hidden">
             <div class="swiper gallery-swiper w-full h-full">
-                <div id="swiper-container" class="swiper-wrapper">
+                <div class="swiper-wrapper">
                     {
                         images.map(() => (
                             <div class="swiper-slide">
-                                <div class="w-full h-full p-5 flex flex-col gap-3 justify-center items-center">
+                                <div class="w-full h-full pt-10 p-5 flex flex-col gap-3 justify-center items-center">
                                     <div class="modal-container flex justify-center items-center grow min-h-0"></div>
                                     <p class="modal-caption text-center font-sm font-sans text-slate-100 text-wrap"></p>
                                     <div class="swiper-lazy-preloader"></div>
@@ -93,6 +93,7 @@ const alt = `An image from the album: [${title}]`;
                         ))
                     }
                 </div>
+                <div class="z-50 swiper-pagination absolute top-0 left-1/2 h-10 text-sm/10 -translate-x-1/2 text-center font-monospace text-yellow-100"></div>
             </div>
         </div>
     </div>
@@ -102,13 +103,17 @@ const alt = `An image from the album: [${title}]`;
                 <Image
                     src={image}
                     alt={alt}
-                    widths={[1800]}
+                    widths={[
+                        image.width > image.height
+                            ? 1600
+                            : (image.width / image.height) * 1600,
+                    ]}
                     quality={90}
                     format="webp"
                     class="block max-h-full w-auto"
                     loading="lazy"
                     decoding="async"
-                    data-swiper-slide={image}
+                    data-swiper-slide={image.src}
                 />
             </template>
         ))
@@ -117,7 +122,7 @@ const alt = `An image from the album: [${title}]`;
 
 <script>
     import Swiper from 'swiper';
-    import { Keyboard, EffectCoverflow } from 'swiper/modules';
+    import { Keyboard, EffectCoverflow, Pagination } from 'swiper/modules';
 
     import 'swiper/css';
 
@@ -128,8 +133,13 @@ const alt = `An image from the album: [${title}]`;
             return;
         }
 
+        const modalEl = document.getElementById('modal')!;
+        const slides = document.querySelectorAll('div.swiper-slide');
+        const containers = document.querySelectorAll('div.modal-container');
+        const captions = document.querySelectorAll('p.modal-caption');
+
         const swiper = new Swiper('.gallery-swiper', {
-            modules: [Keyboard, EffectCoverflow],
+            modules: [Keyboard, EffectCoverflow, Pagination],
             effect: 'coverflow',
             loop: true,
             grabCursor: true,
@@ -143,10 +153,11 @@ const alt = `An image from the album: [${title}]`;
                     direction: 'horizontal',
                 },
             },
-            lazyPreloaderClass: 'swiper-lazy-preloader',
+            pagination: {
+                el: '.swiper-pagination',
+                type: 'fraction',
+            },
         });
-
-        const modalEl = document.getElementById("modal")!;
 
         modalEl.querySelector('.close-btn')
             ?.addEventListener('click', (event) => {
@@ -157,22 +168,27 @@ const alt = `An image from the album: [${title}]`;
         document.querySelectorAll('[data-album-image]')
             ?.forEach((image, idx) => {
                 image.addEventListener('click', () => {
+                    swiper.slideToLoop(
+                        parseInt(
+                            // I'm unsure why my `swiper` indices are not in order of rendering
+                            slides[idx].getAttribute('data-swiper-slide-index')!,
+                        ), 0
+                    );
                     modalEl.style.display = 'block';
-                    swiper.slideToLoop(idx, 0);
 
-                    if (modalEl.querySelector('.modal-container')!.children.length > 0) {
+                    if (containers[0].children.length > 0) {
                         return;
                     }
 
                     document.querySelectorAll('template')
                         ?.forEach(async (template, idx) => {
-                            const modalContainer = document.querySelectorAll('.modal-container')[idx]!;
-                            const caption = document.querySelectorAll('.modal-caption')[idx]!;
+                            const modalContainer = containers[idx];
+                            const caption = captions[idx];
 
                             const modalNode = template.content.cloneNode(true);
-                            modalContainer.appendChild(modalNode);
+                            modalContainer?.appendChild(modalNode);
 
-                            const img = modalContainer.querySelector<HTMLImageElement>('[data-swiper-slide]')!;
+                            const img = modalContainer?.querySelector<HTMLImageElement>('[data-swiper-slide]')!;
 
                             if (!(img.complete && img.naturalWidth && img.naturalHeight)) {
                                 await new Promise<void>((resolve) => {
