@@ -159,6 +159,13 @@ const alt = `An image from the album: [${title}]`;
                         ?.forEach(async (slide) => {
                             const img = slide.querySelector<HTMLImageElement>('[data-swiper-slide]')!;
 
+                            if (!(img.complete && img.naturalWidth && img.naturalHeight)) {
+                                await new Promise<void>((resolve) => {
+                                    img.addEventListener('load', () => resolve(), { once: true });
+                                    img.addEventListener('error', () => resolve(), { once: true });
+                                });
+                            }
+
                             slide.querySelector('p.caption')!.innerHTML = await formatImageEXIF(
                                 img,
                                 img.getAttribute('data-swiper-slide')!,
