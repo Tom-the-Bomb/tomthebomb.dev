@@ -42,7 +42,7 @@ const alt = `An image from the album: [${title}]`;
                 {images.length} Photos
             </strong>
         </p>
-        <div class="px-2 sm:px-0 mx-auto container my-8 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-4">
+        <div class="px-2 sm:px-0 mx-auto container my-8 perspective-[1000px] sm:columns-2 md:columns-3 lg:columns-4 xl:columns-4">
             {
                 images.map((image) => (
                     <Image
@@ -52,7 +52,7 @@ const alt = `An image from the album: [${title}]`;
                         quality={80}
                         format="webp"
                         class={
-                            `shadow-md mb-4 hover:scale-[102%] opacity-90
+                            `translate-z-0 shadow-md mb-4 hover:scale-[102%]
                             border-8 border-white transition-all duration-300 ease-in-out`
                         }
                         layout="constrained"
