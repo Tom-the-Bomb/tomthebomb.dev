@@ -36,7 +36,7 @@ export async function formatImageEXIF(image: HTMLImageElement, src: string): Pro
     const expTime = output.ExposureTime < 1 ? `1/${Math.round(1 / output.ExposureTime)}` : output.ExposureTime;
 
     return (
-        `Taken with ${output.Make} ${output.Model}${lens} |
+        `Taken with ${output.Make} ${output.Model.replace('_2', 'ii')}${lens} |
         ${image.width}&times;${image.height}px at ${output.FocalLength} mm,
         ${expTime} s, ISO ${output.ISO}, ƒ${output.FNumber}`
     );

@@ -31,7 +31,7 @@ export const albums = await getCollection("albums");
                             <Image
                                 src={album.data.cover}
                                 alt={album.data.title}
-                                widths={[600]}
+                                widths={[550]}
                                 quality={80}
                                 class={`opacity-90
                                     transition-all duration-300
@@ -41,7 +41,7 @@ export const albums = await getCollection("albums");
                                 decoding="async"
                                 data-photo-album={href}
                             />
-                            <a class="abs-center p-3 drop-shadow-2xl text-2xl bg-black/40 border border-white z-50" href={href}>
+                            <a data-astro-prefetch class="abs-center p-3 drop-shadow-2xl text-2xl bg-black/40 border border-white z-50" href={href}>
                                 <p class="effect-underline font-soft font-extralight">{album.data.title.toUpperCase()}</p>
                                 <p class="font-zh text-2xl">{album.data.short_description}</p>
                             </a>
@@ -60,6 +60,8 @@ export const albums = await getCollection("albums");
 </BaseLayout>
 
 <script>
+    import { prefetch } from "astro:prefetch";
+
     document.addEventListener('astro:page-load', () => {
         if (document.getElementById('photography-page') == null) {
             return;
@@ -68,7 +70,9 @@ export const albums = await getCollection("albums");
         document.querySelectorAll('[data-photo-album]')
             ?.forEach((album) => {
                 album.addEventListener('click', () => {
-                    window.location.href = album.getAttribute('data-photo-album')!;
+                    const href = album.getAttribute('data-photo-album')!;
+                    prefetch(href);
+                    window.location.href = href;
                 });
             });
     });

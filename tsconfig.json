@@ -3,7 +3,7 @@
     "compilerOptions": {
         "plugins": [
             {
-            "name": "@astrojs/ts-plugin"
+                "name": "@astrojs/ts-plugin"
             },
         ],
     }
