@@ -96,7 +96,7 @@ const alt = `An image from the album: [${title}]`;
             </div>
         </div>
     </div>
-    <!-- {
+    {
         images.map((image) => (
             <template>
                 <Image
@@ -115,115 +115,115 @@ const alt = `An image from the album: [${title}]`;
                 />
             </template>
         ))
-    } -->
+    }
 </BaseLayout>
 
 <script>
-    // import Swiper from 'swiper';
-    // import { Keyboard, EffectCoverflow, Pagination } from 'swiper/modules';
+    import Swiper from 'swiper';
+    import { Keyboard, EffectCoverflow, Pagination } from 'swiper/modules';
 
-    // import 'swiper/css';
+    import 'swiper/css';
 
-    // import { formatImageEXIF } from "../../utils";
+    import { formatImageEXIF } from "../../utils";
 
-    // document.addEventListener('astro:page-load', () => {
-    //     if (document.getElementById('album-page') == null) {
-    //         return;
-    //     }
+    document.addEventListener('astro:page-load', () => {
+        if (document.getElementById('album-page') == null) {
+            return;
+        }
 
-    //     const modalEl = document.getElementById('modal')!;
-    //     const slides = document.querySelectorAll('div.swiper-slide');
-    //     const containers = document.querySelectorAll('div.modal-container');
-    //     const captions = document.querySelectorAll('p.modal-caption');
+        const modalEl = document.getElementById('modal')!;
+        const slides = document.querySelectorAll('div.swiper-slide');
+        const containers = document.querySelectorAll('div.modal-container');
+        const captions = document.querySelectorAll('p.modal-caption');
 
-    //     function renderSwiperImages() {
-    //         document.querySelectorAll('template')
-    //             ?.forEach(async (template, idx) => {
-    //                 const modalContainer = containers[idx];
-    //                 const modalNode = template.content.cloneNode(true);
-    //                 modalContainer?.appendChild(modalNode);
-    //             });
-    //     }
+        function renderSwiperImages() {
+            document.querySelectorAll('template')
+                ?.forEach(async (template, idx) => {
+                    const modalContainer = containers[idx];
+                    const modalNode = template.content.cloneNode(true);
+                    modalContainer?.appendChild(modalNode);
+                });
+        }
 
-    //     const swiper = new Swiper('.gallery-swiper', {
-    //         modules: [Keyboard, EffectCoverflow, Pagination],
-    //         effect: 'coverflow',
-    //         loop: true,
-    //         grabCursor: true,
-    //         centeredSlides: true,
-    //         keyboard: true,
-    //         slidesPerView: 1,
-    //         spaceBetween: 75,
-    //         direction: 'vertical',
-    //         breakpoints: {
-    //             768: {
-    //                 direction: 'horizontal',
-    //             },
-    //         },
-    //         pagination: {
-    //             el: '.swiper-pagination',
-    //             type: 'fraction',
-    //         },
-    //     });
+        const swiper = new Swiper('.gallery-swiper', {
+            modules: [Keyboard, EffectCoverflow, Pagination],
+            effect: 'coverflow',
+            loop: true,
+            grabCursor: true,
+            centeredSlides: true,
+            keyboard: true,
+            slidesPerView: 1,
+            spaceBetween: 75,
+            direction: 'vertical',
+            breakpoints: {
+                768: {
+                    direction: 'horizontal',
+                },
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                type: 'fraction',
+            },
+        });
 
-    //     modalEl.querySelector('.close-btn')
-    //         ?.addEventListener('click', (event) => {
-    //             modalEl.style.display = 'none';
-    //             event.stopPropagation();
-    //         });
+        modalEl.querySelector('.close-btn')
+            ?.addEventListener('click', (event) => {
+                modalEl.style.display = 'none';
+                event.stopPropagation();
+            });
 
-    //     document.addEventListener('keydown', (event) => {
-    //         if (event.key === 'Escape') {
-    //             modalEl.style.display = 'none';
-    //             event.stopPropagation();
-    //         }
-    //     });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                modalEl.style.display = 'none';
+                event.stopPropagation();
+            }
+        });
 
-    //     document.querySelectorAll<HTMLImageElement>('[data-album-image]')
-    //         ?.forEach((image, idx) => {
-    //             image.addEventListener('click', () => {
-    //                 swiper.slideToLoop(
-    //                     parseInt(
-    //                         // I'm unsure why my `swiper` indices are not in order of rendering
-    //                         slides[idx].getAttribute('data-swiper-slide-index')!,
-    //                     ), 0
-    //                 );
-    //                 modalEl.style.display = 'block';
+        document.querySelectorAll<HTMLImageElement>('[data-album-image]')
+            ?.forEach((image, idx) => {
+                image.addEventListener('click', () => {
+                    swiper.slideToLoop(
+                        parseInt(
+                            // I'm unsure why my `swiper` indices are not in order of rendering
+                            slides[idx].getAttribute('data-swiper-slide-index')!,
+                        ), 0
+                    );
+                    modalEl.style.display = 'block';
 
-    //                 if (!containers[0].children.length) {
-    //                     renderSwiperImages();
-    //                 }
-    //             });
-    //         });
+                    if (!containers[0].children.length) {
+                        renderSwiperImages();
+                    }
+                });
+            });
 
-    //     (async () => {
-    //         await Promise.all(Array.from(
-    //             document.querySelectorAll('[data-album-image]')!
-    //         )
-    //             .map((img, idx) => {
-    //                 const image = img as HTMLImageElement;
-    //                 const src = image.getAttribute('data-album-image')!;
+        (async () => {
+            await Promise.all(Array.from(
+                document.querySelectorAll('[data-album-image]')!
+            )
+                .map((img, idx) => {
+                    const image = img as HTMLImageElement;
+                    const src = image.getAttribute('data-album-image')!;
 
-    //                 if (image.complete && image.naturalWidth && image.naturalHeight) {
-    //                     formatImageEXIF(image, src).then((res) => captions[idx].innerHTML = res);
-    //                     return Promise.resolve();
-    //                 }
+                    if (image.complete && image.naturalWidth && image.naturalHeight) {
+                        formatImageEXIF(image, src).then((res) => captions[idx].innerHTML = res);
+                        return Promise.resolve();
+                    }
 
-    //                 return new Promise<void>((resolve) => {
-    //                     image.addEventListener('load', () => {
-    //                         formatImageEXIF(image, src).then((res) => {
-    //                             captions[idx].innerHTML = res;
-    //                             resolve();
-    //                         });
-    //                     }, { once: true });
-    //                     image.addEventListener('error', () => resolve(), { once: true });
-    //                 });
-    //             })
-    //         );
+                    return new Promise<void>((resolve) => {
+                        image.addEventListener('load', () => {
+                            formatImageEXIF(image, src).then((res) => {
+                                captions[idx].innerHTML = res;
+                                resolve();
+                            });
+                        }, { once: true });
+                        image.addEventListener('error', () => resolve(), { once: true });
+                    });
+                })
+            );
 
-    //         if (!containers[0].children.length) {
-    //             renderSwiperImages();
-    //         }
-    //     })();
-    // });
+            if (!containers[0].children.length) {
+                renderSwiperImages();
+            }
+        })();
+    });
 </script>
