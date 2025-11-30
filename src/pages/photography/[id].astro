@@ -56,7 +56,7 @@ const alt = `An image from the album: [${title}]`;
                             border-8 border-white transition-all duration-300 ease-in-out`
                         }
                         layout="constrained"
-                        loading="lazy"
+                        loading="eager"
                         decoding="async"
                         data-album-image
                     />
@@ -138,6 +138,29 @@ const alt = `An image from the album: [${title}]`;
         const containers = document.querySelectorAll('div.modal-container');
         const captions = document.querySelectorAll('p.modal-caption');
 
+        function renderSwiperImages() {
+            document.querySelectorAll('template')
+                ?.forEach(async (template, idx) => {
+                    const modalContainer = containers[idx];
+                    const modalNode = template.content.cloneNode(true);
+                    modalContainer.appendChild(modalNode);
+
+                    const img = modalContainer.querySelector('img')!;
+
+                    if (!(img.complete && img.naturalWidth && img.naturalHeight)) {
+                        await new Promise<void>((resolve) => {
+                            img.addEventListener('load', () => resolve(), { once: true });
+                            img.addEventListener('error', () => resolve(), { once: true });
+                        });
+                    }
+
+                    captions[idx].innerHTML = await formatImageEXIF(
+                        img,
+                        img.getAttribute('data-swiper-slide')!,
+                    );
+                });
+        }
+
         const swiper = new Swiper('.gallery-swiper', {
             modules: [Keyboard, EffectCoverflow, Pagination],
             effect: 'coverflow',
@@ -176,33 +199,33 @@ const alt = `An image from the album: [${title}]`;
                     );
                     modalEl.style.display = 'block';
 
-                    if (containers[0].children.length > 0) {
-                        return;
+                    if (!containers[0].children.length) {
+                        renderSwiperImages();
                     }
-
-                    document.querySelectorAll('template')
-                        ?.forEach(async (template, idx) => {
-                            const modalContainer = containers[idx];
-                            const caption = captions[idx];
-
-                            const modalNode = template.content.cloneNode(true);
-                            modalContainer?.appendChild(modalNode);
-
-                            const img = modalContainer?.querySelector<HTMLImageElement>('[data-swiper-slide]')!;
-
-                            if (!(img.complete && img.naturalWidth && img.naturalHeight)) {
-                                await new Promise<void>((resolve) => {
-                                    img.addEventListener('load', () => resolve(), { once: true });
-                                    img.addEventListener('error', () => resolve(), { once: true });
-                                });
-                            }
-
-                            caption.innerHTML = await formatImageEXIF(
-                                img,
-                                img.getAttribute('data-swiper-slide')!,
-                            );
-                        });
                 });
             });
+
+        (async () => {
+            await Promise.all(Array.from(
+                document.querySelectorAll('[data-album-image]')!
+            )
+                .map((img, idx) => {
+                    const image = img as HTMLImageElement;
+
+                    if (image.complete && image.naturalWidth && image.naturalHeight) {
+                        return Promise.resolve();
+                    }
+
+                    return new Promise<void>((resolve) => {
+                        image.addEventListener('load', () => resolve(), { once: true });
+                        image.addEventListener('error', () => resolve(), { once: true });
+                    });
+                })
+            );
+
+            if (!containers[0].children.length) {
+                renderSwiperImages();
+            }
+        })();
     });
 </script>
