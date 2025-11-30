@@ -20,13 +20,13 @@ const {
     logo, imgStyles = "",
 } = Astro.props;
 ---
-<div class="glass hover:scale-102 duration-300 ease-in-out transition-transform flex flex-wrap gap-20 p-5 rounded-lg justify-between mx-5">
+<div class="glass hover:scale-102 duration-300 ease-in-out transition-transform flex flex-wrap gap-x-20 gap-y-10 p-5 rounded-lg justify-between mx-5">
     <div class="flex flex-col flex-1 gap-5 max-w-full">
         <h1 class="border-b-2 pb-1 w-fit font-4xl font-bold">{name}</h1>
         <div class="text-wrap drop-shadow-lg">
             <slot/>
         </div>
-        <div class="mt-6 flex gap-3 font-extrabold text-yellow-100">
+        <div class="mt-6 flex flex-wrap gap-3 font-extrabold text-yellow-100">
             <a class="icon-link" href={github} target="_blank">
                 [<AstroIcon name="github" href={github} size="1em" class="text-yellow-100"/> GitHub]
             </a>
