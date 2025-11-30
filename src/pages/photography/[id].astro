@@ -48,14 +48,14 @@ const alt = `An image from the album: [${title}]`;
                     <Image
                         src={image}
                         alt={alt}
-                        widths={[600]}
+                        widths={[550, 720]}
+                        sizes="(max-width: 640px) 720px, 550px"
                         quality={80}
                         format="webp"
                         class={
                             `shadow-md mb-4 hover:scale-[102%]
                             border-8 border-white transition-all duration-300 ease-in-out`
                         }
-                        layout="constrained"
                         loading="lazy"
                         decoding="async"
                         data-album-image={image.src}
@@ -172,6 +172,13 @@ const alt = `An image from the album: [${title}]`;
                 modalEl.style.display = 'none';
                 event.stopPropagation();
             });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                modalEl.style.display = 'none';
+                event.stopPropagation();
+            }
+        });
 
         document.querySelectorAll<HTMLImageElement>('[data-album-image]')
             ?.forEach((image, idx) => {

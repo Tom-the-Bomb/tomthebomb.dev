@@ -31,7 +31,8 @@ export const albums = await getCollection("albums");
                             <Image
                                 src={album.data.cover}
                                 alt={album.data.title}
-                                widths={[600]}
+                                widths={[550, 720]}
+                                sizes="(max-width: 640px) 720px, 550px"
                                 quality={80}
                                 class={`opacity-90
                                     transition-all duration-300
