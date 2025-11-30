@@ -5,9 +5,15 @@ import Project from "../components/Project.astro";
 import Tech from "../components/Tech.astro";
 ---
 <BaseLayout>
-    <div class="container flex flex-col gap-10 mt-20 w-full lg:w-2/3 justify-center items-center">
+    <div class="container flex flex-col gap-10 mt-25 w-full lg:w-2/3 justify-center items-center">
         <h1 class="text-6xl font-extrabold drop-shadow-md">Projects</h1>
         <div class="container flex flex-col gap-10 w-full">
+            <p class="text-sm text-slate-100 text-center">
+                Advent of Code:
+                <a href="https://github.com/Tom-the-Bomb/aoc-2025" class="aoc-a">2025</a> |
+                <a href="https://github.com/Tom-the-Bomb/aoc-2024" class="aoc-a">2024</a> |
+                <a href="https://github.com/Tom-the-Bomb/aoc-2023" class="aoc-a">2023</a>
+            </p>
             <Project
                 name="Sketch a Fourier"
                 github="https://github.com/Tom-the-Bomb/fourier-drawer"
@@ -187,6 +193,14 @@ import Tech from "../components/Tech.astro";
 
 <style scoped>
     @reference '../styles/global.css';
+
+    .aoc-a {
+        @apply no-underline! text-yellow-100!;
+    }
+
+    .aoc-a:hover {
+        @apply text-white!;
+    }
 
     a {
         @apply underline text-sky-100;
