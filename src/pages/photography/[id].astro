@@ -58,7 +58,7 @@ const alt = `An image from the album: [${title}]`;
                         layout="constrained"
                         loading="eager"
                         decoding="async"
-                        data-album-image
+                        data-album-image={image.src}
                     />
                 ))
             }
@@ -113,7 +113,6 @@ const alt = `An image from the album: [${title}]`;
                     class="block max-h-full w-auto"
                     loading="lazy"
                     decoding="async"
-                    data-swiper-slide={image.src}
                 />
             </template>
         ))
@@ -143,21 +142,7 @@ const alt = `An image from the album: [${title}]`;
                 ?.forEach(async (template, idx) => {
                     const modalContainer = containers[idx];
                     const modalNode = template.content.cloneNode(true);
-                    modalContainer.appendChild(modalNode);
-
-                    const img = modalContainer.querySelector('img')!;
-
-                    if (!(img.complete && img.naturalWidth && img.naturalHeight)) {
-                        await new Promise<void>((resolve) => {
-                            img.addEventListener('load', () => resolve(), { once: true });
-                            img.addEventListener('error', () => resolve(), { once: true });
-                        });
-                    }
-
-                    captions[idx].innerHTML = await formatImageEXIF(
-                        img,
-                        img.getAttribute('data-swiper-slide')!,
-                    );
+                    modalContainer?.appendChild(modalNode);
                 });
         }
 
@@ -188,7 +173,7 @@ const alt = `An image from the album: [${title}]`;
                 event.stopPropagation();
             });
 
-        document.querySelectorAll('[data-album-image]')
+        document.querySelectorAll<HTMLImageElement>('[data-album-image]')
             ?.forEach((image, idx) => {
                 image.addEventListener('click', () => {
                     swiper.slideToLoop(
@@ -211,13 +196,20 @@ const alt = `An image from the album: [${title}]`;
             )
                 .map((img, idx) => {
                     const image = img as HTMLImageElement;
+                    const src = image.getAttribute('data-album-image')!;
 
                     if (image.complete && image.naturalWidth && image.naturalHeight) {
+                        formatImageEXIF(image, src).then((res) => captions[idx].innerHTML = res);
                         return Promise.resolve();
                     }
 
                     return new Promise<void>((resolve) => {
-                        image.addEventListener('load', () => resolve(), { once: true });
+                        image.addEventListener('load', () => {
+                            formatImageEXIF(image, src).then((res) => {
+                                captions[idx].innerHTML = res;
+                                resolve();
+                            });
+                        }, { once: true });
                         image.addEventListener('error', () => resolve(), { once: true });
                     });
                 })

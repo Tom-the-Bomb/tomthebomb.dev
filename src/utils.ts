@@ -18,6 +18,10 @@ export async function getAlbumImages(albumId: string): Promise<ImageMetadata[]> 
     return resolvedOriginal;
 }
 
+function gcd(a: number, b: number): number {
+    return b ? gcd(b, a % b) : a;
+}
+
 export async function formatImageEXIF(image: HTMLImageElement, src: string): Promise<string> {
     const output = await exifr.parse(
         src,
@@ -35,9 +39,11 @@ export async function formatImageEXIF(image: HTMLImageElement, src: string): Pro
     lens = !lens && output.LensModel ? ` + ${output.LensMake} ${output.LensModel}` : lens;
     const expTime = output.ExposureTime < 1 ? `1/${Math.round(1 / output.ExposureTime)}` : output.ExposureTime;
 
+    const dimGCD = gcd(image.width, image.height);
+
     return (
         `Taken with ${output.Make} ${output.Model.replace('_2', 'ii')}${lens} |
-        ${image.width}&times;${image.height}px at ${output.FocalLength} mm,
+        ${image.width / dimGCD}:${image.height / dimGCD} ratio at ${output.FocalLength} mm,
         ${expTime} s, ISO ${output.ISO}, ƒ${output.FNumber}`
     );
 }
