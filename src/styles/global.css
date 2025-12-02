@@ -59,8 +59,8 @@
 @font-face {
     font-family: 'Nexa Black Italic';
     src:
-        url('./fonts/NexaBlackItalic.ttf') format('truetype'),
-        url('./fonts/NexaBlackItalic.otf') format('opentype');
+        url('/fonts/NexaBlackItalic.ttf') format('truetype'),
+        url('/fonts/NexaBlackItalic.otf') format('opentype');
 
     font-style: italic;
     font-weight: bold;
