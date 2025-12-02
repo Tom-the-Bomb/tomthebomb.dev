@@ -112,6 +112,7 @@ const alt = `An image from the album: [${title}]`;
                     class="block max-h-full w-auto"
                     loading="lazy"
                     decoding="async"
+                    data-slide-image={image.src}
                 />
             </template>
         ))
@@ -142,6 +143,22 @@ const alt = `An image from the album: [${title}]`;
                     const modalContainer = containers[idx];
                     const modalNode = template.content.cloneNode(true);
                     modalContainer?.appendChild(modalNode);
+
+                    const image = modalContainer.querySelector('img')!;
+
+                    if (!captions[idx].innerHTML) {
+                        if (!(image.complete && image.naturalWidth && image.naturalHeight)) {
+                            await new Promise<void>((resolve) => {
+                                image.addEventListener('load', () => resolve(), { once: true });
+                                image.addEventListener('error', () => resolve(), { once: true });
+                            });
+                        }
+
+                        formatImageEXIF(image, image.getAttribute('data-slide-image')!)
+                            .then((res) => {
+                                captions[idx].innerHTML = res;
+                            });
+                    }
                 });
         }
 
