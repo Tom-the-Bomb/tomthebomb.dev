@@ -81,11 +81,13 @@ const alt = `An image from the album: [${title}]`;
             <div class="swiper gallery-swiper w-full h-full">
                 <div class="swiper-wrapper">
                     {
-                        images.map(() => (
+                        images.map((image) => (
                             <div class="swiper-slide">
                                 <div class="w-full h-full pt-10 p-5 flex flex-col gap-3 justify-center items-center">
                                     <div class="modal-container flex justify-center items-center grow min-h-0"></div>
-                                    <p class="modal-caption text-center font-sm font-sans text-slate-100 text-wrap"></p>
+                                    <p class="modal-caption text-center font-sm font-sans text-slate-100 text-wrap">
+                                        {image.exif}
+                                    </p>
                                     <div class="swiper-lazy-preloader"></div>
                                 </div>
                             </div>
@@ -125,8 +127,6 @@ const alt = `An image from the album: [${title}]`;
 
     import 'swiper/css';
 
-    import { formatImageEXIF } from "../../utils";
-
     document.addEventListener('astro:page-load', () => {
         if (document.getElementById('album-page') == null) {
             return;
@@ -135,29 +135,14 @@ const alt = `An image from the album: [${title}]`;
         const modalEl = document.getElementById('modal')!;
         const slides = document.querySelectorAll('div.swiper-slide');
         const containers = document.querySelectorAll('div.modal-container');
-        const captions = document.querySelectorAll('p.modal-caption');
 
         function renderSwiperImages() {
             document.querySelectorAll('template')
-                ?.forEach(async (template, idx) => {
+                ?.forEach((template, idx) => {
                     const modalContainer = containers[idx];
-                    const modalNode = template.content.cloneNode(true);
-                    modalContainer?.appendChild(modalNode);
-
-                    const image = modalContainer.querySelector('img')!;
-
-                    if (!captions[idx].innerHTML) {
-                        if (!(image.complete && image.naturalWidth && image.naturalHeight)) {
-                            await new Promise<void>((resolve) => {
-                                image.addEventListener('load', () => resolve(), { once: true });
-                                image.addEventListener('error', () => resolve(), { once: true });
-                            });
-                        }
-
-                        formatImageEXIF(image, image.getAttribute('data-slide-image')!)
-                            .then((res) => {
-                                captions[idx].innerHTML = res;
-                            });
+                    if (!modalContainer.children.length) {
+                        const modalNode = template.content.cloneNode(true);
+                        modalContainer.appendChild(modalNode);
                     }
                 });
         }
@@ -215,24 +200,15 @@ const alt = `An image from the album: [${title}]`;
 
         (async () => {
             await Promise.all(Array.from(
-                document.querySelectorAll('[data-album-image]')!
+                document.querySelectorAll<HTMLImageElement>('[data-album-image]')!
             )
-                .map((img, idx) => {
-                    const image = img as HTMLImageElement;
-                    const src = image.getAttribute('data-album-image')!;
-
+                .map((image) => {
                     if (image.complete && image.naturalWidth && image.naturalHeight) {
-                        formatImageEXIF(image, src).then((res) => captions[idx].innerHTML = res);
                         return Promise.resolve();
                     }
 
                     return new Promise<void>((resolve) => {
-                        image.addEventListener('load', () => {
-                            formatImageEXIF(image, src).then((res) => {
-                                captions[idx].innerHTML = res;
-                                resolve();
-                            });
-                        }, { once: true });
+                        image.addEventListener('load', () => resolve(), { once: true });
                         image.addEventListener('error', () => resolve(), { once: true });
                     });
                 })
