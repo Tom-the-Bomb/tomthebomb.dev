@@ -1,39 +1,30 @@
 import exifr from 'exifr';
-import path from 'path';
 
-export type AlbumImage = ImageMetadata & { exif: string };
-
-export async function getAlbumImages(albumId: string): Promise<AlbumImage[]> {
+export async function getAlbumImages(albumId: string): Promise<ImageMetadata[]> {
     let photos = import.meta.glob<{ default: ImageMetadata }>(
         "/src/content/albums/**/*.{jpeg,jpg}"
     );
-    const original = Object.entries(photos).filter(([key]) =>
-        key.includes(albumId)
+    const original = Object.fromEntries(
+        Object.entries(photos).filter(([key]) =>
+            key.includes(albumId)
+        )
     );
-
     const resolvedOriginal = await Promise.all(
-        original.map(async ([key, loader]) => {
-            const mod = await loader();
-            const metadata = mod.default;
-
-            const relativePath = key.startsWith('/') ? key.slice(1) : key;
-            const absolutePath = path.join(process.cwd(), relativePath);
-
-            const exif = await getExifData(absolutePath, metadata.width, metadata.height);
-
-            return {
-                ...metadata,
-                exif
-            };
-        })
+        Object.values(original).map((image) =>
+            image().then((mod) => mod.default)
+        )
     );
-    resolvedOriginal.sort(() => Math.random() - 0.5);
+    resolvedOriginal.sort((a, b) => Math.random() - 0.5);
     return resolvedOriginal;
 }
 
-async function getExifData(filePath: string, width: number, height: number): Promise<string> {
+function gcd(a: number, b: number): number {
+    return b ? gcd(b, a % b) : a;
+}
+
+export async function formatImageEXIF(image: HTMLImageElement, src: string): Promise<string> {
     const output = await exifr.parse(
-        filePath,
+        src,
         {
             exif: {
                 pick: [
@@ -48,9 +39,11 @@ async function getExifData(filePath: string, width: number, height: number): Pro
     lens = !lens && output.LensModel ? ` + ${output.LensMake} ${output.LensModel}` : lens;
     const expTime = output.ExposureTime < 1 ? `1/${Math.round(1 / output.ExposureTime)}` : output.ExposureTime;
 
+    const dimGCD = gcd(image.width, image.height);
+
     return (
         `Taken with ${output.Make} ${output.Model.replace('_2', 'ii')}${lens} |
-        ${width}×${height}px at ${output.FocalLength} mm,
+        ${image.width / dimGCD}:${image.height / dimGCD} ratio at ${output.FocalLength} mm,
         ${expTime} s, ISO ${output.ISO}, ƒ${output.FNumber}`
     );
 }
