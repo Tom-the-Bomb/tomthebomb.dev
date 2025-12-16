@@ -40,6 +40,8 @@
     --color-instagram: var(--color-yellow-100);
     --color-discordpy: var(--color-indigo-100);
     --color-sphinx: var(--color-blue-100);
+    --color-cloudflare: var(--color-orange-200);
+    --color-d3: var(--color-orange-200);
 }
 
 @layer components {

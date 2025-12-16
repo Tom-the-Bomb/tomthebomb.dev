@@ -52,8 +52,23 @@ import Tech from "../components/Tech.astro";
                 built using <Tech name="webassembly" styles="text-webassembly">WebAssembly</Tech> bindings for the <span class="text-sky-100">brainfuck-rs</span> crate.
                 <br><br>
                 <span class="text-sky-100">Brainfuck-rs</span> is the <Tech name="rust" styles="text-rust">Rust</Tech> crate
-                that provides an easy-to-use API for a fast and efficient brainfuck interpreter,
+                that provides an easy to use API for a fast and efficient brainfuck interpreter,
                 supporting various customization options, and can be installed as a CLI tool.
+            </Project>
+            <Project
+                name="MTR History"
+                github="https://github.com/Tom-the-Bomb/mtr-history"
+                hrefs={[
+                    {href: "https://mtr.tomthebomb.dev", hrefTitle: "Website"}
+                ]}
+                logo="mtr-history"
+            >
+                An interactive website showcasing the development of the <a href="https://en.wikipedia.org/wiki/MTR">MTR</a> through a slider that allows
+                the user to traverse a timeline and view the real-time progression of the MTR lines and stations
+                which grow and shrink depending on the time on a to-scale map of the MTR system of Hong Kong.
+                <br><br>
+                The graphics and smooth animations are powered by <Tech name="d3" styles="text-d3"></Tech> built on <Tech name="react" styles="text-react">React</Tech> with
+                <Tech name="tailwind" styles="text-tailwind">Tailwind CSS</Tech> and <Tech name="vite" styles="text-vite">Vite</Tech>.
             </Project>
             <Project
                 name="Bomb Paste"
@@ -112,7 +127,9 @@ import Tech from "../components/Tech.astro";
                 logo="math-solver"
             >
                 An online application that solves, evaluates, analyzes, and graphs symbolic mathematical equations and expressions.
-                Powered by my own Lexer/Parser/AST in combination with <Tech name="sympy" styles="text-sympy">SymPy</Tech> in <Tech name="python" styles="text-python">Python</Tech>.
+                Powered by my own Lexer/Parser/AST in combination with <Tech name="sympy" styles="text-sympy">SymPy</Tech> in <Tech name="python" styles="text-python">Python</Tech>,
+                with a frontend built using <Tech name="react" styles="text-react">React</Tech> & <Tech name="tailwind" styles="text-tailwind">Tailwind CSS</Tech>,
+                and a backend API powered by <span class="text-quart">Quart</span>.
             </Project>
             <Project
                 name="Pascal's Triangle"
@@ -177,6 +194,20 @@ import Tech from "../components/Tech.astro";
                     <li><span class="text-sky-100">Akinator.rs</span> is the original library, written <Tech name="rust" styles="text-rust">Rust</Tech></li>
                     <li><span class="text-sky-100">Akinator.py</span> is a <Tech name="python" styles="text-python">Python</Tech> binding for <span class="text-sky-100">akinator.rs</span> powered by PyO3
                 </ul>
+            </Project>
+            <Project
+                name="NANA Web"
+                github="https://github.com/Tom-the-Bomb/nana-web"
+                logo="nana-web"
+            >
+                A web dashboard for <span class="text-sky-100">Nurse Assistant for Neurological Assessment</span> (NANA) devices,
+                a devices that allows for the automation of CAM tests in detecting hospital-induced delirium in patients.
+                Features a complete <span class="text-sky-100">authentication</span> and user-management system that allows each hospital to manage their devices,
+                patients and easily view and interpret test results.
+                <br><br>
+                Built using <Tech name="react" styles="text-react">React</Tech> with <Tech name="vite" styles="text-vite">Vite</Tech>
+                and <Tech name="tailwind" styles="text-tailwind">Tailwind CSS</Tech> for the frontend and <Tech name="flask" styles="text-flask">Flask</Tech>
+                and <Tech name="mongo" styles="text-mongo">MongoDB</Tech> with <Tech name="cloudflare" styles="text-cloudflare">Cloudflare R2</Tech> for the backend.
             </Project>
             <Project
                 name="Bomb CDN"
