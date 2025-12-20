@@ -42,6 +42,8 @@
     --color-sphinx: var(--color-blue-100);
     --color-cloudflare: var(--color-orange-200);
     --color-d3: var(--color-orange-200);
+    --color-leaflet: var(--color-green-200);
+    --color-swiper: var(--color-purple-200);
 }
 
 @layer components {

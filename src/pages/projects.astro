@@ -50,7 +50,7 @@ import Tech from "../components/Tech.astro";
             >
                 <span class="text-sky-100">Brainfuck-web</span> is an online executor for <a href="https://en.wikipedia.org/wiki/Brainfuck">brainfuck</a> (esoteric language),
                 built using <Tech name="webassembly" styles="text-webassembly">WebAssembly</Tech> bindings for the <span class="text-sky-100">brainfuck-rs</span> crate.
-                <br><br>
+                <br/><br/>
                 <span class="text-sky-100">Brainfuck-rs</span> is the <Tech name="rust" styles="text-rust">Rust</Tech> crate
                 that provides an easy to use API for a fast and efficient brainfuck interpreter,
                 supporting various customization options, and can be installed as a CLI tool.
@@ -66,7 +66,7 @@ import Tech from "../components/Tech.astro";
                 An interactive website showcasing the development of the <a href="https://en.wikipedia.org/wiki/MTR">MTR</a> system.
                 Features an interactive timeline slider which smoothly animates the development
                 of the MTR's lines and stations over time. Each station is clickable and offers more information on its history and significance.
-                <br><br>
+                <br/><br/>
                 The graphics and smooth animations are powered by <Tech name="d3" styles="text-d3"></Tech> built on <Tech name="react" styles="text-react">React</Tech> with
                 <Tech name="tailwind" styles="text-tailwind">Tailwind CSS</Tech> and <Tech name="vite" styles="text-vite">Vite</Tech>.
             </Project>
@@ -189,7 +189,7 @@ import Tech from "../components/Tech.astro";
             >
                 A wrapper around the non-public <a href="https://en.akinator.com/">akinator</a> API, providing users a seemless
                 gameloop-like API to simulate an akinator game in their own applications.
-                <br><br>
+                <br/><br/>
                 <ul>
                     <li><span class="text-sky-100">Akinator.rs</span> is the original library, written <Tech name="rust" styles="text-rust">Rust</Tech></li>
                     <li><span class="text-sky-100">Akinator.py</span> is a <Tech name="python" styles="text-python">Python</Tech> binding for <span class="text-sky-100">akinator.rs</span> powered by PyO3
@@ -204,10 +204,25 @@ import Tech from "../components/Tech.astro";
                 a devices that allows for the automation of CAM tests in detecting hospital-induced delirium in patients.
                 Features a complete <span class="text-sky-100">authentication</span> and database system that allows each hospital to manage their devices,
                 patients and easily view and interpret test results/history.
-                <br><br>
+                <br/><br/>
                 Built using <Tech name="react" styles="text-react">React</Tech> with <Tech name="vite" styles="text-vite">Vite</Tech>
                 and <Tech name="tailwind" styles="text-tailwind">Tailwind CSS</Tech> for the frontend and <Tech name="flask" styles="text-flask">Flask</Tech>
                 and <Tech name="mongo" styles="text-mongo">MongoDB</Tech> with <Tech name="cloudflare" styles="text-cloudflare">Cloudflare R2</Tech> for the backend.
+            </Project>
+            <Project
+                name="HK Photos Map"
+                github="https://github.com/Tom-the-Bomb/hk-photos-map"
+                hrefs={[
+                    {href: "https://hk.tomthebomb.dev", hrefTitle: "Website"}
+                ]}
+                logo="hk-photos-map"
+            >
+                An interactive map of Hong Kong that displays geotagged photos taken around Hong Kong.
+                Features clustering of photos and photo carousels, smooth zooming/panning,
+                and clickable photo markers that display the photos in a popup.
+                <br/><br/>
+                Built using <Tech name="leaflet" styles="text-leaflet">Leaflet</Tech> and
+                <Tech name="swiper" styles="text-swiper">Swiper</Tech> with <Tech name="vite" styles="text-vite">Vite</Tech>
             </Project>
             <Project
                 name="Bomb CDN"
