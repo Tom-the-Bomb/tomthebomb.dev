@@ -9,7 +9,10 @@ import Tech from "../components/Tech.astro";
 export const albums = await getCollection("albums");
 ---
 
-<BaseLayout>
+<BaseLayout
+    title="Photography — Tom the Bomb"
+    description="Photography albums by Tom the Bomb — featuring architecture, street, landscape, nature, and macro photography from travels across Asia and beyond."
+>
     <div
         id="photography-page"
         class="my-0 flex flex-col items-center gap-16 lg:mt-32"

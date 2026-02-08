@@ -4,30 +4,65 @@ import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 
 interface Props {
-    author?: string | undefined;
-    title?: string | undefined;
-    description?: string | undefined;
+    title: string;
+    description: string;
 }
 
-const {
-    author = "Tom the Bomb",
-    title = "Tom the Bomb",
-    description = "A personal website",
-} = Astro.props;
+const { title, description } = Astro.props;
+
+const siteUrl = "https://tomthebomb.dev";
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+const ogImage = `${siteUrl}/blobcomfy.png`;
+
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Tom the Bomb",
+    alternateName: "Tom the Bomb",
+    url: siteUrl,
+    image: ogImage,
+    jobTitle: "Computer Engineering Student",
+    affiliation: {
+        "@type": "CollegeOrUniversity",
+        name: "University of Waterloo",
+    },
+    sameAs: [
+        "https://github.com/Tom-the-Bomb",
+        "https://www.instagram.com/tom_the_bomb_111/",
+    ],
+};
 ---
 
 <meta charset="UTF-8" />
-<meta name="author" content={author} />
-<meta name="description" property="og:description" content={description} />
+<meta name="author" content="Tom the Bomb" />
+<meta name="description" content={description} />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="generator" content={Astro.generator} />
-<meta
-    property="og:image"
-    content="https://raw.githubusercontent.com/Tom-the-Bomb/tomthebomb.dev/master/public/blobcomfy.png"
-/>
+
+<!-- Open Graph -->
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:site_name" content="Tom the Bomb" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
 <title>{title}</title>
 
-<link rel="canonical" href="https://tomthebomb.dev/" />
+<link rel="canonical" href={canonicalUrl} />
 <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+<!-- JSON-LD Structured Data -->
+<script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(jsonLd)}
+/>
 
 <ClientRouter />

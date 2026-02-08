@@ -6,11 +6,18 @@ import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 
 import "../styles/global.css";
+
+interface Props {
+    title: string;
+    description: string;
+}
+
+const { title, description } = Astro.props;
 ---
 
 <html lang="en" transition:animate={fade({ duration: "1s" })}>
     <head>
-        <MainHead />
+        <MainHead title={title} description={description} />
     </head>
     <body
         class="flex h-dvh flex-col bg-gray-800 bg-linear-to-tr from-violet-500 to-orange-300 bg-fixed"
@@ -32,7 +39,7 @@ import "../styles/global.css";
             <slot />
         </main>
         <Footer />
-        <div class="squares">
+        <ul class="squares" aria-hidden="true">
             <li class="glass"></li>
             <li class="glass"></li>
             <li class="glass"></li>
@@ -43,7 +50,7 @@ import "../styles/global.css";
             <li class="glass hidden! md:block"></li>
             <li class="glass"></li>
             <li class="glass hidden! md:block"></li>
-        </div>
+        </ul>
     </body>
 </html>
 

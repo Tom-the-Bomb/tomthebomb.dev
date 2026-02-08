@@ -9,9 +9,9 @@ interface Href {
 interface Props {
     name: string;
     github: string;
-    hrefs?: Href[] | undefined;
-    logo?: string | undefined;
-    imgStyles?: string | undefined;
+    hrefs?: Href[];
+    logo?: string;
+    imgStyles?: string;
 }
 
 const { name, github, hrefs = [], logo, imgStyles = "" } = Astro.props;

@@ -5,7 +5,10 @@ import Project from "../components/Project.astro";
 import Tech from "../components/Tech.astro";
 ---
 
-<BaseLayout>
+<BaseLayout
+    title="Projects — Tom the Bomb"
+    description="A showcase of various software projects by Tom the Bomb"
+>
     <div
         class="container mt-25 flex w-full flex-col items-center justify-center gap-10 lg:w-2/3"
     >
@@ -327,70 +330,66 @@ import Tech from "../components/Tech.astro";
                         > powered by PyO3
                     </li>
                 </ul>
-                <Project
-                    name="NANA Web"
-                    github="https://github.com/Tom-the-Bomb/nana-web"
-                    logo="nana-web"
+            </Project>
+            <Project
+                name="NANA Web"
+                github="https://github.com/Tom-the-Bomb/nana-web"
+                logo="nana-web"
+            >
+                A web dashboard for <span class="text-sky-100"
+                    >Nurse Assistant for Neurological Assessment</span
+                > (NANA) devices, a devices that allows for the automation of CAM
+                tests in detecting hospital-induced delirium in patients. Features
+                a complete <span class="text-sky-100">authentication</span> and database
+                system that allows each hospital to manage their devices, patients
+                and easily view and interpret test results/history.
+                <br /><br />
+                Built using <Tech name="react" styles="text-react">React</Tech> with
+                <Tech name="vite" styles="text-vite">Vite</Tech>
+                and <Tech name="tailwind" styles="text-tailwind"
+                    >Tailwind CSS</Tech
+                > for the frontend and <Tech name="flask" styles="text-flask"
+                    >Flask</Tech
                 >
-                    A web dashboard for <span class="text-sky-100"
-                        >Nurse Assistant for Neurological Assessment</span
-                    > (NANA) devices, a devices that allows for the automation of
-                    CAM tests in detecting hospital-induced delirium in patients.
-                    Features a complete <span class="text-sky-100"
-                        >authentication</span
-                    > and database system that allows each hospital to manage their
-                    devices, patients and easily view and interpret test results/history.
-                    <br /><br />
-                    Built using <Tech name="react" styles="text-react"
-                        >React</Tech
-                    > with <Tech name="vite" styles="text-vite">Vite</Tech>
-                    and <Tech name="tailwind" styles="text-tailwind"
-                        >Tailwind CSS</Tech
-                    > for the frontend and <Tech
-                        name="flask"
-                        styles="text-flask">Flask</Tech
-                    >
-                    and <Tech name="mongo" styles="text-mongo">MongoDB</Tech> with
-                    <Tech name="cloudflare" styles="text-cloudflare"
-                        >Cloudflare R2</Tech
-                    > for the backend.
-                </Project>
-                <Project
-                    name="HK Photos Map"
-                    github="https://github.com/Tom-the-Bomb/hk-photos-map"
-                    hrefs={[
-                        {
-                            href: "https://hk.tomthebomb.dev",
-                            hrefTitle: "Website",
-                        },
-                    ]}
-                    logo="hk-photos-map"
+                and <Tech name="mongo" styles="text-mongo">MongoDB</Tech> with
+                <Tech name="cloudflare" styles="text-cloudflare"
+                    >Cloudflare R2</Tech
+                > for the backend.
+            </Project>
+            <Project
+                name="HK Photos Map"
+                github="https://github.com/Tom-the-Bomb/hk-photos-map"
+                hrefs={[
+                    {
+                        href: "https://hk.tomthebomb.dev",
+                        hrefTitle: "Website",
+                    },
+                ]}
+                logo="hk-photos-map"
+            >
+                An interactive map of Hong Kong that displays geotagged photos
+                taken around Hong Kong. Features clustering of photos and photo
+                carousels, smooth zooming/panning, and clickable photo markers
+                that display the photos in a popup.
+                <br /><br />
+                Built using <Tech name="leaflet" styles="text-leaflet"
+                    >Leaflet</Tech
+                > and
+                <Tech name="swiper" styles="text-swiper">Swiper</Tech> with <Tech
+                    name="vite"
+                    styles="text-vite">Vite</Tech
                 >
-                    An interactive map of Hong Kong that displays geotagged
-                    photos taken around Hong Kong. Features clustering of photos
-                    and photo carousels, smooth zooming/panning, and clickable
-                    photo markers that display the photos in a popup.
-                    <br /><br />
-                    Built using <Tech name="leaflet" styles="text-leaflet"
-                        >Leaflet</Tech
-                    > and
-                    <Tech name="swiper" styles="text-swiper">Swiper</Tech> with <Tech
-                        name="vite"
-                        styles="text-vite">Vite</Tech
-                    >
-                </Project>
-                <Project
-                    name="Bomb CDN"
-                    github="https://github.com/Tom-the-Bomb/bomb-cdn"
-                >
-                    A basic file system based CDN service allowing for
-                    persistent storage of files, allowing access to them
-                    anywhere on the internet. Built as a complete REST API
-                    powered by
-                    <Tech name="rust" styles="text-rust">Rust</Tech> & <span
-                        class="text-axum">Axum</span
-                    >.
-                </Project>
+            </Project>
+            <Project
+                name="Bomb CDN"
+                github="https://github.com/Tom-the-Bomb/bomb-cdn"
+            >
+                A basic file system based CDN service allowing for persistent
+                storage of files, allowing access to them anywhere on the
+                internet. Built as a complete REST API powered by
+                <Tech name="rust" styles="text-rust">Rust</Tech> & <span
+                    class="text-axum">Axum</span
+                >.
             </Project>
         </div>
     </div>

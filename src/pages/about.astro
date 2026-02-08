@@ -8,7 +8,10 @@ import AboutSubSection from "../components/AboutSubSection.astro";
 const age = new Date().getFullYear() - new Date(2007, 1, 1).getFullYear();
 ---
 
-<BaseLayout>
+<BaseLayout
+    title="About — Tom the Bomb"
+    description="About Me — computer engineering student at Waterloo, experienced in Rust, Python, and web development, with a passion for photography and aquaria."
+>
     <div
         id="about-page"
         class="mt-10 mb-32 flex w-4/5 flex-col gap-12 lg:mt-40 lg:w-1/2"
@@ -21,7 +24,7 @@ const age = new Date().getFullYear() - new Date(2007, 1, 1).getFullYear();
             </h1>
             <hr class="w-1/2" />
             <h2 class="text-3xl font-bold text-yellow-100 drop-shadow-lg">
-                Tommy Shen
+                Tom the Bomb
             </h2>
             <div
                 class="glass glass-extras flex w-fit flex-wrap gap-3 rounded-full p-2"

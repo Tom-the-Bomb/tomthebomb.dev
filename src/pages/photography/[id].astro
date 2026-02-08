@@ -25,7 +25,11 @@ const title = album.data.title;
 const alt = `An image from the album: [${title}]`;
 ---
 
-<BaseLayout>
+<BaseLayout
+    title={`${title} — Photography — Tom the Bomb`}
+    description={album.data.description ||
+        `Photo album: ${title} — browse ${images.length} photos by Tom the Bomb.`}
+>
     <div
         id="album-page"
         class="mt-0 flex flex-col flex-wrap items-center justify-center gap-3 text-center lg:mt-20"
