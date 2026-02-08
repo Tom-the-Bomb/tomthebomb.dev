@@ -26,7 +26,12 @@ const { name, github, hrefs = [], logo, imgStyles = "" } = Astro.props;
             <slot />
         </div>
         <div class="mt-6 flex flex-wrap gap-3 font-extrabold text-yellow-100">
-            <a class="icon-link" href={github} target="_blank">
+            <a
+                class="icon-link"
+                href={github}
+                rel="noopener noreferrer"
+                target="_blank"
+            >
                 [<AstroIcon
                     name="github"
                     href={github}
@@ -36,7 +41,12 @@ const { name, github, hrefs = [], logo, imgStyles = "" } = Astro.props;
             </a>
             {
                 hrefs.map((link) => (
-                    <a class="icon-link" href={link.href} target="_blank">
+                    <a
+                        class="icon-link"
+                        href={link.href}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                    >
                         [
                         <AstroIcon
                             name="link"
