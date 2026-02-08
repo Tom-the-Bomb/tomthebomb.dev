@@ -75,6 +75,9 @@ const alt = `An image from the album: [${title}]`;
     </div>
     <div
         id="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${title} photo gallery`}
         class="fixed top-0 left-0 z-50 hidden h-dvh w-dvw bg-black/75 backdrop-blur-md"
     >
         <Icon

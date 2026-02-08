@@ -40,32 +40,39 @@ async function getExifData(
     width: number,
     height: number,
 ): Promise<string> {
-    const output = await exifr.parse(filePath, {
-        exif: {
-            pick: [
-                "Make",
-                "Model",
-                "LensMake",
-                "LensModel",
-                "FocalLength",
-                "ExposureTime",
-                "ISO",
-                "FNumber",
-            ],
-        },
-        xmp: { pick: ["Lens"] },
-    });
-    let lens = output.Lens ? ` + ${output.Lens}` : "";
-    lens =
-        !lens && output.LensModel
-            ? ` + ${output.LensMake} ${output.LensModel}`
-            : lens;
-    const expTime =
-        output.ExposureTime < 1
-            ? `1/${Math.round(1 / output.ExposureTime)}`
-            : output.ExposureTime;
+    try {
+        const output = await exifr.parse(filePath, {
+            exif: {
+                pick: [
+                    "Make",
+                    "Model",
+                    "LensMake",
+                    "LensModel",
+                    "FocalLength",
+                    "ExposureTime",
+                    "ISO",
+                    "FNumber",
+                ],
+            },
+            xmp: { pick: ["Lens"] },
+        });
+        if (!output?.Make || !output?.Model) {
+            return `${width}×${height}px`;
+        }
+        let lens = output.Lens ? ` + ${output.Lens}` : "";
+        lens =
+            !lens && output.LensModel
+                ? ` + ${output.LensMake} ${output.LensModel}`
+                : lens;
+        const expTime =
+            output.ExposureTime < 1
+                ? `1/${Math.round(1 / output.ExposureTime)}`
+                : output.ExposureTime;
 
-    return `Taken with ${output.Make} ${output.Model.replace("_2", "ii")}${lens} |
+        return `Taken with ${output.Make} ${output.Model.replace("_2", "ii")}${lens} |
         ${width}×${height}px at ${output.FocalLength} mm,
         ${expTime} s, ISO ${output.ISO}, ƒ${output.FNumber}`;
+    } catch {
+        return `${width}×${height}px`;
+    }
 }

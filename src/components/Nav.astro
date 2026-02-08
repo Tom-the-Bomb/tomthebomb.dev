@@ -28,7 +28,7 @@ const { pages } = Astro.props;
         pages.map((page) => (
             <a
                 class="border-b-2 border-b-rose-100 text-white hover:border-b-white hover:text-white"
-                href={`/${page.url ? page.url : page.name.toLowerCase()}`}
+                href={page.url || `/${page.name.toLowerCase()}`}
             >
                 <div class="text-xs transition-transform duration-250 hover:-translate-y-1 md:text-base">
                     {page.name}

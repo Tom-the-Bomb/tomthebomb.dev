@@ -32,12 +32,7 @@ const { name, github, hrefs = [], logo, imgStyles = "" } = Astro.props;
                 rel="noopener noreferrer"
                 target="_blank"
             >
-                [<AstroIcon
-                    name="github"
-                    href={github}
-                    size="1em"
-                    class="text-yellow-100"
-                /> GitHub]
+                [<AstroIcon name="github" size="1em" class="text-yellow-100" /> GitHub]
             </a>
             {
                 hrefs.map((link) => (
@@ -50,7 +45,6 @@ const { name, github, hrefs = [], logo, imgStyles = "" } = Astro.props;
                         [
                         <AstroIcon
                             name="link"
-                            href={link.href}
                             size="1em"
                             class="text-yellow-100"
                         />{" "}
