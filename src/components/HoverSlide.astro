@@ -8,7 +8,7 @@ const { text, href } = Astro.props;
 ---
 
 <div class="slide-text-hover" data-slide-href={href}>
-    <span class="text-wrapper"><a href={href}>{text}</a></span>
+    <span class="text-wrapper" aria-hidden="true"><a tabindex="-1" href={href}>{text}</a></span>
     <a href={href}>{text}</a>
 </div>
 
