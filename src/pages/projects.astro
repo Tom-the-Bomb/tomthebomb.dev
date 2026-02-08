@@ -4,95 +4,156 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Project from "../components/Project.astro";
 import Tech from "../components/Tech.astro";
 ---
+
 <BaseLayout>
-    <div class="container flex flex-col gap-10 mt-25 w-full lg:w-2/3 justify-center items-center">
+    <div
+        class="container mt-25 flex w-full flex-col items-center justify-center gap-10 lg:w-2/3"
+    >
         <h1 class="text-6xl font-extrabold drop-shadow-md">Projects</h1>
-        <div class="container flex flex-col gap-10 w-full">
-            <p class="text-sm text-slate-100 text-center">
+        <div class="container flex w-full flex-col gap-10">
+            <p class="text-center text-sm text-slate-100">
                 Advent of Code:
-                <a href="https://github.com/Tom-the-Bomb/aoc-2025" class="aoc-a">2025</a> |
-                <a href="https://github.com/Tom-the-Bomb/aoc-2024" class="aoc-a">2024</a> |
-                <a href="https://github.com/Tom-the-Bomb/aoc-2023" class="aoc-a">2023</a>
+                <a href="https://github.com/Tom-the-Bomb/aoc-2025" class="aoc-a"
+                    >2025</a
+                > |
+                <a href="https://github.com/Tom-the-Bomb/aoc-2024" class="aoc-a"
+                    >2024</a
+                > |
+                <a href="https://github.com/Tom-the-Bomb/aoc-2023" class="aoc-a"
+                    >2023</a
+                >
             </p>
             <Project
                 name="Sketch a Fourier"
                 github="https://github.com/Tom-the-Bomb/fourier-drawer"
                 hrefs={[
-                    {href: "https://fourier.tomthebomb.dev", hrefTitle: "Website"}
+                    {
+                        href: "https://fourier.tomthebomb.dev",
+                        hrefTitle: "Website",
+                    },
                 ]}
                 logo="fourier-drawer"
             >
                 A basic website built using <span class="text-p5">p5*js</span> and
-                <Tech name="vite" styles="text-vite">Vite</Tech> with <Tech name="typescript" styles="text-typescript"></Tech>
+                <Tech name="vite" styles="text-vite">Vite</Tech> with <Tech
+                    name="typescript"
+                    styles="text-typescript"
+                />
                 that utilises a
-                <a href="https://en.wikipedia.org/wiki/Discrete_Fourier_transform">Discrete Fourier Transform</a>
-                to render real-time user drawings and uploaded SVGs by animating a sum of vectors, each rotating at its own frequency.
+                <a
+                    href="https://en.wikipedia.org/wiki/Discrete_Fourier_transform"
+                    >Discrete Fourier Transform</a
+                >
+                to render real-time user drawings and uploaded SVGs by animating a
+                sum of vectors, each rotating at its own frequency.
             </Project>
             <Project
                 name="Matrixflow"
                 github="https://github.com/Tom-the-Bomb/matrixflow"
                 hrefs={[
-                    {href: "https://matrixflow.readthedocs.io/", hrefTitle: "Documentation"}
+                    {
+                        href: "https://matrixflow.readthedocs.io/",
+                        hrefTitle: "Documentation",
+                    },
                 ]}
                 logo="matrixflow"
             >
-                A basic <span class="text-sky-100">linear algebra</span> library built in <Tech name="python" styles="text-python">Python</Tech>
-                that provides high-performance, easy to use mathematical matrix & vector operations such as common transformations, systems, row reductions, and more.
+                A basic <span class="text-sky-100">linear algebra</span> library built
+                in <Tech name="python" styles="text-python">Python</Tech>
+                that provides high-performance, easy to use mathematical matrix &
+                vector operations such as common transformations, systems, row reductions,
+                and more.
             </Project>
             <Project
                 name="Brainfuck-web & Brainfuck-rs"
                 github="https://github.com/Tom-the-Bomb/brainfuck-web"
                 hrefs={[
-                    {href: "https://brainfuck.tomthebomb.dev", hrefTitle: "Website"},
-                    {href: "https://crates.io/crates/brainfuck-exe", hrefTitle: "Crates.io"},
+                    {
+                        href: "https://brainfuck.tomthebomb.dev",
+                        hrefTitle: "Website",
+                    },
+                    {
+                        href: "https://crates.io/crates/brainfuck-exe",
+                        hrefTitle: "Crates.io",
+                    },
                 ]}
                 logo="brainfuck-web"
             >
-                <span class="text-sky-100">Brainfuck-web</span> is an online executor for <a href="https://en.wikipedia.org/wiki/Brainfuck">brainfuck</a> (esoteric language),
-                built using <Tech name="webassembly" styles="text-webassembly">WebAssembly</Tech> bindings for the <span class="text-sky-100">brainfuck-rs</span> crate.
-                <br/><br/>
-                <span class="text-sky-100">Brainfuck-rs</span> is the <Tech name="rust" styles="text-rust">Rust</Tech> crate
-                that provides an easy to use API for a fast and efficient brainfuck interpreter,
-                supporting various customization options, and can be installed as a CLI tool.
+                <span class="text-sky-100">Brainfuck-web</span> is an online executor
+                for <a href="https://en.wikipedia.org/wiki/Brainfuck"
+                    >brainfuck</a
+                > (esoteric language), built using <Tech
+                    name="webassembly"
+                    styles="text-webassembly">WebAssembly</Tech
+                > bindings for the <span class="text-sky-100">brainfuck-rs</span
+                > crate.
+                <br /><br />
+                <span class="text-sky-100">Brainfuck-rs</span> is the <Tech
+                    name="rust"
+                    styles="text-rust">Rust</Tech
+                > crate that provides an easy to use API for a fast and efficient
+                brainfuck interpreter, supporting various customization options, and
+                can be installed as a CLI tool.
             </Project>
             <Project
                 name="MTR History"
                 github="https://github.com/Tom-the-Bomb/mtr-history"
                 hrefs={[
-                    {href: "https://mtr.tomthebomb.dev", hrefTitle: "Website"}
+                    {
+                        href: "https://mtr.tomthebomb.dev",
+                        hrefTitle: "Website",
+                    },
                 ]}
                 logo="mtr-history"
             >
-                An interactive website showcasing the development of the <a href="https://en.wikipedia.org/wiki/MTR">MTR</a> system.
-                Features an interactive timeline slider which smoothly animates the development
-                of the MTR's lines and stations over time. Each station is clickable and offers more information on its history and significance.
-                <br/><br/>
-                The graphics and smooth animations are powered by <Tech name="d3" styles="text-d3"></Tech> built on <Tech name="react" styles="text-react">React</Tech> with
-                <Tech name="tailwind" styles="text-tailwind">Tailwind CSS</Tech> and <Tech name="vite" styles="text-vite">Vite</Tech>.
+                An interactive website showcasing the development of the <a
+                    href="https://en.wikipedia.org/wiki/MTR">MTR</a
+                > system. Features an interactive timeline slider which smoothly animates
+                the development of the MTR's lines and stations over time. Each station
+                is clickable and offers more information on its history and significance.
+                <br /><br />
+                The graphics and smooth animations are powered by <Tech
+                    name="d3"
+                    styles="text-d3"
+                /> built on <Tech name="react" styles="text-react">React</Tech> with
+                <Tech name="tailwind" styles="text-tailwind">Tailwind CSS</Tech> and
+                <Tech name="vite" styles="text-vite">Vite</Tech>.
             </Project>
             <Project
                 name="Bomb Paste"
                 github="https://github.com/Tom-the-Bomb/bomb-paste"
                 hrefs={[
-                    {href: "https://paste.tomthebomb.dev", hrefTitle: "Website"}
+                    {
+                        href: "https://paste.tomthebomb.dev",
+                        hrefTitle: "Website",
+                    },
                 ]}
                 logo="bomb-paste"
                 imgStyles="rounded-b-2xl"
             >
-                An online <span class="text-sky-100">pastebin</span> service with a public REST API, allows for fast and simple text and code sharing anywhere on the internet.
-                Powered by <span class="text-axum">Axum</span> & <Tech name="mongo" styles="text-mongo">MongoDB</Tech> in
+                An online <span class="text-sky-100">pastebin</span> service with
+                a public REST API, allows for fast and simple text and code sharing
+                anywhere on the internet. Powered by <span class="text-axum"
+                    >Axum</span
+                > & <Tech name="mongo" styles="text-mongo">MongoDB</Tech> in
                 <Tech name="rust" styles="text-rust">Rust</Tech>.
             </Project>
             <Project
                 name="Ferrous Imagic Editor"
                 github="https://github.com/Tom-the-Bomb/imaging-app"
                 hrefs={[
-                    {href: "https://image.tomthebomb.dev", hrefTitle: "Website"}
+                    {
+                        href: "https://image.tomthebomb.dev",
+                        hrefTitle: "Website",
+                    },
                 ]}
                 logo="ferrous-imagic-editor"
             >
-                A blazingly fast web application that applies various cool effects onto user uploaded images.
-                Powered by <Tech name="rust" styles="text-rust">Rust</Tech> & <span class="text-axum">Axum</span>
+                A blazingly fast web application that applies various cool
+                effects onto user uploaded images. Powered by <Tech
+                    name="rust"
+                    styles="text-rust">Rust</Tech
+                > & <span class="text-axum">Axum</span>
             </Project>
             <Project
                 name="Discord Games"
@@ -100,159 +161,257 @@ import Tech from "../components/Tech.astro";
                 logo="discord-games"
             >
                 A collection of popular games such as
-                <span class="text-sky-100">2048</span>, <span class="text-sky-100">battleship</span>, <span class="text-sky-100">chess</span>, <span class="text-sky-100">tictactoe</span>, <span class="text-sky-100">connect-4</span>,
-                and many more all compiled into a libary that can be easily and seamlessly integrated within
+                <span class="text-sky-100">2048</span>, <span
+                    class="text-sky-100">battleship</span
+                >, <span class="text-sky-100">chess</span>, <span
+                    class="text-sky-100">tictactoe</span
+                >, <span class="text-sky-100">connect-4</span>, and many more
+                all compiled into a libary that can be easily and seamlessly
+                integrated within
                 <Tech name="discord" styles="text-discordpy">discord.py</Tech>
-                discord bots with ease, adding fun game functionalities to your discord bot.
+                discord bots with ease, adding fun game functionalities to your discord
+                bot.
             </Project>
             <Project
                 name="Bomb Bot"
                 github="https://github.com/Tom-the-Bomb/BombBot"
                 hrefs={[
-                    {href: "https://discord.com/oauth2/authorize?client_id=819345387524456468", hrefTitle: "Invite"}
+                    {
+                        href: "https://discord.com/oauth2/authorize?client_id=819345387524456468",
+                        hrefTitle: "Invite",
+                    },
                 ]}
                 logo="bombbot"
             >
-                A multifunctional <span class="text-sky-100">discord bot</span> built using
-                <Tech name="discord" styles="text-discordpy">discord.py</Tech> that provides various
-                unique utility functions mainly consisting of image manipulation, but also includes mathematical graphing, code execution (using <span class="text-sky-100">async-tio</span>),
-                and fun games (using <span class="text-sky-100">discord-games</span>), and more.
+                A multifunctional <span class="text-sky-100">discord bot</span> built
+                using
+                <Tech name="discord" styles="text-discordpy">discord.py</Tech> that
+                provides various unique utility functions mainly consisting of image
+                manipulation, but also includes mathematical graphing, code execution
+                (using <span class="text-sky-100">async-tio</span>), and fun
+                games (using <span class="text-sky-100">discord-games</span>),
+                and more.
             </Project>
             <Project
                 name="Math Solver"
                 github="https://github.com/Tom-the-Bomb/math-solver"
                 hrefs={[
-                    {href: "https://math.tomthebomb.dev", hrefTitle: "Website"}
+                    {
+                        href: "https://math.tomthebomb.dev",
+                        hrefTitle: "Website",
+                    },
                 ]}
                 logo="math-solver"
             >
-                An online application that solves, evaluates, analyzes, and graphs symbolic mathematical equations and expressions.
-                Powered by my own Lexer/Parser/AST in combination with <Tech name="sympy" styles="text-sympy">SymPy</Tech> in <Tech name="python" styles="text-python">Python</Tech>,
-                with a frontend built using <Tech name="react" styles="text-react">React</Tech> & <Tech name="tailwind" styles="text-tailwind">Tailwind CSS</Tech>,
-                and a backend API powered by <span class="text-quart">Quart</span>.
+                An online application that solves, evaluates, analyzes, and
+                graphs symbolic mathematical equations and expressions. Powered
+                by my own Lexer/Parser/AST in combination with <Tech
+                    name="sympy"
+                    styles="text-sympy">SymPy</Tech
+                > in <Tech name="python" styles="text-python">Python</Tech>,
+                with a frontend built using <Tech
+                    name="react"
+                    styles="text-react">React</Tech
+                > & <Tech name="tailwind" styles="text-tailwind"
+                    >Tailwind CSS</Tech
+                >, and a backend API powered by <span class="text-quart"
+                    >Quart</span
+                >.
             </Project>
             <Project
                 name="Pascal's Triangle"
                 github="https://github.com/Tom-the-Bomb/pascals-triangle"
                 hrefs={[
-                    {href: "https://pascals.tomthebomb.dev", hrefTitle: "Website"}
+                    {
+                        href: "https://pascals.tomthebomb.dev",
+                        hrefTitle: "Website",
+                    },
                 ]}
                 logo="pascals-triangle"
             >
                 A basic webpage showcasing a dynamic and interactive
-                <a href="https://en.wikipedia.org/wiki/Pascal%27s_triangle">Pascal's Triangle</a>, its patterns, and use-cases.
-                Powered by <Tech name="react" styles="text-react">React</Tech> & <Tech name="bootstrap" styles="text-bootstrap">Bootstrap</Tech>.
+                <a href="https://en.wikipedia.org/wiki/Pascal%27s_triangle"
+                    >Pascal's Triangle</a
+                >, its patterns, and use-cases. Powered by <Tech
+                    name="react"
+                    styles="text-react">React</Tech
+                > & <Tech name="bootstrap" styles="text-bootstrap"
+                    >Bootstrap</Tech
+                >.
             </Project>
             <Project
                 name="Doc Search"
                 github="https://github.com/Tom-the-Bomb/doc-search"
                 hrefs={[
-                    {href: "https://pypi.org/project/doc-search/", hrefTitle: "PyPI"}
+                    {
+                        href: "https://pypi.org/project/doc-search/",
+                        hrefTitle: "PyPI",
+                    },
                 ]}
                 logo="doc-search"
             >
-                A basic <Tech name="python" styles="text-python">Python</Tech> library that provides structured search and parsing functionalities for
-                <Tech name="sphinx" styles="text-sphinx">sphinx</Tech>-based and <span class="text-cpp">C/C++</span> documentation.
+                A basic <Tech name="python" styles="text-python">Python</Tech> library
+                that provides structured search and parsing functionalities for
+                <Tech name="sphinx" styles="text-sphinx">sphinx</Tech>-based and <span
+                    class="text-cpp">C/C++</span
+                > documentation.
             </Project>
             <Project
                 name="Async TIO"
                 github="https://github.com/Tom-the-Bomb/async-tio"
                 hrefs={[
-                    {href: "https://pypi.org/project/async-tio/", hrefTitle: "PyPI"}
+                    {
+                        href: "https://pypi.org/project/async-tio/",
+                        hrefTitle: "PyPI",
+                    },
                 ]}
                 logo="tio"
             >
-                An asynchronous <Tech name="python" styles="text-python">Python</Tech> library that provides safe, sandboxed code execution through
-                accessing the online code execution engine
+                An asynchronous <Tech name="python" styles="text-python"
+                    >Python</Tech
+                > library that provides safe, sandboxed code execution through accessing
+                the online code execution engine
                 <a href="https://tio.run">tio.run</a>'s non-public API.
             </Project>
             <Project
                 name="F-Stop"
                 github="https://github.com/f-stop-lang/f-stop-rply"
                 hrefs={[
-                    {href: "https://pypi.org/project/f-stop", hrefTitle: "PyPI"}
+                    {
+                        href: "https://pypi.org/project/f-stop",
+                        hrefTitle: "PyPI",
+                    },
                 ]}
                 logo="fstop"
             >
-                A self-designed <span class="text-sky-100">scripting language</span> designed to help users accelerate their image processing workflows.
-                Fully interpreted, with a runtime system powered by a lexer/parser/AST, powered by imaging tools in
+                A self-designed <span class="text-sky-100"
+                    >scripting language</span
+                > designed to help users accelerate their image processing workflows.
+                Fully interpreted, with a runtime system powered by a lexer/parser/AST,
+                powered by imaging tools in
                 <Tech name="python" styles="text-python">Python</Tech>.
             </Project>
             <Project
                 name="Akinator.py & Akinator.rs"
                 github="https://github.com/Tom-the-Bomb/akinator.py"
                 hrefs={[
-                    {href: "https://pypi.org/project/akinator.py/", hrefTitle: "PyPI"},
-                    {href: "https://crates.io/crates/akinator-rs", hrefTitle: "Crates.io"}
+                    {
+                        href: "https://pypi.org/project/akinator.py/",
+                        hrefTitle: "PyPI",
+                    },
+                    {
+                        href: "https://crates.io/crates/akinator-rs",
+                        hrefTitle: "Crates.io",
+                    },
                 ]}
                 logo="akinator"
             >
-                A wrapper around the non-public <a href="https://en.akinator.com/">akinator</a> API, providing users a seemless
-                gameloop-like API to simulate an akinator game in their own applications.
-                <br/><br/>
+                A wrapper around the non-public <a
+                    href="https://en.akinator.com/">akinator</a
+                > API, providing users a seemless gameloop-like API to simulate an
+                akinator game in their own applications.
+                <br /><br />
                 <ul>
-                    <li><span class="text-sky-100">Akinator.rs</span> is the original library, written <Tech name="rust" styles="text-rust">Rust</Tech></li>
-                    <li><span class="text-sky-100">Akinator.py</span> is a <Tech name="python" styles="text-python">Python</Tech> binding for <span class="text-sky-100">akinator.rs</span> powered by PyO3
+                    <li>
+                        <span class="text-sky-100">Akinator.rs</span> is the original
+                        library, written <Tech name="rust" styles="text-rust"
+                            >Rust</Tech
+                        >
+                    </li>
+                    <li>
+                        <span class="text-sky-100">Akinator.py</span> is a <Tech
+                            name="python"
+                            styles="text-python">Python</Tech
+                        > binding for <span class="text-sky-100"
+                            >akinator.rs</span
+                        > powered by PyO3
+                    </li>
                 </ul>
-            </Project>
-            <Project
-                name="NANA Web"
-                github="https://github.com/Tom-the-Bomb/nana-web"
-                logo="nana-web"
-            >
-                A web dashboard for <span class="text-sky-100">Nurse Assistant for Neurological Assessment</span> (NANA) devices,
-                a devices that allows for the automation of CAM tests in detecting hospital-induced delirium in patients.
-                Features a complete <span class="text-sky-100">authentication</span> and database system that allows each hospital to manage their devices,
-                patients and easily view and interpret test results/history.
-                <br/><br/>
-                Built using <Tech name="react" styles="text-react">React</Tech> with <Tech name="vite" styles="text-vite">Vite</Tech>
-                and <Tech name="tailwind" styles="text-tailwind">Tailwind CSS</Tech> for the frontend and <Tech name="flask" styles="text-flask">Flask</Tech>
-                and <Tech name="mongo" styles="text-mongo">MongoDB</Tech> with <Tech name="cloudflare" styles="text-cloudflare">Cloudflare R2</Tech> for the backend.
-            </Project>
-            <Project
-                name="HK Photos Map"
-                github="https://github.com/Tom-the-Bomb/hk-photos-map"
-                hrefs={[
-                    {href: "https://hk.tomthebomb.dev", hrefTitle: "Website"}
-                ]}
-                logo="hk-photos-map"
-            >
-                An interactive map of Hong Kong that displays geotagged photos taken around Hong Kong.
-                Features clustering of photos and photo carousels, smooth zooming/panning,
-                and clickable photo markers that display the photos in a popup.
-                <br/><br/>
-                Built using <Tech name="leaflet" styles="text-leaflet">Leaflet</Tech> and
-                <Tech name="swiper" styles="text-swiper">Swiper</Tech> with <Tech name="vite" styles="text-vite">Vite</Tech>
-            </Project>
-            <Project
-                name="Bomb CDN"
-                github="https://github.com/Tom-the-Bomb/bomb-cdn"
-            >
-                A basic file system based CDN service allowing for persistent storage of files,
-                allowing access to them anywhere on the internet.
-                Built as a complete REST API powered by
-                <Tech name="rust" styles="text-rust">Rust</Tech> & <span class="text-axum">Axum</span>.
+                <Project
+                    name="NANA Web"
+                    github="https://github.com/Tom-the-Bomb/nana-web"
+                    logo="nana-web"
+                >
+                    A web dashboard for <span class="text-sky-100"
+                        >Nurse Assistant for Neurological Assessment</span
+                    > (NANA) devices, a devices that allows for the automation of
+                    CAM tests in detecting hospital-induced delirium in patients.
+                    Features a complete <span class="text-sky-100"
+                        >authentication</span
+                    > and database system that allows each hospital to manage their
+                    devices, patients and easily view and interpret test results/history.
+                    <br /><br />
+                    Built using <Tech name="react" styles="text-react"
+                        >React</Tech
+                    > with <Tech name="vite" styles="text-vite">Vite</Tech>
+                    and <Tech name="tailwind" styles="text-tailwind"
+                        >Tailwind CSS</Tech
+                    > for the frontend and <Tech
+                        name="flask"
+                        styles="text-flask">Flask</Tech
+                    >
+                    and <Tech name="mongo" styles="text-mongo">MongoDB</Tech> with
+                    <Tech name="cloudflare" styles="text-cloudflare"
+                        >Cloudflare R2</Tech
+                    > for the backend.
+                </Project>
+                <Project
+                    name="HK Photos Map"
+                    github="https://github.com/Tom-the-Bomb/hk-photos-map"
+                    hrefs={[
+                        {
+                            href: "https://hk.tomthebomb.dev",
+                            hrefTitle: "Website",
+                        },
+                    ]}
+                    logo="hk-photos-map"
+                >
+                    An interactive map of Hong Kong that displays geotagged
+                    photos taken around Hong Kong. Features clustering of photos
+                    and photo carousels, smooth zooming/panning, and clickable
+                    photo markers that display the photos in a popup.
+                    <br /><br />
+                    Built using <Tech name="leaflet" styles="text-leaflet"
+                        >Leaflet</Tech
+                    > and
+                    <Tech name="swiper" styles="text-swiper">Swiper</Tech> with <Tech
+                        name="vite"
+                        styles="text-vite">Vite</Tech
+                    >
+                </Project>
+                <Project
+                    name="Bomb CDN"
+                    github="https://github.com/Tom-the-Bomb/bomb-cdn"
+                >
+                    A basic file system based CDN service allowing for
+                    persistent storage of files, allowing access to them
+                    anywhere on the internet. Built as a complete REST API
+                    powered by
+                    <Tech name="rust" styles="text-rust">Rust</Tech> & <span
+                        class="text-axum">Axum</span
+                    >.
+                </Project>
             </Project>
         </div>
     </div>
-</BaseLayout>
 
-<style scoped>
-    @reference '../styles/global.css';
+    <style scoped>
+        @reference '../styles/global.css';
 
-    .aoc-a {
-        @apply no-underline! text-yellow-100!;
-    }
+        .aoc-a {
+            @apply text-yellow-100! no-underline!;
+        }
 
-    .aoc-a:hover {
-        @apply text-white!;
-    }
+        .aoc-a:hover {
+            @apply text-white!;
+        }
 
-    a {
-        @apply underline text-sky-100;
-    }
+        a {
+            @apply text-sky-100 underline;
+        }
 
-    a:hover {
-        @apply text-white;
-    }
-</style>
+        a:hover {
+            @apply text-white;
+        }
+    </style></BaseLayout
+>

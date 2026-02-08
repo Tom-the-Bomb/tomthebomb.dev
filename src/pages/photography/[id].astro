@@ -8,16 +8,14 @@ import { getAlbumImages } from "../../utils";
 import { albums } from "../photography.astro";
 
 export async function getStaticPaths() {
-    return Object.values(albums).map((album) => (
-        {
-            params: {
-                id: album.id,
-            },
-            props: {
-                album,
-            },
-        }
-    ));
+    return Object.values(albums).map((album) => ({
+        params: {
+            id: album.id,
+        },
+        props: {
+            album,
+        },
+    }));
 }
 
 const { album } = Astro.props;
@@ -26,23 +24,31 @@ const images = await getAlbumImages(album.id);
 const title = album.data.title;
 const alt = `An image from the album: [${title}]`;
 ---
+
 <BaseLayout>
-    <div id="album-page" class="flex flex-col flex-wrap gap-3 text-center mt-0 lg:mt-20 justify-center items-center">
+    <div
+        id="album-page"
+        class="mt-0 flex flex-col flex-wrap items-center justify-center gap-3 text-center lg:mt-20"
+    >
         <div>
             <h1 class="text-4xl font-extrabold drop-shadow-lg">
                 {title}
             </h1>
-            <p class="font-zh text-2xl text-slate-100 p-1">{album.data.short_description}</p>
+            <p class="font-zh p-1 text-2xl text-slate-100">
+                {album.data.short_description}
+            </p>
         </div>
-        <p class="w-4/5 lg:w-1/2 pb-0 lg:pb-5 text-md opacity-75 font-sans">
+        <p class="text-md w-4/5 pb-0 font-sans opacity-75 lg:w-1/2 lg:pb-5">
             {album.data.description}
         </p>
         <p>
-            <strong class="text-slate-200 drop-shadow-md font-semibold">
+            <strong class="font-semibold text-slate-200 drop-shadow-md">
                 {images.length} Photos
             </strong>
         </p>
-        <div class="px-2 sm:px-0 mx-auto container my-8 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-4">
+        <div
+            class="container mx-auto my-8 px-2 sm:columns-2 sm:px-0 md:columns-3 lg:columns-4 xl:columns-4"
+        >
             {
                 images.map((image) => (
                     <Image
@@ -51,10 +57,7 @@ const alt = `An image from the album: [${title}]`;
                         widths={[550]}
                         quality={80}
                         format="webp"
-                        class={
-                            `shadow-md mb-4 hover:scale-[102%]
-                            border-8 border-white transition-all duration-300 ease-in-out`
-                        }
+                        class={`mb-4 border-8 border-white shadow-md transition-all duration-300 ease-in-out hover:scale-[102%]`}
                         loading="lazy"
                         decoding="async"
                         data-album-image={image.src}
@@ -62,14 +65,13 @@ const alt = `An image from the album: [${title}]`;
                 ))
             }
         </div>
-        <div class="text-slate-200 drop-shadow-md font-semibold mt-0 lg:mt-10">
-            <HoverSlide text="View More Albums →" href="/photography"/>
+        <div class="mt-0 font-semibold text-slate-200 drop-shadow-md lg:mt-10">
+            <HoverSlide text="View More Albums →" href="/photography" />
         </div>
     </div>
     <div
         id="modal"
-        class="hidden fixed z-50 left-0 top-0 w-dvw h-dvh
-        bg-black/75 backdrop-blur-md"
+        class="fixed top-0 left-0 z-50 hidden h-dvh w-dvw bg-black/75 backdrop-blur-md"
     >
         <Icon
             img="close"
@@ -77,24 +79,27 @@ const alt = `An image from the album: [${title}]`;
             size="4em"
             styles="close-btn absolute z-50 top-4 right-4 text-slate-100"
         />
-        <div class="swiper-body w-full h-full overflow-x-hidden">
-            <div class="swiper gallery-swiper w-full h-full">
+        <div class="swiper-body h-full w-full overflow-x-hidden">
+            <div class="swiper gallery-swiper h-full w-full">
                 <div class="swiper-wrapper">
                     {
                         images.map((image) => (
                             <div class="swiper-slide">
-                                <div class="w-full h-full pt-10 p-5 flex flex-col gap-3 justify-center items-center">
-                                    <div class="modal-container flex justify-center items-center grow min-h-0"></div>
-                                    <p class="modal-caption text-center font-sm font-sans text-slate-100 text-wrap">
+                                <div class="flex h-full w-full flex-col items-center justify-center gap-3 p-5 pt-10">
+                                    <div class="modal-container flex min-h-0 grow items-center justify-center" />
+                                    <p class="modal-caption font-sm text-center font-sans text-wrap text-slate-100">
                                         {image.exif}
                                     </p>
-                                    <div class="swiper-lazy-preloader"></div>
+                                    <div class="swiper-lazy-preloader" />
                                 </div>
                             </div>
                         ))
                     }
                 </div>
-                <div class="z-50 swiper-pagination absolute top-0 left-1/2 h-10 text-sm/10 -translate-x-1/2 text-center font-monospace text-yellow-100"></div>
+                <div
+                    class="swiper-pagination font-monospace absolute top-0 left-1/2 z-50 h-10 -translate-x-1/2 text-center text-sm/10 text-yellow-100"
+                >
+                </div>
             </div>
         </div>
     </div>
@@ -122,75 +127,79 @@ const alt = `An image from the album: [${title}]`;
 </BaseLayout>
 
 <script>
-    import Swiper from 'swiper';
-    import { Keyboard, EffectCoverflow, Pagination } from 'swiper/modules';
+    import Swiper from "swiper";
+    import { Keyboard, EffectCoverflow, Pagination } from "swiper/modules";
 
-    import 'swiper/css';
+    import "swiper/css";
 
-    document.addEventListener('astro:page-load', () => {
-        if (document.getElementById('album-page') == null) {
+    document.addEventListener("astro:page-load", () => {
+        if (document.getElementById("album-page") == null) {
             return;
         }
 
-        const modalEl = document.getElementById('modal')!;
-        const slides = document.querySelectorAll('div.swiper-slide');
-        const containers = document.querySelectorAll('div.modal-container');
+        const modalEl = document.getElementById("modal")!;
+        const slides = document.querySelectorAll("div.swiper-slide");
+        const containers = document.querySelectorAll("div.modal-container");
 
         function renderSwiperImages() {
-            document.querySelectorAll('template')
-                ?.forEach((template, idx) => {
-                    const modalContainer = containers[idx];
-                    if (!modalContainer.children.length) {
-                        const modalNode = template.content.cloneNode(true);
-                        modalContainer.appendChild(modalNode);
-                    }
-                });
+            document.querySelectorAll("template")?.forEach((template, idx) => {
+                const modalContainer = containers[idx];
+                if (!modalContainer.children.length) {
+                    const modalNode = template.content.cloneNode(true);
+                    modalContainer.appendChild(modalNode);
+                }
+            });
         }
 
-        const swiper = new Swiper('.gallery-swiper', {
+        const swiper = new Swiper(".gallery-swiper", {
             modules: [Keyboard, EffectCoverflow, Pagination],
-            effect: 'coverflow',
+            effect: "coverflow",
             loop: true,
             grabCursor: true,
             centeredSlides: true,
             keyboard: true,
             slidesPerView: 1,
             spaceBetween: 75,
-            direction: 'vertical',
+            direction: "vertical",
             breakpoints: {
                 768: {
-                    direction: 'horizontal',
+                    direction: "horizontal",
                 },
             },
             pagination: {
-                el: '.swiper-pagination',
-                type: 'fraction',
+                el: ".swiper-pagination",
+                type: "fraction",
             },
         });
 
-        modalEl.querySelector('.close-btn')
-            ?.addEventListener('click', (event) => {
-                modalEl.style.display = 'none';
+        modalEl
+            .querySelector(".close-btn")
+            ?.addEventListener("click", (event) => {
+                modalEl.style.display = "none";
                 event.stopPropagation();
             });
 
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') {
-                modalEl.style.display = 'none';
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                modalEl.style.display = "none";
                 event.stopPropagation();
             }
         });
 
-        document.querySelectorAll<HTMLImageElement>('[data-album-image]')
+        document
+            .querySelectorAll<HTMLImageElement>("[data-album-image]")
             ?.forEach((image, idx) => {
-                image.addEventListener('click', () => {
+                image.addEventListener("click", () => {
                     swiper.slideToLoop(
                         parseInt(
                             // I'm unsure why my `swiper` indices are not in order of rendering
-                            slides[idx].getAttribute('data-swiper-slide-index')!,
-                        ), 0
+                            slides[idx].getAttribute(
+                                "data-swiper-slide-index",
+                            )!,
+                        ),
+                        0,
                     );
-                    modalEl.style.display = 'block';
+                    modalEl.style.display = "block";
 
                     if (!containers[0].children.length) {
                         renderSwiperImages();
@@ -199,19 +208,29 @@ const alt = `An image from the album: [${title}]`;
             });
 
         (async () => {
-            await Promise.all(Array.from(
-                document.querySelectorAll<HTMLImageElement>('[data-album-image]')!
-            )
-                .map((image) => {
-                    if (image.complete && image.naturalWidth && image.naturalHeight) {
+            await Promise.all(
+                Array.from(
+                    document.querySelectorAll<HTMLImageElement>(
+                        "[data-album-image]",
+                    )!,
+                ).map((image) => {
+                    if (
+                        image.complete &&
+                        image.naturalWidth &&
+                        image.naturalHeight
+                    ) {
                         return Promise.resolve();
                     }
 
                     return new Promise<void>((resolve) => {
-                        image.addEventListener('load', () => resolve(), { once: true });
-                        image.addEventListener('error', () => resolve(), { once: true });
+                        image.addEventListener("load", () => resolve(), {
+                            once: true,
+                        });
+                        image.addEventListener("error", () => resolve(), {
+                            once: true,
+                        });
                     });
-                })
+                }),
             );
 
             if (!containers[0].children.length) {

@@ -7,34 +7,44 @@ import HoverSlide from "../components/HoverSlide.astro";
 ---
 
 <BaseLayout>
-	<div class="flex flex-wrap justify-center grow gap-14 md:gap-20">
-		<div class="order-1 md:order-0 flex flex-col items-center gap-10">
-			<div class="flex flex-col gap-3">
-				<h2 class="w-fit lg:text-4xl md:text-3xl text-xl text-yellow-100 drop-shadow-lg">
-					Hello I am
-				</h2>
-				<h1 class="w-fit lg:text-7xl md:text-6xl text-[42px] leading-[1.1] font-mono font-extrabold typewriter">
-					Tom the Bomb
-				</h1>
-			</div>
-            <hr class="self-start w-1/2"/>
-			<ul class="text-lg md:text-xl fancy-list flex flex-col self-start text-yellow-100">
-				<li><HoverSlide text="About" href="/about"/></li>
-				<li><HoverSlide text="Projects" href="/projects"/></li>
-				<li><HoverSlide text="Photography" href="/photography"/></li>
-				<li><HoverSlide text="Aquaria" href="/photography/aquaria"/></li>
-			</ul>
-		</div>
-		<div class="flex order-0 md:order-1">
-			<div class="glass glass-extras mt-5 p-7 rounded-full h-[12em] w-[12em] md:h-[13em] md:w-[13em] flex justify-center items-center">
+    <div class="flex grow flex-wrap justify-center gap-14 md:gap-20">
+        <div class="order-1 flex flex-col items-center gap-10 md:order-0">
+            <div class="flex flex-col gap-3">
+                <h2
+                    class="w-fit text-xl text-yellow-100 drop-shadow-lg md:text-3xl lg:text-4xl"
+                >
+                    Hello I am
+                </h2>
+                <h1
+                    class="typewriter w-fit font-mono text-[42px] leading-[1.1] font-extrabold md:text-6xl lg:text-7xl"
+                >
+                    Tom the Bomb
+                </h1>
+            </div>
+            <hr class="w-1/2 self-start" />
+            <ul
+                class="fancy-list flex flex-col self-start text-lg text-yellow-100 md:text-xl"
+            >
+                <li><HoverSlide text="About" href="/about" /></li>
+                <li><HoverSlide text="Projects" href="/projects" /></li>
+                <li><HoverSlide text="Photography" href="/photography" /></li>
+                <li>
+                    <HoverSlide text="Aquaria" href="/photography/aquaria" />
+                </li>
+            </ul>
+        </div>
+        <div class="order-0 flex md:order-1">
+            <div
+                class="glass glass-extras mt-5 flex h-[12em] w-[12em] items-center justify-center rounded-full p-7 md:h-[13em] md:w-[13em]"
+            >
                 <Image
                     src={blobComfy}
                     alt="Blob Comfy"
-                    class="w-auto h-auto hue-rotate-30 brightness-90 opacity-75"
+                    class="h-auto w-auto opacity-75 brightness-90 hue-rotate-30"
                     loading="lazy"
                     decoding="async"
                 />
             </div>
-		</div>
-	</div>
+        </div>
+    </div>
 </BaseLayout>

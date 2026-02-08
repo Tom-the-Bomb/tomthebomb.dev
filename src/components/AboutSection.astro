@@ -1,18 +1,21 @@
 ---
-import Icon from './Icon.astro';
+import Icon from "./Icon.astro";
 
 interface Props {
-    title: string,
-    icon: string,
+    title: string;
+    icon: string;
 }
 
 const { title, icon } = Astro.props;
 ---
+
 <div class="flex flex-col gap-3">
-    <h2 class="flex flex-wrap items-center gap-3 text-3xl text-yellow-100 font-extrabold drop-shadow-lg">
+    <h2
+        class="flex flex-wrap items-center gap-3 text-3xl font-extrabold text-yellow-100 drop-shadow-lg"
+    >
         {title}
-        <Icon size="1em" img={icon} target="_self" styles=""/>
+        <Icon size="1em" img={icon} target="_self" styles="" />
     </h2>
-    <hr class="w-1/2"/>
-    <div class="drop-shadow-md text-lg"><slot/></div>
+    <hr class="w-1/2" />
+    <div class="text-lg drop-shadow-md"><slot /></div>
 </div>

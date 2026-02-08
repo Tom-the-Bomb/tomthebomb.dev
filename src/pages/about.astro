@@ -5,134 +5,239 @@ import Icon from "../components/Icon.astro";
 import Tech from "../components/Tech.astro";
 import AboutSubSection from "../components/AboutSubSection.astro";
 
-const age = new Date().getFullYear()
-    - new Date(2007, 1, 1).getFullYear();
-
+const age = new Date().getFullYear() - new Date(2007, 1, 1).getFullYear();
 ---
+
 <BaseLayout>
-    <div id="about-page" class="flex flex-col gap-12 mt-10 lg:mt-40 mb-32 w-4/5 lg:w-1/2">
+    <div
+        id="about-page"
+        class="mt-10 mb-32 flex w-4/5 flex-col gap-12 lg:mt-40 lg:w-1/2"
+    >
         <div class="flex flex-col gap-3">
-            <h1 class="text-6xl font-extrabold drop-shadow-lg hover:-translate-y-2 transition-all duration-500">About Me</h1>
-            <hr class="w-1/2"/>
-            <h2 class="text-yellow-100 text-3xl font-bold drop-shadow-lg">Tommy Shen</h2>
-            <div class="glass glass-extras flex flex-wrap gap-3 w-fit rounded-full p-2">
-                <Icon size="2em" img="canada" target="_self"/>
-                <Icon size="2em" img="china" target="_self"/>
+            <h1
+                class="text-6xl font-extrabold drop-shadow-lg transition-all duration-500 hover:-translate-y-2"
+            >
+                About Me
+            </h1>
+            <hr class="w-1/2" />
+            <h2 class="text-3xl font-bold text-yellow-100 drop-shadow-lg">
+                Tommy Shen
+            </h2>
+            <div
+                class="glass glass-extras flex w-fit flex-wrap gap-3 rounded-full p-2"
+            >
+                <Icon size="2em" img="canada" target="_self" />
+                <Icon size="2em" img="china" target="_self" />
             </div>
         </div>
         <p class="text-xl drop-shadow-lg">
-            Hi there! I'm a {age} year old computer engineering student at the <b>University of Waterloo</b> who is passionate about software development, photography,
-            image processing, mathematics, and improving my coding skills through leetcoding and building impactful applications that revolve around my interests.
+            Hi there! I'm a {age} year old computer engineering student at the <b
+                >University of Waterloo</b
+            > who is passionate about software development, photography, image processing,
+            mathematics, and improving my coding skills through leetcoding and building
+            impactful applications that revolve around my interests.
         </p>
         <AboutSection title="Development Tools" icon="stack">
             <div class="flex flex-col gap-8 text-lg">
                 <AboutSubSection title="Languages">
-                    My go-to languages are <Tech name="python" styles="text-python">Python</Tech>
-                    and <Tech name="rust" styles="text-rust">Rust</Tech>. I use Rust for larger,
-                    more performance critical, and low-level applications. I also use <Tech name="java" styles="text-java">Java</Tech> and
-                    <Tech name="cpp" styles="text-cpp"></Tech> for academic applications and robotics.
+                    My go-to languages are <Tech
+                        name="python"
+                        styles="text-python">Python</Tech
+                    >
+                    and <Tech name="rust" styles="text-rust">Rust</Tech>. I use
+                    Rust for larger, more performance critical, and low-level
+                    applications. I also use <Tech
+                        name="java"
+                        styles="text-java">Java</Tech
+                    > and
+                    <Tech name="cpp" styles="text-cpp" /> for academic applications
+                    and robotics.
                 </AboutSubSection>
                 <AboutSubSection title="Web Development">
-                    I also use <Tech name="javascript" styles="text-javascript"></Tech> & <Tech name="typescript" styles="text-typescript"></Tech> for frontend development alongside
-                    <Tech name="html" styles="text-html">HTML</Tech> & <Tech name="css" styles="text-css">CSS</Tech> and
+                    I also use <Tech
+                        name="javascript"
+                        styles="text-javascript"
+                    /> & <Tech name="typescript" styles="text-typescript" /> for frontend
+                    development alongside
+                    <Tech name="html" styles="text-html">HTML</Tech> & <Tech
+                        name="css"
+                        styles="text-css">CSS</Tech
+                    > and
                     <Tech name="vite" styles="text-vite">Vite</Tech> for simple sites.
                     For more complex applications, I use frameworks like
                     <Tech name="react" styles="text-react">React.js</Tech> and
-                    <Tech name="astro" styles="text-astro">Astro.js</Tech> for static sites.
-                    For styling I use <Tech name="tailwind" styles="text-tailwind">Tailwind CSS</Tech> and
-                    <Tech name="bootstrap" styles="text-bootstrap">Bootstrap</Tech>.
-                    I sometimes also integrate my <Tech name="rust" styles="text-rust">Rust</Tech> programs into the web with
-                    <Tech name="webassembly" styles="text-webassembly">WebAssembly</Tech>.
-                    <br/><br/>
-                    For the backend, I use <Tech name="flask" styles="text-flask">Flask</Tech>, or its asynchronous counterpart,
-                    <span class="text-quart">Quart</span>, for lightweight APIs and web applications. For more complex applications,
-                    I use <Tech name="rust" styles="text-rust">Rust</Tech>'s <span class="text-axum">Axum</span> web framework.
+                    <Tech name="astro" styles="text-astro">Astro.js</Tech> for static
+                    sites. For styling I use <Tech
+                        name="tailwind"
+                        styles="text-tailwind">Tailwind CSS</Tech
+                    > and
+                    <Tech name="bootstrap" styles="text-bootstrap"
+                        >Bootstrap</Tech
+                    >. I sometimes also integrate my <Tech
+                        name="rust"
+                        styles="text-rust">Rust</Tech
+                    > programs into the web with
+                    <Tech name="webassembly" styles="text-webassembly"
+                        >WebAssembly</Tech
+                    >.
+                    <br /><br />
+                    For the backend, I use <Tech
+                        name="flask"
+                        styles="text-flask">Flask</Tech
+                    >, or its asynchronous counterpart,
+                    <span class="text-quart">Quart</span>, for lightweight APIs
+                    and web applications. For more complex applications, I use <Tech
+                        name="rust"
+                        styles="text-rust">Rust</Tech
+                    >'s <span class="text-axum">Axum</span> web framework.
                 </AboutSubSection>
                 <AboutSubSection title="Data Management">
-                    For data management, I use <Tech name="mongo" styles="text-mongo">Mongo DB</Tech>
-                    and <Tech name="sqlite" styles="text-sqlite">SQLite</Tech> for relational data storage.
-                    I also use <Tech name="cloudflare" styles="text-cloudflare">Cloudflare R2</Tech> for object storage.
+                    For data management, I use <Tech
+                        name="mongo"
+                        styles="text-mongo">Mongo DB</Tech
+                    >
+                    and <Tech name="sqlite" styles="text-sqlite">SQLite</Tech> for
+                    relational data storage. I also use <Tech
+                        name="cloudflare"
+                        styles="text-cloudflare">Cloudflare R2</Tech
+                    > for object storage.
                 </AboutSubSection>
                 <AboutSubSection title="Libraries">
-                    My experience with image processing has gained me familiarity with various libraries
-                    in <Tech name="python" styles="text-python">Python</Tech>, including
+                    My experience with image processing has gained me
+                    familiarity with various libraries in <Tech
+                        name="python"
+                        styles="text-python">Python</Tech
+                    >, including
                     <Tech name="opencv" styles="text-opencv">OpenCV</Tech>,
                     <span class="text-pillow">Pillow</span>, and
                     <Tech name="numpy" styles="text-numpy">NumPy</Tech>.
-                    Similarly, my passion for mathematics has led me to explore libraries like
+                    Similarly, my passion for mathematics has led me to explore
+                    libraries like
                     <Tech name="sympy" styles="text-sympy">SymPy</Tech> and
-                    <Tech name="matplotlib" styles="text-matplotlib">Matplotlib</Tech>.
+                    <Tech name="matplotlib" styles="text-matplotlib"
+                        >Matplotlib</Tech
+                    >.
                 </AboutSubSection>
-                <div class="flex items-center gap-3 font-sans text-base opacity-75">
-                    <Icon size="1.5em" img="lightbulb" target="_self"/>
+                <div
+                    class="flex items-center gap-3 font-sans text-base opacity-75"
+                >
+                    <Icon size="1.5em" img="lightbulb" target="_self" />
                     <p>
-                        This website was made with <span class="text-amber-100">Astro.js</span> with
-                        <span class="text-sky-200">TS</span> and <span class="text-sky-200">Tailwind CSS</span>
+                        This website was made with <span class="text-amber-100"
+                            >Astro.js</span
+                        > with
+                        <span class="text-sky-200">TS</span> and <span
+                            class="text-sky-200">Tailwind CSS</span
+                        >
                     </p>
                 </div>
             </div>
-            <p class="py-5 lg:w-1/2 text-slate-300 text-base">
+            <p class="py-5 text-base text-slate-300 lg:w-1/2">
                 You can view some of my projects over on the
-                <a class="underline underline-offset-2 hover:text-white" href="./projects">Projects</a> page and my
-                <a class="underline underline-offset-2 hover:text-white" href="https://github.com/Tom-the-Bomb" target="_blank" >GitHub</a>
+                <a
+                    class="underline underline-offset-2 hover:text-white"
+                    href="./projects">Projects</a
+                > page and my
+                <a
+                    class="underline underline-offset-2 hover:text-white"
+                    href="https://github.com/Tom-the-Bomb"
+                    target="_blank">GitHub</a
+                >
             </p>
         </AboutSection>
         <AboutSection title="Photography" icon="camera">
             <div class="flex flex-col gap-8">
                 <p>
-                    <b>Photography</b> is a way of freezing moments in time, preserving the beauty I come across, through visual storytelling.
-                    It allows me to see the world from different perspectives and appreciate the beauty in everyday life.
+                    <b>Photography</b> is a way of freezing moments in time, preserving
+                    the beauty I come across, through visual storytelling. It allows
+                    me to see the world from different perspectives and appreciate
+                    the beauty in everyday life.
                 </p>
                 <AboutSubSection title="Gear">
-                    <div class="grid grid-cols-2 text-xl gap-3">
+                    <div class="grid grid-cols-2 gap-3 text-xl">
                         <div class="w-fit border-b border-white">
-                            <span class="font-nexa-black-italic font-black italic">Nikon </span>D5300
-                            <span class="text-sm italic font-extralight text-slate-200">2024-</span>
+                            <span
+                                class="font-nexa-black-italic font-black italic"
+                                >Nikon
+                            </span>D5300
+                            <span
+                                class="text-sm font-extralight text-slate-200 italic"
+                                >2024-</span
+                            >
                         </div>
                         <div class="w-fit border-b border-white">
-                            <span class="font-nexa-black-italic font-black italic">Nikon </span>Z5II
-                            <span class="text-sm italic font-extralight text-slate-200">2025-</span>
+                            <span
+                                class="font-nexa-black-italic font-black italic"
+                                >Nikon
+                            </span>Z5II
+                            <span
+                                class="text-sm font-extralight text-slate-200 italic"
+                                >2025-</span
+                            >
                         </div>
                         <div class="text-base">18-140mm f/3.5-5.6</div>
                         <div class="text-base">24-200mm f/4-6.3</div>
                         <div class="text-base">70-300mm f/4.5-5.6</div>
                     </div>
-                    <p class="pt-5 lg:w-1/2 text-slate-300 text-base">
-                        In the past I have also have shot on Canon R50s and Canon Rebel T7s in school, and my iPhones (13 and 15 Pro).
+                    <p class="pt-5 text-base text-slate-300 lg:w-1/2">
+                        In the past I have also have shot on Canon R50s and
+                        Canon Rebel T7s in school, and my iPhones (13 and 15
+                        Pro).
                     </p>
                 </AboutSubSection>
                 <AboutSubSection title="Genres">
                     My favorite genres are
                     <span class="text-yellow-100">architecture</span>,
                     <span class="text-yellow-100">street</span>,
-                    <span class="text-yellow-100">landscapes & cityscapes</span>,
+                    <span class="text-yellow-100">landscapes & cityscapes</span
+                    >,
                     <span class="text-yellow-100">nature & wildlife</span>
                     (such as my own aquaria and plants), and
-                    <span class="text-yellow-100">macro</span> photography.
-                    Most of my photos stem from my travels and exploration of urban and natural spaces.
-                    I try to focus on capturing through unique angles and interesting compositions
-                    as opposed to the most conventional angles.
+                    <span class="text-yellow-100">macro</span> photography. Most of
+                    my photos stem from my travels and exploration of urban and natural
+                    spaces. I try to focus on capturing through unique angles and
+                    interesting compositions as opposed to the most conventional angles.
                 </AboutSubSection>
             </div>
-            <p class="py-5 lg:w-1/2 text-slate-300 text-base">
+            <p class="py-5 text-base text-slate-300 lg:w-1/2">
                 A selection of my photos can be found over on the
-                <a class="underline underline-offset-2 hover:text-white" href="./photography">Photography</a> page
-                and my <a href="https://www.instagram.com/tom_the_bomb_111/" target="_blank">
-                    <Tech name="instagram" styles="underline underline-offset-2 text-slate-300 hover:text-white hover:[&>svg]:text-white">Instagram</Tech></a>.
+                <a
+                    class="underline underline-offset-2 hover:text-white"
+                    href="./photography">Photography</a
+                > page and my <a
+                    href="https://www.instagram.com/tom_the_bomb_111/"
+                    target="_blank"
+                >
+                    <Tech
+                        name="instagram"
+                        styles="underline underline-offset-2 text-slate-300 hover:text-white hover:[&>svg]:text-white"
+                        >Instagram</Tech
+                    ></a
+                >.
             </p>
         </AboutSection>
         <AboutSection title="Aquaria" icon="fish">
-            For over five years, I’ve gained experience maintaining a variety of aquatic life, including
-            <span class="text-blue-100">fish</span>, <span class="text-green-100">plants</span>,
+            For over five years, I’ve gained experience maintaining a variety of
+            aquatic life, including
+            <span class="text-blue-100">fish</span>, <span
+                class="text-green-100">plants</span
+            >,
             <span class="text-yellow-100">invertebrates</span>
-            and <span class="text-red-100">corals</span>&mdash;both in saltwater and freshwater setups—across multiple aquariums and an outdoor pond.
-            <br/><br/>
-            Their uniqueness as pets, along with their natural beauty and calmness they bring forth, has always deeply appealed to me.
-            While they may not be as interactive as dogs or cats, having nearly self-sustaining ecosystems in your home,
-            complete with a range of creatures of all sizes, from microscopic to large, resonates with me differently.
-            <p class="py-5 lg:w-2/3 text-slate-300 text-base">
-                Pictures and more information about what I have kept can be found over on the
-                <a class="underline underline-offset-2 hover:text-white" href="./photography/aquaria">Aquaria</a> page.
+            and <span class="text-red-100">corals</span>&mdash;both in saltwater
+            and freshwater setups—across multiple aquariums and an outdoor pond.
+            <br /><br />
+            Their uniqueness as pets, along with their natural beauty and calmness
+            they bring forth, has always deeply appealed to me. While they may not
+            be as interactive as dogs or cats, having nearly self-sustaining ecosystems
+            in your home, complete with a range of creatures of all sizes, from microscopic
+            to large, resonates with me differently.
+            <p class="py-5 text-base text-slate-300 lg:w-2/3">
+                Pictures and more information about what I have kept can be
+                found over on the
+                <a
+                    class="underline underline-offset-2 hover:text-white"
+                    href="./photography/aquaria">Aquaria</a
+                > page.
             </p>
         </AboutSection>
     </div>

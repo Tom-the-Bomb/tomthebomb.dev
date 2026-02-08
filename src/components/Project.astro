@@ -1,56 +1,68 @@
 ---
-import Icon from './Icon.astro';
-import { Icon as AstroIcon } from 'astro-icon/components';
+import Icon from "./Icon.astro";
+import { Icon as AstroIcon } from "astro-icon/components";
 
 interface Href {
-    href: string,
-    hrefTitle: string,
+    href: string;
+    hrefTitle: string;
 }
 interface Props {
-    name: string,
-    github: string,
-    hrefs?: Href[] | undefined,
-    logo?: string | undefined,
-    imgStyles?: string | undefined,
+    name: string;
+    github: string;
+    hrefs?: Href[] | undefined;
+    logo?: string | undefined;
+    imgStyles?: string | undefined;
 }
 
-const {
-    name, github,
-    hrefs = [],
-    logo, imgStyles = "",
-} = Astro.props;
+const { name, github, hrefs = [], logo, imgStyles = "" } = Astro.props;
 ---
-<div class="glass hover:scale-102 duration-300 ease-in-out transition-transform flex flex-wrap gap-x-20 gap-y-10 p-5 rounded-lg justify-between mx-5">
-    <div class="flex flex-col flex-1 gap-5 min-w-1/2 max-w-full">
-        <h1 class="border-b-2 pb-1 w-fit font-4xl font-bold">{name}</h1>
+
+<div
+    class="glass mx-5 flex flex-wrap justify-between gap-x-20 gap-y-10 rounded-lg p-5 transition-transform duration-300 ease-in-out hover:scale-102"
+>
+    <div class="flex max-w-full min-w-1/2 flex-1 flex-col gap-5">
+        <h1 class="font-4xl w-fit border-b-2 pb-1 font-bold">{name}</h1>
         <div class="text-wrap drop-shadow-lg">
-            <slot/>
+            <slot />
         </div>
         <div class="mt-6 flex flex-wrap gap-3 font-extrabold text-yellow-100">
             <a class="icon-link" href={github} target="_blank">
-                [<AstroIcon name="github" href={github} size="1em" class="text-yellow-100"/> GitHub]
+                [<AstroIcon
+                    name="github"
+                    href={github}
+                    size="1em"
+                    class="text-yellow-100"
+                /> GitHub]
             </a>
             {
-                hrefs.map((link) =>
+                hrefs.map((link) => (
                     <a class="icon-link" href={link.href} target="_blank">
-                        [<AstroIcon name="link" href={link.href} size="1em" class="text-yellow-100"/> {link.hrefTitle}]
+                        [
+                        <AstroIcon
+                            name="link"
+                            href={link.href}
+                            size="1em"
+                            class="text-yellow-100"
+                        />{" "}
+                        {link.hrefTitle}]
                     </a>
-                )
+                ))
             }
         </div>
     </div>
     {
-        logo &&
-        <div class="flex justify-center items-center">
-            <div class="glass glass-extras p-4 rounded-lg">
-                <Icon
-                    href={github}
-                    img={'projects/' + logo}
-                    size="5em"
-                    styles={`drop-shadow-md opacity-90 ${imgStyles}`}
-                />
+        logo && (
+            <div class="flex items-center justify-center">
+                <div class="glass glass-extras rounded-lg p-4">
+                    <Icon
+                        href={github}
+                        img={"projects/" + logo}
+                        size="5em"
+                        styles={`drop-shadow-md opacity-90 ${imgStyles}`}
+                    />
+                </div>
             </div>
-        </div>
+        )
     }
 </div>
 
@@ -65,11 +77,12 @@ const {
         transform: scale(105%);
     }
 
-    a:hover, a:hover svg {
+    a:hover,
+    a:hover svg {
         color: white;
     }
 
     .icon-link {
-        @apply flex gap-1 items-center;
+        @apply flex items-center gap-1;
     }
 </style>

@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Long+Cang&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Long+Cang&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
 
 @import "tailwindcss";
 
 @theme {
-    --font-soft: 'Quicksand', sans-serif;
-    --font-zh: 'Long Cang', serif;
-    --font-sans: 'Titillium Web', sans-serif;
-    --font-mono: 'Jetbrains Mono', monospace;
-    --font-nexa-black-italic: 'Nexa Black Italic', sans-serif;
+    --font-soft: "Quicksand", sans-serif;
+    --font-zh: "Long Cang", serif;
+    --font-sans: "Titillium Web", sans-serif;
+    --font-mono: "Jetbrains Mono", monospace;
+    --font-nexa-black-italic: "Nexa Black Italic", sans-serif;
 
     --color-python: var(--color-indigo-100);
     --color-rust: var(--color-red-100);
@@ -48,27 +48,27 @@
 
 @layer components {
     body {
-        @apply text-white font-mono
+        @apply font-mono text-white;
     }
 
     .abs-center {
-        @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+        @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
     }
 
     .fancy-list > li {
-        @apply border-b-slate-200 border-b-2 mb-2 pb-2
+        @apply mb-2 border-b-2 border-b-slate-200 pb-2;
     }
 }
 
 @font-face {
-    font-family: 'Nexa Black Italic';
+    font-family: "Nexa Black Italic";
     src:
-        url('/fonts/NexaBlackItalic.woff2') format('woff2'),
-        url('/fonts/NexaBlackItalic.woff') format('woff'),
-        url('/fonts/NexaBlackItalic.ttf') format('truetype'),
-        url('/fonts/NexaBlackItalic.otf') format('opentype'),
-        url('/fonts/NexaBlackItalic.eot?#iefix') format('embedded-opentype'),
-        url('/fonts/NexaBlackItalic.svg#NexaBlackItalic') format('svg');
+        url("/fonts/NexaBlackItalic.woff2") format("woff2"),
+        url("/fonts/NexaBlackItalic.woff") format("woff"),
+        url("/fonts/NexaBlackItalic.ttf") format("truetype"),
+        url("/fonts/NexaBlackItalic.otf") format("opentype"),
+        url("/fonts/NexaBlackItalic.eot?#iefix") format("embedded-opentype"),
+        url("/fonts/NexaBlackItalic.svg#NexaBlackItalic") format("svg");
 
     font-style: italic;
     font-weight: 900;
@@ -81,7 +81,7 @@
 }
 
 .effect-underline:after {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     display: inline-block;
@@ -90,10 +90,14 @@
     border-bottom: 1px solid;
     margin-top: 10px;
     opacity: 0;
-    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-    transition: opacity 0.35s, transform 0.35s;
-    -webkit-transform: scale(0,1);
-    transform: scale(0,1);
+    -webkit-transition:
+        opacity 0.35s,
+        -webkit-transform 0.35s;
+    transition:
+        opacity 0.35s,
+        transform 0.35s;
+    -webkit-transform: scale(0, 1);
+    transform: scale(0, 1);
 }
 
 .effect-underline:hover:after {
@@ -106,13 +110,11 @@
     overflow: hidden;
     position: relative;
     white-space: nowrap;
-    border-right: 2px solid rgba(255,255,255,.75);
+    border-right: 2px solid rgba(255, 255, 255, 0.75);
 
     animation:
-        typewriter
-            7s steps(12) 1s infinite normal both,
-        blinking-text-cursor
-            500ms steps(12) infinite normal;
+        typewriter 7s steps(12) 1s infinite normal both,
+        blinking-text-cursor 500ms steps(12) infinite normal;
 }
 
 @media (pointer: fine) {
@@ -122,15 +124,27 @@
 }
 
 @keyframes typewriter {
-    0% { width: 0; }
-    50% { width: 100%; }
-    90% { width: 100%; }
-    100% { width: 0; }
+    0% {
+        width: 0;
+    }
+    50% {
+        width: 100%;
+    }
+    90% {
+        width: 100%;
+    }
+    100% {
+        width: 0;
+    }
 }
 
 @keyframes blinking-text-cursor {
-    from { border-right-color: rgba(255, 255, 255, 0.75); }
-    to { border-right-color: transparent; }
+    from {
+        border-right-color: rgba(255, 255, 255, 0.75);
+    }
+    to {
+        border-right-color: transparent;
+    }
 }
 
 .small-icon-shadow {
@@ -138,25 +152,27 @@
 }
 
 .fade-bottom {
-    -webkit-mask-image:
-        linear-gradient(
-            to bottom,
-            rgba(0,0,0,1) 0% 80%,
-            rgba(0,0,0,0)
-        );
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 1) 0% 80%,
+        rgba(0, 0, 0, 0)
+    );
     -webkit-mask-size: 100% 100%;
     -webkit-mask-repeat: no-repeat;
-    -webkit-mask-position: left top, left bottom;
+    -webkit-mask-position:
+        left top,
+        left bottom;
 
-    mask-image:
-        linear-gradient(
-            to bottom,
-            rgba(0,0,0,1) 0% 80%,
-            rgba(0,0,0,0)
-        );
+    mask-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 1) 0% 80%,
+        rgba(0, 0, 0, 0)
+    );
     mask-size: 100% 100%;
     mask-repeat: no-repeat;
-    mask-position: left top, left bottom;
+    mask-position:
+        left top,
+        left bottom;
 }
 
 .glass {
@@ -169,7 +185,7 @@
 }
 
 .glass::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;

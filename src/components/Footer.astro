@@ -1,24 +1,46 @@
 ---
-import Icon from './Icon.astro';
+import Icon from "./Icon.astro";
 
 interface Props {
-    href?: string | undefined,
-	text?: string | undefined,
+    href?: string | undefined;
+    text?: string | undefined;
 }
 
 const {
-    href = 'https://github.com/Tom-the-Bomb/tomthebomb.dev',
-	text = 'Tom the Bomb 2025',
+    href = "https://github.com/Tom-the-Bomb/tomthebomb.dev",
+    text = "Tom the Bomb 2025",
 } = Astro.props;
-
 ---
-<footer class="relative p-8 text-xl text-center flex-none">
-    <div class="p-5 gap-2 md:gap-3 flex flex-wrap justify-center">
-        <Icon styles="w-11 h-11 md:w-15 md:h-15" img="mail" href="mailto:me@tomthebomb.dev"/>
-        <Icon styles="w-11 h-11 md:w-15 md:h-15"  img="github" href="https://github.com/Tom-the-Bomb"/>
-        <Icon styles="w-11 h-11 md:w-15 md:h-15" img="discord" href="https://discord.com/users/522524473447153695"/>
-        <Icon styles="w-11 h-11 md:w-15 md:h-15" img="leetcode" href="https://leetcode.com/u/Tom-the-Bomb/"/>
-        <Icon styles="w-11 h-11 md:w-15 md:h-15" img="linkedin" href="https://www.linkedin.com/in/tommyshen/"/>
+
+<footer class="relative flex-none p-8 text-center text-xl">
+    <div class="flex flex-wrap justify-center gap-2 p-5 md:gap-3">
+        <Icon
+            styles="w-11 h-11 md:w-15 md:h-15"
+            img="mail"
+            href="mailto:me@tomthebomb.dev"
+        />
+        <Icon
+            styles="w-11 h-11 md:w-15 md:h-15"
+            img="github"
+            href="https://github.com/Tom-the-Bomb"
+        />
+        <Icon
+            styles="w-11 h-11 md:w-15 md:h-15"
+            img="discord"
+            href="https://discord.com/users/522524473447153695"
+        />
+        <Icon
+            styles="w-11 h-11 md:w-15 md:h-15"
+            img="leetcode"
+            href="https://leetcode.com/u/Tom-the-Bomb/"
+        />
+        <Icon
+            styles="w-11 h-11 md:w-15 md:h-15"
+            img="linkedin"
+            href="https://www.linkedin.com/in/tommyshen/"
+        />
     </div>
-    <a target="_blank" href={href} class="effect-underline text-lg md:text-xl">{text}<a/>
+    <a target="_blank" href={href} class="effect-underline text-lg md:text-xl"
+        >{text}<a></a>
+    </a>
 </footer>

@@ -1,27 +1,36 @@
 ---
-import Icon from './Icon.astro';
+import Icon from "./Icon.astro";
 
 interface NavItem {
-    name: string,
-    url?: string | undefined,
+    name: string;
+    url?: string | undefined;
 }
 
 interface Props {
-    pages: NavItem[],
+    pages: NavItem[];
 }
 
 const { pages } = Astro.props;
 ---
-<nav class="mb-10 lg:mb-0 p-3 md:pl-5 flex flex-wrap gap-3 md:gap-4 items-center">
-    <Icon size="2em" img="home" href="/" target="_self" styles="w-6 h-6 md:w-8 md:h-8 text-slate-200" color="text-white"/>
+
+<nav
+    class="mb-10 flex flex-wrap items-center gap-3 p-3 md:gap-4 md:pl-5 lg:mb-0"
+>
+    <Icon
+        size="2em"
+        img="home"
+        href="/"
+        target="_self"
+        styles="w-6 h-6 md:w-8 md:h-8 text-slate-200"
+        color="text-white"
+    />
     {
         pages.map((page) => (
             <a
-                class="border-b-2 border-b-rose-100
-                text-white hover:text-white hover:border-b-white"
+                class="border-b-2 border-b-rose-100 text-white hover:border-b-white hover:text-white"
                 href={`/${page.url ? page.url : page.name.toLowerCase()}`}
             >
-                <div class="text-xs md:text-base hover:-translate-y-1 transition-transform duration-250">
+                <div class="text-xs transition-transform duration-250 hover:-translate-y-1 md:text-base">
                     {page.name}
                 </div>
             </a>

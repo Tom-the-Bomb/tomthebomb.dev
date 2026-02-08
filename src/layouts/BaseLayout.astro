@@ -1,45 +1,48 @@
 ---
-import { fade } from 'astro:transitions';
+import { fade } from "astro:transitions";
 
-import MainHead from '../components/MainHead.astro';
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
+import MainHead from "../components/MainHead.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
 
-import '../styles/global.css';
+import "../styles/global.css";
 ---
-<html lang="en" transition:animate={fade({ duration: '1s'})}>
+
+<html lang="en" transition:animate={fade({ duration: "1s" })}>
     <head>
-        <MainHead/>
+        <MainHead />
     </head>
-    <body class="h-dvh flex flex-col bg-linear-to-tr from-violet-500 to-orange-300 bg-gray-800 bg-fixed">
+    <body
+        class="flex h-dvh flex-col bg-gray-800 bg-linear-to-tr from-violet-500 to-orange-300 bg-fixed"
+    >
         <header class="flex-none">
             <Nav
                 pages={[
-                    {name: "About"},
-                    {name: "Projects"},
-                    {name: "Photography"},
+                    { name: "About" },
+                    { name: "Projects" },
+                    { name: "Photography" },
                     {
                         name: "Aquaria",
-                        url: "./photography/aquaria"
+                        url: "./photography/aquaria",
                     },
                 ]}
             />
         </header>
-        <main class="grow flex justify-center items-center">
-            <slot/>
+        <main class="flex grow items-center justify-center">
+            <slot />
         </main>
-        <Footer/>
+        <Footer />
         <div class="squares">
             <li class="glass"></li>
             <li class="glass"></li>
             <li class="glass"></li>
-            <li class="hidden! md:block glass"></li>
+            <li class="glass hidden! md:block"></li>
             <li class="glass"></li>
             <li class="glass"></li>
             <li class="glass"></li>
-            <li class="hidden! md:block glass"></li>
+            <li class="glass hidden! md:block"></li>
             <li class="glass"></li>
-            <li class="hidden! md:block glass"></li>
+            <li class="glass hidden! md:block"></li>
         </div>
     </body>
 </html>

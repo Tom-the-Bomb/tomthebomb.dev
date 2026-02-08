@@ -1,11 +1,12 @@
 ---
 interface Props {
-    text: string,
-    href: string,
+    text: string;
+    href: string;
 }
 
 const { text, href } = Astro.props;
 ---
+
 <div class="slide-text-hover" data-slide-href={href}>
     <span class="text-wrapper"><a href={href}>{text}</a></span>
     <a href={href}>{text}</a>
@@ -48,10 +49,10 @@ const { text, href } = Astro.props;
 </style>
 
 <script>
-    document.querySelectorAll('[data-slide-href]').forEach((comp) => {
-        const href = comp.getAttribute('data-slide-href')!;
+    document.querySelectorAll("[data-slide-href]").forEach((comp) => {
+        const href = comp.getAttribute("data-slide-href")!;
 
-        comp.addEventListener('click', () => {
+        comp.addEventListener("click", () => {
             window.location.href = href;
         });
     });

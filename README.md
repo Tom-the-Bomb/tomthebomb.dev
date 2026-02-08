@@ -1,4 +1,3 @@
-
 # Personal Website
 
 - Located at [tomthebomb.dev](https://tomthebomb.dev)
@@ -11,7 +10,7 @@
 Made with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com)
 
 - **[ARCHIVED] Image Pre-processing**
-    - (not used anymore)  
+    - (not used anymore)
     - Converts iOS `HEIC/HEIF` images to `JPEG` using `process_images.py`
     - Strips all GPS & location EXIF data from all images
     - Generates a smaller version of the image for faster initial page loads with a filename of `{filename}_small.jpg` (if it does not already exist)

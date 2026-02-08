@@ -5,9 +5,10 @@ interface Props {
 
 const { title } = Astro.props;
 ---
+
 <div class="flex flex-col gap-3">
-    <h2 class="w-fit font-bold text-lg border px-2 border-white">{title}</h2>
+    <h2 class="w-fit border border-white px-2 text-lg font-bold">{title}</h2>
     <p>
-        <slot/>
+        <slot />
     </p>
 </div>

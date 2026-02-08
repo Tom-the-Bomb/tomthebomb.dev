@@ -1,13 +1,13 @@
 ---
-import { Icon as AstroIcon } from 'astro-icon/components';
+import { Icon as AstroIcon } from "astro-icon/components";
 
 interface Props {
-    img: string,
-    href?: string | undefined,
-    target?: string | undefined,
-    color?: string | undefined,
-    size?: string | undefined,
-    styles?: string | undefined,
+    img: string;
+    href?: string | undefined;
+    target?: string | undefined;
+    color?: string | undefined;
+    size?: string | undefined;
+    styles?: string | undefined;
 }
 
 const {
@@ -19,9 +19,11 @@ const {
     styles = "",
 } = Astro.props;
 ---
+
 <a href={href} target={target}>
     <AstroIcon
-        name={img} size={size}
+        name={img}
+        size={size}
         class={`${styles} ${color} hover:text-white hover:scale-110 transition-all duration-300`}
     />
 </a>
