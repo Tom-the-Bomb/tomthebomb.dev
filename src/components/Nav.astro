@@ -12,8 +12,8 @@ interface Props {
 
 const { pages } = Astro.props;
 ---
-<nav class="mb-10 lg:mb-0 p-3 pl-5 flex flex-wrap gap-4 items-center">
-    <Icon size="2em" img="home" href="/" target="_self" styles="text-slate-200" color="text-white"/>
+<nav class="mb-10 lg:mb-0 p-3 md:pl-5 flex flex-wrap gap-3 md:gap-4 items-center">
+    <Icon size="2em" img="home" href="/" target="_self" styles="w-6 h-6 md:w-8 md:h-8 text-slate-200" color="text-white"/>
     {
         pages.map((page) => (
             <a

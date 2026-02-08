@@ -4,23 +4,27 @@ import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 
 interface Props {
+	author?: string | undefined,
 	title?: string | undefined,
 	description?: string | undefined,
 }
 
 const {
+	author = 'Tom the Bomb',
 	title = 'Tom the Bomb',
 	description = 'A personal website',
 } = Astro.props;
 
 ---
 <meta charset="UTF-8"/>
+<meta name="author" content={author}>
 <meta name="description" property="og:description" content={description}/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content={Astro.generator}/>
 <meta property="og:image" content="https://raw.githubusercontent.com/Tom-the-Bomb/tomthebomb.dev/master/public/blobcomfy.png">
 <title>{title}</title>
 
+<link rel="canonical" href="https://tomthebomb.dev/">
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 
 <ClientRouter/>

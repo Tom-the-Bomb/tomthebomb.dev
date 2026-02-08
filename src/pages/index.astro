@@ -7,26 +7,26 @@ import HoverSlide from "../components/HoverSlide.astro";
 ---
 
 <BaseLayout>
-	<div class="flex flex-wrap justify-center grow gap-20">
-		<div class="flex flex-col items-center gap-10">
+	<div class="flex flex-wrap justify-center grow gap-14 md:gap-20">
+		<div class="order-1 md:order-0 flex flex-col items-center gap-10">
 			<div class="flex flex-col gap-3">
-				<h2 class="w-fit lg:text-4xl md:text-3xl text-2xl text-yellow-100 drop-shadow-lg">
+				<h2 class="w-fit lg:text-4xl md:text-3xl text-xl text-yellow-100 drop-shadow-lg">
 					Hello I am
 				</h2>
-				<h1 class="w-fit lg:text-7xl md:text-6xl text-5xl font-mono font-extrabold typewriter">
+				<h1 class="w-fit lg:text-7xl md:text-6xl text-4xl font-mono font-extrabold typewriter">
 					Tom the Bomb
 				</h1>
 			</div>
             <hr class="self-start w-1/2"/>
-			<ul class="fancy-list flex flex-col self-start text-xl text-yellow-100">
+			<ul class="text-lg md:text-xl fancy-list flex flex-col self-start text-yellow-100">
 				<li><HoverSlide text="About" href="/about"/></li>
 				<li><HoverSlide text="Projects" href="/projects"/></li>
 				<li><HoverSlide text="Photography" href="/photography"/></li>
 				<li><HoverSlide text="Aquaria" href="/photography/aquaria"/></li>
 			</ul>
 		</div>
-		<div class="flex">
-			<div class="glass glass-extras mt-5 p-7 rounded-full h-[13em] w-[13em] flex justify-center items-center">
+		<div class="flex order-0 md:order-1">
+			<div class="glass glass-extras mt-5 p-7 rounded-full h-[12em] w-[12em] md:h-[13em] md:w-[13em] flex justify-center items-center">
                 <Image
                     src={blobComfy}
                     alt="Blob Comfy"
