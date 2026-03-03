@@ -11,14 +11,20 @@ import { projects } from "../data/projects";
     <div
         class="mt-16 mb-20 flex w-full flex-col items-center gap-10 px-6 lg:mt-20 lg:px-16 xl:px-24"
     >
-        <div class="fade-in-up flex flex-col items-center gap-3 text-center">
-            <h1 class="text-5xl font-extrabold drop-shadow-md md:text-6xl">
+        <div class="flex flex-col items-center gap-3 text-center">
+            <h1 class="fade-in-up text-5xl font-extrabold drop-shadow-md md:text-6xl">
                 Projects
             </h1>
-            <p class="font-soft text-base text-white/60">
+            <p
+                class="fade-in font-soft text-base text-white/60"
+                style="animation-delay: 0.15s"
+            >
                 A collection of my software projects
             </p>
-            <div class="mt-2 flex flex-wrap justify-center gap-2">
+            <div
+                class="fade-in mt-2 flex flex-wrap justify-center gap-2"
+                style="animation-delay: 0.3s"
+            >
                 <a
                     href="https://github.com/Tom-the-Bomb/aoc-2025"
                     rel="noopener noreferrer"
@@ -44,7 +50,7 @@ import { projects } from "../data/projects";
             class="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
         >
             {
-                projects.map((project) => (
+                projects.map((project, i) => (
                     <Project
                         name={project.name}
                         github={project.github}
@@ -52,6 +58,7 @@ import { projects } from "../data/projects";
                         logo={project.logo}
                         imgStyles={project.imgStyles}
                         tags={project.tags}
+                        style={`transition-delay: ${i * 0.06}s`}
                     >
                         {project.description}
                     </Project>

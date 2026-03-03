@@ -16,7 +16,7 @@ const currentPath = Astro.url.pathname;
 
 <nav
     id="main-nav"
-    class="nav-glass flex flex-wrap items-center gap-4 p-3 font-soft transition-all duration-500 md:gap-6 md:px-6 md:py-4"
+    class="fade-in-down nav-glass font-soft flex flex-wrap items-center gap-4 p-3 transition-all duration-500 md:gap-6 md:px-6 md:py-4"
 >
     <Icon
         size="2em"
@@ -32,8 +32,7 @@ const currentPath = Astro.url.pathname;
             pages.map((page) => {
                 const href = page.url || `/${page.name.toLowerCase()}`;
                 const isActive =
-                    currentPath === href ||
-                    currentPath.startsWith(href + "/");
+                    currentPath === href || currentPath.startsWith(href + "/");
 
                 return (
                     <a
@@ -91,7 +90,9 @@ const currentPath = Astro.url.pathname;
 <script>
     document.addEventListener("astro:page-load", () => {
         const nav = document.getElementById("main-nav");
-        if (!nav) return;
+        if (!nav) {
+            return;
+        }
 
         const onScroll = () => {
             if (window.scrollY > 20) {

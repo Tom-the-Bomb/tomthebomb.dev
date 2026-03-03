@@ -18,18 +18,20 @@ const sorted = albums.sort((a, b) => a.data.index - b.data.index);
         id="photography-page"
         class="mt-16 mb-32 flex w-full max-w-4xl flex-col items-center gap-16 px-6 lg:mt-20"
     >
-        <div class="fade-in-up flex flex-col items-center gap-8 text-center">
-            <h1 class="text-5xl font-extrabold drop-shadow-md md:text-6xl">
+        <div class="flex flex-col items-center gap-8 text-center">
+            <h1 class="fade-in-up text-5xl font-extrabold drop-shadow-md md:text-6xl">
                 Photography
             </h1>
-            <Quote
-                author="Ali Novake"
-                styles="reveal max-w-md text-center text-base"
-            >
-                The world moves fast, changing everything around us with each
-                new day. Photography is a gift that can keep us in a moment
-                forever, blissfully eternal.
-            </Quote>
+            <div class="fade-in" style="animation-delay: 0.35s">
+                <Quote
+                    author="Ali Novake"
+                    styles="max-w-md text-center text-base"
+                >
+                    The world moves fast, changing everything around us with each
+                    new day. Photography is a gift that can keep us in a moment
+                    forever, blissfully eternal.
+                </Quote>
+            </div>
         </div>
 
         <div
@@ -44,6 +46,7 @@ const sorted = albums.sort((a, b) => a.data.index - b.data.index);
                             data-astro-prefetch
                             href={href}
                             class="reveal glass group block overflow-hidden rounded-xl transition-transform duration-300 hover:scale-[1.02]"
+                            style={`transition-delay: ${i * 0.07}s`}
                         >
                             <div class="aspect-square overflow-hidden">
                                 <Image

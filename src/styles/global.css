@@ -219,6 +219,21 @@
     animation: fade-in-up 0.5s ease-out both;
 }
 
+@keyframes fade-in-down {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-down {
+    animation: fade-in-down 0.4s ease-out both;
+}
+
 @keyframes fade-in {
     from {
         opacity: 0;

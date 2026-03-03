@@ -19,6 +19,7 @@ interface Props {
     logo?: string;
     imgStyles?: string;
     tags?: Tag[];
+    style?: string;
 }
 
 const {
@@ -28,11 +29,13 @@ const {
     logo,
     imgStyles = "",
     tags = [],
+    style = "",
 } = Astro.props;
 ---
 
 <div
     class="reveal glass flex flex-col rounded-xl p-5 transition-transform duration-500 ease-in-out hover:scale-[1.02]"
+    style={style}
 >
     {
         logo && (

@@ -77,26 +77,10 @@ const { title, description } = Astro.props;
 
 <script>
     document.addEventListener("astro:page-load", () => {
-        const animated = document.querySelectorAll<HTMLElement>(
-            ".reveal, .fade-in-up, .fade-in",
-        );
-        animated.forEach((el) => {
-            const rect = el.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                el.style.animation = "none";
-                el.style.transition = "none";
-                el.style.opacity = "1";
-                el.style.transform = "none";
-                el.style.translate = "none";
-                el.classList.add("visible");
-                requestAnimationFrame(() => {
-                    el.style.transition = "";
-                });
-            }
-        });
-
         const reveals = document.querySelectorAll<HTMLElement>(".reveal");
-        if (!reveals.length) return;
+        if (!reveals.length) {
+            return;
+        }
 
         const observer = new IntersectionObserver(
             (entries) => {
