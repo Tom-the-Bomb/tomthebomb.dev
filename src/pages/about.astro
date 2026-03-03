@@ -85,10 +85,10 @@ import { getAge } from "../utils";
         <AboutSection title="Development Tools" icon="stack" class="max-w-3xl">
             <div class="flex flex-col gap-10">
                 <div
-                    class="reveal flex flex-col gap-3 border-l border-white/10 pl-4"
+                    class="reveal section-group"
                 >
                     <h3
-                        class="w-fit border border-white/25 px-3 py-1 text-base font-bold"
+                        class="section-heading"
                     >
                         Languages
                     </h3>
@@ -108,10 +108,10 @@ import { getAge } from "../utils";
                 </div>
 
                 <div
-                    class="reveal flex flex-col gap-3 border-l border-white/10 pl-4"
+                    class="reveal section-group"
                 >
                     <h3
-                        class="w-fit border border-white/25 px-3 py-1 text-base font-bold"
+                        class="section-heading"
                     >
                         Web Development
                     </h3>
@@ -161,10 +161,10 @@ import { getAge } from "../utils";
                 </div>
 
                 <div
-                    class="reveal flex flex-col gap-3 border-l border-white/10 pl-4"
+                    class="reveal section-group"
                 >
                     <h3
-                        class="w-fit border border-white/25 px-3 py-1 text-base font-bold"
+                        class="section-heading"
                     >
                         Styling
                     </h3>
@@ -188,10 +188,10 @@ import { getAge } from "../utils";
                 </div>
 
                 <div
-                    class="reveal flex flex-col gap-3 border-l border-white/10 pl-4"
+                    class="reveal section-group"
                 >
                     <h3
-                        class="w-fit border border-white/25 px-3 py-1 text-base font-bold"
+                        class="section-heading"
                     >
                         Backend
                     </h3>
@@ -214,10 +214,10 @@ import { getAge } from "../utils";
                 </div>
 
                 <div
-                    class="reveal flex flex-col gap-3 border-l border-white/10 pl-4"
+                    class="reveal section-group"
                 >
                     <h3
-                        class="w-fit border border-white/25 px-3 py-1 text-base font-bold"
+                        class="section-heading"
                     >
                         Data Management
                     </h3>
@@ -241,10 +241,10 @@ import { getAge } from "../utils";
                 </div>
 
                 <div
-                    class="reveal flex flex-col gap-3 border-l border-white/10 pl-4"
+                    class="reveal section-group"
                 >
                     <h3
-                        class="w-fit border border-white/25 px-3 py-1 text-base font-bold"
+                        class="section-heading"
                     >
                         Libraries
                     </h3>
@@ -298,7 +298,7 @@ import { getAge } from "../utils";
             <div class="reveal flex flex-wrap gap-3 pt-5">
                 <a
                     href="/projects"
-                    class="glass inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold text-white/70 transition-all duration-300 hover:scale-[1.03] hover:text-white"
+                    class="glass about-cta"
                 >
                     View Projects
                 </a>
@@ -336,16 +336,16 @@ import { getAge } from "../utils";
                 </div>
 
                 <div
-                    class="reveal flex flex-col gap-3 border-l border-white/10 pl-4"
+                    class="reveal section-group"
                 >
                     <h3
-                        class="w-fit border border-white/25 px-3 py-1 text-base font-bold"
+                        class="section-heading"
                     >
                         Gear
                     </h3>
                     <div class="grid gap-4 sm:grid-cols-2">
                         <div
-                            class="glass rounded-xl p-5 transition-transform duration-300 hover:scale-[1.02]"
+                            class="glass gear-card"
                         >
                             <div class="flex items-center justify-between">
                                 <div>
@@ -367,7 +367,7 @@ import { getAge } from "../utils";
                             </p>
                         </div>
                         <div
-                            class="glass rounded-xl p-5 transition-transform duration-300 hover:scale-[1.02]"
+                            class="glass gear-card"
                         >
                             <div class="flex items-center justify-between">
                                 <div>
@@ -393,10 +393,10 @@ import { getAge } from "../utils";
                 </div>
 
                 <div
-                    class="reveal flex flex-col gap-3 border-l border-white/10 pl-4"
+                    class="reveal section-group"
                 >
                     <h3
-                        class="w-fit border border-white/25 px-3 py-1 text-base font-bold"
+                        class="section-heading"
                     >
                         Genres
                     </h3>
@@ -419,7 +419,7 @@ import { getAge } from "../utils";
             <div class="reveal flex flex-wrap gap-3 pt-5">
                 <a
                     href="/photography"
-                    class="glass inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold text-white/70 transition-all duration-300 hover:scale-[1.03] hover:text-white"
+                    class="glass about-cta"
                 >
                     View Photos
                 </a>
@@ -427,7 +427,7 @@ import { getAge } from "../utils";
                     href="https://www.instagram.com/tom_the_bomb_111/"
                     rel="noopener noreferrer"
                     target="_blank"
-                    class="glass inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold text-white/70 transition-all duration-300 hover:scale-[1.03] hover:text-white"
+                    class="glass about-cta"
                 >
                     <Tech
                         name="instagram"
@@ -474,4 +474,23 @@ import { getAge } from "../utils";
             </div>
         </AboutSection>
     </div>
+    <style scoped>
+        @reference '../styles/global.css';
+
+        .section-group {
+            @apply flex flex-col gap-3 border-l border-white/10 pl-4;
+        }
+
+        .section-heading {
+            @apply w-fit border border-white/25 px-3 py-1 text-base font-bold;
+        }
+
+        .about-cta {
+            @apply inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold text-white/70 transition-all duration-300 hover:scale-[1.03] hover:text-white;
+        }
+
+        .gear-card {
+            @apply rounded-xl p-5 transition-transform duration-300 hover:scale-[1.02];
+        }
+    </style>
 </BaseLayout>
