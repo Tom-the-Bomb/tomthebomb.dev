@@ -1,49 +1,109 @@
 ---
 import { Image } from "astro:assets";
+import { Icon as AstroIcon } from "astro-icon/components";
 
 import blobComfy from "../../public/blobcomfy.png";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import HoverSlide from "../components/HoverSlide.astro";
+import { getAge } from "../utils";
 ---
 
 <BaseLayout
     title="Tom the Bomb — Developer & Photographer"
     description="Personal website of Tom the Bomb — computer engineering student at the University of Waterloo, software developer, and photographer."
 >
-    <div class="flex grow flex-wrap justify-center gap-14 md:gap-20">
-        <div class="order-1 flex flex-col items-center gap-10 md:order-0">
-            <div class="flex flex-col gap-3">
+    <div
+        class="flex grow flex-wrap items-center justify-center gap-14 md:gap-20"
+    >
+        <div
+            class="order-1 flex flex-col items-center gap-8 md:order-0 md:items-start"
+        >
+            <div class="fade-in-up flex flex-col gap-2">
                 <h2
-                    class="w-fit text-xl text-yellow-100 drop-shadow-lg md:text-3xl lg:text-4xl"
+                    class="font-soft w-fit text-lg tracking-wide text-yellow-100 drop-shadow-lg md:text-2xl lg:text-3xl"
                 >
-                    Hello I am
+                    Hello, I am
                 </h2>
                 <h1
                     class="typewriter w-fit font-mono text-[42px] leading-[1.1] font-extrabold md:text-6xl lg:text-7xl"
                 >
                     Tom the Bomb
                 </h1>
+                <p
+                    class="fade-in font-soft text-base tracking-wider text-white/70 md:text-lg"
+                    style="animation-delay: 0.5s"
+                >
+                    Developer & Photographer
+                </p>
             </div>
-            <hr class="w-1/2 self-start" />
-            <ul
-                class="fancy-list flex flex-col self-start text-lg text-yellow-100 md:text-xl"
-            >
-                <li><HoverSlide text="About" href="/about" /></li>
-                <li><HoverSlide text="Projects" href="/projects" /></li>
-                <li><HoverSlide text="Photography" href="/photography" /></li>
-                <li>
-                    <HoverSlide text="Aquaria" href="/photography/aquaria" />
-                </li>
-            </ul>
-        </div>
-        <div class="order-0 flex md:order-1">
+            <hr
+                class="fade-in w-2/3 border-white/40"
+                style="animation-delay: 0.3s"
+            />
             <div
-                class="glass glass-extras mt-5 flex h-[12em] w-[12em] items-center justify-center rounded-full p-7 md:h-[13em] md:w-[13em]"
+                class="fade-in-up flex flex-wrap gap-3"
+                style="animation-delay: 0.4s"
+            >
+                <a
+                    href="/about"
+                    class="glass flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-yellow-100 transition-all duration-500 hover:scale-[1.03] hover:text-white md:px-5 md:text-base"
+                >
+                    <AstroIcon name="stack" size="1.2em" />
+                    About
+                </a>
+                <a
+                    href="/projects"
+                    class="glass flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-yellow-100 transition-all duration-500 hover:scale-[1.03] hover:text-white md:px-5 md:text-base"
+                >
+                    <AstroIcon name="lightbulb" size="1.2em" />
+                    Projects
+                </a>
+                <a
+                    href="/photography"
+                    class="glass flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-yellow-100 transition-all duration-500 hover:scale-[1.03] hover:text-white md:px-5 md:text-base"
+                >
+                    <AstroIcon name="camera" size="1.2em" />
+                    Photography
+                </a>
+                <a
+                    href="/photography/aquaria"
+                    class="glass flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-yellow-100 transition-all duration-500 hover:scale-[1.03] hover:text-white md:px-5 md:text-base"
+                >
+                    <AstroIcon name="fish" size="1.2em" />
+                    Aquaria
+                </a>
+            </div>
+            <div
+                class="fade-in flex flex-wrap gap-3"
+                style="animation-delay: 0.8s"
+            >
+                <div
+                    class="rounded-full border border-white/30 bg-white/5 px-3 py-1 text-xs text-white/60"
+                >
+                    17 Projects
+                </div>
+                <div
+                    class="rounded-full border border-white/30 bg-white/5 px-3 py-1 text-xs text-white/60"
+                >
+                    12 Albums
+                </div>
+                <div
+                    class="rounded-full border border-white/30 bg-white/5 px-3 py-1 text-xs text-white/60"
+                >
+                    {getAge()} Years Old
+                </div>
+            </div>
+        </div>
+        <div
+            class="fade-in order-0 flex md:order-1"
+            style="animation-delay: 0.2s"
+        >
+            <div
+                class="float-bob glass glass-extras mt-5 flex h-[12em] w-[12em] items-center justify-center rounded-full p-7 md:h-[14em] md:w-[14em]"
             >
                 <Image
                     src={blobComfy}
                     alt="Blob Comfy"
-                    class="h-auto w-auto opacity-75 brightness-90 hue-rotate-30"
+                    class="h-auto w-auto opacity-85 brightness-90 hue-rotate-30"
                     loading="lazy"
                     decoding="async"
                 />

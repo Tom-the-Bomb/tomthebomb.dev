@@ -1,0 +1,22 @@
+---
+import { Icon as AstroIcon } from "astro-icon/components";
+
+interface Props {
+    name: string;
+    label: string;
+    color?: string;
+}
+
+const { name, label, color = "" } = Astro.props;
+---
+
+<div
+    class="glass flex items-center gap-2 rounded-lg px-3 py-2 transition-colors duration-300 hover:bg-white/10"
+>
+    <AstroIcon
+        name={`stack/${name}`}
+        size="1.4em"
+        class={`shrink-0 ${color}`}
+    />
+    <span class={`text-xs font-semibold ${color}`}>{label}</span>
+</div>

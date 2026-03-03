@@ -7,15 +7,11 @@ interface Props {
 const { author, styles = "" } = Astro.props;
 ---
 
-<div
-    class={`flex flex-col gap-3 font-serif text-xl drop-shadow-lg hover:scale-105 transition-all duration-1000 ${styles}`}
->
+<div class={`flex flex-col gap-2 ${styles}`}>
     <blockquote>
-        <p class="italic">
-            &OpenCurlyDoubleQuote;
+        <p class="font-soft text-sm leading-relaxed text-white/50 italic">
             <slot />
-            &CloseCurlyDoubleQuote;
         </p>
     </blockquote>
-    <cite class="opacity-75">—{author}</cite>
+    <cite class="font-soft text-xs text-white/30 not-italic">— {author}</cite>
 </div>

@@ -52,21 +52,26 @@ const alt = `An image from the album: [${title}]`;
         </p>
         <div
             class="container mx-auto my-8 px-2 sm:columns-2 sm:px-0 md:columns-3 lg:columns-4 xl:columns-4"
+            style="column-gap: 1rem"
         >
             {
                 images.map((image) => (
-                    <Image
-                        src={image}
-                        alt={alt}
-                        widths={[800, 600]}
-                        sizes="(max-width: 640px) 800px, 600px"
-                        quality={80}
-                        format="webp"
-                        class={`mb-4 border-8 border-white shadow-md transition-all duration-300 ease-in-out hover:scale-[102%]`}
-                        loading="lazy"
-                        decoding="async"
-                        data-album-image={image.src}
-                    />
+                    <div class="break-inside-avoid pb-4">
+                        <div class="border-8 border-white cursor-pointer transition-transform duration-300 ease-in-out hover:scale-[102%]">
+                            <Image
+                                src={image}
+                                alt={alt}
+                                widths={[800, 600]}
+                                sizes="(max-width: 640px) 800px, 600px"
+                                quality={80}
+                                format="webp"
+                                class="block"
+                                loading="lazy"
+                                decoding="async"
+                                data-album-image={image.src}
+                            />
+                        </div>
+                    </div>
                 ))
             }
         </div>

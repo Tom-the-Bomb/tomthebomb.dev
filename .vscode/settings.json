@@ -6,5 +6,6 @@
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "editor.formatOnSaveMode": "file",
-    "files.autoSave": "onFocusChange"
+    "files.autoSave": "onFocusChange",
+    "css.lint.unknownAtRules": "ignore"
 }

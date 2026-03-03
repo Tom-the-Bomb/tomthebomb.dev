@@ -1,8 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
 import Project from "../components/Project.astro";
-import Tech from "../components/Tech.astro";
 ---
 
 <BaseLayout
@@ -10,22 +8,34 @@ import Tech from "../components/Tech.astro";
     description="A showcase of various software projects by Tom the Bomb"
 >
     <div
-        class="container mt-25 flex w-full flex-col items-center justify-center gap-10 lg:w-2/3"
+        class="mt-16 mb-20 flex w-full flex-col items-center gap-10 px-6 lg:mt-20 lg:px-16 xl:px-24"
     >
-        <h1 class="text-6xl font-extrabold drop-shadow-md">Projects</h1>
-        <div class="container flex w-full flex-col gap-10">
-            <p class="text-center text-sm text-slate-100">
-                Advent of Code:
-                <a href="https://github.com/Tom-the-Bomb/aoc-2025" class="aoc-a"
-                    >2025</a
-                > |
-                <a href="https://github.com/Tom-the-Bomb/aoc-2024" class="aoc-a"
-                    >2024</a
-                > |
-                <a href="https://github.com/Tom-the-Bomb/aoc-2023" class="aoc-a"
-                    >2023</a
-                >
+        <div class="fade-in-up flex flex-col items-center gap-3 text-center">
+            <h1 class="text-5xl font-extrabold drop-shadow-md md:text-6xl">
+                Projects
+            </h1>
+            <p class="font-soft text-base text-white/60">
+                A collection of my software projects
             </p>
+            <div class="mt-2 flex flex-wrap justify-center gap-2">
+                <a
+                    href="https://github.com/Tom-the-Bomb/aoc-2025"
+                    class="aoc-pill">AoC 2025</a
+                >
+                <a
+                    href="https://github.com/Tom-the-Bomb/aoc-2024"
+                    class="aoc-pill">AoC 2024</a
+                >
+                <a
+                    href="https://github.com/Tom-the-Bomb/aoc-2023"
+                    class="aoc-pill">AoC 2023</a
+                >
+            </div>
+        </div>
+
+        <div
+            class="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+        >
             <Project
                 name="Sketch a Fourier"
                 github="https://github.com/Tom-the-Bomb/fourier-drawer"
@@ -36,39 +46,57 @@ import Tech from "../components/Tech.astro";
                     },
                 ]}
                 logo="fourier-drawer"
+                tags={[
+                    { name: "p5.js", color: "text-p5" },
+                    { name: "TS", color: "text-typescript" },
+                    { name: "HTML", color: "text-html" },
+                    { name: "CSS", color: "text-css" },
+                    { name: "Vite", color: "text-vite" },
+                ]}
             >
-                A basic website built using <span class="text-p5">p5*js</span> and
-                <Tech name="vite" styles="text-vite">Vite</Tech> with <Tech
-                    name="typescript"
-                    styles="text-typescript"
-                />
-                that utilises a
-                <a
-                    href="https://en.wikipedia.org/wiki/Discrete_Fourier_transform"
-                    >Discrete Fourier Transform</a
-                >
-                to render real-time user drawings and uploaded SVGs by animating a
-                sum of vectors, each rotating at its own frequency.
+                Discrete Fourier Transform visualizer that renders real-time
+                drawings and SVGs as animated rotating vectors.
             </Project>
+
             <Project
                 name="Matrixflow"
                 github="https://github.com/Tom-the-Bomb/matrixflow"
                 hrefs={[
                     {
                         href: "https://matrixflow.readthedocs.io/",
-                        hrefTitle: "Documentation",
+                        hrefTitle: "Docs",
                     },
                 ]}
                 logo="matrixflow"
+                tags={[{ name: "Python", color: "text-python" }]}
             >
-                A basic <span class="text-sky-100">linear algebra</span> library built
-                in <Tech name="python" styles="text-python">Python</Tech>
-                that provides high-performance, easy to use mathematical matrix &
-                vector operations such as common transformations, systems, row reductions,
-                and more.
+                Linear algebra library providing high-performance matrix &
+                vector operations, transformations, and row reductions.
             </Project>
+
             <Project
-                name="Brainfuck-web & Brainfuck-rs"
+                name="Boba Log"
+                github="https://github.com/Tom-the-Bomb/boba-log"
+                hrefs={[
+                    {
+                        href: "https://boba.tomthebomb.dev",
+                        hrefTitle: "Website",
+                    },
+                ]}
+                logo="boba-log"
+                tags={[
+                    { name: "D1 & R2", color: "text-cloudflare" },
+                    { name: "Tailwind", color: "text-tailwind" },
+                    { name: "TS", color: "text-typescript" },
+                    { name: "Next.js", color: "text-nextjs" },
+                ]}
+            >
+                Full-stack web application for tracking boba consumption per
+                shop over time with analytics and metrics.
+            </Project>
+
+            <Project
+                name="Brainfuck-web & rs"
                 github="https://github.com/Tom-the-Bomb/brainfuck-web"
                 hrefs={[
                     {
@@ -81,23 +109,18 @@ import Tech from "../components/Tech.astro";
                     },
                 ]}
                 logo="brainfuck-web"
+                tags={[
+                    { name: "Rust", color: "text-rust" },
+                    { name: "WebAssembly", color: "text-webassembly" },
+                    { name: "HTML", color: "text-html" },
+                    { name: "CSS", color: "text-css" },
+                    { name: "JS", color: "text-javascript" },
+                ]}
             >
-                <span class="text-sky-100">Brainfuck-web</span> is an online executor
-                for <a href="https://en.wikipedia.org/wiki/Brainfuck"
-                    >brainfuck</a
-                > (esoteric language), built using <Tech
-                    name="webassembly"
-                    styles="text-webassembly">WebAssembly</Tech
-                > bindings for the <span class="text-sky-100">brainfuck-rs</span
-                > crate.
-                <br /><br />
-                <span class="text-sky-100">Brainfuck-rs</span> is the <Tech
-                    name="rust"
-                    styles="text-rust">Rust</Tech
-                > crate that provides an easy to use API for a fast and efficient
-                brainfuck interpreter, supporting various customization options, and
-                can be installed as a CLI tool.
+                Online brainfuck executor using WebAssembly bindings for a
+                Rust-based interpreter crate.
             </Project>
+
             <Project
                 name="MTR History"
                 github="https://github.com/Tom-the-Bomb/mtr-history"
@@ -108,20 +131,16 @@ import Tech from "../components/Tech.astro";
                     },
                 ]}
                 logo="mtr-history"
+                tags={[
+                    { name: "D3.js", color: "text-d3" },
+                    { name: "React", color: "text-react" },
+                    { name: "Tailwind", color: "text-tailwind" },
+                ]}
             >
-                An interactive website showcasing the development of the <a
-                    href="https://en.wikipedia.org/wiki/MTR">MTR</a
-                > system. Features an interactive timeline slider which smoothly animates
-                the development of the MTR's lines and stations over time. Each station
-                is clickable and offers more information on its history and significance.
-                <br /><br />
-                The graphics and smooth animations are powered by <Tech
-                    name="d3"
-                    styles="text-d3"
-                /> built on <Tech name="react" styles="text-react">React</Tech> with
-                <Tech name="tailwind" styles="text-tailwind">Tailwind CSS</Tech> and
-                <Tech name="vite" styles="text-vite">Vite</Tech>.
+                Interactive timeline showcasing the development of Hong Kong's
+                MTR system with smooth animated transitions.
             </Project>
+
             <Project
                 name="Bomb Paste"
                 github="https://github.com/Tom-the-Bomb/bomb-paste"
@@ -133,14 +152,19 @@ import Tech from "../components/Tech.astro";
                 ]}
                 logo="bomb-paste"
                 imgStyles="rounded-b-2xl"
+                tags={[
+                    { name: "Rust", color: "text-rust" },
+                    { name: "Axum", color: "text-axum" },
+                    { name: "Bootstrap", color: "text-bootstrap" },
+                    { name: "HTML", color: "text-html" },
+                    { name: "JS", color: "text-javascript" },
+                    { name: "MongoDB", color: "text-mongo" },
+                ]}
             >
-                An online <span class="text-sky-100">pastebin</span> service with
-                a public REST API, allows for fast and simple text and code sharing
-                anywhere on the internet. Powered by <span class="text-axum"
-                    >Axum</span
-                > & <Tech name="mongo" styles="text-mongo">MongoDB</Tech> in
-                <Tech name="rust" styles="text-rust">Rust</Tech>.
+                Online pastebin service with a public REST API for fast text and
+                code sharing.
             </Project>
+
             <Project
                 name="Ferrous Imagic Editor"
                 github="https://github.com/Tom-the-Bomb/imaging-app"
@@ -151,30 +175,31 @@ import Tech from "../components/Tech.astro";
                     },
                 ]}
                 logo="ferrous-imagic-editor"
+                tags={[
+                    { name: "Rust", color: "text-rust" },
+                    { name: "Axum", color: "text-axum" },
+                    { name: "HTML", color: "text-html" },
+                    { name: "CSS", color: "text-css" },
+                    { name: "JS", color: "text-javascript" },
+                ]}
             >
-                A blazingly fast web application that applies various cool
-                effects onto user uploaded images. Powered by <Tech
-                    name="rust"
-                    styles="text-rust">Rust</Tech
-                > & <span class="text-axum">Axum</span>
+                Blazingly fast web app that applies various image effects onto
+                user-uploaded images.
             </Project>
+
             <Project
                 name="Discord Games"
                 github="https://github.com/Tom-the-Bomb/discord-games"
                 logo="discord-games"
+                tags={[
+                    { name: "Python", color: "text-python" },
+                    { name: "discord.py", color: "text-discordpy" },
+                ]}
             >
-                A collection of popular games such as
-                <span class="text-sky-100">2048</span>, <span
-                    class="text-sky-100">battleship</span
-                >, <span class="text-sky-100">chess</span>, <span
-                    class="text-sky-100">tictactoe</span
-                >, <span class="text-sky-100">connect-4</span>, and many more
-                all compiled into a libary that can be easily and seamlessly
-                integrated within
-                <Tech name="discord" styles="text-discordpy">discord.py</Tech>
-                discord bots with ease, adding fun game functionalities to your discord
-                bot.
+                Collection of games (2048, chess, battleship, etc.) as a library
+                for seamless discord.py integration.
             </Project>
+
             <Project
                 name="Bomb Bot"
                 github="https://github.com/Tom-the-Bomb/BombBot"
@@ -185,16 +210,15 @@ import Tech from "../components/Tech.astro";
                     },
                 ]}
                 logo="bombbot"
+                tags={[
+                    { name: "Python", color: "text-python" },
+                    { name: "discord.py", color: "text-discordpy" },
+                ]}
             >
-                A multifunctional <span class="text-sky-100">discord bot</span> built
-                using
-                <Tech name="discord" styles="text-discordpy">discord.py</Tech> that
-                provides various unique utility functions mainly consisting of image
-                manipulation, but also includes mathematical graphing, code execution
-                (using <span class="text-sky-100">async-tio</span>), and fun
-                games (using <span class="text-sky-100">discord-games</span>),
-                and more.
+                Multifunctional Discord bot with image manipulation, math
+                graphing, code execution, and games.
             </Project>
+
             <Project
                 name="Math Solver"
                 github="https://github.com/Tom-the-Bomb/math-solver"
@@ -205,22 +229,16 @@ import Tech from "../components/Tech.astro";
                     },
                 ]}
                 logo="math-solver"
+                tags={[
+                    { name: "Python", color: "text-python" },
+                    { name: "SymPy", color: "text-sympy" },
+                    { name: "React", color: "text-react" },
+                ]}
             >
-                An online application that solves, evaluates, analyzes, and
-                graphs symbolic mathematical equations and expressions. Powered
-                by my own Lexer/Parser/AST in combination with <Tech
-                    name="sympy"
-                    styles="text-sympy">SymPy</Tech
-                > in <Tech name="python" styles="text-python">Python</Tech>,
-                with a frontend built using <Tech
-                    name="react"
-                    styles="text-react">React</Tech
-                > & <Tech name="tailwind" styles="text-tailwind"
-                    >Tailwind CSS</Tech
-                >, and a backend API powered by <span class="text-quart"
-                    >Quart</span
-                >.
+                Solves, evaluates, and graphs symbolic math expressions using a
+                custom Lexer/Parser/AST with SymPy.
             </Project>
+
             <Project
                 name="Pascal's Triangle"
                 github="https://github.com/Tom-the-Bomb/pascals-triangle"
@@ -231,17 +249,15 @@ import Tech from "../components/Tech.astro";
                     },
                 ]}
                 logo="pascals-triangle"
+                tags={[
+                    { name: "React", color: "text-react" },
+                    { name: "Bootstrap", color: "text-bootstrap" },
+                ]}
             >
-                A basic webpage showcasing a dynamic and interactive
-                <a href="https://en.wikipedia.org/wiki/Pascal%27s_triangle"
-                    >Pascal's Triangle</a
-                >, its patterns, and use-cases. Powered by <Tech
-                    name="react"
-                    styles="text-react">React</Tech
-                > & <Tech name="bootstrap" styles="text-bootstrap"
-                    >Bootstrap</Tech
-                >.
+                Dynamic and interactive Pascal's Triangle visualization
+                showcasing patterns and use-cases.
             </Project>
+
             <Project
                 name="Doc Search"
                 github="https://github.com/Tom-the-Bomb/doc-search"
@@ -252,13 +268,12 @@ import Tech from "../components/Tech.astro";
                     },
                 ]}
                 logo="doc-search"
+                tags={[{ name: "Python", color: "text-python" }]}
             >
-                A basic <Tech name="python" styles="text-python">Python</Tech> library
-                that provides structured search and parsing functionalities for
-                <Tech name="sphinx" styles="text-sphinx">sphinx</Tech>-based and <span
-                    class="text-cpp">C/C++</span
-                > documentation.
+                Library providing structured search and parsing for Sphinx-based
+                and C/C++ documentation.
             </Project>
+
             <Project
                 name="Async TIO"
                 github="https://github.com/Tom-the-Bomb/async-tio"
@@ -269,13 +284,12 @@ import Tech from "../components/Tech.astro";
                     },
                 ]}
                 logo="tio"
+                tags={[{ name: "Python", color: "text-python" }]}
             >
-                An asynchronous <Tech name="python" styles="text-python"
-                    >Python</Tech
-                > library that provides safe, sandboxed code execution through accessing
-                the online code execution engine
-                <a href="https://tio.run">tio.run</a>'s non-public API.
+                Async library for safe, sandboxed code execution via tio.run's
+                API.
             </Project>
+
             <Project
                 name="F-Stop"
                 github="https://github.com/f-stop-lang/f-stop-rply"
@@ -286,16 +300,14 @@ import Tech from "../components/Tech.astro";
                     },
                 ]}
                 logo="fstop"
+                tags={[{ name: "Python", color: "text-python" }]}
             >
-                A self-designed <span class="text-sky-100"
-                    >scripting language</span
-                > designed to help users accelerate their image processing workflows.
-                Fully interpreted, with a runtime system powered by a lexer/parser/AST,
-                powered by imaging tools in
-                <Tech name="python" styles="text-python">Python</Tech>.
+                Custom scripting language for accelerating image processing
+                workflows with a full lexer/parser/AST runtime.
             </Project>
+
             <Project
-                name="Akinator.py & Akinator.rs"
+                name="Akinator.py & .rs"
                 github="https://github.com/Tom-the-Bomb/akinator.py"
                 hrefs={[
                     {
@@ -308,88 +320,58 @@ import Tech from "../components/Tech.astro";
                     },
                 ]}
                 logo="akinator"
+                tags={[
+                    { name: "Rust", color: "text-rust" },
+                    { name: "Python", color: "text-python" },
+                ]}
             >
-                A wrapper around the non-public <a
-                    href="https://en.akinator.com/">akinator</a
-                > API, providing users a seemless gameloop-like API to simulate an
-                akinator game in their own applications.
-                <br /><br />
-                <ul>
-                    <li>
-                        <span class="text-sky-100">Akinator.rs</span> is the original
-                        library, written <Tech name="rust" styles="text-rust"
-                            >Rust</Tech
-                        >
-                    </li>
-                    <li>
-                        <span class="text-sky-100">Akinator.py</span> is a <Tech
-                            name="python"
-                            styles="text-python">Python</Tech
-                        > binding for <span class="text-sky-100"
-                            >akinator.rs</span
-                        > powered by PyO3
-                    </li>
-                </ul>
+                Wrapper around the Akinator API providing a gameloop-like
+                interface. Rust core with Python bindings via PyO3.
             </Project>
+
             <Project
                 name="NANA Web"
                 github="https://github.com/Tom-the-Bomb/nana-web"
                 logo="nana-web"
+                tags={[
+                    { name: "React", color: "text-react" },
+                    { name: "Flask", color: "text-flask" },
+                    { name: "MongoDB", color: "text-mongo" },
+                    { name: "R2", color: "text-cloudflare" },
+                ]}
             >
-                A web dashboard for <span class="text-sky-100"
-                    >Nurse Assistant for Neurological Assessment</span
-                > (NANA) devices, a devices that allows for the automation of CAM
-                tests in detecting hospital-induced delirium in patients. Features
-                a complete <span class="text-sky-100">authentication</span> and database
-                system that allows each hospital to manage their devices, patients
-                and easily view and interpret test results/history.
-                <br /><br />
-                Built using <Tech name="react" styles="text-react">React</Tech> with
-                <Tech name="vite" styles="text-vite">Vite</Tech>
-                and <Tech name="tailwind" styles="text-tailwind"
-                    >Tailwind CSS</Tech
-                > for the frontend and <Tech name="flask" styles="text-flask"
-                    >Flask</Tech
-                >
-                and <Tech name="mongo" styles="text-mongo">MongoDB</Tech> with
-                <Tech name="cloudflare" styles="text-cloudflare"
-                    >Cloudflare R2</Tech
-                > for the backend.
+                Medical device dashboard for NANA neurological assessment
+                devices with auth and patient management.
             </Project>
+
             <Project
                 name="HK Photos Map"
                 github="https://github.com/Tom-the-Bomb/hk-photos-map"
                 hrefs={[
-                    {
-                        href: "https://hk.tomthebomb.dev",
-                        hrefTitle: "Website",
-                    },
+                    { href: "https://hk.tomthebomb.dev", hrefTitle: "Website" },
                 ]}
                 logo="hk-photos-map"
+                tags={[
+                    { name: "Leaflet", color: "text-leaflet" },
+                    { name: "Swiper", color: "text-swiper" },
+                    { name: "Vite", color: "text-vite" },
+                ]}
             >
-                An interactive map of Hong Kong that displays geotagged photos
-                taken around Hong Kong. Features clustering of photos and photo
-                carousels, smooth zooming/panning, and clickable photo markers
-                that display the photos in a popup.
-                <br /><br />
-                Built using <Tech name="leaflet" styles="text-leaflet"
-                    >Leaflet</Tech
-                > and
-                <Tech name="swiper" styles="text-swiper">Swiper</Tech> with <Tech
-                    name="vite"
-                    styles="text-vite">Vite</Tech
-                >
+                Interactive map displaying geotagged photos from Hong Kong with
+                clustering and carousels.
             </Project>
+
             <Project
                 name="Bomb CDN"
                 github="https://github.com/Tom-the-Bomb/bomb-cdn"
+                logo="bomb-cdn"
+                tags={[
+                    { name: "Rust", color: "text-rust" },
+                    { name: "Axum", color: "text-axum" },
+                ]}
             >
-                A basic file system based CDN service allowing for persistent
-                storage of files, allowing access to them anywhere on the
-                internet. Built as a complete REST API powered by
-                <Tech name="rust" styles="text-rust">Rust</Tech> & <span
-                    class="text-axum">Axum</span
-                >.
+                File system based CDN service with a complete REST API for
+                persistent file storage.
             </Project>
         </div>
     </div>
@@ -397,20 +379,8 @@ import Tech from "../components/Tech.astro";
     <style scoped>
         @reference '../styles/global.css';
 
-        .aoc-a {
-            @apply text-yellow-100! no-underline!;
+        .aoc-pill {
+            @apply rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs text-yellow-100 no-underline transition-colors duration-200 hover:bg-white/20 hover:text-white;
         }
-
-        .aoc-a:hover {
-            @apply text-white!;
-        }
-
-        a {
-            @apply text-sky-100 underline;
-        }
-
-        a:hover {
-            @apply text-white;
-        }
-    </style></BaseLayout
->
+    </style>
+</BaseLayout>

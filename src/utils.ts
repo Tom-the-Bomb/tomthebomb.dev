@@ -76,3 +76,16 @@ async function getExifData(
         return `${width}×${height}px`;
     }
 }
+
+export function getAge(birthday: Date = new Date(2007, 3, 26)): number {
+    let now = new Date();
+    let age = now.getFullYear() - birthday.getFullYear();
+    if (
+        now.getMonth() < birthday.getMonth() ||
+        (now.getMonth() === birthday.getMonth() &&
+            now.getDate() < birthday.getDate())
+    ) {
+        age--;
+    }
+    return age;
+}
