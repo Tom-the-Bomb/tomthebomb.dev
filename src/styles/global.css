@@ -119,10 +119,10 @@
         width: 0;
     }
     50% {
-        width: 100%;
+        width: 12ch;
     }
     90% {
-        width: 100%;
+        width: 12ch;
     }
     100% {
         width: 0;

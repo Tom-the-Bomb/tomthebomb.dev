@@ -12,11 +12,9 @@ import { getAge } from "../utils";
     description="Personal website of Tom the Bomb — computer engineering student at the University of Waterloo, software developer, and photographer."
 >
     <div
-        class="flex grow flex-wrap items-center justify-center gap-14 md:gap-20"
+        class="flex grow flex-wrap items-center justify-center gap-14 px-6 md:gap-20"
     >
-        <div
-            class="order-1 flex flex-col items-center gap-8 md:order-0 md:items-start"
-        >
+        <div class="order-1 flex flex-col gap-8 md:order-0">
             <div class="fade-in-up flex flex-col gap-2">
                 <h2
                     class="font-soft w-fit text-lg tracking-wide text-yellow-100 drop-shadow-lg md:text-2xl lg:text-3xl"
@@ -41,7 +39,7 @@ import { getAge } from "../utils";
                 style="animation-delay: 0.3s"
             />
             <div
-                class="fade-in-up flex flex-wrap gap-3"
+                class="fade-in-up flex flex-col gap-3 md:flex-row"
                 style="animation-delay: 0.4s"
             >
                 <a href="/about" class="hero-btn glass">
@@ -75,7 +73,7 @@ import { getAge } from "../utils";
             style="animation-delay: 0.2s"
         >
             <div
-                class="float-bob glass glass-extras mt-5 flex h-[12em] w-[12em] items-center justify-center rounded-full p-7 md:h-[14em] md:w-[14em]"
+                class="float-bob glass glass-extras mt-14 flex h-[12em] w-[12em] items-center justify-center rounded-full p-7 md:mt-5 md:h-[14em] md:w-[14em]"
             >
                 <Image
                     src={blobComfy}
