@@ -8,6 +8,7 @@ interface Props {
     color?: string;
     size?: string;
     styles?: string;
+    label?: string;
 }
 
 const {
@@ -17,6 +18,7 @@ const {
     color = "text-yellow-100",
     size = "3em",
     styles = "",
+    label,
 } = Astro.props;
 ---
 
@@ -25,7 +27,8 @@ const {
         <a
             href={href}
             target={target}
-            rel={target === "_blank" ? "noopener noreferrer" : ""}
+            rel={target === "_blank" ? "noopener noreferrer" : undefined}
+            aria-label={label}
         >
             <AstroIcon
                 name={img}

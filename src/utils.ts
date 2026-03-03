@@ -31,7 +31,10 @@ export async function getAlbumImages(albumId: string): Promise<AlbumImage[]> {
             };
         }),
     );
-    resolvedOriginal.sort(() => Math.random() - 0.5);
+    for (let i = resolvedOriginal.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [resolvedOriginal[i], resolvedOriginal[j]] = [resolvedOriginal[j], resolvedOriginal[i]];
+    }
     return resolvedOriginal;
 }
 
@@ -69,7 +72,7 @@ async function getExifData(
                 ? `1/${Math.round(1 / output.ExposureTime)}`
                 : output.ExposureTime;
 
-        return `Taken with ${output.Make} ${output.Model.replace("_2", "ii")}${lens} |
+        return `Taken with ${output.Make} ${output.Model.replace("_2", "II")}${lens} |
         ${width}×${height}px at ${output.FocalLength} mm,
         ${expTime} s, ISO ${output.ISO}, ƒ${output.FNumber}`;
     } catch {

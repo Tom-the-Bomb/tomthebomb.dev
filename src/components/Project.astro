@@ -43,6 +43,7 @@ const {
                         img={"projects/" + logo}
                         size="2.8em"
                         styles={`drop-shadow-md opacity-90 ${imgStyles}`}
+                        label={`${name} on GitHub`}
                     />
                 </div>
                 <h2 class="text-xl font-bold drop-shadow-md">{name}</h2>
@@ -75,6 +76,7 @@ const {
             href={github}
             rel="noopener noreferrer"
             target="_blank"
+            aria-label={`${name} on GitHub`}
         >
             <AstroIcon name="github" size="1.2em" class="text-yellow-100" />
         </a>

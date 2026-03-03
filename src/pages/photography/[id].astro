@@ -3,7 +3,6 @@ import { Image } from "astro:assets";
 
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Icon from "../../components/Icon.astro";
-import HoverSlide from "../../components/HoverSlide.astro";
 import { getAlbumImages } from "../../utils";
 import { albums } from "../photography.astro";
 
@@ -34,7 +33,7 @@ const alt = `An image from the album: [${title}]`;
         id="album-page"
         class="mt-0 flex flex-col flex-wrap items-center justify-center gap-3 text-center lg:mt-20"
     >
-        <div>
+        <div class="fade-in-up">
             <h1 class="text-4xl font-extrabold drop-shadow-lg">
                 {title}
             </h1>
@@ -42,22 +41,26 @@ const alt = `An image from the album: [${title}]`;
                 {album.data.short_description}
             </p>
         </div>
-        <p class="text-md w-4/5 pb-0 font-sans opacity-75 lg:w-1/2 lg:pb-5">
+        <p
+            class="fade-in-up text-md font-soft w-4/5 pb-0 opacity-75 lg:w-1/2 lg:pb-5"
+            style="animation-delay: 0.1s"
+        >
             {album.data.description}
         </p>
-        <p>
-            <strong class="font-semibold text-slate-200 drop-shadow-md">
-                {images.length} Photos
-            </strong>
-        </p>
+        <span
+            class="fade-in-up glass inline-flex items-center rounded-full px-4 py-1.5 text-base font-semibold text-slate-200"
+            style="animation-delay: 0.2s"
+        >
+            {images.length} Photos
+        </span>
         <div
-            class="container mx-auto my-8 px-2 sm:columns-2 sm:px-0 md:columns-3 lg:columns-4 xl:columns-4"
+            class="reveal container mx-auto my-8 px-2 sm:columns-2 sm:px-0 md:columns-3 lg:columns-4 xl:columns-4"
             style="column-gap: 1rem"
         >
             {
                 images.map((image) => (
                     <div class="break-inside-avoid pb-4">
-                        <div class="border-8 border-white cursor-pointer transition-transform duration-300 ease-in-out hover:scale-[102%]">
+                        <div class="cursor-pointer border-8 border-white transition-transform duration-300 ease-in-out hover:scale-[102%]">
                             <Image
                                 src={image}
                                 alt={alt}
@@ -75,8 +78,15 @@ const alt = `An image from the album: [${title}]`;
                 ))
             }
         </div>
-        <div class="mt-0 font-semibold text-slate-200 drop-shadow-md lg:mt-10">
-            <HoverSlide text="View More Albums →" href="/photography" />
+        <div
+            class="reveal mt-0 font-semibold text-slate-200 drop-shadow-md lg:mt-10"
+        >
+            <a
+                href="/photography"
+                class="glass inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white/70 transition-all duration-300 hover:scale-[1.03] hover:text-white"
+            >
+                View More Albums
+            </a>
         </div>
     </div>
     <div
@@ -100,7 +110,7 @@ const alt = `An image from the album: [${title}]`;
                             <div class="swiper-slide">
                                 <div class="flex h-full w-full flex-col items-center justify-center gap-3 p-5 pt-10">
                                     <div class="modal-container flex min-h-0 grow items-center justify-center" />
-                                    <p class="modal-caption font-sm text-center font-sans text-wrap text-slate-100">
+                                    <p class="modal-caption text-center font-sans text-sm text-wrap text-slate-100">
                                         {image.exif}
                                     </p>
                                     <div class="swiper-lazy-preloader" />
@@ -205,7 +215,6 @@ const alt = `An image from the album: [${title}]`;
                 image.addEventListener("click", () => {
                     swiper.slideToLoop(
                         parseInt(
-                            // I'm unsure why my `swiper` indices are not in order of rendering
                             slides[idx].getAttribute(
                                 "data-swiper-slide-index",
                             )!,

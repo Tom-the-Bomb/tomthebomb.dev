@@ -25,6 +25,7 @@ import { getAge } from "../utils";
                 </h2>
                 <h1
                     class="typewriter w-fit font-mono text-[42px] leading-[1.1] font-extrabold md:text-6xl lg:text-7xl"
+                    aria-label="Tom the Bomb"
                 >
                     Tom the Bomb
                 </h1>
@@ -43,31 +44,19 @@ import { getAge } from "../utils";
                 class="fade-in-up flex flex-wrap gap-3"
                 style="animation-delay: 0.4s"
             >
-                <a
-                    href="/about"
-                    class="glass flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-yellow-100 transition-all duration-500 hover:scale-[1.03] hover:text-white md:px-5 md:text-base"
-                >
+                <a href="/about" class="hero-btn glass">
                     <AstroIcon name="stack" size="1.2em" />
                     About
                 </a>
-                <a
-                    href="/projects"
-                    class="glass flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-yellow-100 transition-all duration-500 hover:scale-[1.03] hover:text-white md:px-5 md:text-base"
-                >
+                <a href="/projects" class="hero-btn glass">
                     <AstroIcon name="lightbulb" size="1.2em" />
                     Projects
                 </a>
-                <a
-                    href="/photography"
-                    class="glass flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-yellow-100 transition-all duration-500 hover:scale-[1.03] hover:text-white md:px-5 md:text-base"
-                >
+                <a href="/photography" class="hero-btn glass">
                     <AstroIcon name="camera" size="1.2em" />
                     Photography
                 </a>
-                <a
-                    href="/photography/aquaria"
-                    class="glass flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-yellow-100 transition-all duration-500 hover:scale-[1.03] hover:text-white md:px-5 md:text-base"
-                >
+                <a href="/photography/aquaria" class="hero-btn glass">
                     <AstroIcon name="fish" size="1.2em" />
                     Aquaria
                 </a>
@@ -76,21 +65,9 @@ import { getAge } from "../utils";
                 class="fade-in flex flex-wrap gap-3"
                 style="animation-delay: 0.8s"
             >
-                <div
-                    class="rounded-full border border-white/30 bg-white/5 px-3 py-1 text-xs text-white/60"
-                >
-                    17 Projects
-                </div>
-                <div
-                    class="rounded-full border border-white/30 bg-white/5 px-3 py-1 text-xs text-white/60"
-                >
-                    12 Albums
-                </div>
-                <div
-                    class="rounded-full border border-white/30 bg-white/5 px-3 py-1 text-xs text-white/60"
-                >
-                    {getAge()} Years Old
-                </div>
+                <div class="hero-stat">17 Projects</div>
+                <div class="hero-stat">12 Albums</div>
+                <div class="hero-stat">{getAge()} Years Old</div>
             </div>
         </div>
         <div
@@ -104,10 +81,22 @@ import { getAge } from "../utils";
                     src={blobComfy}
                     alt="Blob Comfy"
                     class="h-auto w-auto opacity-85 brightness-90 hue-rotate-30"
-                    loading="lazy"
+                    loading="eager"
                     decoding="async"
                 />
             </div>
         </div>
     </div>
 </BaseLayout>
+
+<style scoped>
+    @reference '../styles/global.css';
+
+    .hero-btn {
+        @apply flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-yellow-100 transition-all duration-500 hover:scale-[1.03] hover:text-white md:px-5 md:text-base;
+    }
+
+    .hero-stat {
+        @apply rounded-full border border-white/30 bg-white/5 px-3 py-1 text-xs text-white/60;
+    }
+</style>

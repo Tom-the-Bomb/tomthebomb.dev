@@ -22,7 +22,7 @@ import { getAge } from "../utils";
             class="fade-in-up flex w-full max-w-3xl flex-col items-center gap-6 text-center md:flex-row md:items-start md:gap-10 md:text-left"
         >
             <div
-                class="glass flex h-32 w-32 shrink-0 items-center justify-center rounded-full p-5 md:h-36 md:w-36"
+                class="glass flex h-32 w-32 shrink-0 items-center justify-center rounded-full p-5 transition-transform duration-300 hover:scale-[1.05] md:h-36 md:w-36"
             >
                 <Image
                     src={blobComfy}
@@ -75,7 +75,7 @@ import { getAge } from "../utils";
             <p>
                 Hi there! I'm a {getAge()} year old computer engineering student at
                 the
-                <b>University of Waterloo</b> who is passionate about software development,
+                <strong>University of Waterloo</strong> who is passionate about software development,
                 photography, image processing, mathematics, and improving my coding
                 skills through leetcoding and building impactful applications that
                 revolve around my interests.
@@ -84,7 +84,9 @@ import { getAge } from "../utils";
 
         <AboutSection title="Development Tools" icon="stack" class="max-w-3xl">
             <div class="flex flex-col gap-10">
-                <div class="reveal flex flex-col gap-3">
+                <div
+                    class="reveal flex flex-col gap-3 border-l border-white/10 pl-4"
+                >
                     <h3
                         class="w-fit border border-white/25 px-3 py-1 text-base font-bold"
                     >
@@ -101,11 +103,13 @@ import { getAge } from "../utils";
                         />
                         <TechCard name="rust" label="Rust" color="text-rust" />
                         <TechCard name="java" label="Java" color="text-java" />
-                        <TechCard name="cpp" label="C++" color="text-cpp" />
+                        <TechCard name="cpp" color="text-cpp" />
                     </div>
                 </div>
 
-                <div class="reveal flex flex-col gap-3">
+                <div
+                    class="reveal flex flex-col gap-3 border-l border-white/10 pl-4"
+                >
                     <h3
                         class="w-fit border border-white/25 px-3 py-1 text-base font-bold"
                     >
@@ -156,7 +160,9 @@ import { getAge } from "../utils";
                     </div>
                 </div>
 
-                <div class="reveal flex flex-col gap-3">
+                <div
+                    class="reveal flex flex-col gap-3 border-l border-white/10 pl-4"
+                >
                     <h3
                         class="w-fit border border-white/25 px-3 py-1 text-base font-bold"
                     >
@@ -181,7 +187,9 @@ import { getAge } from "../utils";
                     </div>
                 </div>
 
-                <div class="reveal flex flex-col gap-3">
+                <div
+                    class="reveal flex flex-col gap-3 border-l border-white/10 pl-4"
+                >
                     <h3
                         class="w-fit border border-white/25 px-3 py-1 text-base font-bold"
                     >
@@ -205,7 +213,9 @@ import { getAge } from "../utils";
                     </div>
                 </div>
 
-                <div class="reveal flex flex-col gap-3">
+                <div
+                    class="reveal flex flex-col gap-3 border-l border-white/10 pl-4"
+                >
                     <h3
                         class="w-fit border border-white/25 px-3 py-1 text-base font-bold"
                     >
@@ -230,7 +240,9 @@ import { getAge } from "../utils";
                     </div>
                 </div>
 
-                <div class="reveal flex flex-col gap-3">
+                <div
+                    class="reveal flex flex-col gap-3 border-l border-white/10 pl-4"
+                >
                     <h3
                         class="w-fit border border-white/25 px-3 py-1 text-base font-bold"
                     >
@@ -316,14 +328,16 @@ import { getAge } from "../utils";
                     class="reveal border-l-2 border-white/20 py-2 pl-5 leading-relaxed"
                 >
                     <p>
-                        <b>Photography</b> is a way of freezing moments in time, preserving
+                        <strong>Photography</strong> is a way of freezing moments in time, preserving
                         the beauty I come across, through visual storytelling. It
                         allows me to see the world from different perspectives and
                         appreciate the beauty in everyday life.
                     </p>
                 </div>
 
-                <div class="reveal flex flex-col gap-3">
+                <div
+                    class="reveal flex flex-col gap-3 border-l border-white/10 pl-4"
+                >
                     <h3
                         class="w-fit border border-white/25 px-3 py-1 text-base font-bold"
                     >
@@ -378,7 +392,9 @@ import { getAge } from "../utils";
                     </p>
                 </div>
 
-                <div class="reveal flex flex-col gap-3">
+                <div
+                    class="reveal flex flex-col gap-3 border-l border-white/10 pl-4"
+                >
                     <h3
                         class="w-fit border border-white/25 px-3 py-1 text-base font-bold"
                     >

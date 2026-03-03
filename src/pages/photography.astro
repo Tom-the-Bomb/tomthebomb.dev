@@ -44,17 +44,16 @@ const sorted = albums.sort((a, b) => a.data.index - b.data.index);
                             data-astro-prefetch
                             href={href}
                             class="reveal glass group block overflow-hidden rounded-xl transition-transform duration-300 hover:scale-[1.02]"
-                            data-photo-album={href}
                         >
                             <div class="aspect-square overflow-hidden">
                                 <Image
                                     src={album.data.cover}
-                                    alt={album.data.title}
+                                    alt={`${album.data.title} album cover`}
                                     widths={[500, 350]}
                                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                     quality={80}
                                     class="h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110"
-                                    loading={i < 3 ? "eager" : "lazy"}
+                                    loading={i >= 6 ? "lazy" : "eager"}
                                     decoding="async"
                                 />
                             </div>
@@ -86,20 +85,3 @@ const sorted = albums.sort((a, b) => a.data.index - b.data.index);
         </a>
     </div>
 </BaseLayout>
-
-<script>
-    import { prefetch } from "astro:prefetch";
-
-    document.addEventListener("astro:page-load", () => {
-        if (document.getElementById("photography-page") == null) {
-            return;
-        }
-
-        document.querySelectorAll("[data-photo-album]")?.forEach((album) => {
-            album.addEventListener("click", () => {
-                const href = album.getAttribute("data-photo-album")!;
-                prefetch(href);
-            });
-        });
-    });
-</script>
