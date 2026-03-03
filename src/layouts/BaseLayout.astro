@@ -95,6 +95,38 @@ const { title, description } = Astro.props;
         );
 
         reveals.forEach((el) => observer.observe(el));
+
+        const revealOnces =
+            document.querySelectorAll<HTMLElement>(".reveal-once");
+        if (revealOnces.length) {
+            const onceObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                            onceObserver.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.05 },
+            );
+
+            revealOnces.forEach((el) => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.style.transition = "none";
+                    el.classList.add("visible");
+                    const img = el.querySelector<HTMLImageElement>(
+                        "img[loading='lazy']",
+                    );
+                    if (img) {
+                        img.loading = "eager";
+                    }
+                } else {
+                    onceObserver.observe(el);
+                }
+            });
+        }
     });
 </script>
 

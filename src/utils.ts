@@ -33,7 +33,10 @@ export async function getAlbumImages(albumId: string): Promise<AlbumImage[]> {
     );
     for (let i = resolvedOriginal.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [resolvedOriginal[i], resolvedOriginal[j]] = [resolvedOriginal[j], resolvedOriginal[i]];
+        [resolvedOriginal[i], resolvedOriginal[j]] = [
+            resolvedOriginal[j],
+            resolvedOriginal[i],
+        ];
     }
     return resolvedOriginal;
 }

@@ -21,7 +21,7 @@ const { album } = Astro.props;
 const images = await getAlbumImages(album.id);
 
 const title = album.data.title;
-const alt = `An image from the album: [${title}]`;
+const alt = `From the album: ${title}`;
 ---
 
 <BaseLayout
@@ -54,12 +54,12 @@ const alt = `An image from the album: [${title}]`;
             {images.length} Photos
         </span>
         <div
-            class="reveal container mx-auto my-8 px-2 sm:columns-2 sm:px-0 md:columns-3 lg:columns-4 xl:columns-4"
+            class="container mx-auto my-8 px-2 sm:columns-2 sm:px-0 md:columns-3 lg:columns-4 xl:columns-4"
             style="column-gap: 1rem"
         >
             {
                 images.map((image) => (
-                    <div class="break-inside-avoid pb-4">
+                    <div class="reveal-once break-inside-avoid pb-4">
                         <div class="cursor-pointer border-8 border-white transition-transform duration-300 ease-in-out hover:scale-[102%]">
                             <Image
                                 src={image}

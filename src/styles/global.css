@@ -264,3 +264,13 @@
         translate 0.6s ease-out,
         scale 0.2s ease-in-out;
 }
+
+.reveal-once {
+    opacity: 0;
+    transition: opacity 0.4s ease-in;
+}
+
+.reveal-once.visible {
+    opacity: 1;
+    transition: opacity 0.6s ease-out;
+}
