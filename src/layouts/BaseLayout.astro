@@ -34,7 +34,7 @@ const { title, description } = Astro.props;
             />
         </header>
 
-        <main class="flex grow flex-col items-center justify-center">
+        <main class="flex grow flex-col items-center">
             <slot />
         </main>
 
@@ -97,13 +97,11 @@ const { title, description } = Astro.props;
         const revealOnces =
             document.querySelectorAll<HTMLElement>(".reveal-once");
         if (revealOnces.length) {
-            const revealKeyframes = [
-                { opacity: 0, translate: "0 24px" },
-                { opacity: 1, translate: "none" },
-            ];
+            const revealKeyframes = [{ opacity: 0 }, { opacity: 1 }];
             const revealTiming: KeyframeAnimationOptions = {
                 duration: 650,
                 easing: "ease-out",
+                fill: "forwards",
             };
 
             const onceObserver = new IntersectionObserver(
