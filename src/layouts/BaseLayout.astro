@@ -40,24 +40,6 @@ const { title, description } = Astro.props;
 
     <Footer />
 
-    <svg class="fixed h-0 w-0" aria-hidden="true">
-      <defs>
-        <filter id="liquid-distortion">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0.015 0.015"
-            numOctaves="3"
-            seed="2"
-            result="noise"></feTurbulence>
-          <feDisplacementMap
-            in="SourceGraphic"
-            in2="noise"
-            scale="3"
-            xChannelSelector="R"
-            yChannelSelector="G"></feDisplacementMap>
-        </filter>
-      </defs>
-    </svg>
     <div class="squares" aria-hidden="true">
       <div class="glass"></div>
       <div class="glass"></div>
