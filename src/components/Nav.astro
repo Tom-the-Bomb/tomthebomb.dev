@@ -16,6 +16,7 @@ const currentPath = Astro.url.pathname;
 
 <nav
     id="main-nav"
+    transition:persist
     class="nav-glass font-soft flex flex-wrap items-center gap-4 p-3 transition-all duration-500 md:gap-6 md:px-6 md:py-4"
 >
     <Icon
@@ -36,11 +37,7 @@ const currentPath = Astro.url.pathname;
 
                 return (
                     <a
-                        class={`nav-link text-sm tracking-wide transition-colors duration-300 hover:text-white md:text-base ${
-                            isActive
-                                ? "border-b-2 border-b-white font-bold text-white"
-                                : "border-b-2 border-b-white/30 text-white/80"
-                        }`}
+                        class="nav-link text-sm tracking-wide md:text-base"
                         href={href}
                         data-text={page.name}
                         aria-current={isActive ? "page" : undefined}
@@ -60,6 +57,23 @@ const currentPath = Astro.url.pathname;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.8);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        transition:
+            font-weight 700ms ease,
+            color 700ms ease,
+            border-color 700ms ease;
+    }
+
+    .nav-link:hover {
+        color: rgba(255, 255, 255, 1);
+    }
+
+    .nav-link[aria-current="page"] {
+        font-weight: 700;
+        color: rgba(255, 255, 255, 1);
+        border-bottom-color: rgba(255, 255, 255, 1);
     }
 
     .nav-link::after {
@@ -93,6 +107,21 @@ const currentPath = Astro.url.pathname;
         if (!nav) {
             return;
         }
+
+        // Update active nav link on navigation
+        const currentPath = window.location.pathname;
+        const links = nav.querySelectorAll<HTMLAnchorElement>(".nav-link");
+        links.forEach((link) => {
+            const href = link.getAttribute("href");
+            if (
+                href &&
+                (currentPath === href || currentPath.startsWith(href + "/"))
+            ) {
+                link.setAttribute("aria-current", "page");
+            } else {
+                link.removeAttribute("aria-current");
+            }
+        });
 
         const onScroll = () => {
             if (window.scrollY > 20) {
