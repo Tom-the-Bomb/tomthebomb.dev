@@ -18,7 +18,7 @@ const { title, description } = Astro.props;
     <MainHead title={title} description={description} />
   </head>
   <body
-    class="flex min-h-dvh flex-col bg-gray-800 bg-linear-to-tr from-violet-500 to-orange-300 bg-fixed"
+    class="flex min-h-svh flex-col bg-gray-800 bg-linear-to-tr from-violet-500 to-orange-300 bg-fixed"
   >
     <header class="sticky top-0 z-50 flex-none">
       <Nav
@@ -146,7 +146,7 @@ const { title, description } = Astro.props;
   @reference '../styles/global.css';
 
   .squares {
-    @apply fixed bottom-0 left-0 -z-1000 h-dvh w-full overflow-hidden;
+    @apply fixed bottom-0 left-0 -z-1000 h-svh w-full overflow-hidden;
   }
 
   .squares > div {
@@ -249,7 +249,7 @@ const { title, description } = Astro.props;
       border-radius: 10%;
     }
     to {
-      transform: translateY(-100dvh) rotate(720deg);
+      transform: translateY(-100svh) rotate(720deg);
       opacity: 0.25;
       border-radius: 50%;
     }
