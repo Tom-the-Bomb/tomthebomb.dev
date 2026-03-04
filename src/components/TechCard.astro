@@ -16,7 +16,7 @@ const { name, label, color = "" } = Astro.props;
     <AstroIcon
         name={`stack/${name}`}
         size="1.4em"
-        class={`shrink-0 ${color}`}
+        class:list={["shrink-0", color]}
     />
-    {label && <span class={`text-sm font-medium ${color}`}>{label}</span>}
+    {label && <span class:list={["text-sm font-medium", color]}>{label}</span>}
 </div>

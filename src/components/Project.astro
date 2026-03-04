@@ -1,23 +1,14 @@
 ---
-import Icon from "./Icon.astro";
 import { Icon as AstroIcon } from "astro-icon/components";
-
-interface Href {
-    href: string;
-    hrefTitle: string;
-}
-
-interface Tag {
-    name: string;
-    color: string;
-}
+import Icon from "./Icon.astro";
+import type { Href, Tag } from "../projects";
 
 interface Props {
     name: string;
     github: string;
     hrefs?: Href[];
     logo?: string;
-    imgStyles?: string;
+    imgClass?: string;
     tags?: Tag[];
 }
 
@@ -26,7 +17,7 @@ const {
     github,
     hrefs = [],
     logo,
-    imgStyles = "",
+    imgClass = "",
     tags = [],
 } = Astro.props;
 ---
@@ -36,22 +27,23 @@ const {
     data-tags={tags.map((t) => t.name.toLowerCase()).join(",")}
 >
     {
-        logo && (
+        logo ? (
             <div class="mb-3 flex items-center gap-3">
                 <div class="project-icon-frame">
                     <Icon
                         href={github}
-                        img={"projects/" + logo}
+                        img={`projects/${logo}`}
                         size="2.8em"
-                        styles={`drop-shadow-md opacity-90 ${imgStyles}`}
+                        class:list={["drop-shadow-md opacity-90", imgClass]}
                         label={`${name} on GitHub`}
                     />
                 </div>
                 <h2 class="text-xl font-bold drop-shadow-md">{name}</h2>
             </div>
+        ) : (
+            <h2 class="mb-2 text-xl font-bold drop-shadow-md">{name}</h2>
         )
     }
-    {!logo && <h2 class="mb-2 text-xl font-bold drop-shadow-md">{name}</h2>}
 
     <div
         class="mb-4 line-clamp-3 text-sm leading-relaxed text-slate-200 drop-shadow-md"
@@ -63,7 +55,7 @@ const {
         tags.length > 0 && (
             <div class="mb-4 flex flex-wrap gap-1.5">
                 {tags.map((tag) => (
-                    <span class={`pill ${tag.color}`}>{tag.name}</span>
+                    <span class:list={["pill", tag.color]}>{tag.name}</span>
                 ))}
             </div>
         )
@@ -90,11 +82,7 @@ const {
                     target="_blank"
                     title={link.hrefTitle}
                 >
-                    <AstroIcon
-                        name="link"
-                        size="1.2em"
-                        class="text-yellow-100"
-                    />
+                    <AstroIcon name="link" size="1.2em" class="text-yellow-100" />
                     <span class="text-xs">{link.hrefTitle}</span>
                 </a>
             ))
@@ -102,12 +90,12 @@ const {
     </div>
 </div>
 
-<style scoped>
+<style>
     @reference '../styles/global.css';
 
     a:hover,
     a:hover svg {
-        color: white;
+        @apply text-white;
     }
 
     .icon-link {

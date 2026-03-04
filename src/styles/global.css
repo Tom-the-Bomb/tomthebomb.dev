@@ -46,73 +46,14 @@
     --color-webgl: var(--color-red-100);
 }
 
-@layer components {
-    body {
-        @apply font-mono text-white;
-    }
-}
-
 @font-face {
     font-family: "Nexa Black Italic";
     src:
         url("/fonts/NexaBlackItalic.woff2") format("woff2"),
-        url("/fonts/NexaBlackItalic.woff") format("woff"),
-        url("/fonts/NexaBlackItalic.ttf") format("truetype"),
-        url("/fonts/NexaBlackItalic.otf") format("opentype"),
-        url("/fonts/NexaBlackItalic.eot?#iefix") format("embedded-opentype"),
-        url("/fonts/NexaBlackItalic.svg#NexaBlackItalic") format("svg");
-
+        url("/fonts/NexaBlackItalic.woff") format("woff");
     font-style: italic;
     font-weight: 900;
     font-display: swap;
-}
-
-.effect-underline {
-    position: relative;
-    display: inline-block;
-}
-
-.effect-underline:after {
-    content: "";
-    position: absolute;
-    left: 0;
-    display: inline-block;
-    height: 1em;
-    width: 100%;
-    border-bottom: 1px solid;
-    margin-top: 10px;
-    opacity: 0;
-    -webkit-transition:
-        opacity 0.35s,
-        -webkit-transform 0.35s;
-    transition:
-        opacity 0.35s,
-        transform 0.35s;
-    -webkit-transform: scale(0, 1);
-    transform: scale(0, 1);
-}
-
-.effect-underline:hover:after {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1);
-}
-
-.typewriter {
-    overflow: hidden;
-    position: relative;
-    white-space: nowrap;
-    border-right: 2px solid rgba(255, 255, 255, 0.75);
-
-    animation:
-        typewriter 7s steps(12) 1s infinite normal both,
-        blinking-text-cursor 500ms steps(12) infinite normal;
-}
-
-@media (pointer: fine) {
-    .typewriter {
-        @apply drop-shadow-xl;
-    }
 }
 
 @keyframes typewriter {
@@ -139,51 +80,6 @@
     }
 }
 
-.glass {
-    position: relative;
-    background: rgba(255, 255, 255, 0.07);
-    -webkit-backdrop-filter: blur(2px);
-    backdrop-filter: blur(2px);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    box-shadow: inset 0 4px 20px rgba(255, 255, 255, 0.1);
-}
-
-.glass::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.04);
-    border-radius: inherit;
-    -webkit-backdrop-filter: blur(1px);
-    backdrop-filter: blur(1px);
-    box-shadow:
-        inset -10px -8px 0px -11px rgba(255, 255, 255, 0.5),
-        inset 0px -9px 0px -8px rgba(255, 255, 255, 0.5);
-    opacity: 0.4;
-    z-index: -1;
-    filter: blur(1px) drop-shadow(10px 4px 6px rgba(0, 0, 0, 0.3))
-        brightness(110%);
-}
-
-.glass-extras {
-    transition: transform 0.55s ease-in-out;
-}
-
-.glass-extras > img {
-    transition: inherit;
-}
-
-.glass-extras:hover {
-    transform: scale(1.1);
-}
-
-.glass-extras:hover > img {
-    transform: scale(1.04);
-}
-
 @keyframes float-bob {
     0%,
     100% {
@@ -192,17 +88,6 @@
     50% {
         transform: translateY(-12px);
     }
-}
-
-.float-bob {
-    animation: float-bob 3s ease-in-out infinite;
-}
-
-.pill {
-    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold;
-    background: rgba(255, 255, 255, 0.08);
-    border: 0.5px solid rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(12px);
 }
 
 @keyframes fade-in-up {
@@ -216,25 +101,6 @@
     }
 }
 
-.fade-in-up {
-    animation: fade-in-up 0.5s ease-out both;
-}
-
-@keyframes fade-in-down {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.fade-in-down {
-    animation: fade-in-down 0.4s ease-out both;
-}
-
 @keyframes fade-in {
     from {
         opacity: 0;
@@ -244,9 +110,87 @@
     }
 }
 
-.fade-in {
-    animation: fade-in 1s ease-out both;
+@layer components {
+    body {
+        @apply font-mono text-white;
+    }
+
+    .effect-underline {
+        @apply relative inline-block;
+    }
+
+    .effect-underline::after {
+        @apply absolute left-0 inline-block h-[1em] w-full border-b opacity-0 mt-2.5;
+        content: "";
+        transition:
+            opacity 0.35s,
+            transform 0.35s;
+        transform: scale(0, 1);
+    }
+
+    .effect-underline:hover::after {
+        @apply opacity-100;
+        transform: scale(1);
+    }
+
+    .typewriter {
+        @apply relative overflow-hidden border-r-2 border-white/75 whitespace-nowrap;
+        animation:
+            typewriter 7s steps(12) 1s infinite normal both,
+            blinking-text-cursor 500ms steps(12) infinite normal;
+    }
+
+    @media (pointer: fine) {
+        .typewriter {
+            @apply drop-shadow-xl;
+        }
+    }
+
+    .glass {
+        @apply relative border border-white/35 bg-white/[0.07] backdrop-blur-[2px] shadow-[inset_0_4px_20px_rgba(255,255,255,0.1)];
+    }
+
+    .glass::after {
+        @apply absolute top-0 left-0 h-full w-full rounded-[inherit] bg-white/4 opacity-40 backdrop-blur-[1px] -z-1 content-[''];
+        box-shadow:
+            inset -10px -8px 0px -11px rgba(255, 255, 255, 0.5),
+            inset 0px -9px 0px -8px rgba(255, 255, 255, 0.5);
+        filter: blur(1px) drop-shadow(10px 4px 6px rgba(0, 0, 0, 0.3))
+            brightness(110%);
+    }
+
+    .float-bob {
+        animation: float-bob 3s ease-in-out infinite;
+    }
+
+    .pill {
+        @apply inline-flex items-center gap-1 rounded-full border-[0.5px] border-white/18 bg-white/8 px-2.5 py-0.5 text-xs font-semibold backdrop-blur-md;
+    }
+
+    .page-title {
+        @apply text-5xl font-extrabold drop-shadow-md md:text-6xl;
+        animation: fade-in-up 0.5s ease-out both;
+    }
+
+    .content-block {
+        @apply border-l-2 border-white/20 pl-5 leading-relaxed;
+    }
+
+    .glass-cta {
+        @apply inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold text-white/70 transition-all duration-300 hover:scale-[1.03] hover:text-white;
+    }
+
+    .fade-in-up {
+        animation: fade-in-up 0.5s ease-out both;
+    }
+
+    .fade-in {
+        animation: fade-in 1s ease-out both;
+    }
 }
+
+/* Animation/transition classes must stay un-layered so they are not
+   overridden by Tailwind utility classes (e.g. transition-transform) */
 
 .reveal {
     opacity: 0;
@@ -272,4 +216,20 @@
 
 .reveal-once.visible {
     opacity: 1;
+}
+
+.stagger-grid > .reveal.visible:nth-child(2n + 2) {
+    transition-delay: 0.1s, 0.1s, 0s;
+}
+
+@media (min-width: 1024px) {
+    .stagger-grid > .reveal.visible:nth-child(3n + 1) {
+        transition-delay: 0s;
+    }
+    .stagger-grid > .reveal.visible:nth-child(3n + 2) {
+        transition-delay: 0.1s, 0.1s, 0s;
+    }
+    .stagger-grid > .reveal.visible:nth-child(3n + 3) {
+        transition-delay: 0.2s, 0.2s, 0s;
+    }
 }

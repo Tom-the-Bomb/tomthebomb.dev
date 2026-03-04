@@ -1,8 +1,6 @@
 ---
 import { ClientRouter } from "astro:transitions";
 
-import "../styles/global.css";
-
 interface Props {
     title: string;
     description: string;
@@ -10,7 +8,7 @@ interface Props {
 
 const { title, description } = Astro.props;
 
-const siteUrl = "https://tomthebomb.dev";
+const siteUrl = Astro.site!.origin;
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
 const ogImage = `${siteUrl}/blobcomfy_og.png`;
 
@@ -18,7 +16,6 @@ const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Tom the Bomb",
-    alternateName: "Tom the Bomb",
     url: siteUrl,
     image: ogImage,
     jobTitle: "Computer Engineering Student",

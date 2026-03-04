@@ -1,0 +1,18 @@
+---
+interface Props {
+    heading: string;
+    description?: string;
+}
+
+const { heading, description } = Astro.props;
+---
+
+<div class="reveal flex flex-col gap-3 border-l border-white/10 pl-4">
+    <h3
+        class="w-fit border border-white/25 px-3 py-1 text-base font-bold"
+    >
+        {heading}
+    </h3>
+    {description && <p class="text-sm text-slate-300">{description}</p>}
+    <slot />
+</div>

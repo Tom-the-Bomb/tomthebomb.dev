@@ -1,12 +1,42 @@
-interface Href {
+export interface Href {
     href: string;
     hrefTitle: string;
 }
 
-interface Tag {
+export interface Tag {
     name: string;
     color: string;
 }
+
+const TAGS = {
+    python: { name: "Python", color: "text-python" },
+    rust: { name: "Rust", color: "text-rust" },
+    java: { name: "Java", color: "text-java" },
+    ts: { name: "TS", color: "text-typescript" },
+    js: { name: "JS", color: "text-javascript" },
+    html: { name: "HTML", color: "text-html" },
+    css: { name: "CSS", color: "text-css" },
+    react: { name: "React", color: "text-react" },
+    nextjs: { name: "Next.js", color: "text-nextjs" },
+    solidjs: { name: "SolidJS", color: "text-solidjs" },
+    vite: { name: "Vite", color: "text-vite" },
+    tailwind: { name: "Tailwind", color: "text-tailwind" },
+    bootstrap: { name: "Bootstrap", color: "text-bootstrap" },
+    wasm: { name: "WebAssembly", color: "text-webassembly" },
+    webgl: { name: "WebGL", color: "text-webgl" },
+    flask: { name: "Flask", color: "text-flask" },
+    axum: { name: "Axum", color: "text-axum" },
+    fastapi: { name: "FastAPI", color: "text-fastapi" },
+    mongo: { name: "MongoDB", color: "text-mongo" },
+    d1: { name: "D1", color: "text-cloudflare" },
+    r2: { name: "R2", color: "text-cloudflare" },
+    sympy: { name: "SymPy", color: "text-sympy" },
+    p5: { name: "p5.js", color: "text-p5" },
+    d3: { name: "D3.js", color: "text-d3" },
+    leaflet: { name: "Leaflet", color: "text-leaflet" },
+    swiper: { name: "Swiper", color: "text-swiper" },
+    discordpy: { name: "discord.py", color: "text-discordpy" },
+} as const satisfies Record<string, Tag>;
 
 export interface ProjectData {
     name: string;
@@ -14,7 +44,7 @@ export interface ProjectData {
     description: string;
     hrefs?: Href[];
     logo?: string;
-    imgStyles?: string;
+    imgClass?: string;
     tags?: Tag[];
 }
 
@@ -26,13 +56,7 @@ export const projects: ProjectData[] = [
             { href: "https://fourier.tomthebomb.dev", hrefTitle: "Website" },
         ],
         logo: "fourier-drawer",
-        tags: [
-            { name: "p5.js", color: "text-p5" },
-            { name: "TS", color: "text-typescript" },
-            { name: "HTML", color: "text-html" },
-            { name: "CSS", color: "text-css" },
-            { name: "Vite", color: "text-vite" },
-        ],
+        tags: [TAGS.p5, TAGS.ts, TAGS.html, TAGS.css, TAGS.vite],
         description:
             "Discrete Fourier Transform visualizer that renders real-time drawings and SVGs as animated rotating vectors.",
     },
@@ -46,7 +70,7 @@ export const projects: ProjectData[] = [
             },
         ],
         logo: "matrixflow",
-        tags: [{ name: "Python", color: "text-python" }],
+        tags: [TAGS.python],
         description:
             "Linear algebra library providing high-performance matrix & vector operations, transformations, and row reductions.",
     },
@@ -55,13 +79,7 @@ export const projects: ProjectData[] = [
         github: "https://github.com/Tom-the-Bomb/boba-log",
         hrefs: [{ href: "https://boba.tomthebomb.dev", hrefTitle: "Website" }],
         logo: "boba-log",
-        tags: [
-            { name: "D1", color: "text-cloudflare" },
-            { name: "R2", color: "text-cloudflare" },
-            { name: "Tailwind", color: "text-tailwind" },
-            { name: "TS", color: "text-typescript" },
-            { name: "Next.js", color: "text-nextjs" },
-        ],
+        tags: [TAGS.d1, TAGS.r2, TAGS.tailwind, TAGS.ts, TAGS.nextjs],
         description:
             "Full-stack web application for tracking boba consumption per shop over time with analytics and metrics.",
     },
@@ -79,13 +97,7 @@ export const projects: ProjectData[] = [
             },
         ],
         logo: "brainfuck-web",
-        tags: [
-            { name: "Rust", color: "text-rust" },
-            { name: "WebAssembly", color: "text-webassembly" },
-            { name: "HTML", color: "text-html" },
-            { name: "CSS", color: "text-css" },
-            { name: "JS", color: "text-javascript" },
-        ],
+        tags: [TAGS.rust, TAGS.wasm, TAGS.html, TAGS.css, TAGS.js],
         description:
             "Online brainfuck executor using WebAssembly bindings for a Rust-based interpreter crate.",
     },
@@ -94,11 +106,7 @@ export const projects: ProjectData[] = [
         github: "https://github.com/Tom-the-Bomb/mtr-history",
         hrefs: [{ href: "https://mtr.tomthebomb.dev", hrefTitle: "Website" }],
         logo: "mtr-history",
-        tags: [
-            { name: "D3.js", color: "text-d3" },
-            { name: "React", color: "text-react" },
-            { name: "Tailwind", color: "text-tailwind" },
-        ],
+        tags: [TAGS.d3, TAGS.react, TAGS.tailwind],
         description:
             "Interactive timeline showcasing the development of Hong Kong's MTR system with smooth animated transitions.",
     },
@@ -107,14 +115,14 @@ export const projects: ProjectData[] = [
         github: "https://github.com/Tom-the-Bomb/bomb-paste",
         hrefs: [{ href: "https://paste.tomthebomb.dev", hrefTitle: "Website" }],
         logo: "bomb-paste",
-        imgStyles: "rounded-b-2xl",
+        imgClass: "rounded-b-2xl",
         tags: [
-            { name: "Rust", color: "text-rust" },
-            { name: "Axum", color: "text-axum" },
-            { name: "Bootstrap", color: "text-bootstrap" },
-            { name: "HTML", color: "text-html" },
-            { name: "JS", color: "text-javascript" },
-            { name: "MongoDB", color: "text-mongo" },
+            TAGS.rust,
+            TAGS.axum,
+            TAGS.bootstrap,
+            TAGS.html,
+            TAGS.js,
+            TAGS.mongo,
         ],
         description:
             "Online pastebin service with a public REST API for fast text and code sharing.",
@@ -124,13 +132,7 @@ export const projects: ProjectData[] = [
         github: "https://github.com/Tom-the-Bomb/imaging-app",
         hrefs: [{ href: "https://image.tomthebomb.dev", hrefTitle: "Website" }],
         logo: "ferrous-imagic-editor",
-        tags: [
-            { name: "Rust", color: "text-rust" },
-            { name: "Axum", color: "text-axum" },
-            { name: "HTML", color: "text-html" },
-            { name: "Bootstrap", color: "text-bootstrap" },
-            { name: "JS", color: "text-javascript" },
-        ],
+        tags: [TAGS.rust, TAGS.axum, TAGS.html, TAGS.bootstrap, TAGS.js],
         description:
             "Blazingly fast web app that applies various image effects onto user-uploaded images.",
     },
@@ -138,10 +140,7 @@ export const projects: ProjectData[] = [
         name: "Discord Games",
         github: "https://github.com/Tom-the-Bomb/discord-games",
         logo: "discord-games",
-        tags: [
-            { name: "Python", color: "text-python" },
-            { name: "discord.py", color: "text-discordpy" },
-        ],
+        tags: [TAGS.python, TAGS.discordpy],
         description:
             "Collection of games (2048, chess, battleship, etc.) as a library for seamless discord.py integration.",
     },
@@ -155,10 +154,7 @@ export const projects: ProjectData[] = [
             },
         ],
         logo: "bombbot",
-        tags: [
-            { name: "Python", color: "text-python" },
-            { name: "discord.py", color: "text-discordpy" },
-        ],
+        tags: [TAGS.python, TAGS.discordpy],
         description:
             "Multifunctional Discord bot with image manipulation, math graphing, code execution, and games.",
     },
@@ -167,12 +163,7 @@ export const projects: ProjectData[] = [
         github: "https://github.com/Tom-the-Bomb/math-solver",
         hrefs: [{ href: "https://math.tomthebomb.dev", hrefTitle: "Website" }],
         logo: "math-solver",
-        tags: [
-            { name: "Python", color: "text-python" },
-            { name: "Flask", color: "text-flask" },
-            { name: "SymPy", color: "text-sympy" },
-            { name: "React", color: "text-react" },
-        ],
+        tags: [TAGS.python, TAGS.flask, TAGS.sympy, TAGS.react],
         description:
             "Solves, evaluates, and graphs symbolic math expressions using a custom Lexer/Parser/AST with SymPy.",
     },
@@ -183,10 +174,7 @@ export const projects: ProjectData[] = [
             { href: "https://pascals.tomthebomb.dev", hrefTitle: "Website" },
         ],
         logo: "pascals-triangle",
-        tags: [
-            { name: "React", color: "text-react" },
-            { name: "Bootstrap", color: "text-bootstrap" },
-        ],
+        tags: [TAGS.react, TAGS.bootstrap],
         description:
             "Dynamic and interactive Pascal's Triangle visualization showcasing patterns and use-cases.",
     },
@@ -200,7 +188,7 @@ export const projects: ProjectData[] = [
             },
         ],
         logo: "doc-search",
-        tags: [{ name: "Python", color: "text-python" }],
+        tags: [TAGS.python],
         description:
             "Library providing structured search and parsing for Sphinx-based and C/C++ documentation.",
     },
@@ -214,7 +202,7 @@ export const projects: ProjectData[] = [
             },
         ],
         logo: "tio",
-        tags: [{ name: "Python", color: "text-python" }],
+        tags: [TAGS.python],
         description:
             "Async library for safe, sandboxed code execution via tio.run's API.",
     },
@@ -223,7 +211,7 @@ export const projects: ProjectData[] = [
         github: "https://github.com/f-stop-lang/f-stop-rply",
         hrefs: [{ href: "https://pypi.org/project/f-stop", hrefTitle: "PyPI" }],
         logo: "fstop",
-        tags: [{ name: "Python", color: "text-python" }],
+        tags: [TAGS.python],
         description:
             "Custom scripting language for accelerating image processing workflows with a full lexer/parser/AST runtime.",
     },
@@ -241,10 +229,7 @@ export const projects: ProjectData[] = [
             },
         ],
         logo: "akinator",
-        tags: [
-            { name: "Rust", color: "text-rust" },
-            { name: "Python", color: "text-python" },
-        ],
+        tags: [TAGS.rust, TAGS.python],
         description:
             "Wrapper around the Akinator API providing a gameloop-like interface. Rust core with Python bindings via PyO3.",
     },
@@ -252,12 +237,7 @@ export const projects: ProjectData[] = [
         name: "NANA Web",
         github: "https://github.com/Tom-the-Bomb/nana-web",
         logo: "nana-web",
-        tags: [
-            { name: "React", color: "text-react" },
-            { name: "Flask", color: "text-flask" },
-            { name: "MongoDB", color: "text-mongo" },
-            { name: "R2", color: "text-cloudflare" },
-        ],
+        tags: [TAGS.react, TAGS.flask, TAGS.mongo, TAGS.r2],
         description:
             "Medical device dashboard for NANA neurological assessment devices with auth and patient management.",
     },
@@ -266,11 +246,7 @@ export const projects: ProjectData[] = [
         github: "https://github.com/Tom-the-Bomb/hk-photos-map",
         hrefs: [{ href: "https://hk.tomthebomb.dev", hrefTitle: "Website" }],
         logo: "hk-photos-map",
-        tags: [
-            { name: "Leaflet", color: "text-leaflet" },
-            { name: "Swiper", color: "text-swiper" },
-            { name: "Vite", color: "text-vite" },
-        ],
+        tags: [TAGS.leaflet, TAGS.swiper, TAGS.vite],
         description:
             "Interactive map displaying geotagged photos from Hong Kong with clustering and carousels.",
     },
@@ -279,12 +255,12 @@ export const projects: ProjectData[] = [
         github: "https://github.com/Tom-the-Bomb/viewfinder",
         logo: "viewfinder",
         tags: [
-            { name: "SolidJS", color: "text-solidjs" },
-            { name: "MongoDB", color: "text-mongo" },
-            { name: "R2", color: "text-cloudflare" },
-            { name: "Tailwind", color: "text-tailwind" },
-            { name: "TS", color: "text-typescript" },
-            { name: "WebGL", color: "text-webgl" },
+            TAGS.solidjs,
+            TAGS.mongo,
+            TAGS.r2,
+            TAGS.tailwind,
+            TAGS.ts,
+            TAGS.webgl,
         ],
         description:
             "Web-based image editor and image-hosting app with an extensive array of features comparable to Lightroom and VSCO.",
@@ -293,10 +269,7 @@ export const projects: ProjectData[] = [
         name: "Bomb CDN",
         github: "https://github.com/Tom-the-Bomb/bomb-cdn",
         logo: "bomb-cdn",
-        tags: [
-            { name: "Rust", color: "text-rust" },
-            { name: "Axum", color: "text-axum" },
-        ],
+        tags: [TAGS.rust, TAGS.axum],
         description:
             "File system based CDN service with a complete REST API for persistent file storage.",
     },
@@ -304,7 +277,7 @@ export const projects: ProjectData[] = [
         name: "AIO Piston",
         github: "https://github.com/Tom-the-Bomb/aio-piston",
         logo: "aio-piston",
-        tags: [{ name: "Python", color: "text-python" }],
+        tags: [TAGS.python],
         description:
             "Async Python wrapper for the Piston API, allowing for easy code execution in 70+ languages.",
     },
@@ -312,7 +285,7 @@ export const projects: ProjectData[] = [
         name: "Number Slider",
         github: "https://github.com/Tom-the-Bomb/number-slider",
         logo: "number-slider",
-        tags: [{ name: "Java", color: "text-java" }],
+        tags: [TAGS.java],
         description:
             "Custom number slider puzzle game built in Java with a custom game engine, featuring various difficulty settings.",
     },

@@ -74,7 +74,15 @@ const { title, description } = Astro.props;
 </html>
 
 <script>
+    let prevObserver: IntersectionObserver | null = null;
+    let prevOnceObserver: IntersectionObserver | null = null;
+
     document.addEventListener("astro:page-load", () => {
+        prevObserver?.disconnect();
+        prevOnceObserver?.disconnect();
+        prevObserver = null;
+        prevOnceObserver = null;
+
         const reveals = document.querySelectorAll<HTMLElement>(".reveal");
         if (!reveals.length) {
             return;
@@ -93,6 +101,7 @@ const { title, description } = Astro.props;
         );
 
         reveals.forEach((el) => observer.observe(el));
+        prevObserver = observer;
 
         const revealOnces =
             document.querySelectorAll<HTMLElement>(".reveal-once");
@@ -133,43 +142,30 @@ const { title, description } = Astro.props;
                     onceObserver.observe(el);
                 }
             });
+
+            prevOnceObserver = onceObserver;
         }
     });
 </script>
 
 <style>
+    @reference '../styles/global.css';
+
     .squares {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100dvh;
-        overflow: hidden;
-        z-index: -1000;
+        @apply fixed bottom-0 left-0 w-full h-dvh overflow-hidden -z-1000;
     }
 
     .squares > div {
-        position: absolute;
-        display: block;
-        width: 20px;
-        height: 20px;
+        @apply absolute block w-5 h-5 will-change-[transform,opacity] -bottom-37.5 rounded-[10%];
         animation: squares infinite linear;
-        bottom: -150px;
-        border-radius: 10%;
-        will-change: transform, opacity;
     }
 
     .squares .glass {
-        -webkit-backdrop-filter: none;
-        backdrop-filter: none;
-        background: rgba(255, 255, 255, 0.15);
-        border: 1px solid rgba(255, 255, 255, 0.35);
-        overflow: visible;
+        @apply backdrop-blur-none bg-white/15 border border-white/35 overflow-visible;
     }
 
-    .squares .glass::before,
     .squares .glass::after {
-        display: none;
+        @apply hidden;
     }
 
     .squares > div:nth-child(1) {

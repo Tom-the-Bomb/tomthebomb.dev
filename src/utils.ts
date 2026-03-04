@@ -4,11 +4,11 @@ import path from "path";
 export type AlbumImage = ImageMetadata & { exif: string };
 
 export async function getAlbumImages(albumId: string): Promise<AlbumImage[]> {
-    let photos = import.meta.glob<{ default: ImageMetadata }>(
+    const photos = import.meta.glob<{ default: ImageMetadata }>(
         "/src/content/albums/**/*.{jpeg,jpg}",
     );
     const original = Object.entries(photos).filter(([key]) =>
-        key.includes(albumId),
+        key.includes(`/${albumId}/`),
     );
 
     const resolvedOriginal = await Promise.all(
@@ -46,6 +46,7 @@ async function getExifData(
     width: number,
     height: number,
 ): Promise<string> {
+    const dimensions = `${width}×${height}px`;
     try {
         const output = await exifr.parse(filePath, {
             exif: {
@@ -63,28 +64,33 @@ async function getExifData(
             xmp: { pick: ["Lens"] },
         });
         if (!output?.Make || !output?.Model) {
-            return `${width}×${height}px`;
+            return dimensions;
         }
-        let lens = output.Lens ? ` + ${output.Lens}` : "";
-        lens =
-            !lens && output.LensModel
-                ? ` + ${output.LensMake} ${output.LensModel}`
-                : lens;
-        const expTime =
-            output.ExposureTime < 1
-                ? `1/${Math.round(1 / output.ExposureTime)}`
-                : output.ExposureTime;
+        const lensName = output.Lens || (output.LensModel ? `${output.LensMake} ${output.LensModel}` : "");
+        const lens = lensName ? ` + ${lensName}` : "";
 
-        return `Taken with ${output.Make} ${output.Model.replace("_2", "II")}${lens} |
-        ${width}×${height}px at ${output.FocalLength} mm,
-        ${expTime} s, ISO ${output.ISO}, ƒ${output.FNumber}`;
+        const settings = [
+            output.FocalLength != null && `${output.FocalLength} mm`,
+            output.ExposureTime != null && (
+                output.ExposureTime < 1
+                    ? `1/${Math.round(1 / output.ExposureTime)} s`
+                    : `${output.ExposureTime} s`
+            ),
+            output.ISO != null && `ISO ${output.ISO}`,
+            output.FNumber != null && `ƒ${output.FNumber}`,
+        ].filter(Boolean).join(", ");
+
+        const camera = `Taken with ${output.Make} ${output.Model.replace("_2", "II")}${lens}`;
+        return settings
+            ? `${camera} | ${dimensions} at ${settings}`
+            : `${camera} | ${dimensions}`;
     } catch {
-        return `${width}×${height}px`;
+        return dimensions;
     }
 }
 
 export function getAge(birthday: Date = new Date(2007, 3, 26)): number {
-    let now = new Date();
+    const now = new Date();
     let age = now.getFullYear() - birthday.getFullYear();
     if (
         now.getMonth() < birthday.getMonth() ||

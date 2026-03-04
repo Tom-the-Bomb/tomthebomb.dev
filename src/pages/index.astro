@@ -33,50 +33,48 @@ const albums = await getCollection("albums");
                     Tom the Bomb
                 </h1>
                 <p
-                    class="fade-in font-soft text-base tracking-wider text-white/70 md:text-lg"
-                    style="animation-delay: 0.5s"
+                    class="fade-in font-soft text-base tracking-wider text-white/70 [animation-delay:0.5s] md:text-lg"
                 >
                     Developer & Photographer
                 </p>
             </div>
-            <hr
-                class="fade-in w-2/3 border-white/40"
-                style="animation-delay: 0.3s"
-            />
+            <hr class="fade-in w-2/3 border-white/40 [animation-delay:0.3s]" />
             <div
-                class="fade-in-up flex flex-col gap-3 md:flex-row"
-                style="animation-delay: 0.4s"
+                class="fade-in-up flex flex-col gap-3 [animation-delay:0.4s] md:flex-row"
             >
-                <a href="/about" class="hero-btn glass">
-                    <AstroIcon name="stack" size="1.2em" />
-                    About
-                </a>
-                <a href="/projects" class="hero-btn glass">
-                    <AstroIcon name="lightbulb" size="1.2em" />
-                    Projects
-                </a>
-                <a href="/photography" class="hero-btn glass">
-                    <AstroIcon name="camera" size="1.2em" />
-                    Photography
-                </a>
-                <a href="/photography/aquaria" class="hero-btn glass">
-                    <AstroIcon name="fish" size="1.2em" />
-                    Aquaria
-                </a>
+                {
+                    [
+                        { href: "/about", icon: "stack", label: "About" },
+                        {
+                            href: "/projects",
+                            icon: "lightbulb",
+                            label: "Projects",
+                        },
+                        {
+                            href: "/photography",
+                            icon: "camera",
+                            label: "Photography",
+                        },
+                        {
+                            href: "/photography/aquaria",
+                            icon: "fish",
+                            label: "Aquaria",
+                        },
+                    ].map(({ href, icon, label }) => (
+                        <a href={href} class="hero-btn glass">
+                            <AstroIcon name={icon} size="1.2em" />
+                            {label}
+                        </a>
+                    ))
+                }
             </div>
-            <div
-                class="fade-in flex flex-wrap gap-3"
-                style="animation-delay: 0.8s"
-            >
+            <div class="fade-in flex flex-wrap gap-3 [animation-delay:0.8s]">
                 <div class="hero-stat">{projects.length} Projects</div>
                 <div class="hero-stat">{albums.length} Albums</div>
                 <div class="hero-stat">{getAge()} Years Old</div>
             </div>
         </div>
-        <div
-            class="fade-in order-0 flex md:order-1"
-            style="animation-delay: 0.2s"
-        >
+        <div class="fade-in order-0 flex [animation-delay:0.2s] md:order-1">
             <div
                 class="float-bob glass glass-extras mt-14 flex h-[12em] w-[12em] items-center justify-center rounded-full p-7 md:mt-5 md:h-[14em] md:w-[14em]"
             >
@@ -92,7 +90,7 @@ const albums = await getCollection("albums");
     </div>
 </BaseLayout>
 
-<style scoped>
+<style>
     @reference '../styles/global.css';
 
     .hero-btn {
@@ -101,5 +99,21 @@ const albums = await getCollection("albums");
 
     .hero-stat {
         @apply rounded-full border border-white/30 bg-white/5 px-3 py-1 text-xs text-white/60;
+    }
+
+    .glass-extras {
+        transition: transform 0.55s ease-in-out;
+    }
+
+    .glass-extras > :global(img) {
+        transition: inherit;
+    }
+
+    .glass-extras:hover {
+        transform: scale(1.1);
+    }
+
+    .glass-extras:hover > :global(img) {
+        transform: scale(1.04);
     }
 </style>

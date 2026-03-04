@@ -7,7 +7,7 @@ interface Props {
     target?: string;
     color?: string;
     size?: string;
-    styles?: string;
+    class?: string;
     label?: string;
 }
 
@@ -17,9 +17,11 @@ const {
     target = "_blank",
     color = "text-yellow-100",
     size = "3em",
-    styles = "",
+    class: className = "",
     label,
 } = Astro.props;
+
+const iconClasses = [className, color, "transition-all duration-300 hover:scale-110 hover:text-white"];
 ---
 
 {
@@ -33,14 +35,14 @@ const {
             <AstroIcon
                 name={img}
                 size={size}
-                class={`${styles} ${color} transition-all duration-300 hover:scale-110 hover:text-white`}
+                class:list={iconClasses}
             />
         </a>
     ) : (
         <AstroIcon
             name={img}
             size={size}
-            class={`${styles} ${color} transition-all duration-300 hover:scale-110 hover:text-white`}
+            class:list={iconClasses}
         />
     )
 }

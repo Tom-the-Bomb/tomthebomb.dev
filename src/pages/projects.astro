@@ -29,46 +29,35 @@ const uniqueTags = [...tagCount.values()].sort((a, b) => b.count - a.count);
         class="mt-16 mb-20 flex w-full flex-col items-center gap-10 px-6 lg:mt-20 lg:px-16 xl:px-24"
     >
         <div class="flex flex-col items-center gap-3 text-center">
-            <h1
-                class="fade-in-up text-5xl font-extrabold drop-shadow-md md:text-6xl"
-            >
+            <h1 class="page-title">
                 Projects
             </h1>
             <p
-                class="fade-in font-soft text-base text-white/60"
-                style="animation-delay: 0.15s"
+                class="fade-in font-soft text-base text-white/60 [animation-delay:0.15s]"
             >
                 A collection of my software projects
             </p>
             <div
-                class="fade-in mt-2 flex flex-wrap justify-center gap-2"
-                style="animation-delay: 0.3s"
+                class="fade-in mt-2 flex flex-wrap justify-center gap-2 [animation-delay:0.3s]"
             >
-                <a
-                    href="https://github.com/Tom-the-Bomb/aoc-2025"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    class="aoc-pill">AoC 2025</a
-                >
-                <a
-                    href="https://github.com/Tom-the-Bomb/aoc-2024"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    class="aoc-pill">AoC 2024</a
-                >
-                <a
-                    href="https://github.com/Tom-the-Bomb/aoc-2023"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    class="aoc-pill">AoC 2023</a
-                >
+                {
+                    [2025, 2024, 2023].map((year) => (
+                        <a
+                            href={`https://github.com/Tom-the-Bomb/aoc-${year}`}
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            class="aoc-pill"
+                        >
+                            AoC {year}
+                        </a>
+                    ))
+                }
             </div>
         </div>
 
         <div
             id="project-filters"
-            class="fade-in -mb-5 flex w-full items-baseline gap-3"
-            style="animation-delay: 0.4s"
+            class="fade-in -mb-5 flex w-full items-baseline gap-3 [animation-delay:0.4s]"
         >
             <span class="filter-label shrink-0">Filter By Tool</span>
             <div
@@ -97,18 +86,11 @@ const uniqueTags = [...tagCount.values()].sort((a, b) => b.count - a.count);
         </div>
 
         <div
-            class="project-grid grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+            class="stagger-grid grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
         >
             {
                 projects.map((project) => (
-                    <Project
-                        name={project.name}
-                        github={project.github}
-                        hrefs={project.hrefs}
-                        logo={project.logo}
-                        imgStyles={project.imgStyles}
-                        tags={project.tags}
-                    >
+                    <Project {...project}>
                         {project.description}
                     </Project>
                 ))
@@ -116,7 +98,7 @@ const uniqueTags = [...tagCount.values()].sort((a, b) => b.count - a.count);
         </div>
     </div>
 
-    <style scoped>
+    <style>
         @reference '../styles/global.css';
 
         .aoc-pill {
@@ -143,27 +125,12 @@ const uniqueTags = [...tagCount.values()].sort((a, b) => b.count - a.count);
             @apply cursor-pointer border-none bg-transparent text-xs text-white/40 hover:text-white/60;
         }
 
-        .project-grid > :global(.reveal.visible:nth-child(2n + 2)) {
-            transition-delay: 0.1s, 0.1s, 0s;
-        }
-
-        @media (min-width: 1024px) {
-            .project-grid > :global(.reveal.visible:nth-child(3n + 1)) {
-                transition-delay: 0s;
-            }
-            .project-grid > :global(.reveal.visible:nth-child(3n + 2)) {
-                transition-delay: 0.1s, 0.1s, 0s;
-            }
-            .project-grid > :global(.reveal.visible:nth-child(3n + 3)) {
-                transition-delay: 0.2s, 0.2s, 0s;
-            }
-        }
     </style>
 
     <script>
         document.addEventListener("astro:page-load", () => {
             const filterBar = document.getElementById("project-filters");
-            const grid = document.querySelector(".project-grid");
+            const grid = document.querySelector(".stagger-grid");
             const tagsContainer = document.getElementById("filter-tags");
             const toggleBtn = document.getElementById(
                 "filter-toggle",

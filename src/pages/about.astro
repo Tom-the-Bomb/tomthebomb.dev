@@ -7,6 +7,7 @@ import AboutSection from "../components/AboutSection.astro";
 import Icon from "../components/Icon.astro";
 import Tech from "../components/Tech.astro";
 import TechCard from "../components/TechCard.astro";
+import TechGroup from "../components/TechGroup.astro";
 import { getAge } from "../utils";
 ---
 
@@ -34,48 +35,34 @@ import { getAge } from "../utils";
             </div>
             <div class="flex flex-col gap-3">
                 <h1
-                    class="fade-in-up text-5xl font-extrabold drop-shadow-lg md:text-6xl"
-                    style="animation-delay: 0.1s"
+                    class="page-title drop-shadow-lg [animation-delay:0.1s]"
                 >
                     About Me
                 </h1>
                 <h2
-                    class="fade-in-up text-2xl font-bold text-yellow-100 drop-shadow-lg md:text-3xl"
-                    style="animation-delay: 0.18s"
+                    class="fade-in-up text-2xl font-bold text-yellow-100 drop-shadow-lg [animation-delay:0.18s] md:text-3xl"
                 >
                     Tom the Bomb
                 </h2>
                 <div
-                    class="fade-in flex flex-wrap justify-center gap-2 md:justify-start"
-                    style="animation-delay: 0.25s"
+                    class="fade-in flex flex-wrap justify-center gap-2 [animation-delay:0.25s] md:justify-start"
                 >
                     <div
                         class="glass flex items-center gap-2 rounded-full px-3 py-1.5"
                     >
-                        <Icon
-                            size="1.4em"
-                            img="canada"
-                            target="_self"
-                            styles=""
-                        />
-                        <Icon
-                            size="1.4em"
-                            img="china"
-                            target="_self"
-                            styles=""
-                        />
+                        <Icon size="1.4em" img="canada" />
+                        <Icon size="1.4em" img="china" />
                     </div>
-                    <div class="pill text-sm text-white/80">
+                    <div class="pill text-white/80">
                         {getAge()} years old
                     </div>
-                    <div class="pill text-sm text-white/80">UWaterloo CE</div>
+                    <div class="pill text-white/80">UWaterloo CE</div>
                 </div>
             </div>
         </div>
 
         <div
-            class="fade-in-up w-full max-w-3xl border-l-2 border-white/20 py-3 pl-5 text-base leading-relaxed drop-shadow-lg md:text-lg"
-            style="animation-delay: 0.3s"
+            class="fade-in-up content-block w-full max-w-3xl py-3 text-base drop-shadow-lg [animation-delay:0.3s] md:text-lg"
         >
             <p>
                 Hi there! I'm a {getAge()} year old computer engineering student at
@@ -89,171 +76,68 @@ import { getAge } from "../utils";
 
         <AboutSection title="Development Tools" icon="stack" class="max-w-3xl">
             <div class="flex flex-col gap-10">
-                <div class="reveal section-group">
-                    <h3 class="section-heading">Languages</h3>
-                    <p class="text-sm text-slate-300">
-                        Primary languages for personal and academic projects
-                    </p>
+                <TechGroup heading="Languages" description="Primary languages for personal and academic projects">
                     <div class="flex flex-wrap gap-2">
-                        <TechCard
-                            name="python"
-                            label="Python"
-                            color="text-python"
-                        />
+                        <TechCard name="python" label="Python" color="text-python" />
                         <TechCard name="rust" label="Rust" color="text-rust" />
                         <TechCard name="java" label="Java" color="text-java" />
                         <TechCard name="cpp" color="text-cpp" />
                     </div>
-                </div>
+                </TechGroup>
 
-                <div class="reveal section-group">
-                    <h3 class="section-heading">Web Development</h3>
-                    <p class="text-sm text-slate-300">
-                        Frontend frameworks, bundlers, and styling tools
-                    </p>
+                <TechGroup heading="Web Development" description="Frontend frameworks, bundlers, and styling tools">
                     <div class="flex flex-wrap gap-2">
-                        <TechCard
-                            name="javascript"
-                            label="JavaScript"
-                            color="text-javascript"
-                        />
-                        <TechCard
-                            name="typescript"
-                            label="TypeScript"
-                            color="text-typescript"
-                        />
+                        <TechCard name="javascript" label="JavaScript" color="text-javascript" />
+                        <TechCard name="typescript" label="TypeScript" color="text-typescript" />
                         <TechCard name="html" label="HTML" color="text-html" />
                         <TechCard name="css" label="CSS" color="text-css" />
-                        <TechCard
-                            name="react"
-                            label="React"
-                            color="text-react"
-                        />
-                        <TechCard
-                            name="nextjs"
-                            label="Next.js"
-                            color="text-nextjs"
-                        />
-                        <TechCard
-                            name="astro"
-                            label="Astro"
-                            color="text-astro"
-                        />
-                        <TechCard
-                            name="solidjs"
-                            label="SolidJS"
-                            color="text-solidjs"
-                        />
+                        <TechCard name="react" label="React" color="text-react" />
+                        <TechCard name="nextjs" label="Next.js" color="text-nextjs" />
+                        <TechCard name="astro" label="Astro" color="text-astro" />
+                        <TechCard name="solidjs" label="SolidJS" color="text-solidjs" />
                         <TechCard name="vite" label="Vite" color="text-vite" />
-                        <TechCard
-                            name="webassembly"
-                            label="WebAssembly"
-                            color="text-webassembly"
-                        />
+                        <TechCard name="webassembly" label="WebAssembly" color="text-webassembly" />
                     </div>
-                </div>
+                </TechGroup>
 
-                <div class="reveal section-group">
-                    <h3 class="section-heading">Styling</h3>
+                <TechGroup heading="Styling">
                     <div class="flex flex-wrap gap-2">
-                        <TechCard
-                            name="tailwind"
-                            label="Tailwind CSS"
-                            color="text-tailwind"
-                        />
-                        <TechCard
-                            name="bootstrap"
-                            label="Bootstrap"
-                            color="text-bootstrap"
-                        />
-                        <TechCard
-                            name="shadcn"
-                            label="shadcn/ui"
-                            color="text-shadcn"
-                        />
+                        <TechCard name="tailwind" label="Tailwind CSS" color="text-tailwind" />
+                        <TechCard name="bootstrap" label="Bootstrap" color="text-bootstrap" />
+                        <TechCard name="shadcn" label="shadcn/ui" color="text-shadcn" />
                     </div>
-                </div>
+                </TechGroup>
 
-                <div class="reveal section-group">
-                    <h3 class="section-heading">Backend</h3>
-                    <p class="text-sm text-slate-300">
-                        Server frameworks and APIs
-                    </p>
+                <TechGroup heading="Backend" description="Server frameworks and APIs">
                     <div class="flex flex-wrap gap-2">
-                        <TechCard
-                            name="flask"
-                            label="Flask & Quart"
-                            color="text-flask"
-                        />
-                        <TechCard
-                            name="fastapi"
-                            label="FastAPI"
-                            color="text-fastapi"
-                        />
+                        <TechCard name="flask" label="Flask & Quart" color="text-flask" />
+                        <TechCard name="fastapi" label="FastAPI" color="text-fastapi" />
                         <TechCard name="rust" label="Axum" color="text-axum" />
                     </div>
-                </div>
+                </TechGroup>
 
-                <div class="reveal section-group">
-                    <h3 class="section-heading">Data Management</h3>
+                <TechGroup heading="Data Management">
                     <div class="flex flex-wrap gap-2">
-                        <TechCard
-                            name="mongo"
-                            label="MongoDB"
-                            color="text-mongo"
-                        />
-                        <TechCard
-                            name="sqlite"
-                            label="SQLite"
-                            color="text-sqlite"
-                        />
-                        <TechCard
-                            name="cloudflare"
-                            label="Cloudflare D1 & R2"
-                            color="text-cloudflare"
-                        />
+                        <TechCard name="mongo" label="MongoDB" color="text-mongo" />
+                        <TechCard name="sqlite" label="SQLite" color="text-sqlite" />
+                        <TechCard name="cloudflare" label="Cloudflare D1 & R2" color="text-cloudflare" />
                     </div>
-                </div>
+                </TechGroup>
 
-                <div class="reveal section-group">
-                    <h3 class="section-heading">Libraries</h3>
-                    <p class="text-sm text-slate-300">
-                        Image processing, numerical computing, and data
-                        visualization
-                    </p>
+                <TechGroup heading="Libraries" description="Image processing, numerical computing, and data visualization">
                     <div class="flex flex-wrap gap-2">
-                        <TechCard
-                            name="opencv"
-                            label="OpenCV"
-                            color="text-opencv"
-                        />
-                        <TechCard
-                            name="numpy"
-                            label="NumPy"
-                            color="text-numpy"
-                        />
-                        <TechCard
-                            name="sympy"
-                            label="SymPy"
-                            color="text-sympy"
-                        />
-                        <TechCard
-                            name="matplotlib"
-                            label="Matplotlib"
-                            color="text-matplotlib"
-                        />
-                        <TechCard
-                            name="python"
-                            label="Pillow"
-                            color="text-pillow"
-                        />
+                        <TechCard name="opencv" label="OpenCV" color="text-opencv" />
+                        <TechCard name="numpy" label="NumPy" color="text-numpy" />
+                        <TechCard name="sympy" label="SymPy" color="text-sympy" />
+                        <TechCard name="matplotlib" label="Matplotlib" color="text-matplotlib" />
+                        <TechCard name="python" label="Pillow" color="text-pillow" />
                     </div>
-                </div>
+                </TechGroup>
 
                 <div
                     class="reveal flex items-center gap-3 font-sans text-sm text-white/50"
                 >
-                    <Icon size="1.5em" img="lightbulb" target="_self" />
+                    <Icon size="1.5em" img="lightbulb" />
                     <p>
                         This website was made with <span class="text-amber-100"
                             >Astro</span
@@ -264,19 +148,18 @@ import { getAge } from "../utils";
                     </p>
                 </div>
             </div>
-            <div class="reveal flex flex-wrap gap-3 pt-5">
-                <a href="/projects" class="glass about-cta"> View Projects </a>
+            <div class="section-cta reveal">
+                <a href="/projects" class="glass glass-cta"> View Projects </a>
                 <a
                     href="https://github.com/Tom-the-Bomb"
                     rel="noopener noreferrer"
                     target="_blank"
-                    class="glass group inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold text-white/70 transition-all duration-300 hover:scale-[1.03] hover:text-white"
+                    class="glass glass-cta group"
                 >
                     <Icon
                         size="1.2em"
                         img="github"
-                        target="_self"
-                        styles="text-white/50 group-hover:text-white"
+                        class="text-white/50 group-hover:text-white"
                         color=""
                     />
                     GitHub
@@ -289,7 +172,7 @@ import { getAge } from "../utils";
         <AboutSection title="Photography" icon="camera" class="max-w-3xl">
             <div class="flex flex-col gap-8">
                 <div
-                    class="reveal border-l-2 border-white/20 py-2 pl-5 leading-relaxed"
+                    class="reveal content-block py-2"
                 >
                     <p>
                         <strong>Photography</strong> is a way of freezing moments
@@ -299,8 +182,7 @@ import { getAge } from "../utils";
                     </p>
                 </div>
 
-                <div class="reveal section-group">
-                    <h3 class="section-heading">Gear</h3>
+                <TechGroup heading="Gear">
                     <div class="grid gap-4 sm:grid-cols-2">
                         <div class="glass gear-card">
                             <div class="flex items-center justify-between">
@@ -344,37 +226,27 @@ import { getAge } from "../utils";
                         Previously: Canon RP, Canon Rebel T7s, iPhone 13 & 15
                         Pro
                     </p>
-                </div>
+                </TechGroup>
 
-                <div class="reveal section-group">
-                    <h3 class="section-heading">Genres</h3>
-                    <p class="text-sm text-slate-300">
-                        Focusing on unique angles and interesting compositions
-                    </p>
+                <TechGroup heading="Genres" description="Focusing on unique angles and interesting compositions">
                     <div class="flex flex-wrap gap-2">
-                        <span class="pill text-yellow-100">Architecture</span>
-                        <span class="pill text-yellow-100">Street</span>
-                        <span class="pill text-yellow-100"
-                            >Landscapes & Cityscapes</span
-                        >
-                        <span class="pill text-yellow-100"
-                            >Nature & Wildlife</span
-                        >
-                        <span class="pill text-yellow-100">Macro</span>
+                        {["Architecture", "Street", "Landscapes & Cityscapes", "Nature & Wildlife", "Macro"].map(genre => (
+                            <span class="pill text-yellow-100">{genre}</span>
+                        ))}
                     </div>
-                </div>
+                </TechGroup>
             </div>
-            <div class="reveal flex flex-wrap gap-3 pt-5">
-                <a href="/photography" class="glass about-cta"> View Photos </a>
+            <div class="section-cta reveal">
+                <a href="/photography" class="glass glass-cta"> View Photos </a>
                 <a
                     href="https://www.instagram.com/tom_the_bomb_111/"
                     rel="noopener noreferrer"
                     target="_blank"
-                    class="glass about-cta"
+                    class="glass glass-cta"
                 >
                     <Tech
                         name="instagram"
-                        styles="transition-colors duration-300">Instagram</Tech
+                        class="transition-colors duration-300">Instagram</Tech
                     >
                 </a>
             </div>
@@ -384,7 +256,7 @@ import { getAge } from "../utils";
 
         <AboutSection title="Aquaria" icon="fish" class="max-w-3xl">
             <div
-                class="reveal flex max-w-3xl flex-col gap-4 border-l-2 border-white/20 py-2 pl-5 leading-relaxed"
+                class="reveal content-block flex max-w-3xl flex-col gap-4 py-2"
             >
                 <p>
                     For over five years, I've gained experience maintaining a
@@ -409,27 +281,19 @@ import { getAge } from "../utils";
             <div class="reveal pt-3">
                 <a
                     href="/photography/aquaria"
-                    class="glass inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold text-yellow-100 transition-all duration-500 hover:scale-[1.03] hover:text-white"
+                    class="glass glass-cta text-yellow-100"
                 >
-                    <Icon size="1.2em" img="camera" target="_self" styles="" />
+                    <Icon size="1.2em" img="camera" />
                     View Aquaria Photos
                 </a>
             </div>
         </AboutSection>
     </div>
-    <style scoped>
+    <style>
         @reference '../styles/global.css';
 
-        .section-group {
-            @apply flex flex-col gap-3 border-l border-white/10 pl-4;
-        }
-
-        .section-heading {
-            @apply w-fit border border-white/25 px-3 py-1 text-base font-bold;
-        }
-
-        .about-cta {
-            @apply inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold text-white/70 transition-all duration-300 hover:scale-[1.03] hover:text-white;
+        .section-cta {
+            @apply flex flex-wrap gap-3 pt-5;
         }
 
         .gear-card {
