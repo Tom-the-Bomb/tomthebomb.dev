@@ -6,258 +6,252 @@ import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 
 interface Props {
-    title: string;
-    description: string;
+  title: string;
+  description: string;
 }
 
 const { title, description } = Astro.props;
 ---
 
 <html lang="en" transition:animate="none">
-    <head>
-        <MainHead title={title} description={description} />
-    </head>
-    <body
-        class="flex min-h-dvh flex-col bg-gray-800 bg-linear-to-tr from-violet-500 to-orange-300 bg-fixed"
-    >
-        <header class="sticky top-0 z-50 flex-none">
-            <Nav
-                pages={[
-                    { name: "About" },
-                    { name: "Projects" },
-                    { name: "Photography" },
-                    {
-                        name: "Aquaria",
-                        url: "/photography/aquaria",
-                    },
-                ]}
-            />
-        </header>
+  <head>
+    <MainHead title={title} description={description} />
+  </head>
+  <body
+    class="flex min-h-dvh flex-col bg-gray-800 bg-linear-to-tr from-violet-500 to-orange-300 bg-fixed"
+  >
+    <header class="sticky top-0 z-50 flex-none">
+      <Nav
+        pages={[
+          { name: "About" },
+          { name: "Projects" },
+          { name: "Photography" },
+          {
+            name: "Aquaria",
+            url: "/photography/aquaria",
+          },
+        ]}
+      />
+    </header>
 
-        <main class="flex grow flex-col items-center">
-            <slot />
-        </main>
+    <main class="flex grow flex-col items-center">
+      <slot />
+    </main>
 
-        <Footer />
+    <Footer />
 
-        <svg class="fixed h-0 w-0" aria-hidden="true">
-            <defs>
-                <filter id="liquid-distortion">
-                    <feTurbulence
-                        type="fractalNoise"
-                        baseFrequency="0.015 0.015"
-                        numOctaves="3"
-                        seed="2"
-                        result="noise"></feTurbulence>
-                    <feDisplacementMap
-                        in="SourceGraphic"
-                        in2="noise"
-                        scale="3"
-                        xChannelSelector="R"
-                        yChannelSelector="G"></feDisplacementMap>
-                </filter>
-            </defs>
-        </svg>
-        <div class="squares" aria-hidden="true">
-            <div class="glass"></div>
-            <div class="glass"></div>
-            <div class="glass"></div>
-            <div class="glass hidden! md:block"></div>
-            <div class="glass"></div>
-            <div class="glass"></div>
-            <div class="glass"></div>
-            <div class="glass hidden! md:block"></div>
-            <div class="glass"></div>
-            <div class="glass hidden! md:block"></div>
-        </div>
-    </body>
+    <svg class="fixed h-0 w-0" aria-hidden="true">
+      <defs>
+        <filter id="liquid-distortion">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.015 0.015"
+            numOctaves="3"
+            seed="2"
+            result="noise"></feTurbulence>
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale="3"
+            xChannelSelector="R"
+            yChannelSelector="G"></feDisplacementMap>
+        </filter>
+      </defs>
+    </svg>
+    <div class="squares" aria-hidden="true">
+      <div class="glass"></div>
+      <div class="glass"></div>
+      <div class="glass"></div>
+      <div class="glass hidden! md:block"></div>
+      <div class="glass"></div>
+      <div class="glass"></div>
+      <div class="glass"></div>
+      <div class="glass hidden! md:block"></div>
+      <div class="glass"></div>
+      <div class="glass hidden! md:block"></div>
+    </div>
+  </body>
 </html>
 
 <script>
-    let prevObserver: IntersectionObserver | null = null;
-    let prevOnceObserver: IntersectionObserver | null = null;
+  let prevObserver: IntersectionObserver | null = null;
+  let prevOnceObserver: IntersectionObserver | null = null;
 
-    document.addEventListener("astro:page-load", () => {
-        prevObserver?.disconnect();
-        prevOnceObserver?.disconnect();
-        prevObserver = null;
-        prevOnceObserver = null;
+  document.addEventListener("astro:page-load", () => {
+    prevObserver?.disconnect();
+    prevOnceObserver?.disconnect();
+    prevObserver = null;
+    prevOnceObserver = null;
 
-        const reveals = document.querySelectorAll<HTMLElement>(".reveal");
-        if (!reveals.length) {
-            return;
+    const reveals = document.querySelectorAll<HTMLElement>(".reveal");
+    if (!reveals.length) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle("visible", entry.isIntersecting);
+        });
+      },
+      { threshold: 0.05 },
+    );
+
+    reveals.forEach((el) => observer.observe(el));
+    prevObserver = observer;
+
+    const revealOnces = document.querySelectorAll<HTMLElement>(".reveal-once");
+    if (revealOnces.length) {
+      const revealKeyframes = [{ opacity: 0 }, { opacity: 1 }];
+      const revealTiming: KeyframeAnimationOptions = {
+        duration: 650,
+        easing: "ease-out",
+        fill: "forwards",
+      };
+
+      const onceObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const el = entry.target as HTMLElement;
+              el.classList.add("visible");
+              el.animate(revealKeyframes, revealTiming);
+              onceObserver.unobserve(el);
+            }
+          });
+        },
+        { threshold: 0.05 },
+      );
+
+      revealOnces.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          const img = el.querySelector<HTMLImageElement>("img[loading='lazy']");
+          if (img) {
+            img.loading = "eager";
+          }
+          el.classList.add("visible");
+          el.animate(revealKeyframes, revealTiming);
+        } else {
+          onceObserver.observe(el);
         }
+      });
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    entry.target.classList.toggle(
-                        "visible",
-                        entry.isIntersecting,
-                    );
-                });
-            },
-            { threshold: 0.05 },
-        );
-
-        reveals.forEach((el) => observer.observe(el));
-        prevObserver = observer;
-
-        const revealOnces =
-            document.querySelectorAll<HTMLElement>(".reveal-once");
-        if (revealOnces.length) {
-            const revealKeyframes = [{ opacity: 0 }, { opacity: 1 }];
-            const revealTiming: KeyframeAnimationOptions = {
-                duration: 650,
-                easing: "ease-out",
-                fill: "forwards",
-            };
-
-            const onceObserver = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            const el = entry.target as HTMLElement;
-                            el.classList.add("visible");
-                            el.animate(revealKeyframes, revealTiming);
-                            onceObserver.unobserve(el);
-                        }
-                    });
-                },
-                { threshold: 0.05 },
-            );
-
-            revealOnces.forEach((el) => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    const img = el.querySelector<HTMLImageElement>(
-                        "img[loading='lazy']",
-                    );
-                    if (img) {
-                        img.loading = "eager";
-                    }
-                    el.classList.add("visible");
-                    el.animate(revealKeyframes, revealTiming);
-                } else {
-                    onceObserver.observe(el);
-                }
-            });
-
-            prevOnceObserver = onceObserver;
-        }
-    });
+      prevOnceObserver = onceObserver;
+    }
+  });
 </script>
 
 <style>
-    @reference '../styles/global.css';
+  @reference '../styles/global.css';
 
-    .squares {
-        @apply fixed bottom-0 left-0 w-full h-dvh overflow-hidden -z-1000;
-    }
+  .squares {
+    @apply fixed bottom-0 left-0 -z-1000 h-dvh w-full overflow-hidden;
+  }
 
-    .squares > div {
-        @apply absolute block w-5 h-5 will-change-[transform,opacity] -bottom-37.5 rounded-[10%];
-        animation: squares infinite linear;
-    }
+  .squares > div {
+    @apply absolute -bottom-37.5 block h-5 w-5 rounded-[10%] will-change-[transform,opacity];
+    animation: squares infinite linear;
+  }
 
-    .squares .glass {
-        @apply backdrop-blur-none bg-white/15 border border-white/35 overflow-visible;
-    }
+  .squares .glass {
+    @apply overflow-visible border border-white/35 bg-white/15 backdrop-blur-none;
+  }
 
-    .squares .glass::after {
-        @apply hidden;
-    }
+  .squares .glass::after {
+    @apply hidden;
+  }
 
-    .squares > div:nth-child(1) {
-        left: 25%;
-        width: 80px;
-        height: 80px;
-        animation-delay: 0s;
-        animation-duration: 25s;
-    }
+  .squares > div:nth-child(1) {
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0s;
+    animation-duration: 25s;
+  }
 
-    .squares > div:nth-child(2) {
-        left: 10%;
-        width: 20px;
-        height: 20px;
-        animation-delay: 2s;
-        animation-duration: 12s;
-    }
+  .squares > div:nth-child(2) {
+    left: 10%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 2s;
+    animation-duration: 12s;
+  }
 
-    .squares > div:nth-child(3) {
-        left: 70%;
-        width: 20px;
-        height: 20px;
-        animation-delay: 4s;
-        animation-duration: 25s;
-    }
+  .squares > div:nth-child(3) {
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 4s;
+    animation-duration: 25s;
+  }
 
-    .squares > div:nth-child(4) {
-        left: 40%;
-        width: 60px;
-        height: 60px;
-        animation-delay: 0s;
-        animation-duration: 18s;
-    }
+  .squares > div:nth-child(4) {
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 0s;
+    animation-duration: 18s;
+  }
 
-    .squares > div:nth-child(5) {
-        left: 65%;
-        width: 20px;
-        height: 20px;
-        animation-delay: 0s;
-        animation-duration: 25s;
-    }
+  .squares > div:nth-child(5) {
+    left: 65%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 0s;
+    animation-duration: 25s;
+  }
 
-    .squares > div:nth-child(6) {
-        left: 75%;
-        width: 110px;
-        height: 110px;
-        animation-delay: 3s;
-        animation-duration: 25s;
-    }
+  .squares > div:nth-child(6) {
+    left: 75%;
+    width: 110px;
+    height: 110px;
+    animation-delay: 3s;
+    animation-duration: 25s;
+  }
 
-    .squares > div:nth-child(7) {
-        left: 35%;
-        width: 150px;
-        height: 150px;
-        animation-delay: 7s;
-        animation-duration: 25s;
-    }
+  .squares > div:nth-child(7) {
+    left: 35%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 7s;
+    animation-duration: 25s;
+  }
 
-    .squares > div:nth-child(8) {
-        left: 50%;
-        width: 25px;
-        height: 25px;
-        animation-delay: 15s;
-        animation-duration: 45s;
-    }
+  .squares > div:nth-child(8) {
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    animation-delay: 15s;
+    animation-duration: 45s;
+  }
 
-    .squares > div:nth-child(9) {
-        left: 20%;
-        width: 15px;
-        height: 15px;
-        animation-delay: 2s;
-        animation-duration: 35s;
-    }
+  .squares > div:nth-child(9) {
+    left: 20%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 2s;
+    animation-duration: 35s;
+  }
 
-    .squares > div:nth-child(10) {
-        left: 85%;
-        width: 150px;
-        height: 150px;
-        animation-delay: 0s;
-        animation-duration: 11s;
-    }
+  .squares > div:nth-child(10) {
+    left: 85%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 11s;
+  }
 
-    @keyframes squares {
-        from {
-            transform: translateY(0) rotate(0deg);
-            opacity: 1;
-            border-radius: 10%;
-        }
-        to {
-            transform: translateY(-100dvh) rotate(720deg);
-            opacity: 0.25;
-            border-radius: 50%;
-        }
+  @keyframes squares {
+    from {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+      border-radius: 10%;
     }
+    to {
+      transform: translateY(-100dvh) rotate(720deg);
+      opacity: 0.25;
+      border-radius: 50%;
+    }
+  }
 </style>

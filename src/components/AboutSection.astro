@@ -2,23 +2,23 @@
 import Icon from "./Icon.astro";
 
 interface Props {
-    title: string;
-    icon: string;
-    class?: string;
+  title: string;
+  icon: string;
+  class?: string;
 }
 
 const { title, icon, class: className } = Astro.props;
 ---
 
 <section class:list={["flex w-full flex-col gap-6", className]}>
-    <div class="reveal flex flex-col gap-3">
-        <h2
-            class="flex flex-wrap items-center gap-3 text-3xl font-extrabold text-yellow-100 drop-shadow-lg md:text-4xl"
-        >
-            {title}
-            <Icon size="1em" img={icon} class="pointer-events-none" />
-        </h2>
-        <hr class="w-1/3 border-white/40" />
-    </div>
-    <div class="text-lg drop-shadow-md"><slot /></div>
+  <div class="reveal flex flex-col gap-3">
+    <h2
+      class="flex flex-wrap items-center gap-3 text-3xl font-extrabold text-yellow-100 drop-shadow-lg md:text-4xl"
+    >
+      {title}
+      <Icon size="1em" img={icon} class="pointer-events-none" />
+    </h2>
+    <hr class="w-1/3 border-white/40" />
+  </div>
+  <div class="text-lg drop-shadow-md"><slot /></div>
 </section>

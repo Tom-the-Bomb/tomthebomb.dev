@@ -8,15 +8,15 @@ import Icon from "../../components/Icon.astro";
 import { getAlbumImages } from "../../utils";
 
 export async function getStaticPaths() {
-    const albums = await getCollection("albums");
-    return albums.map((album) => ({
-        params: {
-            id: album.id,
-        },
-        props: {
-            album,
-        },
-    }));
+  const albums = await getCollection("albums");
+  return albums.map((album) => ({
+    params: {
+      id: album.id,
+    },
+    props: {
+      album,
+    },
+  }));
 }
 
 const { album } = Astro.props;
@@ -27,243 +27,230 @@ const alt = `From the album: ${title}`;
 ---
 
 <BaseLayout
-    title={`${title} — Photography — Tom the Bomb`}
-    description={album.data.description ||
-        `Photo album: ${title} — browse ${images.length} photos by Tom the Bomb.`}
+  title={`${title} — Photography — Tom the Bomb`}
+  description={album.data.description ||
+    `Photo album: ${title} — browse ${images.length} photos by Tom the Bomb.`}
 >
-    <div
-        id="album-page"
-        class="mt-12 flex flex-col flex-wrap items-center justify-center gap-3 text-center lg:mt-20"
-    >
-        <div class="fade-in-up">
-            <h1 class="text-4xl font-extrabold drop-shadow-lg">
-                {title}
-            </h1>
-            <p class="font-zh p-1 text-2xl text-slate-100">
-                {album.data.short_description}
-            </p>
-        </div>
-        <p
-            class="fade-in-up text-md font-soft w-4/5 pb-0 opacity-75 [animation-delay:0.1s] lg:w-1/2 lg:pb-5"
-        >
-            {album.data.description}
-        </p>
-        <span
-            class="fade-in-up glass inline-flex items-center rounded-full px-4 py-1.5 text-base font-semibold text-slate-200 [animation-delay:0.2s]"
-        >
-            {images.length} Photos
-        </span>
-        <div
-            class="container mx-auto my-8 gap-x-4 px-2 sm:columns-2 sm:px-0 md:columns-3 lg:columns-4"
-        >
-            {
-                images.map((image) => (
-                    <div class="reveal-once break-inside-avoid pb-4">
-                        <div class="cursor-pointer border-8 border-white transition-transform duration-300 ease-in-out will-change-transform hover:scale-[1.02]">
-                            <Image
-                                src={image}
-                                alt={alt}
-                                widths={[800, 600]}
-                                sizes="(max-width: 640px) 800px, 600px"
-                                quality={80}
-                                format="webp"
-                                class="block"
-                                loading="lazy"
-                                decoding="async"
-                                data-album-image={image.src}
-                            />
-                        </div>
-                    </div>
-                ))
-            }
-        </div>
-        <div
-            class="reveal mt-0 font-semibold text-slate-200 drop-shadow-md lg:mt-10"
-        >
-            <a
-                href="/photography"
-                class="glass glass-cta px-6 py-3"
-            >
-                View More Albums
-            </a>
-        </div>
+  <div
+    id="album-page"
+    class="mt-12 flex flex-col flex-wrap items-center justify-center gap-3 text-center lg:mt-20"
+  >
+    <div class="fade-in-up">
+      <h1 class="text-4xl font-extrabold drop-shadow-lg">
+        {title}
+      </h1>
+      <p class="font-zh p-1 text-2xl text-slate-100">
+        {album.data.short_description}
+      </p>
     </div>
-    <div
-        id="modal"
-        role="dialog"
-        aria-modal="true"
-        aria-label={`${title} photo gallery`}
-        class="fixed top-0 left-0 z-50 hidden h-dvh w-dvw bg-black/75 backdrop-blur-md"
+    <p
+      class="fade-in-up text-md font-soft w-4/5 pb-0 opacity-75 [animation-delay:0.1s] lg:w-1/2 lg:pb-5"
     >
-        <Icon
-            img="close"
-            size="4em"
-            class="close-btn absolute z-50 top-4 right-4 text-slate-100"
-            label="Close gallery"
-        />
-        <div class="swiper-body h-full w-full overflow-x-hidden">
-            <div class="swiper gallery-swiper h-full w-full">
-                <div class="swiper-wrapper">
-                    {
-                        images.map((image) => (
-                            <div class="swiper-slide">
-                                <div class="flex h-full w-full flex-col items-center justify-center gap-3 p-5 pt-10">
-                                    <div class="modal-container flex min-h-0 grow items-center justify-center" />
-                                    <p class="modal-caption text-center font-sans text-sm text-wrap text-slate-100">
-                                        {image.exif}
-                                    </p>
-                                    <div class="swiper-lazy-preloader" />
-                                </div>
-                            </div>
-                        ))
-                    }
-                </div>
-                <div
-                    class="swiper-pagination font-monospace absolute top-0 left-1/2 z-50 h-10 -translate-x-1/2 text-center text-sm/10 text-yellow-100"
-                >
-                </div>
-            </div>
-        </div>
-    </div>
-    {
+      {album.data.description}
+    </p>
+    <span
+      class="fade-in-up glass inline-flex items-center rounded-full px-4 py-1.5 text-base font-semibold text-slate-200 [animation-delay:0.2s]"
+    >
+      {images.length} Photos
+    </span>
+    <div
+      class="container mx-auto my-8 gap-x-4 px-2 sm:columns-2 sm:px-0 md:columns-3 lg:columns-4"
+    >
+      {
         images.map((image) => (
-            <template>
-                <Image
-                    src={image}
-                    alt={alt}
-                    widths={[
-                        image.width > image.height
-                            ? 1600
-                            : Math.round((image.width / image.height) * 1600),
-                    ]}
-                    quality={90}
-                    format="webp"
-                    class="block max-h-full w-auto"
-                    loading="lazy"
-                    decoding="async"
-                    data-slide-image={image.src}
-                />
-            </template>
+          <div class="reveal-once break-inside-avoid pb-4">
+            <div class="cursor-pointer border-8 border-white transition-transform duration-300 ease-in-out will-change-transform hover:scale-[1.02]">
+              <Image
+                src={image}
+                alt={alt}
+                widths={[800, 600]}
+                sizes="(max-width: 640px) 800px, 600px"
+                quality={80}
+                format="webp"
+                class="block"
+                loading="lazy"
+                decoding="async"
+                data-album-image={image.src}
+              />
+            </div>
+          </div>
         ))
-    }
+      }
+    </div>
+    <div
+      class="reveal mt-0 font-semibold text-slate-200 drop-shadow-md lg:mt-10"
+    >
+      <a href="/photography" class="glass glass-cta px-6 py-3">
+        View More Albums
+      </a>
+    </div>
+  </div>
+  <div
+    id="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-label={`${title} photo gallery`}
+    class="fixed top-0 left-0 z-50 hidden h-dvh w-dvw bg-black/75 backdrop-blur-md"
+  >
+    <Icon
+      img="close"
+      size="4em"
+      class="close-btn absolute top-4 right-4 z-50 text-slate-100"
+      label="Close gallery"
+    />
+    <div class="swiper-body h-full w-full overflow-x-hidden">
+      <div class="swiper gallery-swiper h-full w-full">
+        <div class="swiper-wrapper">
+          {
+            images.map((image) => (
+              <div class="swiper-slide">
+                <div class="flex h-full w-full flex-col items-center justify-center gap-3 p-5 pt-10">
+                  <div class="modal-container flex min-h-0 grow items-center justify-center" />
+                  <p class="modal-caption text-center font-sans text-sm text-wrap text-slate-100">
+                    {image.exif}
+                  </p>
+                  <div class="swiper-lazy-preloader" />
+                </div>
+              </div>
+            ))
+          }
+        </div>
+        <div
+          class="swiper-pagination font-monospace absolute top-0 left-1/2 z-50 h-10 -translate-x-1/2 text-center text-sm/10 text-yellow-100"
+        >
+        </div>
+      </div>
+    </div>
+  </div>
+  {
+    images.map((image) => (
+      <template>
+        <Image
+          src={image}
+          alt={alt}
+          widths={[
+            image.width > image.height
+              ? 1600
+              : Math.round((image.width / image.height) * 1600),
+          ]}
+          quality={90}
+          format="webp"
+          class="block max-h-full w-auto"
+          loading="lazy"
+          decoding="async"
+          data-slide-image={image.src}
+        />
+      </template>
+    ))
+  }
 </BaseLayout>
 
 <script>
-    import Swiper from "swiper";
-    import { Keyboard, EffectCoverflow, Pagination } from "swiper/modules";
+  import Swiper from "swiper";
+  import { Keyboard, EffectCoverflow, Pagination } from "swiper/modules";
 
-    import "swiper/css";
+  import "swiper/css";
 
-    let prevKeydownHandler: ((e: KeyboardEvent) => void) | null = null;
+  let prevKeydownHandler: ((e: KeyboardEvent) => void) | null = null;
 
-    document.addEventListener("astro:page-load", () => {
-        if (prevKeydownHandler) {
-            document.removeEventListener("keydown", prevKeydownHandler);
-            prevKeydownHandler = null;
+  document.addEventListener("astro:page-load", () => {
+    if (prevKeydownHandler) {
+      document.removeEventListener("keydown", prevKeydownHandler);
+      prevKeydownHandler = null;
+    }
+
+    if (document.getElementById("album-page") === null) {
+      return;
+    }
+
+    const modalEl = document.getElementById("modal")!;
+    const slides = document.querySelectorAll("div.swiper-slide");
+    const containers = document.querySelectorAll("div.modal-container");
+
+    function renderSwiperImages() {
+      document.querySelectorAll("template").forEach((template, idx) => {
+        const modalContainer = containers[idx];
+        if (!modalContainer.children.length) {
+          const modalNode = template.content.cloneNode(true);
+          modalContainer.appendChild(modalNode);
         }
+      });
+    }
 
-        if (document.getElementById("album-page") === null) {
-            return;
-        }
-
-        const modalEl = document.getElementById("modal")!;
-        const slides = document.querySelectorAll("div.swiper-slide");
-        const containers = document.querySelectorAll("div.modal-container");
-
-        function renderSwiperImages() {
-            document.querySelectorAll("template").forEach((template, idx) => {
-                const modalContainer = containers[idx];
-                if (!modalContainer.children.length) {
-                    const modalNode = template.content.cloneNode(true);
-                    modalContainer.appendChild(modalNode);
-                }
-            });
-        }
-
-        const swiper = new Swiper(".gallery-swiper", {
-            modules: [Keyboard, EffectCoverflow, Pagination],
-            effect: "coverflow",
-            loop: true,
-            grabCursor: true,
-            centeredSlides: true,
-            keyboard: true,
-            slidesPerView: 1,
-            spaceBetween: 75,
-            direction: "vertical",
-            breakpoints: {
-                768: {
-                    direction: "horizontal",
-                },
-            },
-            pagination: {
-                el: ".swiper-pagination",
-                type: "fraction",
-            },
-        });
-
-        modalEl
-            .querySelector(".close-btn")
-            ?.addEventListener("click", (event) => {
-                modalEl.classList.add("hidden");
-                event.stopPropagation();
-            });
-
-        const onKeydown = (event: KeyboardEvent) => {
-            if (event.key === "Escape") {
-                modalEl.classList.add("hidden");
-                event.stopPropagation();
-            }
-        };
-        prevKeydownHandler = onKeydown;
-        document.addEventListener("keydown", onKeydown);
-
-        document
-            .querySelectorAll<HTMLImageElement>("[data-album-image]")
-            .forEach((image, idx) => {
-                image.addEventListener("click", () => {
-                    const slideIndex = Number(
-                        slides[idx]?.getAttribute(
-                            "data-swiper-slide-index",
-                        ) ?? idx,
-                    );
-                    swiper.slideToLoop(slideIndex, 0);
-                    modalEl.classList.remove("hidden");
-
-                    if (containers.length && !containers[0].children.length) {
-                        renderSwiperImages();
-                    }
-                });
-            });
-
-        (async () => {
-            await Promise.all(
-                Array.from(
-                    document.querySelectorAll<HTMLImageElement>(
-                        "[data-album-image]",
-                    ),
-                ).map((image) => {
-                    if (
-                        image.complete &&
-                        image.naturalWidth &&
-                        image.naturalHeight
-                    ) {
-                        return Promise.resolve();
-                    }
-
-                    return new Promise<void>((resolve) => {
-                        image.addEventListener("load", () => resolve(), {
-                            once: true,
-                        });
-                        image.addEventListener("error", () => resolve(), {
-                            once: true,
-                        });
-                    });
-                }),
-            );
-
-            if (containers.length && !containers[0].children.length) {
-                renderSwiperImages();
-            }
-        })();
+    const swiper = new Swiper(".gallery-swiper", {
+      modules: [Keyboard, EffectCoverflow, Pagination],
+      effect: "coverflow",
+      loop: true,
+      grabCursor: true,
+      centeredSlides: true,
+      keyboard: true,
+      slidesPerView: 1,
+      spaceBetween: 75,
+      direction: "vertical",
+      breakpoints: {
+        768: {
+          direction: "horizontal",
+        },
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        type: "fraction",
+      },
     });
+
+    modalEl.querySelector(".close-btn")?.addEventListener("click", (event) => {
+      modalEl.classList.add("hidden");
+      event.stopPropagation();
+    });
+
+    const onKeydown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        modalEl.classList.add("hidden");
+        event.stopPropagation();
+      }
+    };
+    prevKeydownHandler = onKeydown;
+    document.addEventListener("keydown", onKeydown);
+
+    document
+      .querySelectorAll<HTMLImageElement>("[data-album-image]")
+      .forEach((image, idx) => {
+        image.addEventListener("click", () => {
+          const slideIndex = Number(
+            slides[idx]?.getAttribute("data-swiper-slide-index") ?? idx,
+          );
+          swiper.slideToLoop(slideIndex, 0);
+          modalEl.classList.remove("hidden");
+
+          if (containers.length && !containers[0].children.length) {
+            renderSwiperImages();
+          }
+        });
+      });
+
+    (async () => {
+      await Promise.all(
+        Array.from(
+          document.querySelectorAll<HTMLImageElement>("[data-album-image]"),
+        ).map((image) => {
+          if (image.complete && image.naturalWidth && image.naturalHeight) {
+            return Promise.resolve();
+          }
+
+          return new Promise<void>((resolve) => {
+            image.addEventListener("load", () => resolve(), {
+              once: true,
+            });
+            image.addEventListener("error", () => resolve(), {
+              once: true,
+            });
+          });
+        }),
+      );
+
+      if (containers.length && !containers[0].children.length) {
+        renderSwiperImages();
+      }
+    })();
+  });
 </script>

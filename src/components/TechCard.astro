@@ -2,21 +2,21 @@
 import { Icon as AstroIcon } from "astro-icon/components";
 
 interface Props {
-    name: string;
-    label?: string;
-    color?: string;
+  name: string;
+  label?: string;
+  color?: string;
 }
 
 const { name, label, color = "" } = Astro.props;
 ---
 
 <div
-    class="glass flex items-center gap-2 rounded-lg px-3 py-2 transition-all duration-300 hover:scale-[1.05] hover:bg-white/10"
+  class="glass flex items-center gap-2 rounded-lg px-3 py-2 transition-all duration-300 hover:scale-[1.05] hover:bg-white/10"
 >
-    <AstroIcon
-        name={`stack/${name}`}
-        size="1.4em"
-        class:list={["shrink-0", color]}
-    />
-    {label && <span class:list={["text-sm font-medium", color]}>{label}</span>}
+  <AstroIcon
+    name={`stack/${name}`}
+    size="1.4em"
+    class:list={["shrink-0", color]}
+  />
+  {label && <span class:list={["text-sm font-medium", color]}>{label}</span>}
 </div>

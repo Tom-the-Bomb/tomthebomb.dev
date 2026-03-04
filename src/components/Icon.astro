@@ -2,47 +2,43 @@
 import { Icon as AstroIcon } from "astro-icon/components";
 
 interface Props {
-    img: string;
-    href?: string;
-    target?: string;
-    color?: string;
-    size?: string;
-    class?: string;
-    label?: string;
+  img: string;
+  href?: string;
+  target?: string;
+  color?: string;
+  size?: string;
+  class?: string;
+  label?: string;
 }
 
 const {
-    img,
-    href,
-    target = "_blank",
-    color = "text-yellow-100",
-    size = "3em",
-    class: className = "",
-    label,
+  img,
+  href,
+  target = "_blank",
+  color = "text-yellow-100",
+  size = "3em",
+  class: className = "",
+  label,
 } = Astro.props;
 
-const iconClasses = [className, color, "transition-all duration-300 hover:scale-110 hover:text-white"];
+const iconClasses = [
+  className,
+  color,
+  "transition-all duration-300 hover:scale-110 hover:text-white",
+];
 ---
 
 {
-    href ? (
-        <a
-            href={href}
-            target={target}
-            rel={target === "_blank" ? "noopener noreferrer" : undefined}
-            aria-label={label}
-        >
-            <AstroIcon
-                name={img}
-                size={size}
-                class:list={iconClasses}
-            />
-        </a>
-    ) : (
-        <AstroIcon
-            name={img}
-            size={size}
-            class:list={iconClasses}
-        />
-    )
+  href ? (
+    <a
+      href={href}
+      target={target}
+      rel={target === "_blank" ? "noopener noreferrer" : undefined}
+      aria-label={label}
+    >
+      <AstroIcon name={img} size={size} class:list={iconClasses} />
+    </a>
+  ) : (
+    <AstroIcon name={img} size={size} class:list={iconClasses} />
+  )
 }

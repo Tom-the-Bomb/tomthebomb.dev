@@ -12,292 +12,317 @@ import { getAge } from "../utils";
 ---
 
 <BaseLayout
-    title="About — Tom the Bomb"
-    description="About Me — computer engineering student at Waterloo, experienced in Rust, Python, and web development, with a passion for photography and aquaria."
+  title="About — Tom the Bomb"
+  description="About Me — computer engineering student at Waterloo, experienced in Rust, Python, and web development, with a passion for photography and aquaria."
 >
+  <div
+    id="about-page"
+    class="mt-10 mb-32 flex w-full max-w-5xl flex-col items-center gap-16 px-6 lg:mt-24 lg:gap-20"
+  >
     <div
-        id="about-page"
-        class="mt-10 mb-32 flex w-full max-w-5xl flex-col items-center gap-16 px-6 lg:mt-24 lg:gap-20"
+      class="flex w-full max-w-3xl flex-col items-center gap-6 text-center md:flex-row md:items-start md:gap-10 md:text-left"
     >
-        <div
-            class="flex w-full max-w-3xl flex-col items-center gap-6 text-center md:flex-row md:items-start md:gap-10 md:text-left"
+      <div
+        class="fade-in-up glass flex h-32 w-32 shrink-0 items-center justify-center rounded-full p-5 transition-transform duration-300 hover:scale-[1.05] md:h-36 md:w-36"
+      >
+        <Image
+          src={blobComfy}
+          alt="Blob Comfy"
+          class="h-auto w-auto opacity-95 brightness-95 hue-rotate-30"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+      <div class="flex flex-col gap-3">
+        <h1 class="page-title drop-shadow-lg [animation-delay:0.1s]">
+          About Me
+        </h1>
+        <h2
+          class="fade-in-up text-2xl font-bold text-yellow-100 drop-shadow-lg [animation-delay:0.18s] md:text-3xl"
         >
-            <div
-                class="fade-in-up glass flex h-32 w-32 shrink-0 items-center justify-center rounded-full p-5 transition-transform duration-300 hover:scale-[1.05] md:h-36 md:w-36"
-            >
-                <Image
-                    src={blobComfy}
-                    alt="Blob Comfy"
-                    class="h-auto w-auto opacity-95 brightness-95 hue-rotate-30"
-                    loading="eager"
-                    decoding="async"
-                />
-            </div>
-            <div class="flex flex-col gap-3">
-                <h1
-                    class="page-title drop-shadow-lg [animation-delay:0.1s]"
-                >
-                    About Me
-                </h1>
-                <h2
-                    class="fade-in-up text-2xl font-bold text-yellow-100 drop-shadow-lg [animation-delay:0.18s] md:text-3xl"
-                >
-                    Tom the Bomb
-                </h2>
-                <div
-                    class="fade-in flex flex-wrap justify-center gap-2 [animation-delay:0.25s] md:justify-start"
-                >
-                    <div
-                        class="glass flex items-center gap-2 rounded-full px-3 py-1.5"
-                    >
-                        <Icon size="1.4em" img="canada" />
-                        <Icon size="1.4em" img="china" />
-                    </div>
-                    <div class="pill text-white/80">
-                        {getAge()} years old
-                    </div>
-                    <div class="pill text-white/80">UWaterloo CE</div>
-                </div>
-            </div>
-        </div>
-
+          Tom the Bomb
+        </h2>
         <div
-            class="fade-in-up content-block w-full max-w-3xl py-3 text-base drop-shadow-lg [animation-delay:0.3s] md:text-lg"
+          class="fade-in flex flex-wrap justify-center gap-2 [animation-delay:0.25s] md:justify-start"
         >
-            <p>
-                Hi there! I'm a {getAge()} year old computer engineering student at
-                the
-                <strong>University of Waterloo</strong> who is passionate about software
-                development, photography, image processing, mathematics, and improving
-                my coding skills through leetcoding and building impactful applications
-                that revolve around my interests.
-            </p>
+          <div class="glass flex items-center gap-2 rounded-full px-3 py-1.5">
+            <Icon size="1.4em" img="canada" />
+            <Icon size="1.4em" img="china" />
+          </div>
+          <div class="pill text-white/80">
+            {getAge()} years old
+          </div>
+          <div class="pill text-white/80">UWaterloo CE</div>
         </div>
-
-        <AboutSection title="Development Tools" icon="stack" class="max-w-3xl">
-            <div class="flex flex-col gap-10">
-                <TechGroup heading="Languages" description="Primary languages for personal and academic projects">
-                    <div class="flex flex-wrap gap-2">
-                        <TechCard name="python" label="Python" color="text-python" />
-                        <TechCard name="rust" label="Rust" color="text-rust" />
-                        <TechCard name="java" label="Java" color="text-java" />
-                        <TechCard name="cpp" color="text-cpp" />
-                    </div>
-                </TechGroup>
-
-                <TechGroup heading="Web Development" description="Frontend frameworks, bundlers, and styling tools">
-                    <div class="flex flex-wrap gap-2">
-                        <TechCard name="javascript" label="JavaScript" color="text-javascript" />
-                        <TechCard name="typescript" label="TypeScript" color="text-typescript" />
-                        <TechCard name="html" label="HTML" color="text-html" />
-                        <TechCard name="css" label="CSS" color="text-css" />
-                        <TechCard name="react" label="React" color="text-react" />
-                        <TechCard name="nextjs" label="Next.js" color="text-nextjs" />
-                        <TechCard name="astro" label="Astro" color="text-astro" />
-                        <TechCard name="solidjs" label="SolidJS" color="text-solidjs" />
-                        <TechCard name="vite" label="Vite" color="text-vite" />
-                        <TechCard name="webassembly" label="WebAssembly" color="text-webassembly" />
-                    </div>
-                </TechGroup>
-
-                <TechGroup heading="Styling">
-                    <div class="flex flex-wrap gap-2">
-                        <TechCard name="tailwind" label="Tailwind CSS" color="text-tailwind" />
-                        <TechCard name="bootstrap" label="Bootstrap" color="text-bootstrap" />
-                        <TechCard name="shadcn" label="shadcn/ui" color="text-shadcn" />
-                    </div>
-                </TechGroup>
-
-                <TechGroup heading="Backend" description="Server frameworks and APIs">
-                    <div class="flex flex-wrap gap-2">
-                        <TechCard name="flask" label="Flask & Quart" color="text-flask" />
-                        <TechCard name="fastapi" label="FastAPI" color="text-fastapi" />
-                        <TechCard name="rust" label="Axum" color="text-axum" />
-                    </div>
-                </TechGroup>
-
-                <TechGroup heading="Data Management">
-                    <div class="flex flex-wrap gap-2">
-                        <TechCard name="mongo" label="MongoDB" color="text-mongo" />
-                        <TechCard name="sqlite" label="SQLite" color="text-sqlite" />
-                        <TechCard name="cloudflare" label="Cloudflare D1 & R2" color="text-cloudflare" />
-                    </div>
-                </TechGroup>
-
-                <TechGroup heading="Libraries" description="Image processing, numerical computing, and data visualization">
-                    <div class="flex flex-wrap gap-2">
-                        <TechCard name="opencv" label="OpenCV" color="text-opencv" />
-                        <TechCard name="numpy" label="NumPy" color="text-numpy" />
-                        <TechCard name="sympy" label="SymPy" color="text-sympy" />
-                        <TechCard name="matplotlib" label="Matplotlib" color="text-matplotlib" />
-                        <TechCard name="python" label="Pillow" color="text-pillow" />
-                    </div>
-                </TechGroup>
-
-                <div
-                    class="reveal flex items-center gap-3 font-sans text-sm text-white/50"
-                >
-                    <Icon size="1.5em" img="lightbulb" />
-                    <p>
-                        This website was made with <span class="text-amber-100"
-                            >Astro</span
-                        >,
-                        <span class="text-sky-200">TypeScript</span>, and <span
-                            class="text-sky-200">Tailwind CSS</span
-                        >
-                    </p>
-                </div>
-            </div>
-            <div class="section-cta reveal">
-                <a href="/projects" class="glass glass-cta"> View Projects </a>
-                <a
-                    href="https://github.com/Tom-the-Bomb"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    class="glass glass-cta group"
-                >
-                    <Icon
-                        size="1.2em"
-                        img="github"
-                        class="text-white/50 group-hover:text-white"
-                        color=""
-                    />
-                    GitHub
-                </a>
-            </div>
-        </AboutSection>
-
-        <hr class="reveal w-1/2 border-white/15" />
-
-        <AboutSection title="Photography" icon="camera" class="max-w-3xl">
-            <div class="flex flex-col gap-8">
-                <div
-                    class="reveal content-block py-2"
-                >
-                    <p>
-                        <strong>Photography</strong> is a way of freezing moments
-                        in time, preserving the beauty I come across, through visual
-                        storytelling. It allows me to see the world from different
-                        perspectives and appreciate the beauty in everyday life.
-                    </p>
-                </div>
-
-                <TechGroup heading="Gear">
-                    <div class="grid gap-4 sm:grid-cols-2">
-                        <div class="glass gear-card">
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <span
-                                        class="font-nexa-black-italic text-xl font-black italic"
-                                        >Nikon
-                                    </span>
-                                    <span class="text-xl">D5300</span>
-                                </div>
-                                <span class="pill text-xs text-slate-200"
-                                    >2024&ndash;</span
-                                >
-                            </div>
-                            <p class="mt-2 text-sm text-slate-300">
-                                18&#8209;140mm f/3.5&#8209;5.6
-                            </p>
-                            <p class="text-sm text-slate-300">
-                                70&#8209;300mm f/4.5&#8209;5.6
-                            </p>
-                        </div>
-                        <div class="glass gear-card">
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <span
-                                        class="font-nexa-black-italic text-xl font-black italic"
-                                        >Nikon
-                                    </span>
-                                    <span class="text-xl">Z5II</span>
-                                </div>
-                                <span class="pill text-xs text-slate-200"
-                                    >2025&ndash;</span
-                                >
-                            </div>
-                            <p class="mt-2 text-sm text-slate-300">
-                                24&#8209;200mm f/4&#8209;6.3
-                            </p>
-                        </div>
-                    </div>
-                    <p class="text-sm text-slate-300/70">
-                        Previously: Canon RP, Canon Rebel T7s, iPhone 13 & 15
-                        Pro
-                    </p>
-                </TechGroup>
-
-                <TechGroup heading="Genres" description="Focusing on unique angles and interesting compositions">
-                    <div class="flex flex-wrap gap-2">
-                        {["Architecture", "Street", "Landscapes & Cityscapes", "Nature & Wildlife", "Macro"].map(genre => (
-                            <span class="pill text-yellow-100">{genre}</span>
-                        ))}
-                    </div>
-                </TechGroup>
-            </div>
-            <div class="section-cta reveal">
-                <a href="/photography" class="glass glass-cta"> View Photos </a>
-                <a
-                    href="https://www.instagram.com/tom_the_bomb_111/"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    class="glass glass-cta"
-                >
-                    <Tech
-                        name="instagram"
-                        class="transition-colors duration-300">Instagram</Tech
-                    >
-                </a>
-            </div>
-        </AboutSection>
-
-        <hr class="reveal w-1/2 border-white/15" />
-
-        <AboutSection title="Aquaria" icon="fish" class="max-w-3xl">
-            <div
-                class="reveal content-block flex max-w-3xl flex-col gap-4 py-2"
-            >
-                <p>
-                    For over five years, I've gained experience maintaining a
-                    variety of aquatic life, including
-                    <span class="text-blue-100">fish</span>, <span
-                        class="text-green-100">plants</span
-                    >,
-                    <span class="text-yellow-100">invertebrates</span>
-                    and <span class="text-red-100">corals</span>&mdash;both in
-                    saltwater and freshwater setups—across multiple aquariums
-                    and an outdoor pond.
-                </p>
-                <p>
-                    Their uniqueness as pets, along with their natural beauty
-                    and calmness they bring forth, has always deeply appealed to
-                    me. While they may not be as interactive as dogs or cats,
-                    having nearly self-sustaining ecosystems in your home,
-                    complete with a range of creatures of all sizes, from
-                    microscopic to large, resonates with me differently.
-                </p>
-            </div>
-            <div class="reveal pt-3">
-                <a
-                    href="/photography/aquaria"
-                    class="glass glass-cta text-yellow-100"
-                >
-                    <Icon size="1.2em" img="camera" />
-                    View Aquaria Photos
-                </a>
-            </div>
-        </AboutSection>
+      </div>
     </div>
-    <style>
-        @reference '../styles/global.css';
 
-        .section-cta {
-            @apply flex flex-wrap gap-3 pt-5;
-        }
+    <div
+      class="fade-in-up content-block w-full max-w-3xl py-3 text-base drop-shadow-lg [animation-delay:0.3s] md:text-lg"
+    >
+      <p>
+        Hi there! I'm a {getAge()} year old computer engineering student at the
+        <strong>University of Waterloo</strong> who is passionate about software development,
+        photography, image processing, mathematics, and improving my coding skills
+        through leetcoding and building impactful applications that revolve around
+        my interests.
+      </p>
+    </div>
 
-        .gear-card {
-            @apply rounded-xl p-5 transition-transform duration-300 hover:scale-[1.02];
-        }
-    </style>
+    <AboutSection title="Development Tools" icon="stack" class="max-w-3xl">
+      <div class="flex flex-col gap-10">
+        <TechGroup
+          heading="Languages"
+          description="Primary languages for personal and academic projects"
+        >
+          <div class="flex flex-wrap gap-2">
+            <TechCard name="python" label="Python" color="text-python" />
+            <TechCard name="rust" label="Rust" color="text-rust" />
+            <TechCard name="java" label="Java" color="text-java" />
+            <TechCard name="cpp" color="text-cpp" />
+          </div>
+        </TechGroup>
+
+        <TechGroup
+          heading="Web Development"
+          description="Frontend frameworks, bundlers, and styling tools"
+        >
+          <div class="flex flex-wrap gap-2">
+            <TechCard
+              name="javascript"
+              label="JavaScript"
+              color="text-javascript"
+            />
+            <TechCard
+              name="typescript"
+              label="TypeScript"
+              color="text-typescript"
+            />
+            <TechCard name="html" label="HTML" color="text-html" />
+            <TechCard name="css" label="CSS" color="text-css" />
+            <TechCard name="react" label="React" color="text-react" />
+            <TechCard name="nextjs" label="Next.js" color="text-nextjs" />
+            <TechCard name="astro" label="Astro" color="text-astro" />
+            <TechCard name="solidjs" label="SolidJS" color="text-solidjs" />
+            <TechCard name="vite" label="Vite" color="text-vite" />
+            <TechCard
+              name="webassembly"
+              label="WebAssembly"
+              color="text-webassembly"
+            />
+          </div>
+        </TechGroup>
+
+        <TechGroup heading="Styling">
+          <div class="flex flex-wrap gap-2">
+            <TechCard
+              name="tailwind"
+              label="Tailwind CSS"
+              color="text-tailwind"
+            />
+            <TechCard
+              name="bootstrap"
+              label="Bootstrap"
+              color="text-bootstrap"
+            />
+            <TechCard name="shadcn" label="shadcn/ui" color="text-shadcn" />
+          </div>
+        </TechGroup>
+
+        <TechGroup heading="Backend" description="Server frameworks and APIs">
+          <div class="flex flex-wrap gap-2">
+            <TechCard name="flask" label="Flask & Quart" color="text-flask" />
+            <TechCard name="fastapi" label="FastAPI" color="text-fastapi" />
+            <TechCard name="rust" label="Axum" color="text-axum" />
+          </div>
+        </TechGroup>
+
+        <TechGroup heading="Data Management">
+          <div class="flex flex-wrap gap-2">
+            <TechCard name="mongo" label="MongoDB" color="text-mongo" />
+            <TechCard name="sqlite" label="SQLite" color="text-sqlite" />
+            <TechCard
+              name="cloudflare"
+              label="Cloudflare D1 & R2"
+              color="text-cloudflare"
+            />
+          </div>
+        </TechGroup>
+
+        <TechGroup
+          heading="Libraries"
+          description="Image processing, numerical computing, and data visualization"
+        >
+          <div class="flex flex-wrap gap-2">
+            <TechCard name="opencv" label="OpenCV" color="text-opencv" />
+            <TechCard name="numpy" label="NumPy" color="text-numpy" />
+            <TechCard name="sympy" label="SymPy" color="text-sympy" />
+            <TechCard
+              name="matplotlib"
+              label="Matplotlib"
+              color="text-matplotlib"
+            />
+            <TechCard name="python" label="Pillow" color="text-pillow" />
+          </div>
+        </TechGroup>
+
+        <div
+          class="reveal flex items-center gap-3 font-sans text-sm text-white/50"
+        >
+          <Icon size="1.5em" img="lightbulb" />
+          <p>
+            This website was made with <span class="text-amber-100">Astro</span
+            >,
+            <span class="text-sky-200">TypeScript</span>, and <span
+              class="text-sky-200">Tailwind CSS</span
+            >
+          </p>
+        </div>
+      </div>
+      <div class="section-cta reveal">
+        <a href="/projects" class="glass glass-cta"> View Projects </a>
+        <a
+          href="https://github.com/Tom-the-Bomb"
+          rel="noopener noreferrer"
+          target="_blank"
+          class="glass glass-cta group"
+        >
+          <Icon
+            size="1.2em"
+            img="github"
+            class="text-white/50 group-hover:text-white"
+            color=""
+          />
+          GitHub
+        </a>
+      </div>
+    </AboutSection>
+
+    <hr class="reveal w-1/2 border-white/15" />
+
+    <AboutSection title="Photography" icon="camera" class="max-w-3xl">
+      <div class="flex flex-col gap-8">
+        <div class="reveal content-block py-2">
+          <p>
+            <strong>Photography</strong> is a way of freezing moments in time, preserving
+            the beauty I come across, through visual storytelling. It allows me to
+            see the world from different perspectives and appreciate the beauty in
+            everyday life.
+          </p>
+        </div>
+
+        <TechGroup heading="Gear">
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div class="glass gear-card">
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="font-nexa-black-italic text-xl font-black italic"
+                    >Nikon
+                  </span>
+                  <span class="text-xl">D5300</span>
+                </div>
+                <span class="pill text-xs text-slate-200">2024&ndash;</span>
+              </div>
+              <p class="mt-2 text-sm text-slate-300">
+                18&#8209;140mm f/3.5&#8209;5.6
+              </p>
+              <p class="text-sm text-slate-300">
+                70&#8209;300mm f/4.5&#8209;5.6
+              </p>
+            </div>
+            <div class="glass gear-card">
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="font-nexa-black-italic text-xl font-black italic"
+                    >Nikon
+                  </span>
+                  <span class="text-xl">Z5II</span>
+                </div>
+                <span class="pill text-xs text-slate-200">2025&ndash;</span>
+              </div>
+              <p class="mt-2 text-sm text-slate-300">
+                24&#8209;200mm f/4&#8209;6.3
+              </p>
+            </div>
+          </div>
+          <p class="text-sm text-slate-300/70">
+            Previously: Canon RP, Canon Rebel T7s, iPhone 13 & 15 Pro
+          </p>
+        </TechGroup>
+
+        <TechGroup
+          heading="Genres"
+          description="Focusing on unique angles and interesting compositions"
+        >
+          <div class="flex flex-wrap gap-2">
+            {
+              [
+                "Architecture",
+                "Street",
+                "Landscapes & Cityscapes",
+                "Nature & Wildlife",
+                "Macro",
+              ].map((genre) => (
+                <span class="pill text-yellow-100">{genre}</span>
+              ))
+            }
+          </div>
+        </TechGroup>
+      </div>
+      <div class="section-cta reveal">
+        <a href="/photography" class="glass glass-cta"> View Photos </a>
+        <a
+          href="https://www.instagram.com/tom_the_bomb_111/"
+          rel="noopener noreferrer"
+          target="_blank"
+          class="glass glass-cta"
+        >
+          <Tech name="instagram" class="transition-colors duration-300"
+            >Instagram</Tech
+          >
+        </a>
+      </div>
+    </AboutSection>
+
+    <hr class="reveal w-1/2 border-white/15" />
+
+    <AboutSection title="Aquaria" icon="fish" class="max-w-3xl">
+      <div class="reveal content-block flex max-w-3xl flex-col gap-4 py-2">
+        <p>
+          For over five years, I've gained experience maintaining a variety of
+          aquatic life, including
+          <span class="text-blue-100">fish</span>, <span class="text-green-100"
+            >plants</span
+          >,
+          <span class="text-yellow-100">invertebrates</span>
+          and <span class="text-red-100">corals</span>&mdash;both in saltwater
+          and freshwater setups—across multiple aquariums and an outdoor pond.
+        </p>
+        <p>
+          Their uniqueness as pets, along with their natural beauty and calmness
+          they bring forth, has always deeply appealed to me. While they may not
+          be as interactive as dogs or cats, having nearly self-sustaining
+          ecosystems in your home, complete with a range of creatures of all
+          sizes, from microscopic to large, resonates with me differently.
+        </p>
+      </div>
+      <div class="reveal pt-3">
+        <a href="/photography/aquaria" class="glass glass-cta text-yellow-100">
+          <Icon size="1.2em" img="camera" />
+          View Aquaria Photos
+        </a>
+      </div>
+    </AboutSection>
+  </div>
+  <style>
+    @reference '../styles/global.css';
+
+    .section-cta {
+      @apply flex flex-wrap gap-3 pt-5;
+    }
+
+    .gear-card {
+      @apply rounded-xl p-5 transition-transform duration-300 hover:scale-[1.02];
+    }
+  </style>
 </BaseLayout>

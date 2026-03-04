@@ -4,234 +4,218 @@ import Project from "../components/Project.astro";
 import { projects } from "../projects";
 
 const tagCount = new Map<
-    string,
-    { name: string; color: string; count: number }
+  string,
+  { name: string; color: string; count: number }
 >();
 for (const project of projects) {
-    for (const tag of project.tags ?? []) {
-        const key = tag.name.toLowerCase();
-        const existing = tagCount.get(key);
-        if (existing) {
-            existing.count++;
-        } else {
-            tagCount.set(key, { ...tag, count: 1 });
-        }
+  for (const tag of project.tags ?? []) {
+    const key = tag.name.toLowerCase();
+    const existing = tagCount.get(key);
+    if (existing) {
+      existing.count++;
+    } else {
+      tagCount.set(key, { ...tag, count: 1 });
     }
+  }
 }
 const uniqueTags = [...tagCount.values()].sort((a, b) => b.count - a.count);
 ---
 
 <BaseLayout
-    title="Projects — Tom the Bomb"
-    description="A showcase of various software projects by Tom the Bomb"
+  title="Projects — Tom the Bomb"
+  description="A showcase of various software projects by Tom the Bomb"
 >
-    <div
-        class="mt-16 mb-20 flex w-full flex-col items-center gap-10 px-6 lg:mt-20 lg:px-16 xl:px-24"
-    >
-        <div class="flex flex-col items-center gap-3 text-center">
-            <h1 class="page-title">
-                Projects
-            </h1>
-            <p
-                class="fade-in font-soft text-base text-white/60 [animation-delay:0.15s]"
+  <div
+    class="mt-16 mb-20 flex w-full flex-col items-center gap-10 px-6 lg:mt-20 lg:px-16 xl:px-24"
+  >
+    <div class="flex flex-col items-center gap-3 text-center">
+      <h1 class="page-title">Projects</h1>
+      <p
+        class="fade-in font-soft text-base text-white/60 [animation-delay:0.15s]"
+      >
+        A collection of my software projects
+      </p>
+      <div
+        class="fade-in mt-2 flex flex-wrap justify-center gap-2 [animation-delay:0.3s]"
+      >
+        {
+          [2025, 2024, 2023].map((year) => (
+            <a
+              href={`https://github.com/Tom-the-Bomb/aoc-${year}`}
+              rel="noopener noreferrer"
+              target="_blank"
+              class="aoc-pill"
             >
-                A collection of my software projects
-            </p>
-            <div
-                class="fade-in mt-2 flex flex-wrap justify-center gap-2 [animation-delay:0.3s]"
-            >
-                {
-                    [2025, 2024, 2023].map((year) => (
-                        <a
-                            href={`https://github.com/Tom-the-Bomb/aoc-${year}`}
-                            rel="noopener noreferrer"
-                            target="_blank"
-                            class="aoc-pill"
-                        >
-                            AoC {year}
-                        </a>
-                    ))
-                }
-            </div>
-        </div>
-
-        <div
-            id="project-filters"
-            class="fade-in -mb-5 flex w-full items-baseline gap-3 [animation-delay:0.4s]"
-        >
-            <span class="filter-label shrink-0">Filter By Tool</span>
-            <div
-                id="filter-tags"
-                class="flex min-w-0 flex-1 flex-wrap items-baseline gap-x-1 overflow-hidden"
-            >
-                <button class="filter-tag filter-active" data-tag="all"
-                    >All</button
-                >
-                {
-                    uniqueTags.map((tag) => (
-                        <>
-                            <span class="filter-dot">&middot;</span>
-                            <button
-                                class="filter-tag"
-                                data-tag={tag.name.toLowerCase()}
-                            >
-                                {tag.name}
-                            </button>
-                        </>
-                    ))
-                }
-            </div>
-            <button id="filter-toggle" class="filter-toggle hidden shrink-0">
-            </button>
-        </div>
-
-        <div
-            class="stagger-grid grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
-        >
-            {
-                projects.map((project) => (
-                    <Project {...project}>
-                        {project.description}
-                    </Project>
-                ))
-            }
-        </div>
+              AoC {year}
+            </a>
+          ))
+        }
+      </div>
     </div>
 
-    <style>
-        @reference '../styles/global.css';
-
-        .aoc-pill {
-            @apply rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs text-yellow-100 no-underline transition-colors duration-200 hover:bg-white/20 hover:text-white;
+    <div
+      id="project-filters"
+      class="fade-in -mb-5 flex w-full items-baseline gap-3 [animation-delay:0.4s]"
+    >
+      <span class="filter-label shrink-0">Filter By Tool</span>
+      <div
+        id="filter-tags"
+        class="flex min-w-0 flex-1 flex-wrap items-baseline gap-x-1 overflow-hidden"
+      >
+        <button class="filter-tag filter-active" data-tag="all">All</button>
+        {
+          uniqueTags.map((tag) => (
+            <>
+              <span class="filter-dot">&middot;</span>
+              <button class="filter-tag" data-tag={tag.name.toLowerCase()}>
+                {tag.name}
+              </button>
+            </>
+          ))
         }
+      </div>
+      <button id="filter-toggle" class="filter-toggle hidden shrink-0">
+      </button>
+    </div>
 
-        .filter-label {
-            @apply text-[0.65rem] font-bold tracking-widest text-white/30 uppercase;
-        }
+    <div
+      class="stagger-grid grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+    >
+      {
+        projects.map((project) => (
+          <Project {...project}>{project.description}</Project>
+        ))
+      }
+    </div>
+  </div>
 
-        .filter-tag {
-            @apply cursor-pointer border-none bg-transparent px-1 py-0.5 text-xs text-white/32 transition-colors duration-150 hover:text-white/70;
-        }
+  <style>
+    @reference '../styles/global.css';
 
-        .filter-tag.filter-active {
-            @apply text-white;
-        }
+    .aoc-pill {
+      @apply rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs text-yellow-100 no-underline transition-colors duration-200 hover:bg-white/20 hover:text-white;
+    }
 
-        .filter-dot {
-            @apply text-xs text-white/17 select-none;
-        }
+    .filter-label {
+      @apply text-[0.65rem] font-bold tracking-widest text-white/30 uppercase;
+    }
 
-        .filter-toggle {
-            @apply cursor-pointer border-none bg-transparent text-xs text-white/40 hover:text-white/60;
-        }
+    .filter-tag {
+      @apply cursor-pointer border-none bg-transparent px-1 py-0.5 text-xs text-white/32 transition-colors duration-150 hover:text-white/70;
+    }
 
-    </style>
+    .filter-tag.filter-active {
+      @apply text-white;
+    }
 
-    <script>
-        document.addEventListener("astro:page-load", () => {
-            const filterBar = document.getElementById("project-filters");
-            const grid = document.querySelector(".stagger-grid");
-            const tagsContainer = document.getElementById("filter-tags");
-            const toggleBtn = document.getElementById(
-                "filter-toggle",
-            ) as HTMLButtonElement | null;
-            if (!filterBar || !grid || !tagsContainer || !toggleBtn) return;
+    .filter-dot {
+      @apply text-xs text-white/17 select-none;
+    }
 
-            const allBtn =
-                filterBar.querySelector<HTMLButtonElement>('[data-tag="all"]');
-            const tagBtns = filterBar.querySelectorAll<HTMLButtonElement>(
-                '[data-tag]:not([data-tag="all"])',
-            );
-            const cards = grid.querySelectorAll<HTMLElement>("[data-tags]");
-            const activeTags = new Set<string>();
+    .filter-toggle {
+      @apply cursor-pointer border-none bg-transparent text-xs text-white/40 hover:text-white/60;
+    }
+  </style>
 
-            // Measure one-line height
-            const firstTag = tagsContainer.children[0] as HTMLElement;
-            const containerRect = tagsContainer.getBoundingClientRect();
-            const firstTagRect = firstTag.getBoundingClientRect();
-            const oneLineHeight = firstTagRect.bottom - containerRect.top + 2;
+  <script>
+    document.addEventListener("astro:page-load", () => {
+      const filterBar = document.getElementById("project-filters");
+      const grid = document.querySelector(".stagger-grid");
+      const tagsContainer = document.getElementById("filter-tags");
+      const toggleBtn = document.getElementById(
+        "filter-toggle",
+      ) as HTMLButtonElement | null;
+      if (!filterBar || !grid || !tagsContainer || !toggleBtn) return;
 
-            // Count filter tags (not dots) that overflow beyond the first line
-            const firstTop = firstTag.offsetTop;
-            let hiddenCount = 0;
-            for (const child of Array.from(
-                tagsContainer.querySelectorAll("[data-tag]"),
-            )) {
-                if ((child as HTMLElement).offsetTop > firstTop) hiddenCount++;
-            }
+      const allBtn =
+        filterBar.querySelector<HTMLButtonElement>('[data-tag="all"]');
+      const tagBtns = filterBar.querySelectorAll<HTMLButtonElement>(
+        '[data-tag]:not([data-tag="all"])',
+      );
+      const cards = grid.querySelectorAll<HTMLElement>("[data-tags]");
+      const activeTags = new Set<string>();
 
-            // Collapse to one line (no transition — instant)
+      // Measure one-line height
+      const firstTag = tagsContainer.children[0] as HTMLElement;
+      const containerRect = tagsContainer.getBoundingClientRect();
+      const firstTagRect = firstTag.getBoundingClientRect();
+      const oneLineHeight = firstTagRect.bottom - containerRect.top + 2;
+
+      // Count filter tags (not dots) that overflow beyond the first line
+      const firstTop = firstTag.offsetTop;
+      let hiddenCount = 0;
+      for (const child of Array.from(
+        tagsContainer.querySelectorAll("[data-tag]"),
+      )) {
+        if ((child as HTMLElement).offsetTop > firstTop) hiddenCount++;
+      }
+
+      // Collapse to one line (no transition — instant)
+      tagsContainer.style.maxHeight = oneLineHeight + "px";
+
+      let expanded = false;
+
+      if (hiddenCount > 0) {
+        toggleBtn.textContent = `+${hiddenCount} more`;
+        toggleBtn.classList.remove("hidden");
+
+        toggleBtn.addEventListener("click", () => {
+          expanded = !expanded;
+          if (expanded) {
+            tagsContainer.style.maxHeight = "none";
+            toggleBtn.textContent = "less";
+          } else {
             tagsContainer.style.maxHeight = oneLineHeight + "px";
-
-            let expanded = false;
-
-            if (hiddenCount > 0) {
-                toggleBtn.textContent = `+${hiddenCount} more`;
-                toggleBtn.classList.remove("hidden");
-
-                toggleBtn.addEventListener("click", () => {
-                    expanded = !expanded;
-                    if (expanded) {
-                        tagsContainer.style.maxHeight = "none";
-                        toggleBtn.textContent = "less";
-                    } else {
-                        tagsContainer.style.maxHeight = oneLineHeight + "px";
-                        toggleBtn.textContent = `+${hiddenCount} more`;
-                    }
-                });
-            }
-
-            // Filter logic
-            function updateFilter() {
-                cards.forEach((card) => {
-                    const cardTags = card.dataset.tags?.split(",") ?? [];
-                    const show =
-                        activeTags.size === 0 ||
-                        cardTags.some((t) => activeTags.has(t));
-                    const wasHidden = card.style.display === "none";
-
-                    if (show) {
-                        card.style.display = "";
-                        if (wasHidden) {
-                            card.classList.remove("visible");
-                            requestAnimationFrame(() =>
-                                card.classList.add("visible"),
-                            );
-                        }
-                    } else {
-                        card.style.display = "none";
-                        card.classList.remove("visible");
-                    }
-                });
-
-                allBtn?.classList.toggle(
-                    "filter-active",
-                    activeTags.size === 0,
-                );
-                tagBtns.forEach((btn) => {
-                    btn.classList.toggle(
-                        "filter-active",
-                        activeTags.has(btn.dataset.tag!),
-                    );
-                });
-            }
-
-            allBtn?.addEventListener("click", () => {
-                activeTags.clear();
-                updateFilter();
-            });
-
-            tagBtns.forEach((btn) => {
-                btn.addEventListener("click", () => {
-                    const tag = btn.dataset.tag!;
-                    if (activeTags.has(tag)) {
-                        activeTags.delete(tag);
-                    } else {
-                        activeTags.add(tag);
-                    }
-                    updateFilter();
-                });
-            });
+            toggleBtn.textContent = `+${hiddenCount} more`;
+          }
         });
-    </script>
+      }
+
+      // Filter logic
+      function updateFilter() {
+        cards.forEach((card) => {
+          const cardTags = card.dataset.tags?.split(",") ?? [];
+          const show =
+            activeTags.size === 0 || cardTags.some((t) => activeTags.has(t));
+          const wasHidden = card.style.display === "none";
+
+          if (show) {
+            card.style.display = "";
+            if (wasHidden) {
+              card.classList.remove("visible");
+              requestAnimationFrame(() => card.classList.add("visible"));
+            }
+          } else {
+            card.style.display = "none";
+            card.classList.remove("visible");
+          }
+        });
+
+        allBtn?.classList.toggle("filter-active", activeTags.size === 0);
+        tagBtns.forEach((btn) => {
+          btn.classList.toggle(
+            "filter-active",
+            activeTags.has(btn.dataset.tag!),
+          );
+        });
+      }
+
+      allBtn?.addEventListener("click", () => {
+        activeTags.clear();
+        updateFilter();
+      });
+
+      tagBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const tag = btn.dataset.tag!;
+          if (activeTags.has(tag)) {
+            activeTags.delete(tag);
+          } else {
+            activeTags.add(tag);
+          }
+          updateFilter();
+        });
+      });
+    });
+  </script>
 </BaseLayout>

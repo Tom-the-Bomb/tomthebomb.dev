@@ -2,8 +2,8 @@
 import { ClientRouter } from "astro:transitions";
 
 interface Props {
-    title: string;
-    description: string;
+  title: string;
+  description: string;
 }
 
 const { title, description } = Astro.props;
@@ -13,20 +13,20 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
 const ogImage = `${siteUrl}/blobcomfy_og.png`;
 
 const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Tom the Bomb",
-    url: siteUrl,
-    image: ogImage,
-    jobTitle: "Computer Engineering Student",
-    affiliation: {
-        "@type": "CollegeOrUniversity",
-        name: "University of Waterloo",
-    },
-    sameAs: [
-        "https://github.com/Tom-the-Bomb",
-        "https://www.instagram.com/tom_the_bomb_111/",
-    ],
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Tom the Bomb",
+  url: siteUrl,
+  image: ogImage,
+  jobTitle: "Computer Engineering Student",
+  affiliation: {
+    "@type": "CollegeOrUniversity",
+    name: "University of Waterloo",
+  },
+  sameAs: [
+    "https://github.com/Tom-the-Bomb",
+    "https://www.instagram.com/tom_the_bomb_111/",
+  ],
 };
 ---
 
@@ -66,27 +66,27 @@ const jsonLd = {
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-    href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
-    rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
+  rel="stylesheet"
 />
 <link
-    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
-    rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+  rel="stylesheet"
 />
 <link
-    href="https://fonts.googleapis.com/css2?family=Long+Cang&display=swap"
-    rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Long+Cang&display=swap"
+  rel="stylesheet"
 />
 <link
-    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap"
-    rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap"
+  rel="stylesheet"
 />
 
 <!-- JSON-LD Structured Data -->
 <script
-    is:inline
-    type="application/ld+json"
-    set:html={JSON.stringify(jsonLd)}
+  is:inline
+  type="application/ld+json"
+  set:html={JSON.stringify(jsonLd)}
 />
 
 <ClientRouter />

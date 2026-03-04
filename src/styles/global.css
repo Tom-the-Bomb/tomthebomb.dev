@@ -1,235 +1,235 @@
 @import "tailwindcss";
 
 @theme {
-    --font-soft: "Quicksand", sans-serif;
-    --font-zh: "Long Cang", serif;
-    --font-sans: "Titillium Web", sans-serif;
-    --font-mono: "Jetbrains Mono", monospace;
-    --font-nexa-black-italic: "Nexa Black Italic", sans-serif;
+  --font-soft: "Quicksand", sans-serif;
+  --font-zh: "Long Cang", serif;
+  --font-sans: "Titillium Web", sans-serif;
+  --font-mono: "Jetbrains Mono", monospace;
+  --font-nexa-black-italic: "Nexa Black Italic", sans-serif;
 
-    --color-python: var(--color-indigo-100);
-    --color-rust: var(--color-red-100);
-    --color-java: var(--color-orange-200);
-    --color-cpp: var(--color-purple-100);
-    --color-javascript: var(--color-yellow-200);
-    --color-typescript: var(--color-sky-200);
-    --color-html: var(--color-orange-200);
-    --color-css: var(--color-purple-100);
-    --color-react: var(--color-sky-100);
-    --color-astro: var(--color-amber-100);
-    --color-tailwind: var(--color-sky-200);
-    --color-bootstrap: var(--color-violet-200);
-    --color-webassembly: var(--color-sky-100);
-    --color-flask: var(--color-cyan-100);
-    --color-quart: var(--color-cyan-100);
-    --color-axum: var(--color-red-100);
-    --color-mongo: var(--color-green-200);
-    --color-sqlite: var(--color-indigo-100);
-    --color-opencv: var(--color-blue-100);
-    --color-pillow: var(--color-pink-100);
-    --color-numpy: var(--color-purple-100);
-    --color-sympy: var(--color-green-200);
-    --color-matplotlib: var(--color-orange-200);
-    --color-p5: var(--color-red-100);
-    --color-vite: var(--color-yellow-100);
-    --color-instagram: var(--color-yellow-100);
-    --color-discordpy: var(--color-indigo-100);
-    --color-sphinx: var(--color-blue-100);
-    --color-cloudflare: var(--color-orange-200);
-    --color-d3: var(--color-orange-200);
-    --color-leaflet: var(--color-green-200);
-    --color-swiper: var(--color-purple-200);
-    --color-nextjs: var(--color-slate-200);
-    --color-fastapi: var(--color-teal-200);
-    --color-shadcn: var(--color-zinc-200);
-    --color-solidjs: var(--color-blue-200);
-    --color-webgl: var(--color-red-100);
+  --color-python: var(--color-indigo-100);
+  --color-rust: var(--color-red-100);
+  --color-java: var(--color-orange-200);
+  --color-cpp: var(--color-purple-100);
+  --color-javascript: var(--color-yellow-200);
+  --color-typescript: var(--color-sky-200);
+  --color-html: var(--color-orange-200);
+  --color-css: var(--color-purple-100);
+  --color-react: var(--color-sky-100);
+  --color-astro: var(--color-amber-100);
+  --color-tailwind: var(--color-sky-200);
+  --color-bootstrap: var(--color-violet-200);
+  --color-webassembly: var(--color-sky-100);
+  --color-flask: var(--color-cyan-100);
+  --color-quart: var(--color-cyan-100);
+  --color-axum: var(--color-red-100);
+  --color-mongo: var(--color-green-200);
+  --color-sqlite: var(--color-indigo-100);
+  --color-opencv: var(--color-blue-100);
+  --color-pillow: var(--color-pink-100);
+  --color-numpy: var(--color-purple-100);
+  --color-sympy: var(--color-green-200);
+  --color-matplotlib: var(--color-orange-200);
+  --color-p5: var(--color-red-100);
+  --color-vite: var(--color-yellow-100);
+  --color-instagram: var(--color-yellow-100);
+  --color-discordpy: var(--color-indigo-100);
+  --color-sphinx: var(--color-blue-100);
+  --color-cloudflare: var(--color-orange-200);
+  --color-d3: var(--color-orange-200);
+  --color-leaflet: var(--color-green-200);
+  --color-swiper: var(--color-purple-200);
+  --color-nextjs: var(--color-slate-200);
+  --color-fastapi: var(--color-teal-200);
+  --color-shadcn: var(--color-zinc-200);
+  --color-solidjs: var(--color-blue-200);
+  --color-webgl: var(--color-red-100);
 }
 
 @font-face {
-    font-family: "Nexa Black Italic";
-    src:
-        url("/fonts/NexaBlackItalic.woff2") format("woff2"),
-        url("/fonts/NexaBlackItalic.woff") format("woff");
-    font-style: italic;
-    font-weight: 900;
-    font-display: swap;
+  font-family: "Nexa Black Italic";
+  src:
+    url("/fonts/NexaBlackItalic.woff2") format("woff2"),
+    url("/fonts/NexaBlackItalic.woff") format("woff");
+  font-style: italic;
+  font-weight: 900;
+  font-display: swap;
 }
 
 @keyframes typewriter {
-    0% {
-        width: 0;
-    }
-    50% {
-        width: 12ch;
-    }
-    90% {
-        width: 12ch;
-    }
-    100% {
-        width: 0;
-    }
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 12ch;
+  }
+  90% {
+    width: 12ch;
+  }
+  100% {
+    width: 0;
+  }
 }
 
 @keyframes blinking-text-cursor {
-    from {
-        border-right-color: rgba(255, 255, 255, 0.75);
-    }
-    to {
-        border-right-color: transparent;
-    }
+  from {
+    border-right-color: rgba(255, 255, 255, 0.75);
+  }
+  to {
+    border-right-color: transparent;
+  }
 }
 
 @keyframes float-bob {
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-12px);
-    }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
 @keyframes fade-in-up {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fade-in {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @layer components {
-    body {
-        @apply font-mono text-white;
-    }
+  body {
+    @apply font-mono text-white;
+  }
 
-    .effect-underline {
-        @apply relative inline-block;
-    }
+  .effect-underline {
+    @apply relative inline-block;
+  }
 
-    .effect-underline::after {
-        @apply absolute left-0 inline-block h-[1em] w-full border-b opacity-0 mt-2.5;
-        content: "";
-        transition:
-            opacity 0.35s,
-            transform 0.35s;
-        transform: scale(0, 1);
-    }
+  .effect-underline::after {
+    @apply absolute left-0 mt-2.5 inline-block h-[1em] w-full border-b opacity-0;
+    content: "";
+    transition:
+      opacity 0.35s,
+      transform 0.35s;
+    transform: scale(0, 1);
+  }
 
-    .effect-underline:hover::after {
-        @apply opacity-100;
-        transform: scale(1);
-    }
+  .effect-underline:hover::after {
+    @apply opacity-100;
+    transform: scale(1);
+  }
 
+  .typewriter {
+    @apply relative overflow-hidden border-r-2 border-white/75 whitespace-nowrap;
+    animation:
+      typewriter 7s steps(12) 1s infinite normal both,
+      blinking-text-cursor 500ms steps(12) infinite normal;
+  }
+
+  @media (pointer: fine) {
     .typewriter {
-        @apply relative overflow-hidden border-r-2 border-white/75 whitespace-nowrap;
-        animation:
-            typewriter 7s steps(12) 1s infinite normal both,
-            blinking-text-cursor 500ms steps(12) infinite normal;
+      @apply drop-shadow-xl;
     }
+  }
 
-    @media (pointer: fine) {
-        .typewriter {
-            @apply drop-shadow-xl;
-        }
-    }
+  .glass {
+    @apply relative border border-white/35 bg-white/[0.07] shadow-[inset_0_4px_20px_rgba(255,255,255,0.1)] backdrop-blur-[2px];
+  }
 
-    .glass {
-        @apply relative border border-white/35 bg-white/[0.07] backdrop-blur-[2px] shadow-[inset_0_4px_20px_rgba(255,255,255,0.1)];
-    }
+  .glass::after {
+    @apply absolute top-0 left-0 -z-1 h-full w-full rounded-[inherit] bg-white/4 opacity-40 backdrop-blur-[1px] content-[''];
+    box-shadow:
+      inset -10px -8px 0px -11px rgba(255, 255, 255, 0.5),
+      inset 0px -9px 0px -8px rgba(255, 255, 255, 0.5);
+    filter: blur(1px) drop-shadow(10px 4px 6px rgba(0, 0, 0, 0.3))
+      brightness(110%);
+  }
 
-    .glass::after {
-        @apply absolute top-0 left-0 h-full w-full rounded-[inherit] bg-white/4 opacity-40 backdrop-blur-[1px] -z-1 content-[''];
-        box-shadow:
-            inset -10px -8px 0px -11px rgba(255, 255, 255, 0.5),
-            inset 0px -9px 0px -8px rgba(255, 255, 255, 0.5);
-        filter: blur(1px) drop-shadow(10px 4px 6px rgba(0, 0, 0, 0.3))
-            brightness(110%);
-    }
+  .float-bob {
+    animation: float-bob 3s ease-in-out infinite;
+  }
 
-    .float-bob {
-        animation: float-bob 3s ease-in-out infinite;
-    }
+  .pill {
+    @apply inline-flex items-center gap-1 rounded-full border-[0.5px] border-white/18 bg-white/8 px-2.5 py-0.5 text-xs font-semibold backdrop-blur-md;
+  }
 
-    .pill {
-        @apply inline-flex items-center gap-1 rounded-full border-[0.5px] border-white/18 bg-white/8 px-2.5 py-0.5 text-xs font-semibold backdrop-blur-md;
-    }
+  .page-title {
+    @apply text-5xl font-extrabold drop-shadow-md md:text-6xl;
+    animation: fade-in-up 0.5s ease-out both;
+  }
 
-    .page-title {
-        @apply text-5xl font-extrabold drop-shadow-md md:text-6xl;
-        animation: fade-in-up 0.5s ease-out both;
-    }
+  .content-block {
+    @apply border-l-2 border-white/20 pl-5 leading-relaxed;
+  }
 
-    .content-block {
-        @apply border-l-2 border-white/20 pl-5 leading-relaxed;
-    }
+  .glass-cta {
+    @apply inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold text-white/70 transition-all duration-300 hover:scale-[1.03] hover:text-white;
+  }
 
-    .glass-cta {
-        @apply inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold text-white/70 transition-all duration-300 hover:scale-[1.03] hover:text-white;
-    }
+  .fade-in-up {
+    animation: fade-in-up 0.5s ease-out both;
+  }
 
-    .fade-in-up {
-        animation: fade-in-up 0.5s ease-out both;
-    }
-
-    .fade-in {
-        animation: fade-in 1s ease-out both;
-    }
+  .fade-in {
+    animation: fade-in 1s ease-out both;
+  }
 }
 
 /* Animation/transition classes must stay un-layered so they are not
    overridden by Tailwind utility classes (e.g. transition-transform) */
 
 .reveal {
-    opacity: 0;
-    translate: 0 24px;
-    transition:
-        opacity 0.45s ease-in,
-        translate 0.45s ease-in,
-        scale 0.2s ease-in-out;
+  opacity: 0;
+  translate: 0 24px;
+  transition:
+    opacity 0.45s ease-in,
+    translate 0.45s ease-in,
+    scale 0.2s ease-in-out;
 }
 
 .reveal.visible {
-    opacity: 1;
-    translate: none;
-    transition:
-        opacity 0.65s ease-out,
-        translate 0.65s ease-out,
-        scale 0.2s ease-in-out;
+  opacity: 1;
+  translate: none;
+  transition:
+    opacity 0.65s ease-out,
+    translate 0.65s ease-out,
+    scale 0.2s ease-in-out;
 }
 
 .reveal-once {
-    opacity: 0;
+  opacity: 0;
 }
 
 .reveal-once.visible {
-    opacity: 1;
+  opacity: 1;
 }
 
 .stagger-grid > .reveal.visible:nth-child(2n + 2) {
-    transition-delay: 0.1s, 0.1s, 0s;
+  transition-delay: 0.1s, 0.1s, 0s;
 }
 
 @media (min-width: 1024px) {
-    .stagger-grid > .reveal.visible:nth-child(3n + 1) {
-        transition-delay: 0s;
-    }
-    .stagger-grid > .reveal.visible:nth-child(3n + 2) {
-        transition-delay: 0.1s, 0.1s, 0s;
-    }
-    .stagger-grid > .reveal.visible:nth-child(3n + 3) {
-        transition-delay: 0.2s, 0.2s, 0s;
-    }
+  .stagger-grid > .reveal.visible:nth-child(3n + 1) {
+    transition-delay: 0s;
+  }
+  .stagger-grid > .reveal.visible:nth-child(3n + 2) {
+    transition-delay: 0.1s, 0.1s, 0s;
+  }
+  .stagger-grid > .reveal.visible:nth-child(3n + 3) {
+    transition-delay: 0.2s, 0.2s, 0s;
+  }
 }

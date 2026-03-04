@@ -11,80 +11,74 @@ const sorted = albums.toSorted((a, b) => a.data.index - b.data.index);
 ---
 
 <BaseLayout
-    title="Photography — Tom the Bomb"
-    description="Photography albums by Tom the Bomb — featuring architecture, street, landscape, nature, and macro photography from travels across Asia and beyond."
+  title="Photography — Tom the Bomb"
+  description="Photography albums by Tom the Bomb — featuring architecture, street, landscape, nature, and macro photography from travels across Asia and beyond."
 >
-    <div
-        id="photography-page"
-        class="mt-16 mb-32 flex w-full max-w-4xl flex-col items-center gap-16 px-6 lg:mt-20"
-    >
-        <div class="flex flex-col items-center gap-8 text-center">
-            <h1 class="page-title">
-                Photography
-            </h1>
-            <div class="fade-in [animation-delay:0.35s]">
-                <Quote
-                    author="Ali Novake"
-                    class="max-w-md text-center text-base"
-                >
-                    The world moves fast, changing everything around us with
-                    each new day. Photography is a gift that can keep us in a
-                    moment forever, blissfully eternal.
-                </Quote>
-            </div>
-        </div>
-
-        <div
-            class="stagger-grid grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
-        >
-            {
-                sorted.map((album, i) => {
-                    const href = `/photography/${album.id}`;
-
-                    return (
-                        <a
-                            data-astro-prefetch
-                            href={href}
-                            class="reveal glass group block overflow-hidden rounded-xl transition-transform duration-300 hover:scale-[1.02]"
-                        >
-                            <div class="aspect-square overflow-hidden">
-                                <Image
-                                    src={album.data.cover}
-                                    alt={`${album.data.title} album cover`}
-                                    widths={[800, 500]}
-                                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                    quality={80}
-                                    class="h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110"
-                                    loading={i >= 6 ? "lazy" : "eager"}
-                                    decoding="async"
-                                />
-                            </div>
-                            <div class="flex flex-col gap-1 p-4">
-                                <h2 class="text-base font-bold tracking-wide">
-                                    {album.data.title}
-                                </h2>
-                                <p class="font-zh text-sm text-white/50">
-                                    {album.data.short_description}
-                                </p>
-                            </div>
-                        </a>
-                    );
-                })
-            }
-        </div>
-
-        <a
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://www.instagram.com/tom_the_bomb_111/"
-            class="reveal glass glass-cta group gap-2.5 px-6 py-3 text-white/85"
-        >
-            <Tech
-                name="instagram"
-                class="text-white/85 group-hover:text-white transition-colors duration-300"
-                >@tom_the_bomb_111</Tech
-            >
-        </a>
+  <div
+    id="photography-page"
+    class="mt-16 mb-32 flex w-full max-w-4xl flex-col items-center gap-16 px-6 lg:mt-20"
+  >
+    <div class="flex flex-col items-center gap-8 text-center">
+      <h1 class="page-title">Photography</h1>
+      <div class="fade-in [animation-delay:0.35s]">
+        <Quote author="Ali Novake" class="max-w-md text-center text-base">
+          The world moves fast, changing everything around us with each new day.
+          Photography is a gift that can keep us in a moment forever, blissfully
+          eternal.
+        </Quote>
+      </div>
     </div>
 
+    <div
+      class="stagger-grid grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+    >
+      {
+        sorted.map((album, i) => {
+          const href = `/photography/${album.id}`;
+
+          return (
+            <a
+              data-astro-prefetch
+              href={href}
+              class="reveal glass group block overflow-hidden rounded-xl transition-transform duration-300 hover:scale-[1.02]"
+            >
+              <div class="aspect-square overflow-hidden">
+                <Image
+                  src={album.data.cover}
+                  alt={`${album.data.title} album cover`}
+                  widths={[800, 500]}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  quality={80}
+                  class="h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110"
+                  loading={i >= 6 ? "lazy" : "eager"}
+                  decoding="async"
+                />
+              </div>
+              <div class="flex flex-col gap-1 p-4">
+                <h2 class="text-base font-bold tracking-wide">
+                  {album.data.title}
+                </h2>
+                <p class="font-zh text-sm text-white/50">
+                  {album.data.short_description}
+                </p>
+              </div>
+            </a>
+          );
+        })
+      }
+    </div>
+
+    <a
+      rel="noopener noreferrer"
+      target="_blank"
+      href="https://www.instagram.com/tom_the_bomb_111/"
+      class="reveal glass glass-cta group gap-2.5 px-6 py-3 text-white/85"
+    >
+      <Tech
+        name="instagram"
+        class="text-white/85 transition-colors duration-300 group-hover:text-white"
+        >@tom_the_bomb_111</Tech
+      >
+    </a>
+  </div>
 </BaseLayout>

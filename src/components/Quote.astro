@@ -1,17 +1,17 @@
 ---
 interface Props {
-    author: string;
-    class?: string;
+  author: string;
+  class?: string;
 }
 
 const { author, class: className = "" } = Astro.props;
 ---
 
 <figure class:list={["flex flex-col gap-2", className]}>
-    <blockquote>
-        <p class="font-soft text-sm leading-relaxed text-white/50 italic">
-            <slot />
-        </p>
-    </blockquote>
-    <figcaption class="font-soft text-xs text-white/30">— {author}</figcaption>
+  <blockquote>
+    <p class="font-soft text-sm leading-relaxed text-white/50 italic">
+      <slot />
+    </p>
+  </blockquote>
+  <figcaption class="font-soft text-xs text-white/30">— {author}</figcaption>
 </figure>

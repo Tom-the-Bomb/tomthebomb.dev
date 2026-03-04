@@ -2,39 +2,53 @@
 import Icon from "./Icon.astro";
 
 interface Props {
-    href?: string;
-    text?: string;
+  href?: string;
+  text?: string;
 }
 
 const {
-    href = "https://github.com/Tom-the-Bomb/tomthebomb.dev",
-    text = `Tom the Bomb ${new Date().getFullYear()}`,
+  href = "https://github.com/Tom-the-Bomb/tomthebomb.dev",
+  text = `Tom the Bomb ${new Date().getFullYear()}`,
 } = Astro.props;
 
 const socials = [
-    { img: "mail", href: "mailto:me@tomthebomb.dev", label: "Email" },
-    { img: "github", href: "https://github.com/Tom-the-Bomb", label: "GitHub" },
-    { img: "discord", href: "https://discord.com/users/522524473447153695", label: "Discord" },
-    { img: "leetcode", href: "https://leetcode.com/u/Tom-the-Bomb/", label: "LeetCode" },
-    { img: "linkedin", href: "https://www.linkedin.com/in/tommyshen/", label: "LinkedIn" },
+  { img: "mail", href: "mailto:me@tomthebomb.dev", label: "Email" },
+  { img: "github", href: "https://github.com/Tom-the-Bomb", label: "GitHub" },
+  {
+    img: "discord",
+    href: "https://discord.com/users/522524473447153695",
+    label: "Discord",
+  },
+  {
+    img: "leetcode",
+    href: "https://leetcode.com/u/Tom-the-Bomb/",
+    label: "LeetCode",
+  },
+  {
+    img: "linkedin",
+    href: "https://www.linkedin.com/in/tommyshen/",
+    label: "LinkedIn",
+  },
 ];
 ---
 
 <footer class="reveal relative flex-none p-8 text-center text-xl">
-    <div class="flex flex-wrap justify-center gap-2 p-5 md:gap-3">
-        {socials.map((social) => (
-            <Icon
-                class="w-11 h-11 md:w-15 md:h-15"
-                img={social.img}
-                href={social.href}
-                label={social.label}
-            />
-        ))}
-    </div>
-    <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href={href}
-        class="effect-underline text-lg md:text-xl">{text}</a
-    >
+  <div class="flex flex-wrap justify-center gap-2 p-5 md:gap-3">
+    {
+      socials.map((social) => (
+        <Icon
+          class="h-11 w-11 md:h-15 md:w-15"
+          img={social.img}
+          href={social.href}
+          label={social.label}
+        />
+      ))
+    }
+  </div>
+  <a
+    target="_blank"
+    rel="noopener noreferrer"
+    href={href}
+    class="effect-underline text-lg md:text-xl">{text}</a
+  >
 </footer>

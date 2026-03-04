@@ -2,16 +2,19 @@
 import { Icon as AstroIcon } from "astro-icon/components";
 
 interface Props {
-    name: string;
-    class?: string;
+  name: string;
+  class?: string;
 }
 
 const { name, class: className } = Astro.props;
 ---
 
 <span
-    class:list={["inline-flex items-center align-middle leading-none gap-1", className]}
+  class:list={[
+    "inline-flex items-center gap-1 align-middle leading-none",
+    className,
+  ]}
 >
-    <AstroIcon name={`stack/${name}`} class="inline-block" />
-    <slot />
+  <AstroIcon name={`stack/${name}`} class="inline-block" />
+  <slot />
 </span>

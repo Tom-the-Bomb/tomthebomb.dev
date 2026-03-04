@@ -2,12 +2,12 @@
 import Icon from "./Icon.astro";
 
 interface NavItem {
-    name: string;
-    url?: string;
+  name: string;
+  url?: string;
 }
 
 interface Props {
-    pages: NavItem[];
+  pages: NavItem[];
 }
 
 const { pages } = Astro.props;
@@ -15,114 +15,114 @@ const currentPath = Astro.url.pathname;
 ---
 
 <nav
-    id="main-nav"
-    transition:persist
-    class="nav-glass font-soft flex flex-wrap items-center gap-4 p-3 transition-all duration-500 md:gap-6 md:px-6 md:py-4"
+  id="main-nav"
+  transition:persist
+  class="nav-glass font-soft flex flex-wrap items-center gap-4 p-3 transition-all duration-500 md:gap-6 md:px-6 md:py-4"
 >
-    <Icon
-        size="2em"
-        img="home"
-        href="/"
-        target="_self"
-        class="w-6 h-6 md:w-7 md:h-7"
-        color="text-white"
-        label="Home"
-    />
-    <div class="flex flex-wrap items-center gap-3 md:gap-5">
-        {
-            pages.map((page) => {
-                const href = page.url || `/${page.name.toLowerCase()}`;
-                const isActive =
-                    currentPath === href || currentPath.startsWith(href + "/");
+  <Icon
+    size="2em"
+    img="home"
+    href="/"
+    target="_self"
+    class="h-6 w-6 md:h-7 md:w-7"
+    color="text-white"
+    label="Home"
+  />
+  <div class="flex flex-wrap items-center gap-3 md:gap-5">
+    {
+      pages.map((page) => {
+        const href = page.url || `/${page.name.toLowerCase()}`;
+        const isActive =
+          currentPath === href || currentPath.startsWith(href + "/");
 
-                return (
-                    <a
-                        class="nav-link text-sm tracking-wide md:text-base"
-                        href={href}
-                        data-text={page.name}
-                        aria-current={isActive ? "page" : undefined}
-                    >
-                        {page.name}
-                    </a>
-                );
-            })
-        }
-    </div>
+        return (
+          <a
+            class="nav-link text-sm tracking-wide md:text-base"
+            href={href}
+            data-text={page.name}
+            aria-current={isActive ? "page" : undefined}
+          >
+            {page.name}
+          </a>
+        );
+      })
+    }
+  </div>
 </nav>
 
 <style>
-    @reference '../styles/global.css';
+  @reference '../styles/global.css';
 
-    /* Reserve bold width so layout doesn't shift when active */
-    .nav-link {
-        @apply inline-flex flex-col items-center justify-center font-normal text-white/80 border-b-2 border-white/30;
-        transition:
-            font-weight 700ms ease,
-            color 700ms ease,
-            border-color 700ms ease;
-    }
+  /* Reserve bold width so layout doesn't shift when active */
+  .nav-link {
+    @apply inline-flex flex-col items-center justify-center border-b-2 border-white/30 font-normal text-white/80;
+    transition:
+      font-weight 700ms ease,
+      color 700ms ease,
+      border-color 700ms ease;
+  }
 
-    .nav-link:hover {
-        @apply text-white;
-    }
+  .nav-link:hover {
+    @apply text-white;
+  }
 
-    .nav-link[aria-current="page"] {
-        @apply font-bold text-white border-white;
-    }
+  .nav-link[aria-current="page"] {
+    @apply border-white font-bold text-white;
+  }
 
-    .nav-link::after {
-        content: attr(data-text);
-        @apply font-bold h-0 overflow-hidden invisible pointer-events-none;
-    }
+  .nav-link::after {
+    content: attr(data-text);
+    @apply pointer-events-none invisible h-0 overflow-hidden font-bold;
+  }
 
-    .nav-glass {
-        @apply bg-transparent backdrop-blur-none border-b-[0.5px] border-white/5;
-    }
+  .nav-glass {
+    @apply border-b-[0.5px] border-white/5 bg-transparent backdrop-blur-none;
+  }
 
-    .nav-glass.scrolled {
-        @apply bg-white/6 border-b-[0.5px] border-white/15;
-        backdrop-filter: blur(32px) saturate(110%) url(#liquid-distortion);
-        box-shadow:
-            inset 0 0.5px 0 0 rgba(255, 255, 255, 0.2),
-            0 1px 8px rgba(0, 0, 0, 0.04);
-    }
+  .nav-glass.scrolled {
+    @apply border-b-[0.5px] border-white/15 bg-white/6;
+    backdrop-filter: blur(32px) saturate(110%) url(#liquid-distortion);
+    box-shadow:
+      inset 0 0.5px 0 0 rgba(255, 255, 255, 0.2),
+      0 1px 8px rgba(0, 0, 0, 0.04);
+  }
 </style>
 
 <script>
-    let prevScrollHandler: (() => void) | null = null;
+  let prevScrollHandler: (() => void) | null = null;
 
-    document.addEventListener("astro:page-load", () => {
-        const nav = document.getElementById("main-nav");
-        if (!nav) {
-            return;
-        }
+  document.addEventListener("astro:page-load", () => {
+    const nav = document.getElementById("main-nav");
+    if (!nav) {
+      return;
+    }
 
-        // Update active nav link on navigation
-        const currentPath = window.location.pathname;
-        const links = nav.querySelectorAll<HTMLAnchorElement>(".nav-link");
-        links.forEach((link) => {
-            const href = link.getAttribute("href");
-            if (
-                href &&
-                (currentPath === href || currentPath.startsWith(href + "/"))
-            ) {
-                link.setAttribute("aria-current", "page");
-            } else {
-                link.removeAttribute("aria-current");
-            }
-        });
-
-        // Remove previous scroll handler to avoid accumulation (nav persists via transition:persist)
-        if (prevScrollHandler) {
-            window.removeEventListener("scroll", prevScrollHandler);
-        }
-
-        const onScroll = () => {
-            nav.classList.toggle("scrolled", window.scrollY > 20);
-        };
-        prevScrollHandler = onScroll;
-
-        onScroll();
-        window.addEventListener("scroll", onScroll, { passive: true });
+    // Update active nav link on navigation
+    const currentPath = window.location.pathname;
+    const links = nav.querySelectorAll<HTMLAnchorElement>(".nav-link");
+    links.forEach((link) => {
+      const href = link.getAttribute("href");
+      if (
+        href &&
+        (currentPath === href || currentPath.startsWith(href + "/"))
+      ) {
+        link.setAttribute("aria-current", "page");
+      } else {
+        link.removeAttribute("aria-current");
+      }
     });
+
+    // Remove previous scroll handler to avoid accumulation (nav persists via transition:persist)
+    if (prevScrollHandler) {
+      window.removeEventListener("scroll", prevScrollHandler);
+    }
+
+    const onScroll = () => {
+      nav.classList.toggle("scrolled", window.scrollY > 20);
+    };
+    prevScrollHandler = onScroll;
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+  });
 </script>
