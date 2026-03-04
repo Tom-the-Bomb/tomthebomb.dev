@@ -135,13 +135,11 @@ const uniqueTags = [...tagCount.values()].sort((a, b) => b.count - a.count);
       const cards = grid.querySelectorAll<HTMLElement>("[data-tags]");
       const activeTags = new Set<string>();
 
-      // Measure one-line height
       const firstTag = tagsContainer.children[0] as HTMLElement;
       const containerRect = tagsContainer.getBoundingClientRect();
       const firstTagRect = firstTag.getBoundingClientRect();
       const oneLineHeight = firstTagRect.bottom - containerRect.top + 2;
 
-      // Count filter tags (not dots) that overflow beyond the first line
       const firstTop = firstTag.offsetTop;
       let hiddenCount = 0;
       for (const child of Array.from(
@@ -150,7 +148,6 @@ const uniqueTags = [...tagCount.values()].sort((a, b) => b.count - a.count);
         if ((child as HTMLElement).offsetTop > firstTop) hiddenCount++;
       }
 
-      // Collapse to one line (no transition — instant)
       tagsContainer.style.maxHeight = oneLineHeight + "px";
 
       let expanded = false;
@@ -171,7 +168,6 @@ const uniqueTags = [...tagCount.values()].sort((a, b) => b.count - a.count);
         });
       }
 
-      // Filter logic
       function updateFilter() {
         cards.forEach((card) => {
           const cardTags = card.dataset.tags?.split(",") ?? [];
