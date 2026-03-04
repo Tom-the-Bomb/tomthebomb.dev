@@ -43,6 +43,7 @@
     --color-fastapi: var(--color-teal-200);
     --color-shadcn: var(--color-zinc-200);
     --color-solidjs: var(--color-blue-200);
+    --color-webgl: var(--color-red-100);
 }
 
 @layer components {

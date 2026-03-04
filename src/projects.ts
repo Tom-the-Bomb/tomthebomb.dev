@@ -169,6 +169,7 @@ export const projects: ProjectData[] = [
         logo: "math-solver",
         tags: [
             { name: "Python", color: "text-python" },
+            { name: "Flask", color: "text-flask" },
             { name: "SymPy", color: "text-sympy" },
             { name: "React", color: "text-react" },
         ],
@@ -274,6 +275,21 @@ export const projects: ProjectData[] = [
             "Interactive map displaying geotagged photos from Hong Kong with clustering and carousels.",
     },
     {
+        name: "Viewfinder",
+        github: "https://github.com/Tom-the-Bomb/viewfinder",
+        logo: "viewfinder",
+        tags: [
+            { name: "SolidJS", color: "text-solidjs" },
+            { name: "MongoDB", color: "text-mongo" },
+            { name: "R2", color: "text-cloudflare" },
+            { name: "Tailwind", color: "text-tailwind" },
+            { name: "TS", color: "text-typescript" },
+            { name: "WebGL", color: "text-webgl" },
+        ],
+        description:
+            "Web-based image editor and image-hosting app with an extensive array of features comparable to Lightroom and VSCO.",
+    },
+    {
         name: "Bomb CDN",
         github: "https://github.com/Tom-the-Bomb/bomb-cdn",
         logo: "bomb-cdn",
@@ -283,5 +299,21 @@ export const projects: ProjectData[] = [
         ],
         description:
             "File system based CDN service with a complete REST API for persistent file storage.",
+    },
+    {
+        name: "AIO Piston",
+        github: "https://github.com/Tom-the-Bomb/aio-piston",
+        logo: "aio-piston",
+        tags: [{ name: "Python", color: "text-python" }],
+        description:
+            "Async Python wrapper for the Piston API, allowing for easy code execution in 70+ languages.",
+    },
+    {
+        name: "Number Slider",
+        github: "https://github.com/Tom-the-Bomb/number-slider",
+        logo: "number-slider",
+        tags: [{ name: "Java", color: "text-java" }],
+        description:
+            "Custom number slider puzzle game built in Java with a custom game engine, featuring various difficulty settings.",
     },
 ];

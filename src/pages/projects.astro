@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Project from "../components/Project.astro";
-import { projects } from "../data/projects";
+import { projects } from "../projects";
 
 const tagCount = new Map<
     string,
@@ -80,7 +80,7 @@ const uniqueTags = [...tagCount.values()].sort((a, b) => b.count - a.count);
                 >
                 {
                     uniqueTags.map((tag) => (
-                        <Fragment>
+                        <>
                             <span class="filter-dot">&middot;</span>
                             <button
                                 class="filter-tag"
@@ -88,7 +88,7 @@ const uniqueTags = [...tagCount.values()].sort((a, b) => b.count - a.count);
                             >
                                 {tag.name}
                             </button>
-                        </Fragment>
+                        </>
                     ))
                 }
             </div>
