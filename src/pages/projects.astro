@@ -125,7 +125,10 @@ const uniqueTags = [...tagCount.values()].sort((a, b) => b.count - a.count);
       const toggleBtn = document.getElementById(
         "filter-toggle",
       ) as HTMLButtonElement | null;
-      if (!filterBar || !grid || !tagsContainer || !toggleBtn) return;
+
+      if (!filterBar || !grid || !tagsContainer || !toggleBtn) {
+        return;
+      }
 
       const allBtn =
         filterBar.querySelector<HTMLButtonElement>('[data-tag="all"]');

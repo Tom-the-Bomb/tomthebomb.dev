@@ -115,6 +115,17 @@
     @apply font-mono text-white;
   }
 
+  @media (pointer: coarse) {
+    html {
+      @apply h-full overflow-hidden;
+    }
+
+    body {
+      @apply h-full overflow-y-auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
   .effect-underline {
     @apply relative inline-block;
   }
@@ -188,9 +199,6 @@
     animation: fade-in 1s ease-out both;
   }
 }
-
-/* Animation/transition classes must stay un-layered so they are not
-   overridden by Tailwind utility classes (e.g. transition-transform) */
 
 .reveal {
   opacity: 0;
