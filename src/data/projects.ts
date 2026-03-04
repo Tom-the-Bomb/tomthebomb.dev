@@ -53,12 +53,11 @@ export const projects: ProjectData[] = [
     {
         name: "Boba Log",
         github: "https://github.com/Tom-the-Bomb/boba-log",
-        hrefs: [
-            { href: "https://boba.tomthebomb.dev", hrefTitle: "Website" },
-        ],
+        hrefs: [{ href: "https://boba.tomthebomb.dev", hrefTitle: "Website" }],
         logo: "boba-log",
         tags: [
-            { name: "D1 & R2", color: "text-cloudflare" },
+            { name: "D1", color: "text-cloudflare" },
+            { name: "R2", color: "text-cloudflare" },
             { name: "Tailwind", color: "text-tailwind" },
             { name: "TS", color: "text-typescript" },
             { name: "Next.js", color: "text-nextjs" },
@@ -93,9 +92,7 @@ export const projects: ProjectData[] = [
     {
         name: "MTR History",
         github: "https://github.com/Tom-the-Bomb/mtr-history",
-        hrefs: [
-            { href: "https://mtr.tomthebomb.dev", hrefTitle: "Website" },
-        ],
+        hrefs: [{ href: "https://mtr.tomthebomb.dev", hrefTitle: "Website" }],
         logo: "mtr-history",
         tags: [
             { name: "D3.js", color: "text-d3" },
@@ -108,9 +105,7 @@ export const projects: ProjectData[] = [
     {
         name: "Bomb Paste",
         github: "https://github.com/Tom-the-Bomb/bomb-paste",
-        hrefs: [
-            { href: "https://paste.tomthebomb.dev", hrefTitle: "Website" },
-        ],
+        hrefs: [{ href: "https://paste.tomthebomb.dev", hrefTitle: "Website" }],
         logo: "bomb-paste",
         imgStyles: "rounded-b-2xl",
         tags: [
@@ -127,15 +122,13 @@ export const projects: ProjectData[] = [
     {
         name: "Ferrous Imagic Editor",
         github: "https://github.com/Tom-the-Bomb/imaging-app",
-        hrefs: [
-            { href: "https://image.tomthebomb.dev", hrefTitle: "Website" },
-        ],
+        hrefs: [{ href: "https://image.tomthebomb.dev", hrefTitle: "Website" }],
         logo: "ferrous-imagic-editor",
         tags: [
             { name: "Rust", color: "text-rust" },
             { name: "Axum", color: "text-axum" },
             { name: "HTML", color: "text-html" },
-            { name: "CSS", color: "text-css" },
+            { name: "Bootstrap", color: "text-bootstrap" },
             { name: "JS", color: "text-javascript" },
         ],
         description:
@@ -172,9 +165,7 @@ export const projects: ProjectData[] = [
     {
         name: "Math Solver",
         github: "https://github.com/Tom-the-Bomb/math-solver",
-        hrefs: [
-            { href: "https://math.tomthebomb.dev", hrefTitle: "Website" },
-        ],
+        hrefs: [{ href: "https://math.tomthebomb.dev", hrefTitle: "Website" }],
         logo: "math-solver",
         tags: [
             { name: "Python", color: "text-python" },
@@ -229,9 +220,7 @@ export const projects: ProjectData[] = [
     {
         name: "F-Stop",
         github: "https://github.com/f-stop-lang/f-stop-rply",
-        hrefs: [
-            { href: "https://pypi.org/project/f-stop", hrefTitle: "PyPI" },
-        ],
+        hrefs: [{ href: "https://pypi.org/project/f-stop", hrefTitle: "PyPI" }],
         logo: "fstop",
         tags: [{ name: "Python", color: "text-python" }],
         description:
@@ -274,9 +263,7 @@ export const projects: ProjectData[] = [
     {
         name: "HK Photos Map",
         github: "https://github.com/Tom-the-Bomb/hk-photos-map",
-        hrefs: [
-            { href: "https://hk.tomthebomb.dev", hrefTitle: "Website" },
-        ],
+        hrefs: [{ href: "https://hk.tomthebomb.dev", hrefTitle: "Website" }],
         logo: "hk-photos-map",
         tags: [
             { name: "Leaflet", color: "text-leaflet" },

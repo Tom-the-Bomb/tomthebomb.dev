@@ -1,6 +1,4 @@
 ---
-import { fade } from "astro:transitions";
-
 import MainHead from "../components/MainHead.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
@@ -15,7 +13,7 @@ interface Props {
 const { title, description } = Astro.props;
 ---
 
-<html lang="en" transition:animate={fade({ duration: "750ms" })}>
+<html lang="en" transition:animate="none">
     <head>
         <MainHead title={title} description={description} />
     </head>
@@ -99,12 +97,23 @@ const { title, description } = Astro.props;
         const revealOnces =
             document.querySelectorAll<HTMLElement>(".reveal-once");
         if (revealOnces.length) {
+            const revealKeyframes = [
+                { opacity: 0, translate: "0 24px" },
+                { opacity: 1, translate: "none" },
+            ];
+            const revealTiming: KeyframeAnimationOptions = {
+                duration: 650,
+                easing: "ease-out",
+            };
+
             const onceObserver = new IntersectionObserver(
                 (entries) => {
                     entries.forEach((entry) => {
                         if (entry.isIntersecting) {
-                            entry.target.classList.add("visible");
-                            onceObserver.unobserve(entry.target);
+                            const el = entry.target as HTMLElement;
+                            el.classList.add("visible");
+                            el.animate(revealKeyframes, revealTiming);
+                            onceObserver.unobserve(el);
                         }
                     });
                 },
@@ -114,14 +123,14 @@ const { title, description } = Astro.props;
             revealOnces.forEach((el) => {
                 const rect = el.getBoundingClientRect();
                 if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    el.style.transition = "none";
-                    el.classList.add("visible");
                     const img = el.querySelector<HTMLImageElement>(
                         "img[loading='lazy']",
                     );
                     if (img) {
                         img.loading = "eager";
                     }
+                    el.classList.add("visible");
+                    el.animate(revealKeyframes, revealTiming);
                 } else {
                     onceObserver.observe(el);
                 }

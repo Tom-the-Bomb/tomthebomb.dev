@@ -60,7 +60,7 @@ const alt = `From the album: ${title}`;
             {
                 images.map((image) => (
                     <div class="reveal-once break-inside-avoid pb-4">
-                        <div class="cursor-pointer border-8 border-white transition-transform duration-300 ease-in-out hover:scale-[102%]">
+                        <div class="cursor-pointer border-8 border-white transition-transform duration-300 ease-in-out will-change-transform hover:scale-[102%]">
                             <Image
                                 src={image}
                                 alt={alt}

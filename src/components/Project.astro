@@ -33,6 +33,7 @@ const {
 
 <div
     class="reveal glass flex flex-col rounded-xl p-5 transition-transform duration-500 ease-in-out hover:scale-[1.02]"
+    data-tags={tags.map((t) => t.name.toLowerCase()).join(",")}
 >
     {
         logo && (
