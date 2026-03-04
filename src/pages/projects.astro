@@ -50,7 +50,7 @@ import { projects } from "../data/projects";
             class="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
         >
             {
-                projects.map((project, i) => (
+                projects.map((project) => (
                     <Project
                         name={project.name}
                         github={project.github}
@@ -58,7 +58,6 @@ import { projects } from "../data/projects";
                         logo={project.logo}
                         imgStyles={project.imgStyles}
                         tags={project.tags}
-                        style={`transition-delay: ${i * 0.06}s`}
                     >
                         {project.description}
                     </Project>
@@ -72,6 +71,22 @@ import { projects } from "../data/projects";
 
         .aoc-pill {
             @apply rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs text-yellow-100 no-underline transition-colors duration-200 hover:bg-white/20 hover:text-white;
+        }
+
+        .grid > :global(.reveal.visible:nth-child(2n + 2)) {
+            transition-delay: 0.1s, 0.1s, 0s;
+        }
+
+        @media (min-width: 1024px) {
+            .grid > :global(.reveal.visible:nth-child(3n + 1)) {
+                transition-delay: 0s;
+            }
+            .grid > :global(.reveal.visible:nth-child(3n + 2)) {
+                transition-delay: 0.1s, 0.1s, 0s;
+            }
+            .grid > :global(.reveal.visible:nth-child(3n + 3)) {
+                transition-delay: 0.2s, 0.2s, 0s;
+            }
         }
     </style>
 </BaseLayout>

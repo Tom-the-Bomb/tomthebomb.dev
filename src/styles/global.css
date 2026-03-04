@@ -251,8 +251,8 @@
     opacity: 0;
     translate: 0 24px;
     transition:
-        opacity 0.4s ease-in,
-        translate 0.4s ease-in,
+        opacity 0.45s ease-in,
+        translate 0.45s ease-in,
         scale 0.2s ease-in-out;
 }
 
@@ -260,8 +260,8 @@
     opacity: 1;
     translate: none;
     transition:
-        opacity 0.6s ease-out,
-        translate 0.6s ease-out,
+        opacity 0.65s ease-out,
+        translate 0.65s ease-out,
         scale 0.2s ease-in-out;
 }
 
