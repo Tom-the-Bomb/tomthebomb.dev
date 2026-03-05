@@ -1,6 +1,6 @@
 {
-  "typescript.inlayHints.parameterNames.enabled": "all",
-  "typescript.tsdk": "node_modules/typescript/lib",
+  "js/ts.inlayHints.parameterNames.enabled": "all",
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnType": false,
   "editor.formatOnPaste": true,

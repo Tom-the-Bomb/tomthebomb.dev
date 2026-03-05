@@ -78,7 +78,7 @@ const uniqueTags = [...tagCount.values()].sort((a, b) => b.count - a.count);
       </button>
     </div>
 
-    <div class="stagger-grid custom-grid">
+    <div id="project-grid" class="stagger-grid custom-grid">
       {
         projects.map((project) => (
           <Project {...project}>{project.description}</Project>
@@ -118,7 +118,7 @@ const uniqueTags = [...tagCount.values()].sort((a, b) => b.count - a.count);
   <script>
     document.addEventListener("astro:page-load", () => {
       const filterBar = document.getElementById("project-filters");
-      const grid = document.querySelector(".stagger-grid");
+      const grid = document.getElementById("project-grid");
       const tagsContainer = document.getElementById("filter-tags");
       const toggleBtn = document.getElementById(
         "filter-toggle",
@@ -146,7 +146,9 @@ const uniqueTags = [...tagCount.values()].sort((a, b) => b.count - a.count);
       for (const child of Array.from(
         tagsContainer.querySelectorAll("[data-tag]"),
       )) {
-        if ((child as HTMLElement).offsetTop > firstTop) hiddenCount++;
+        if ((child as HTMLElement).offsetTop > firstTop) {
+          hiddenCount++;
+        }
       }
 
       tagsContainer.style.maxHeight = oneLineHeight + "px";
