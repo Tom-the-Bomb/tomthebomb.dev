@@ -17,9 +17,9 @@ const albums = await getCollection("albums");
   description="Personal website of Tom the Bomb — computer engineering student at the University of Waterloo, software developer, and photographer."
 >
   <div
-    class="flex grow flex-wrap items-center justify-center gap-14 px-6 md:gap-20"
+    class="flex grow flex-col items-center justify-center gap-14 px-6 lg:flex-row lg:gap-20"
   >
-    <div class="order-1 flex flex-col gap-8 md:order-0">
+    <div class="order-1 flex flex-col gap-8 lg:order-0">
       <div class="fade-in-up flex flex-col gap-2">
         <h2
           class="font-soft w-fit text-lg tracking-wide text-yellow-100 drop-shadow-lg md:text-2xl lg:text-3xl"
@@ -74,9 +74,9 @@ const albums = await getCollection("albums");
         <div class="hero-stat">{getAge()} Years Old</div>
       </div>
     </div>
-    <div class="fade-in order-0 flex [animation-delay:0.2s] md:order-1">
+    <div class="fade-in order-0 flex [animation-delay:0.2s] lg:order-1">
       <div
-        class="float-bob glass glass-extras mt-14 flex h-[12em] w-[12em] items-center justify-center rounded-full p-7 md:mt-5 md:h-[14em] md:w-[14em]"
+        class="float-bob glass glass-extras mt-14 flex h-[12em] w-[12em] items-center justify-center rounded-full p-7 md:h-[14em] md:w-[14em] lg:mt-5"
       >
         <Image
           src={blobComfy}
@@ -89,6 +89,14 @@ const albums = await getCollection("albums");
     </div>
   </div>
 </BaseLayout>
+
+<style is:global>
+  @media (min-width: 1024px) {
+    body {
+      overflow-y: clip;
+    }
+  }
+</style>
 
 <style>
   @reference '../styles/global.css';
