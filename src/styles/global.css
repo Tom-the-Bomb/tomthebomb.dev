@@ -112,12 +112,12 @@
 
 @layer components {
   body {
-    @apply font-mono text-white;
+    @apply overflow-x-clip font-mono text-white;
   }
 
   @media (pointer: coarse) {
     html {
-      @apply h-full overflow-hidden;
+      @apply h-full overflow-clip;
     }
 
     body {
