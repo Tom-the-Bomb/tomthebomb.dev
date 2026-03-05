@@ -83,44 +83,45 @@ const { title, description } = Astro.props;
     prevObserver = observer;
 
     const revealOnces = document.querySelectorAll<HTMLElement>(".reveal-once");
-    if (revealOnces.length) {
-      const revealKeyframes = [{ opacity: 0 }, { opacity: 1 }];
-      const revealTiming: KeyframeAnimationOptions = {
-        duration: 650,
-        easing: "ease-out",
-        fill: "forwards",
-      };
-
-      const onceObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const el = entry.target as HTMLElement;
-              el.classList.add("visible");
-              el.animate(revealKeyframes, revealTiming);
-              onceObserver.unobserve(el);
-            }
-          });
-        },
-        { threshold: 0.05 },
-      );
-
-      revealOnces.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-          const img = el.querySelector<HTMLImageElement>("img[loading='lazy']");
-          if (img) {
-            img.loading = "eager";
-          }
-          el.classList.add("visible");
-          el.animate(revealKeyframes, revealTiming);
-        } else {
-          onceObserver.observe(el);
-        }
-      });
-
-      prevOnceObserver = onceObserver;
+    if (!revealOnces.length) {
+      return;
     }
+
+    const revealKeyframes = [{ opacity: 0 }, { opacity: 1 }];
+    const revealTiming: KeyframeAnimationOptions = {
+      duration: 650,
+      easing: "ease-out",
+      fill: "forwards",
+    };
+
+    const onceObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            entry.target.animate(revealKeyframes, revealTiming);
+            onceObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.05 },
+    );
+
+    revealOnces.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        const img = el.querySelector<HTMLImageElement>("img[loading='lazy']");
+        if (img) {
+          img.loading = "eager";
+        }
+        el.classList.add("visible");
+        el.animate(revealKeyframes, revealTiming);
+      } else {
+        onceObserver.observe(el);
+      }
+    });
+
+    prevOnceObserver = onceObserver;
   });
 </script>
 
