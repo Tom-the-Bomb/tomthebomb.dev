@@ -78,9 +78,7 @@ const uniqueTags = [...tagCount.values()].sort((a, b) => b.count - a.count);
       </button>
     </div>
 
-    <div
-      class="stagger-grid grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
-    >
+    <div class="stagger-grid custom-grid">
       {
         projects.map((project) => (
           <Project {...project}>{project.description}</Project>
