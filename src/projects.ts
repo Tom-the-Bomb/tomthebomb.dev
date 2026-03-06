@@ -36,6 +36,7 @@ const TAGS = {
   leaflet: { name: "Leaflet", color: "text-leaflet" },
   swiper: { name: "Swiper", color: "text-swiper" },
   discordpy: { name: "discord.py", color: "text-discordpy" },
+  webpack: { name: "Webpack", color: "text-webpack" },
 } as const satisfies Record<string, Tag>;
 
 export interface ProjectData {
@@ -54,7 +55,7 @@ export const projects: ProjectData[] = [
     github: "https://github.com/Tom-the-Bomb/fourier-drawer",
     hrefs: [{ href: "https://fourier.tomthebomb.dev", hrefTitle: "Website" }],
     logo: "fourier-drawer",
-    tags: [TAGS.p5, TAGS.ts, TAGS.html, TAGS.css, TAGS.vite],
+    tags: [TAGS.p5, TAGS.ts, TAGS.html, TAGS.css, TAGS.webpack],
     description:
       "Discrete Fourier Transform visualizer that renders real-time drawings and SVGs as animated rotating vectors.",
   },

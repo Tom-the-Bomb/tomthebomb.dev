@@ -44,6 +44,7 @@
   --color-shadcn: var(--color-zinc-200);
   --color-solidjs: var(--color-blue-200);
   --color-webgl: var(--color-red-100);
+  --color-webpack: var(--color-cyan-200);
 }
 
 @font-face {
@@ -149,7 +150,8 @@
   }
 
   .typewriter {
-    @apply relative overflow-hidden border-r-2 border-white/75 whitespace-nowrap;
+    @apply relative border-r-2 border-white/75 whitespace-nowrap;
+    clip-path: inset(-50px 0 -50px -50px);
     animation:
       typewriter 7s steps(12) 1s infinite normal both,
       blinking-text-cursor 500ms steps(12) infinite normal;
