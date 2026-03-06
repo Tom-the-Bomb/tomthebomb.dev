@@ -38,10 +38,18 @@ const {
             label={`${name} on GitHub`}
           />
         </div>
-        <h2 class="text-xl font-bold drop-shadow-md">{name}</h2>
+        <h2 class="text-xl font-bold drop-shadow-md">
+          <a href={github} target="_blank" rel="noopener noreferrer">
+            {name}
+          </a>
+        </h2>
       </div>
     ) : (
-      <h2 class="mb-2 text-xl font-bold drop-shadow-md">{name}</h2>
+      <h2 class="mb-2 text-xl font-bold drop-shadow-md">
+        <a href={github} target="_blank" rel="noopener noreferrer">
+          {name}
+        </a>
+      </h2>
     )
   }
 
