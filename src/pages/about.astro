@@ -23,7 +23,7 @@ import { getAge } from "../utils";
       class="flex w-full max-w-3xl flex-col items-center gap-6 text-center md:flex-row md:items-start md:gap-10 md:text-left"
     >
       <div
-        class="fade-in-up glass flex h-32 w-32 shrink-0 items-center justify-center rounded-full p-5 transition-transform duration-300 hover:scale-[1.05] md:h-36 md:w-36"
+        class="fade-in-up glass flex h-32 w-32 shrink-0 items-center justify-center rounded-full p-5 transition-[scale] duration-300 hover:scale-[1.05] md:h-36 md:w-36"
       >
         <Image
           src={blobComfy}
@@ -278,9 +278,7 @@ import { getAge } from "../utils";
           target="_blank"
           class="glass glass-cta"
         >
-          <Tech name="instagram" class="transition-colors duration-300"
-            >Instagram</Tech
-          >
+          <Tech name="instagram">Instagram</Tech>
         </a>
       </div>
     </AboutSection>
@@ -308,8 +306,15 @@ import { getAge } from "../utils";
         </p>
       </div>
       <div class="reveal pt-3">
-        <a href="/photography/aquaria" class="glass glass-cta text-yellow-100">
-          <Icon size="1.2em" img="camera" />
+        <a
+          href="/photography/aquaria"
+          class="glass glass-cta group text-yellow-100"
+        >
+          <Icon
+            size="1.2em"
+            img="camera"
+            color="text-yellow-100 group-hover:text-white"
+          />
           View Aquaria Photos
         </a>
       </div>
@@ -323,7 +328,7 @@ import { getAge } from "../utils";
     }
 
     .gear-card {
-      @apply rounded-xl p-5 transition-transform duration-300 hover:scale-[1.02];
+      @apply rounded-xl p-5 transition-[scale] duration-300 hover:scale-[1.02];
     }
   </style>
 </BaseLayout>

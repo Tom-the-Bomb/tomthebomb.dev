@@ -17,7 +17,7 @@ const currentPath = Astro.url.pathname;
 <nav
   id="main-nav"
   transition:persist
-  class="nav-glass font-soft flex flex-wrap items-center gap-4 p-3 transition-all duration-500 md:gap-6 md:px-6 md:py-4"
+  class="nav-glass font-soft flex flex-wrap items-center gap-4 p-3 transition-[background-color,backdrop-filter,border-color,box-shadow] duration-500 md:gap-6 md:px-6 md:py-4"
 >
   <Icon
     size="2em"
@@ -59,7 +59,7 @@ const currentPath = Astro.url.pathname;
 
   @media (hover: hover) {
     .nav-link {
-      transition: all 200ms ease;
+      transition: color 200ms ease, border-color 200ms ease;
     }
 
     .nav-link:hover {

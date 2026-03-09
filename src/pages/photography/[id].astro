@@ -59,7 +59,7 @@ const alt = `From the album: ${title}`;
       {
         images.map((image) => (
           <div class="reveal-once break-inside-avoid pb-4">
-            <div class="cursor-pointer border-8 border-white transition-transform duration-300 ease-in-out will-change-transform hover:scale-[1.02]">
+            <div class="album-image-card cursor-pointer border-8 border-white transition-[scale] duration-300 ease-in-out hover:scale-[1.02]">
               <Image
                 src={image}
                 alt={alt}
@@ -144,6 +144,14 @@ const alt = `From the album: ${title}`;
     ))
   }
 </BaseLayout>
+
+<style>
+  @media (hover: hover) {
+    .album-image-card:hover {
+      will-change: scale;
+    }
+  }
+</style>
 
 <script>
   import Swiper from "swiper";

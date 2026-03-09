@@ -38,7 +38,7 @@ const sorted = albums.toSorted((a, b) => a.data.index - b.data.index);
             <a
               data-astro-prefetch
               href={href}
-              class="reveal glass group block overflow-hidden rounded-xl transition-transform duration-300 hover:scale-[1.02]"
+              class="reveal glass group block overflow-hidden rounded-xl transition-[scale] duration-300 hover:scale-[1.02]"
             >
               <div class="aspect-square overflow-hidden">
                 <Image
@@ -47,7 +47,7 @@ const sorted = albums.toSorted((a, b) => a.data.index - b.data.index);
                   widths={[800, 500]}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   quality={80}
-                  class="h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110"
+                  class="h-full w-full object-cover object-center transition-[scale] duration-700 ease-out group-hover:scale-110"
                   loading={i >= 6 ? "lazy" : "eager"}
                   decoding="async"
                 />

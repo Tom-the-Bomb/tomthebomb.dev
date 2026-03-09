@@ -21,7 +21,6 @@
   --color-bootstrap: var(--color-violet-200);
   --color-webassembly: var(--color-sky-100);
   --color-flask: var(--color-cyan-100);
-  --color-quart: var(--color-cyan-100);
   --color-axum: var(--color-red-100);
   --color-mongo: var(--color-green-200);
   --color-sqlite: var(--color-indigo-100);
@@ -32,9 +31,7 @@
   --color-matplotlib: var(--color-orange-200);
   --color-p5: var(--color-red-100);
   --color-vite: var(--color-yellow-100);
-  --color-instagram: var(--color-yellow-100);
   --color-discordpy: var(--color-indigo-100);
-  --color-sphinx: var(--color-blue-100);
   --color-cloudflare: var(--color-orange-200);
   --color-d3: var(--color-orange-200);
   --color-leaflet: var(--color-green-200);
@@ -51,11 +48,7 @@
   font-family: "Nexa Black Italic";
   src:
     url("/fonts/NexaBlackItalic.woff2") format("woff2"),
-    url("/fonts/NexaBlackItalic.woff") format("woff"),
-    url("/fonts/NexaBlackItalic.ttf") format("truetype"),
-    url("/fonts/NexaBlackItalic.otf") format("opentype"),
-    url("/fonts/NexaBlackItalic.eot?#iefix") format("embedded-opentype"),
-    url("/fonts/NexaBlackItalic.svg#NexaBlackItalic") format("svg");
+    url("/fonts/NexaBlackItalic.woff") format("woff");
   font-style: italic;
   font-weight: 900;
   font-display: swap;
@@ -152,6 +145,7 @@
   .typewriter {
     @apply relative border-r-2 border-white/75 whitespace-nowrap;
     clip-path: inset(-50px 0 -50px -50px);
+    contain: layout style;
     animation:
       typewriter 7s steps(12) 1s infinite normal both,
       blinking-text-cursor 500ms steps(12) infinite normal;
@@ -178,6 +172,7 @@
 
   .float-bob {
     animation: float-bob 3s ease-in-out infinite;
+    will-change: transform;
   }
 
   .pill {
@@ -194,7 +189,7 @@
   }
 
   .glass-cta {
-    @apply inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold text-white/70 transition-all duration-300 hover:scale-[1.03] hover:text-white;
+    @apply inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold text-white/70 transition-[scale,color,box-shadow,border-color] duration-300 hover:scale-[1.03] hover:text-white!;
   }
 
   .fade-in-up {
@@ -207,13 +202,13 @@
 
   .custom-grid {
     @apply grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3;
+    contain: layout style;
   }
 }
 
 .reveal {
   opacity: 0;
   translate: 0 24px;
-  content-visibility: auto;
   transition:
     opacity 0.45s ease-in,
     translate 0.45s ease-in,

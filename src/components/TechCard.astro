@@ -11,7 +11,7 @@ const { name, label, color = "" } = Astro.props;
 ---
 
 <div
-  class="glass flex items-center gap-2 rounded-lg px-3 py-2 transition-all duration-300 hover:scale-[1.05] hover:bg-white/10"
+  class="glass flex items-center gap-2 rounded-lg px-3 py-2 transition-[scale,background-color] duration-300 hover:scale-[1.05] hover:bg-white/10"
 >
   <AstroIcon
     name={`stack/${name}`}

@@ -94,9 +94,14 @@ const { title, description } = Astro.props;
 
     reveals.forEach((el) => observer.observe(el));
 
-    revealOnces.forEach((el) => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
+    const viewportHeight = window.innerHeight;
+    const revealOnceRects = Array.from(revealOnces, (el) => ({
+      el,
+      rect: el.getBoundingClientRect(),
+    }));
+
+    revealOnceRects.forEach(({ el, rect }) => {
+      if (rect.top < viewportHeight && rect.bottom > 0) {
         const img = el.querySelector<HTMLImageElement>("img[loading='lazy']");
         if (img) {
           img.loading = "eager";
@@ -121,7 +126,7 @@ const { title, description } = Astro.props;
   }
 
   .squares > div {
-    @apply absolute -bottom-37.5 block h-5 w-5 rounded-[10%] will-change-[transform,opacity,border-radius];
+    @apply absolute -bottom-37.5 block h-5 w-5 rounded-[10%] will-change-[transform,opacity];
     animation: squares infinite linear;
   }
 
