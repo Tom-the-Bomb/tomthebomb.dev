@@ -213,6 +213,7 @@
 .reveal {
   opacity: 0;
   translate: 0 24px;
+  content-visibility: auto;
   transition:
     opacity 0.45s ease-in,
     translate 0.45s ease-in,

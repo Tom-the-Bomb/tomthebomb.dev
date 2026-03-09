@@ -57,33 +57,14 @@ const { title, description } = Astro.props;
 
 <script>
   let prevObserver: IntersectionObserver | null = null;
-  let prevOnceObserver: IntersectionObserver | null = null;
 
   document.addEventListener("astro:page-load", () => {
     prevObserver?.disconnect();
-    prevOnceObserver?.disconnect();
     prevObserver = null;
-    prevOnceObserver = null;
 
     const reveals = document.querySelectorAll<HTMLElement>(".reveal");
-    if (!reveals.length) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          entry.target.classList.toggle("visible", entry.isIntersecting);
-        });
-      },
-      { threshold: 0.05 },
-    );
-
-    reveals.forEach((el) => observer.observe(el));
-    prevObserver = observer;
-
     const revealOnces = document.querySelectorAll<HTMLElement>(".reveal-once");
-    if (!revealOnces.length) {
+    if (!reveals.length && !revealOnces.length) {
       return;
     }
 
@@ -94,18 +75,24 @@ const { title, description } = Astro.props;
       fill: "forwards",
     };
 
-    const onceObserver = new IntersectionObserver(
+    const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            entry.target.animate(revealKeyframes, revealTiming);
-            onceObserver.unobserve(entry.target);
+          if (entry.target.classList.contains("reveal-once")) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              entry.target.animate(revealKeyframes, revealTiming);
+              observer.unobserve(entry.target);
+            }
+          } else {
+            entry.target.classList.toggle("visible", entry.isIntersecting);
           }
         });
       },
       { threshold: 0.05 },
     );
+
+    reveals.forEach((el) => observer.observe(el));
 
     revealOnces.forEach((el) => {
       const rect = el.getBoundingClientRect();
@@ -117,11 +104,11 @@ const { title, description } = Astro.props;
         el.classList.add("visible");
         el.animate(revealKeyframes, revealTiming);
       } else {
-        onceObserver.observe(el);
+        observer.observe(el);
       }
     });
 
-    prevOnceObserver = onceObserver;
+    prevObserver = observer;
   });
 </script>
 
@@ -130,10 +117,11 @@ const { title, description } = Astro.props;
 
   .squares {
     @apply fixed bottom-0 left-0 -z-1000 h-svh w-full overflow-hidden;
+    contain: strict;
   }
 
   .squares > div {
-    @apply absolute -bottom-37.5 block h-5 w-5 rounded-[10%] will-change-[transform,opacity];
+    @apply absolute -bottom-37.5 block h-5 w-5 rounded-[10%] will-change-[transform,opacity,border-radius];
     animation: squares infinite linear;
   }
 
