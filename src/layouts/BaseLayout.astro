@@ -68,6 +68,10 @@ const { title, description } = Astro.props;
       return;
     }
 
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
     const revealKeyframes = [{ opacity: 0 }, { opacity: 1 }];
     const revealTiming: KeyframeAnimationOptions = {
       duration: 650,
@@ -81,7 +85,9 @@ const { title, description } = Astro.props;
           if (entry.target.classList.contains("reveal-once")) {
             if (entry.isIntersecting) {
               entry.target.classList.add("visible");
-              entry.target.animate(revealKeyframes, revealTiming);
+              if (!prefersReducedMotion) {
+                entry.target.animate(revealKeyframes, revealTiming);
+              }
               observer.unobserve(entry.target);
             }
           } else {
@@ -92,7 +98,9 @@ const { title, description } = Astro.props;
       { threshold: 0.05 },
     );
 
-    reveals.forEach((el) => observer.observe(el));
+    if (!prefersReducedMotion) {
+      reveals.forEach((el) => observer.observe(el));
+    }
 
     const viewportHeight = window.innerHeight;
     const revealOnceRects = Array.from(revealOnces, (el) => ({
@@ -107,7 +115,9 @@ const { title, description } = Astro.props;
           img.loading = "eager";
         }
         el.classList.add("visible");
-        el.animate(revealKeyframes, revealTiming);
+        if (!prefersReducedMotion) {
+          el.animate(revealKeyframes, revealTiming);
+        }
       } else {
         observer.observe(el);
       }
@@ -126,7 +136,7 @@ const { title, description } = Astro.props;
   }
 
   .squares > div {
-    @apply absolute -bottom-37.5 block h-5 w-5 rounded-[10%] will-change-[transform,opacity];
+    @apply absolute -bottom-37.5 block h-5 w-5 rounded-[10%];
     animation: squares infinite linear;
   }
 

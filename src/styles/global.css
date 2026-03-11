@@ -172,7 +172,6 @@
 
   .float-bob {
     animation: float-bob 3s ease-in-out infinite;
-    will-change: transform;
   }
 
   .pill {
@@ -203,6 +202,26 @@
   .custom-grid {
     @apply grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3;
     contain: layout style;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+  }
+
+  .typewriter {
+    width: 12ch;
+    border-right-color: transparent;
+  }
+
+  .reveal,
+  .reveal-once {
+    opacity: 1 !important;
+    translate: none !important;
+    transition: scale 0.2s ease-in-out !important;
   }
 }
 
