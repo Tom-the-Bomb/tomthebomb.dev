@@ -118,7 +118,7 @@ const { title, description } = Astro.props;
         if (!prefersReducedMotion) {
           el.animate(revealKeyframes, revealTiming);
         }
-      } else {
+      } else if (!prefersReducedMotion) {
         observer.observe(el);
       }
     });
