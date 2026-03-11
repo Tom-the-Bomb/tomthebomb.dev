@@ -68,16 +68,11 @@ const { title, description } = Astro.props;
       return;
     }
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    const revealKeyframes = [{ opacity: 0 }, { opacity: 1 }];
-    const revealTiming: KeyframeAnimationOptions = {
-      duration: 650,
-      easing: "ease-out",
-      fill: "forwards",
-    };
+    if (
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -85,9 +80,6 @@ const { title, description } = Astro.props;
           if (entry.target.classList.contains("reveal-once")) {
             if (entry.isIntersecting) {
               entry.target.classList.add("visible");
-              if (!prefersReducedMotion) {
-                entry.target.animate(revealKeyframes, revealTiming);
-              }
               observer.unobserve(entry.target);
             }
           } else {
@@ -98,30 +90,8 @@ const { title, description } = Astro.props;
       { threshold: 0.05 },
     );
 
-    if (!prefersReducedMotion) {
-      reveals.forEach((el) => observer.observe(el));
-    }
-
-    const viewportHeight = window.innerHeight;
-    const revealOnceRects = Array.from(revealOnces, (el) => ({
-      el,
-      rect: el.getBoundingClientRect(),
-    }));
-
-    revealOnceRects.forEach(({ el, rect }) => {
-      if (rect.top < viewportHeight && rect.bottom > 0) {
-        const img = el.querySelector<HTMLImageElement>("img[loading='lazy']");
-        if (img) {
-          img.loading = "eager";
-        }
-        el.classList.add("visible");
-        if (!prefersReducedMotion) {
-          el.animate(revealKeyframes, revealTiming);
-        }
-      } else if (!prefersReducedMotion) {
-        observer.observe(el);
-      }
-    });
+    reveals.forEach((el) => observer.observe(el));
+    revealOnces.forEach((el) => observer.observe(el));
 
     prevObserver = observer;
   });

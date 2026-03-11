@@ -55,17 +55,11 @@
 }
 
 @keyframes typewriter {
-  0% {
+  0%, 100% {
     width: 0;
   }
-  50% {
+  50%, 90% {
     width: 12ch;
-  }
-  90% {
-    width: 12ch;
-  }
-  100% {
-    width: 0;
   }
 }
 
@@ -245,6 +239,7 @@
 
 .reveal-once {
   opacity: 0;
+  transition: opacity 0.65s ease-out;
 }
 
 .reveal-once.visible {

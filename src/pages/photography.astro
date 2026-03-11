@@ -31,7 +31,7 @@ const sorted = albums.toSorted((a, b) => a.data.index - b.data.index);
 
     <div class="stagger-grid custom-grid">
       {
-        sorted.map((album, i) => {
+        sorted.map((album) => {
           const href = `/photography/${album.id}`;
 
           return (
@@ -48,7 +48,7 @@ const sorted = albums.toSorted((a, b) => a.data.index - b.data.index);
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   quality={80}
                   class="h-full w-full object-cover object-center transition-[scale] duration-700 ease-out group-hover:scale-110"
-                  loading={i >= 6 ? "lazy" : "eager"}
+                  loading="lazy"
                   decoding="async"
                 />
               </div>
