@@ -28,7 +28,7 @@ const TAGS = {
   axum: { name: "Axum", color: "text-axum" },
   fastapi: { name: "FastAPI", color: "text-fastapi" },
   mongo: { name: "MongoDB", color: "text-mongo" },
-  d1: { name: "D1", color: "text-cloudflare" },
+  sql: { name: "SQL", color: "text-sql" },
   r2: { name: "R2", color: "text-cloudflare" },
   sympy: { name: "SymPy", color: "text-sympy" },
   p5: { name: "p5.js", color: "text-p5" },
@@ -37,6 +37,8 @@ const TAGS = {
   swiper: { name: "Swiper", color: "text-swiper" },
   discordpy: { name: "discord.py", color: "text-discordpy" },
   webpack: { name: "Webpack", color: "text-webpack" },
+  go: { name: "Go", color: "text-go" },
+  rabbitmq: { name: "RabbitMQ", color: "text-rabbitmq" },
 } as const satisfies Record<string, Tag>;
 
 export interface ProjectData {
@@ -50,6 +52,15 @@ export interface ProjectData {
 }
 
 export const projects: ProjectData[] = [
+  {
+    name: "Linktrace",
+    github: "https://github.com/Tom-the-Bomb/linktrace",
+    hrefs: [{ href: "https://linktrace.tomthebomb.dev", hrefTitle: "Website" }],
+    logo: "linktrace",
+    tags: [TAGS.react, TAGS.tailwind, TAGS.sql, TAGS.go, TAGS.rabbitmq],
+    description:
+      "Distributed web crawler that audits website pages according to SEO best practices, and analyzes endpoint link health.",
+  },
   {
     name: "Sketch a Fourier",
     github: "https://github.com/Tom-the-Bomb/fourier-drawer",
@@ -78,7 +89,7 @@ export const projects: ProjectData[] = [
     github: "https://github.com/Tom-the-Bomb/boba-log",
     hrefs: [{ href: "https://boba.tomthebomb.dev", hrefTitle: "Website" }],
     logo: "boba-log",
-    tags: [TAGS.d1, TAGS.r2, TAGS.tailwind, TAGS.ts, TAGS.nextjs],
+    tags: [TAGS.sql, TAGS.r2, TAGS.tailwind, TAGS.ts, TAGS.nextjs],
     description:
       "Full-stack web application for tracking boba consumption per shop over time with analytics and metrics.",
   },
@@ -277,13 +288,5 @@ export const projects: ProjectData[] = [
     tags: [TAGS.python],
     description:
       "Async Python wrapper for the Piston API, allowing for easy code execution in 70+ languages.",
-  },
-  {
-    name: "Number Slider",
-    github: "https://github.com/Tom-the-Bomb/number-slider",
-    logo: "number-slider",
-    tags: [TAGS.java],
-    description:
-      "Custom number slider puzzle game built in Java with a custom game engine, featuring various difficulty settings.",
   },
 ];

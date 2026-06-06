@@ -42,6 +42,9 @@
   --color-solidjs: var(--color-blue-200);
   --color-webgl: var(--color-red-100);
   --color-webpack: var(--color-cyan-200);
+  --color-sql: var(--color-blue-200);
+  --color-go: var(--color-cyan-200);
+  --color-rabbitmq: var(--color-orange-200);
 }
 
 @font-face {
